@@ -7,11 +7,11 @@
 :root {
   --color-primary: #0e57ff;
   --avatar-dimension: 150px;
+  --font-family: "CircularStd", -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 body {
-  font-family: "Circular Std", -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next", "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   background: #f4f4f4;
 }
 
@@ -31,6 +31,6 @@ body {
   text-align: center;
   border-top: 2px white dotted;
   border-bottom: 2px white dotted;
-  
+
   transform: rotate(45deg);
 }
