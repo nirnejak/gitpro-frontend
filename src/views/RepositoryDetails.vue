@@ -16,7 +16,7 @@
           <div class="col-4-lg is-vertical-align is-right">
             <!-- TODO: Add Optional Link for GitHub/Bitbucket/Gitlab -->
             <a
-              :href="`http://github.com/${user.login}/${repository.name}`"
+              :href="`http://github.com/${user.login}/${$route.params.name}`"
               class="sidebar-link pr-20"
               target="_blank"
             >

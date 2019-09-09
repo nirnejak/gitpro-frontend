@@ -13,7 +13,7 @@
           <div class="col-6-lg is-vertical-align">
             <div class="ml-10">
               <h1 class="m-0">{{collaborator.name}}</h1>
-              <h3 class="m-0 text-dark">{{collaborator.login}}</h3>
+              <h3 class="m-0 text-dark">{{$route.params.login}}</h3>
             </div>
           </div>
           <div class="col-4-lg is-vertical-align is-right">
@@ -26,7 +26,7 @@
               <br />
               <!-- TODO: Add Links for GitHub/Bitbucket/Gitlab -->
               <a
-                :href="`http://github.com/${collaborator.login}`"
+                :href="`http://github.com/${$route.params.login}`"
                 class="sidebar-link pr-20"
                 target="_blank"
               >
