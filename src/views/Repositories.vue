@@ -34,11 +34,13 @@ export default {
   components: { Sidebar },
   data() {
     return {
-      repositories: []
+      repositories: [
+        { name: "brunch_finder" },
+        { name: "angular_todolist" },
+        { name: "graphql-app" }
+      ]
     };
   },
-  created() {
-    
-  }
+  created() {}
 };
 </script>

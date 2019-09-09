@@ -46,7 +46,7 @@ export default new Router({
     {
       path: '/repositories/:name',
       name: 'repositories',
-      component: () => import('./views/Repositories.vue')
+      component: () => import('./views/RepositoryDetails.vue')
     },
     {
       path: '/teams',
