@@ -36,7 +36,7 @@ export default new Router({
     {
       path: '/collaborators/:login',
       name: 'collaborators',
-      component: () => import('./views/Collaborators.vue')
+      component: () => import('./views/CollaboratorDetails.vue')
     },
     {
       path: '/repositories',
