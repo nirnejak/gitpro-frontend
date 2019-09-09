@@ -17,18 +17,20 @@ body {
 
 @import "components/collaborator-avatar";
 
-label.repo-checkbox {
-  cursor: pointer;
-  & > div {
-    border: white 1px solid;
-  }
-}
-
-input[type="checkbox"]:checked + label.repo-checkbox > div {
-  border: var(--color-primary) 1px solid;
-  & > div > div > i.fa-check-circle {
-    color: var(--color-primary) !important;
-  }
-}
-
 @import "utils";
+
+.top-collar {
+  background: var(--color-primary);
+  color: white;
+
+  position: fixed;
+  width: 200px;
+  top: 40px;
+  right: -50px;
+
+  text-align: center;
+  border-top: 2px white dotted;
+  border-bottom: 2px white dotted;
+  
+  transform: rotate(45deg);
+}

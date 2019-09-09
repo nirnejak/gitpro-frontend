@@ -85,3 +85,19 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+label.repo-checkbox {
+  cursor: pointer;
+  & > div {
+    border: white 1px solid;
+  }
+}
+
+input[type="checkbox"]:checked + label.repo-checkbox > div {
+  border: var(--color-primary) 1px solid;
+  & > div > div > i.fa-check-circle {
+    color: var(--color-primary) !important;
+  }
+}
+</style>
