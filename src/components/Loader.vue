@@ -17,7 +17,7 @@ export default {
     transform: translateX(0);
   }
   to {
-    transform: translateX(1000%);
+    transform: translateX(100vw);
   }
 }
 
@@ -34,7 +34,7 @@ export default {
       transparent
     );
     animation-name: moveGradient;
-    animation-duration: 1.5s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
   }
 }
