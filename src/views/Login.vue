@@ -1,0 +1,23 @@
+<template>
+  <div class="container">
+    <div class="row">
+      <div class="col-4-lg"></div>
+      <div class="col-4-lg h-100vh is-center">
+        <div class="card bg-white p-30 w-100">
+          <h2 class="is-center">Login</h2>
+          <a href="http://localhost:5000/auth/github" class="button dark is-center">
+            <i class="fab fa-github"></i>&nbsp;
+            Continue using GitHub
+          </a>
+        </div>
+      </div>
+      <div class="col-4-lg"></div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Login"
+};
+</script>

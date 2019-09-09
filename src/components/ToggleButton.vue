@@ -1,4 +1,9 @@
-<template></template>
+<template>
+  <div>
+    <input class="tgl tgl-flat" id="cb4" type="checkbox" />
+    <label class="tgl-btn" for="cb4"></label>
+  </div>
+</template>
 
 <script>
 export default {

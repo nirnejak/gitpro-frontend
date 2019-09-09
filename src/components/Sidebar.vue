@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Sidebar",
   data() {
@@ -50,10 +52,18 @@ export default {
       user: {
         name: "Jitendra Nirnejak",
         login: "nirnejak",
-        avatar_url: ""
+        avatar_url: "https://placedog.net/360/480"
       }
     };
-  }
+  },
+  async created() {
+    const res = await axios.get(
+      `${localStorage.baseUrl}/users/${localStorage.login}`,
+      { headers: { Authorization: `Bearer ${localStorage.token}` } }
+    );
+    this.user = res.data;
+  },
+  methods: {}
 };
 </script>
 

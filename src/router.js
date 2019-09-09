@@ -19,6 +19,11 @@ export default new Router({
       component: () => import('./views/About.vue')
     },
     {
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/Login.vue')
+    },
+    {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('./views/Dashboard.vue')
@@ -29,7 +34,17 @@ export default new Router({
       component: () => import('./views/Collaborators.vue')
     },
     {
+      path: '/collaborators/:login',
+      name: 'collaborators',
+      component: () => import('./views/Collaborators.vue')
+    },
+    {
       path: '/repositories',
+      name: 'repositories',
+      component: () => import('./views/Repositories.vue')
+    },
+    {
+      path: '/repositories/:name',
       name: 'repositories',
       component: () => import('./views/Repositories.vue')
     },
@@ -42,6 +57,11 @@ export default new Router({
       path: '/settings',
       name: 'settings',
       component: () => import('./views/Settings.vue')
+    },
+    {
+      path: '/error/:code',
+      name: 'error',
+      component: () => import('./views/Error.vue')
     }
   ]
 })
