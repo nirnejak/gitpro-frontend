@@ -31,14 +31,14 @@
           <div class="col-12">
             <h2>Collaborators</h2>
           </div>
-          <Loader v-if="loading" width="80%" height="40px" radius="50px" />
+          <Loader v-if="collaboratorLoading" width="80%" height="40px" radius="50px" />
           <br />
           <br />
           <br />
-          <Loader v-if="loading" width="60%" height="30px" radius="30px" />
+          <Loader v-if="collaboratorLoading" width="60%" height="30px" radius="30px" />
           <br />
           <br />
-          <Loader v-if="loading" width="60%" height="30px" radius="30px" />
+          <Loader v-if="collaboratorLoading" width="60%" height="30px" radius="30px" />
           <div
             class="col-2 p-5 collaborator-avatar-container"
             v-for="collaborator in collaborators"
@@ -78,7 +78,7 @@ export default {
         total_collaborators: 0
       },
       collaborators: [],
-      loading: true
+      collaboratorLoading: true
     };
   },
   created() {}

@@ -61,11 +61,15 @@ export default {
     };
   },
   async created() {
-    const res = await axios.get(`/users/${localStorage.login}`);
-    this.user = res.data;
-    localStorage.name = res.data.name;
-    localStorage.login = res.data.login;
-    localStorage.avatar_url = res.data.avatar_url;
+    axios
+      .get(`/users/${localStorage.login}`)
+      .then(res => {
+        this.user = res.data;
+        localStorage.name = res.data.name;
+        localStorage.login = res.data.login;
+        localStorage.avatar_url = res.data.avatar_url;
+      })
+      .catch(error => error);
   },
   methods: {}
 };

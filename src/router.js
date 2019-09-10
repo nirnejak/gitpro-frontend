@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Home from './views/Home.vue'
 
 Vue.use(Router)
@@ -23,7 +24,7 @@ export default new Router({
       name: 'login',
       component: () => import('./views/Login.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.login && localStorage.token) {
+        if (localStorage.jwtToken) {
           // TODO: Toast Message - Already Logged In
           next({ path: '/dashboard' })
         } else {
@@ -36,7 +37,7 @@ export default new Router({
       name: 'dashboard',
       component: () => import('./views/Dashboard.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.login && localStorage.token) {
+        if (localStorage.jwtToken) {
           next()
         } else {
           next({ path: '/login' })
@@ -48,7 +49,7 @@ export default new Router({
       name: 'collaborators',
       component: () => import('./views/Collaborators.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.login && localStorage.token) {
+        if (localStorage.jwtToken) {
           next()
         } else {
           next({ path: '/login' })
@@ -60,7 +61,7 @@ export default new Router({
       name: 'collaborator',
       component: () => import('./views/CollaboratorDetails.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.login && localStorage.token) {
+        if (localStorage.jwtToken) {
           next()
         } else {
           next({ path: '/login' })
@@ -72,7 +73,7 @@ export default new Router({
       name: 'repository',
       component: () => import('./views/Repositories.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.login && localStorage.token) {
+        if (localStorage.jwtToken) {
           next()
         } else {
           next({ path: '/login' })
@@ -84,7 +85,7 @@ export default new Router({
       name: 'repositories',
       component: () => import('./views/RepositoryDetails.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.login && localStorage.token) {
+        if (localStorage.jwtToken) {
           next()
         } else {
           next({ path: '/login' })
@@ -96,7 +97,7 @@ export default new Router({
       name: 'teams',
       component: () => import('./views/Teams.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.login && localStorage.token) {
+        if (localStorage.jwtToken) {
           next()
         } else {
           next({ path: '/login' })
@@ -108,7 +109,7 @@ export default new Router({
       name: 'settings',
       component: () => import('./views/Settings.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.login && localStorage.token) {
+        if (localStorage.jwtToken) {
           next()
         } else {
           next({ path: '/login' })
@@ -120,11 +121,10 @@ export default new Router({
       name: 'logout',
       component: () => import('./views/Home.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.login && localStorage.token) {
-          next({ path: '/dashboard' })
-        } else {
-          next()
-        }
+        localStorage.removeItem('login')
+        localStorage.removeItem('jwtToken')
+        localStorage.removeItem('avatar_url')
+        next()
       }
     },
     {

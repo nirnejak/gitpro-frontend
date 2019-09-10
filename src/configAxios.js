@@ -6,11 +6,11 @@ if (process.env.NODE_ENV === 'production') {
   axios.defaults.baseURL = 'http://localhost:5000/api'
 }
 
-// export const setAuthToken = token => {
-//   axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+// export const setAuthToken = jwtToken => {
+//   axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken
 // }
 
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.token
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.jwtToken
 axios.interceptors.response.use(
   response => response,
   error => {
