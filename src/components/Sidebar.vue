@@ -31,6 +31,10 @@
         <i class="fas fa-cog" />
         Settings
       </router-link>
+      <router-link to="/logout" class="sidebar-link" active-class="active">
+        <i class="fas fa-sign-out-alt" />
+        Logout
+      </router-link>
     </div>
     <div class="sidebar-footer">
       <div class="row">
@@ -43,25 +47,25 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/configAxios";
 
 export default {
   name: "Sidebar",
   data() {
     return {
       user: {
-        name: "Jitendra Nirnejak",
-        login: "nirnejak",
-        avatar_url: "https://placedog.net/360/480"
+        name: localStorage.name,
+        login: localStorage.login,
+        avatar_url: localStorage.avatar_url
       }
     };
   },
   async created() {
-    const res = await axios.get(
-      `${localStorage.baseUrl}/users/${localStorage.login}`,
-      { headers: { Authorization: `Bearer ${localStorage.token}` } }
-    );
+    const res = await axios.get(`/users/${localStorage.login}`);
     this.user = res.data;
+    localStorage.name = res.data.name;
+    localStorage.login = res.data.login;
+    localStorage.avatar_url = res.data.avatar_url;
   },
   methods: {}
 };
