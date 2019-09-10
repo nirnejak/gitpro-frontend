@@ -40,7 +40,13 @@ export default new Router({
         if (localStorage.jwtToken) {
           next()
         } else {
-          next({ path: '/login' })
+          if (to.query.token) {
+            localStorage.login = to.query.login
+            localStorage.jwtToken = to.query.token
+            next()
+          } else {
+            next({ path: '/login' })
+          }
         }
       }
     },
