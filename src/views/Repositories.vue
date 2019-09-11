@@ -6,12 +6,12 @@
         <h1>Repositories</h1>
         <div class="row" v-if="repositoriesLoading">
           <div class="col-3" v-for="i in 12" :key="i">
-            <SkeletonLoader width="100%" height="70px" radius="5px" class="my-5"/>
+            <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10"/>
           </div>
         </div>
         <div class="row">
           <div class="col-3" v-for="repository in repositories" :key="repository.name">
-            <div class="bg-white border-radius-5 p-20 my-5">
+            <div class="bg-white border-radius-5 p-20 my-10">
               <router-link :to="`/repositories/${repository.name}`" class="text-black">
                 <div class="row">
                   <div class="col-10 text-overflow-ellipsis">

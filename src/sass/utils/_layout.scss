@@ -1,0 +1,49 @@
+$positions: ("static", "fixed", "relative", "absolute", "sticky");
+@each $position in $positions {
+  .position-#{$position} {
+    position: #{$position} !important;
+  }
+}
+
+$displays: ("none", "block", "inline", "inline-block", "flex", "grid");
+@each $display in $displays {
+  .d-#{$display} {
+    display: #{$display} !important;
+  }
+}
+
+$directions: ("top", "right", "bottom", "right");
+@each $direction in $directions {
+  .border-#{$direction} {
+    border-#{$direction}: 1px var(--color-grey) solid !important;
+  }
+  .border-#{$direction}-dark {
+    border-#{$direction}: 1px var(--color-darkGrey) solid !important;
+  }
+}
+
+.centered-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-gutters {
+  margin: 0px !important;
+  padding: 0px !important;
+  & > div {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+}
+
+.bg-cover {
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}

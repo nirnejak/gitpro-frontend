@@ -1,0 +1,20 @@
+.text-overflow-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.text-black {
+  color: black;
+}
+
+.bg-white {
+  background: white;
+}
+
+$cursors: ("default", "pointer", "not-allowed", "context-menu");
+@each $cursor in $cursors {
+  .cursor-#{$cursor} {
+    cursor: #{$cursor} !important;
+  }
+}

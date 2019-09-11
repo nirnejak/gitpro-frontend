@@ -15,9 +15,9 @@ axios.interceptors.response.use(
   response => response,
   error => {
     if (error.response) {
-      if (error.response.status === 401) {
+      if (error.response.status === 401 || error.response.status === 403) {
         // TODO: Logout User
-        console.log('401 Unauthorized')
+        console.log(`${error.response.status} Error`)
       } else if (error.response.status === 404) {
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
           // TODO: Capture Error through sentry

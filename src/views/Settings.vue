@@ -7,16 +7,18 @@
         <div class="row">
           <div class="col-12">
             <div class="bg-white border-radius-10 p-20">
-              <div class="row border-bottom">
-                <div class="col-9">Include Public Repositories</div>
-                <div class="col-3 is-right">
+              <div class="row">
+                <div class="col-10 is-vertical-align">Include Public Repositories</div>
+                <div class="col-2 is-center">
                   <ToggleButton />
                 </div>
               </div>
               <div class="row">
-                <div class="col-9">Deactivate Account?</div>
-                <div class="col-3 is-right">
-                  <button class="button error">Deactivate</button>
+                <div class="col-10 is-vertical-align">Deactivate Account?</div>
+                <div class="col-2 is-center">
+                  <button class="button clear">
+                    <span class="text-error">Deactivate</span>
+                  </button>
                 </div>
               </div>
             </div>
