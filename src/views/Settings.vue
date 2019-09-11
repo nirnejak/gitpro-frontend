@@ -10,13 +10,13 @@
               <div class="row">
                 <div class="col-10 is-vertical-align">Include Public Repositories</div>
                 <div class="col-2 is-center">
-                  <ToggleButton />
+                  <ToggleButton @change="includePublicToggle" />
                 </div>
               </div>
               <div class="row">
                 <div class="col-10 is-vertical-align">Deactivate Account?</div>
                 <div class="col-2 is-center">
-                  <button class="button clear">
+                  <button class="button clear" @click="deactivateAccount">
                     <span class="text-error">Deactivate</span>
                   </button>
                 </div>
@@ -35,6 +35,14 @@ import ToggleButton from "@/components/ToggleButton";
 
 export default {
   name: "Settings",
-  components: { Sidebar, ToggleButton }
+  components: { Sidebar, ToggleButton },
+  methods: {
+    includePublicToggle() {
+      console.log("Include Public Toggle");
+    },
+    deactivateAccount() {
+      console.log("Deactivate Account");
+    }
+  }
 };
 </script>
