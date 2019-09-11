@@ -5,9 +5,11 @@
       <div class="px-20">
         <div class="row">
           <div class="col-2-lg">
+            <SkeletonLoader width="100%" height="150px" radius="10px" v-if="collaboratorDetailsLoading"/>
             <div
               class="bg-white border-radius-10 bg-cover w-100"
               :style="`background-image: url(${collaborator.avatar_url}); padding-top: 100%;`"
+              v-else
             ></div>
           </div>
           <div class="col-6-lg is-vertical-align">
@@ -47,7 +49,9 @@
               Revoke Access
             </button>
           </div>
-          <div class="col-3" v-for="repository in repositories" :key="repository.name">
+        </div>
+        <div class="row" v-if="collaborator">
+          <div class="col-3" v-for="repository in collaborator.repositories" :key="repository.name">
             <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
             <label :for="repository.name" class="repo-checkbox">
               <div class="bg-white border-radius-5 p-20 my-5">
@@ -70,18 +74,26 @@
 </template>
 
 <script>
+import axios from "@/configAxios";
+
 import Sidebar from "@/components/Sidebar";
+import SkeletonLoader from "@/components/SkeletonLoader";
 
 export default {
   name: "CollaboratorDetails",
-  components: { Sidebar },
+  components: { Sidebar, SkeletonLoader },
   data() {
     return {
-      user: {
-        login: localStorage.login
-      },
-      collaborator: {}
+      user: { login: localStorage.login },
+      collaborator: {},
+      collaboratorDetailsLoading: true
     };
+  },
+  created() {
+    axios.get(`/collaborators/${this.$route.params.login}`).then(res => {
+      this.collaboratorDetailsLoading = false;
+      this.collaborator = res.data;
+    });
   }
 };
 </script>

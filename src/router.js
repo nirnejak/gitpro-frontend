@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from './views/Home.vue'
+// import Home from './views/Home.vue'
 
 Vue.use(Router)
 
@@ -12,7 +12,8 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      // component: Home
+      component: () => import('./views/Home.vue')
     },
     {
       path: '/about',
@@ -125,12 +126,11 @@ export default new Router({
     {
       path: '/logout',
       name: 'logout',
-      component: () => import('./views/Home.vue'),
       beforeEnter: (to, from, next) => {
         localStorage.removeItem('login')
         localStorage.removeItem('jwtToken')
         localStorage.removeItem('avatar_url')
-        next()
+        next({ path: '/' })
       }
     },
     {

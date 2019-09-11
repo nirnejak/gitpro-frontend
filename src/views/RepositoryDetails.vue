@@ -38,7 +38,7 @@
           </div>
           <div
             class="col-2 p-5 collaborator-avatar-container"
-            v-for="collaborator in collaborators"
+            v-for="collaborator in repository.collaborators"
             :key="collaborator.login"
           >
             <div class="is-center">
@@ -73,25 +73,26 @@
 </template>
 
 <script>
+import axios from "@/configAxios";
+
 import Sidebar from "@/components/Sidebar";
+import SkeletonLoader from "@/components/SkeletonLoader";
 
 export default {
   name: "RepositoryDetails",
+  components: { Sidebar, SkeletonLoader },
   data() {
     return {
-      user: {
-        login: localStorage.login
-      },
-      repository: {
-        name: "brunch_finder"
-      },
-      collaborators: []
+      user: { login: localStorage.login },
+      repository: {},
+      repositoryDetailsLoading: true
     };
   },
-  components: { Sidebar },
   created() {
-    // TODO: Fetch Repository Details and Collaborators List
-    // $route.params.name
+    axios.get(`/repositories/${this.$route.params.name}`).then(res => {
+      this.repositoryDetailsLoading = false;
+      this.repository = res.data;
+    });
   }
 };
 </script>

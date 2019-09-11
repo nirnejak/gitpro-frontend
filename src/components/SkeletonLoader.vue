@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "Loader",
+  name: "SkeletonLoader",
   props: ["width", "height", "radius"]
 };
 </script>

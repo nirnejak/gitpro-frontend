@@ -24,7 +24,7 @@ axios.interceptors.response.use(
           window.location.href = `/error/${error.response.status}`
         } else {
           // TODO: Show Error Toast Message
-          console.log('404: Not Found')
+          console.log('404 Not Found')
         }
       } else {
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {

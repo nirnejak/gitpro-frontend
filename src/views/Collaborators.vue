@@ -4,6 +4,13 @@
     <div class="col-9-lg pt-70">
       <div class="px-20">
         <h1>Collaborators</h1>
+        <div class="row" v-if="collaboratorLoading">
+          <div class="col-2 p-5" v-for="i in 6" :key="i">
+            <div class="is-center">
+              <SkeletonLoader width="150px" height="150px" radius="50%" />
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div
             class="col-2 p-5 collaborator-avatar-container"
@@ -31,21 +38,25 @@
 </template>
 
 <script>
+import axios from "@/configAxios";
+
 import Sidebar from "@/components/Sidebar";
+import SkeletonLoader from "@/components/SkeletonLoader";
 
 export default {
   name: "Collaborators",
-  components: { Sidebar },
+  components: { Sidebar, SkeletonLoader },
   data() {
     return {
-      collaborators: [
-        {
-          name: "Jitendra Nirnejak",
-          login: "nirnejak",
-          avatar_url: "https://placedog.net/360/360¸"
-        }
-      ]
+      collaborators: [],
+      collaboratorLoading: true
     };
+  },
+  created() {
+    axios.get("/collaborators").then(res => {
+      this.collaboratorLoading = false;
+      this.collaborators = res.data;
+    });
   }
 };
 </script>
