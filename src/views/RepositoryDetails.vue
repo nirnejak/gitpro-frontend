@@ -32,12 +32,12 @@
           </div>
         </div>
 
-        <div class="row mt-30">
+        <div class="row mt-100">
           <div class="col-8-lg">
             <h2>Collaborators</h2>
           </div>
-          <div class="col-4-lg is-right" v-if="selectedCollaborators.length > 0">
-            <button class="button primary outline">
+          <div class="col-4-lg is-right">
+            <button class="button primary outline" v-if="selectedCollaborators.length > 0">
               <i class="fas fa-times"></i>&nbsp;
               Revoke Access
             </button>

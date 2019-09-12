@@ -1,6 +1,7 @@
 <template>
   <div class="row">
     <Sidebar />
+    <SnackBar :show="showMessage" :message="message" type="primary" />
     <div class="col-9-lg pt-70">
       <div class="px-20">
         <h1>Dashboard</h1>
@@ -79,10 +80,12 @@ import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/SkeletonLoader";
+import SnackBar from "@/components/SnackBar";
+import { setTimeout } from "timers";
 
 export default {
   name: "Dashboard",
-  components: { Sidebar, SkeletonLoader },
+  components: { Sidebar, SkeletonLoader, SnackBar },
   data() {
     return {
       user: {
@@ -91,7 +94,9 @@ export default {
       },
       collaborators: [],
       collaboratorLoading: true,
-      userLoading: true
+      userLoading: true,
+      message: "",
+      showMessage: false
     };
   },
   created() {
@@ -104,6 +109,11 @@ export default {
       this.collaboratorLoading = false;
       this.collaborators = res.data;
     });
+
+    setTimeout(() => {
+      this.message = "Welcome to GitSupreme";
+      this.showMessage = true;
+    }, 2000);
   }
 };
 </script>
