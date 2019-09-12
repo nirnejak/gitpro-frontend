@@ -136,6 +136,10 @@ export default {
           .then(res => {
             this.message = res.data.message;
             this.showMessage = true;
+            if (index === this.selectedRepositories - 1) {
+              this.showMessage = false;
+              $router.push('/dashboard')
+            }
           })
           .catch(err => console.log(err));
       });
