@@ -1,6 +1,7 @@
 <template>
   <div class="row">
     <Sidebar />
+    <SnackBar :show="showMessage" :message="message" type="primary" />
     <div class="col-9-lg pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
         <div class="row">
@@ -68,8 +69,19 @@
         </div>
 
         <div class="row" v-if="collaborator">
-          <div class="col-3" v-for="repository in collaborator.repositories" :key="repository.name">
-            <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
+          <div
+            class="col-3"
+            v-for="repository in collaborator.repositories"
+            :key="repository.name"
+            @click="addRemoveRepo(repository.name)"
+          >
+            <input
+              type="checkbox"
+              :name="repository.name"
+              :id="repository.name"
+              class="d-none"
+              @change="addRemoveRepo(repository.name)"
+            />
             <label :for="repository.name" class="repo-checkbox">
               <div class="bg-white border-radius-5 p-20 my-5">
                 <div class="row">
@@ -95,16 +107,19 @@ import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/SkeletonLoader";
+import SnackBar from "@/components/SnackBar";
 
 export default {
   name: "CollaboratorDetails",
-  components: { Sidebar, SkeletonLoader },
+  components: { Sidebar, SkeletonLoader, SnackBar },
   data() {
     return {
       user: { login: localStorage.login },
       collaborator: {},
       collaboratorDetailsLoading: true,
-      selectedRepositories: []
+      selectedRepositories: [],
+      message: "",
+      showMessage: false
     };
   },
   created() {
@@ -114,8 +129,25 @@ export default {
     });
   },
   methods: {
-    revokeAccess(e) {
-      e.preventDefault();
+    revokeAccess() {
+      this.selectedRepositories.forEach((repo, index) => {
+        axios
+          .put(`/collaborators/${this.collaborator.login}?repo=${repo}`)
+          .then(res => {
+            this.message = res.data.message;
+            this.showMessage = true;
+          })
+          .catch(err => console.log(err));
+      });
+    },
+    addRemoveRepo(repoName) {
+      if (this.selectedRepositories.includes(repoName)) {
+        this.selectedRepositories = this.selectedRepositories.filter(
+          repo => repo !== repoName
+        );
+      } else {
+        this.selectedRepositories.push(repoName);
+      }
     }
   }
 };
