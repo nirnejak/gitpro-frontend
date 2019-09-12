@@ -5,51 +5,68 @@
       <div class="px-20">
         <div class="row">
           <div class="col-2-lg">
-            <SkeletonLoader width="100%" height="150px" radius="10px" v-if="collaboratorDetailsLoading"/>
+            <SkeletonLoader
+              width="100%"
+              height="150px"
+              radius="10px"
+              v-if="collaboratorDetailsLoading"
+            />
             <div
               class="bg-white border-radius-10 bg-cover w-100"
               :style="`background-image: url(${collaborator.avatar_url}); padding-top: 100%;`"
               v-else
             ></div>
           </div>
-          <div class="col-6-lg is-vertical-align">
+          <div class="col-5-lg is-vertical-align">
             <div class="ml-10">
               <h1 class="m-0">{{collaborator.name}}</h1>
+              <SkeletonLoader
+                width="100%"
+                height="30px"
+                radius="5px"
+                v-if="collaboratorDetailsLoading"
+              />
               <h3 class="m-0 text-dark">{{$route.params.login}}</h3>
             </div>
           </div>
           <div class="col-4-lg is-vertical-align is-right">
             <div>
-              <a href="#" class="sidebar-link pr-20">
+              <span href="#" class="text-error cursor-pointer pr-20">
                 <i class="fas fa-user-times"></i>&nbsp;
                 Remove Collaborator
-              </a>
+              </span>
               <br />
               <br />
-              <!-- TODO: Add Links for GitHub/Bitbucket/Gitlab -->
-              <a
-                :href="`http://github.com/${$route.params.login}`"
-                class="sidebar-link pr-20"
-                target="_blank"
-              >
+              <a :href="`http://github.com/${$route.params.login}`" class="pr-20" target="_blank">
                 <i class="fas fa-external-link-alt"></i>&nbsp;
                 View on GitHub
               </a>
             </div>
           </div>
         </div>
-
         <div class="row mt-30">
           <div class="col-8-lg">
             <h2>Repositories</h2>
           </div>
           <div class="col-4-lg is-right">
-            <button class="button primary outline">
+            <button
+              type="submit"
+              class="button primary outline"
+              v-if="selectedRepositories.length > 0"
+              @click="revokeAccess()"
+            >
               <i class="fas fa-times"></i>&nbsp;
               Revoke Access
             </button>
           </div>
         </div>
+
+        <div class="row" v-if="collaboratorDetailsLoading">
+          <div class="col-3" v-for="i in 4" :key="i">
+            <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10" />
+          </div>
+        </div>
+
         <div class="row" v-if="collaborator">
           <div class="col-3" v-for="repository in collaborator.repositories" :key="repository.name">
             <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
@@ -86,7 +103,8 @@ export default {
     return {
       user: { login: localStorage.login },
       collaborator: {},
-      collaboratorDetailsLoading: true
+      collaboratorDetailsLoading: true,
+      selectedRepositories: []
     };
   },
   created() {
@@ -94,6 +112,11 @@ export default {
       this.collaboratorDetailsLoading = false;
       this.collaborator = res.data;
     });
+  },
+  methods: {
+    revokeAccess(e) {
+      e.preventDefault();
+    }
   }
 };
 </script>

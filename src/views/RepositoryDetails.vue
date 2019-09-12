@@ -7,10 +7,16 @@
           <div class="col-1-lg is-vertical-align">
             <i class="fas fa-4x fa-code-branch mr-5"></i>
           </div>
-          <div class="col-7-lg is-vertical-align">
+          <div class="col-5-lg is-vertical-align">
             <div>
               <h1 class="m-0">{{$route.params.name}}</h1>
               <p class="m-0 text-dark">{{repository.description}}</p>
+              <SkeletonLoader
+                width="100%"
+                height="20px"
+                radius="5px"
+                v-if="repositoryDetailsLoading"
+              />
             </div>
           </div>
           <div class="col-4-lg is-vertical-align is-right">
@@ -30,11 +36,19 @@
           <div class="col-8-lg">
             <h2>Collaborators</h2>
           </div>
-          <div class="col-4-lg is-right">
+          <div class="col-4-lg is-right" v-if="selectedCollaborators.length > 0">
             <button class="button primary outline">
               <i class="fas fa-times"></i>&nbsp;
               Revoke Access
             </button>
+          </div>
+          <div class="col-12" v-if="collaborators.length === 0 && !repositoryDetailsLoading">
+            <div class="is-center is-vertical-align py-100">
+              <h3 class="text-dark is-text-center">
+                <i class="fas fa-3x fa-times"></i>
+                <br />No Collaborators
+              </h3>
+            </div>
           </div>
           <div
             class="col-2 p-5 collaborator-avatar-container"
@@ -86,7 +100,8 @@ export default {
       user: { login: localStorage.login },
       repository: {},
       collaborators: [],
-      repositoryDetailsLoading: true
+      repositoryDetailsLoading: true,
+      selectedCollaborators: []
     };
   },
   created() {
