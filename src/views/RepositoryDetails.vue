@@ -38,7 +38,7 @@
           </div>
           <div
             class="col-2 p-5 collaborator-avatar-container"
-            v-for="collaborator in repository.collaborators"
+            v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
             <div class="is-center">
@@ -60,7 +60,7 @@
               </div>
             </div>
             <router-link :to="`/collaborators/${collaborator.login}`">
-              <p class="is-text-center mt-10">{{collaborator.name}}</p>
+              <p class="is-text-center mt-10 text-black">{{collaborator.name}}</p>
             </router-link>
             <router-link :to="`/collaborators/${collaborator.login}`">
               <small class="is-text-center text-dark is-center">{{collaborator.login}}</small>
@@ -85,13 +85,15 @@ export default {
     return {
       user: { login: localStorage.login },
       repository: {},
+      collaborators: [],
       repositoryDetailsLoading: true
     };
   },
   created() {
     axios.get(`/repositories/${this.$route.params.name}`).then(res => {
       this.repositoryDetailsLoading = false;
-      this.repository = res.data;
+      this.repository = res.data.repository;
+      this.collaborators = res.data.collaborators;
     });
   }
 };
