@@ -13,6 +13,7 @@
                   <ToggleButton @change="includePublicToggle" />
                 </div>
               </div>
+              <br />
               <div class="row">
                 <div class="col-10 is-vertical-align">Deactivate Account?</div>
                 <div class="col-2 is-center">

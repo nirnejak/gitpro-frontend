@@ -61,15 +61,17 @@ export default {
     };
   },
   async created() {
-    axios
-      .get(`/users/${localStorage.login}`)
-      .then(res => {
-        this.user = res.data;
-        localStorage.name = res.data.name;
-        localStorage.login = res.data.login;
-        localStorage.avatar_url = res.data.avatar_url;
-      })
-      .catch(error => error);
+    if (!localStorage.name || !localStorage.login || !localStorage.avatar_url) {
+      axios
+        .get(`/users/${localStorage.login}`)
+        .then(res => {
+          this.user = res.data;
+          localStorage.name = res.data.name;
+          localStorage.login = res.data.login;
+          localStorage.avatar_url = res.data.avatar_url;
+        })
+        .catch(error => error);
+    }
   },
   methods: {}
 };

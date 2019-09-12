@@ -4,22 +4,27 @@
     <div class="col-9-lg pt-70">
       <div class="px-20">
         <h1>Dashboard</h1>
+        <div class="row" v-if="userLoading">
+          <div class="col-4" v-for="i in 3" :key="i">
+            <SkeletonLoader width="100%" height="70px" radius="10px" class="my-10" />
+          </div>
+        </div>
         <div class="row">
-          <div class="col-4 p-5">
+          <div class="col-4 p-5" v-if="!userLoading">
             <div class="bg-white border-radius-10 p-20">
               <i class="fas fa-code-branch mr-5"></i>
               {{user.total_repositories}}
               Total Repositories
             </div>
           </div>
-          <div class="col-4 p-5">
+          <div class="col-4 p-5" v-if="!userLoading">
             <div class="bg-white border-radius-10 p-20">
               <i class="fas fa-user mr-5"></i>
               {{user.total_collaborators}}
               Total Collaborators
             </div>
           </div>
-          <div class="col-4 p-5">
+          <div class="col-4 p-5" v-if="!userLoading">
             <div class="bg-white border-radius-10 p-20">
               <i class="fas fa-user mr-5"></i>
               {{user.total_collaborators}}
@@ -85,11 +90,13 @@ export default {
         total_collaborators: 0
       },
       collaborators: [],
-      collaboratorLoading: true
+      collaboratorLoading: true,
+      userLoading: true
     };
   },
   created() {
-    axios.get(`/users/${localStorage.login}`).then(res => {
+    axios.get(`/users/${localStorage.login}?stats=true`).then(res => {
+      this.userLoading = false;
       this.user.total_repositories = res.data.total_repositories;
       this.user.total_collaborators = res.data.total_collaborators;
     });
