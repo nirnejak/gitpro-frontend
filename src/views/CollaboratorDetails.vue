@@ -1,8 +1,6 @@
 <template>
   <div class="row">
     <Sidebar />
-    <SnackBar :show="showMessage" :message="message" type="primary" />
-
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
       <RepoAdd
         :collaborator="collaborator"
@@ -125,21 +123,18 @@ import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/SkeletonLoader";
-import SnackBar from "@/components/SnackBar";
 import Modal from "@/components/Modal";
 import RepoAdd from "@/components/RepoAdd";
 
 export default {
   name: "CollaboratorDetails",
-  components: { Sidebar, SkeletonLoader, SnackBar, Modal, RepoAdd },
+  components: { Sidebar, SkeletonLoader, Modal, RepoAdd },
   data() {
     return {
       user: { login: localStorage.login },
       collaborator: {},
       collaboratorDetailsLoading: true,
       selectedRepositories: [],
-      message: "",
-      showMessage: false,
       showModal: false
     };
   },
@@ -155,13 +150,12 @@ export default {
         axios
           .put(`/collaborators/${this.collaborator.login}?repo=${repo}`)
           .then(res => {
-            this.$message.success({
-              message: res.data.message,
-              position: "bottom-right",
-              showClose: true
-            });
             if (index === this.selectedRepositories - 1) {
-              this.showMessage = false;
+              this.$message.success({
+                message: res.data.message,
+                position: "bottom-right",
+                showClose: true
+              });
               $router.push("/dashboard");
             }
           })

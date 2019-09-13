@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <Sidebar />
-    <SnackBar :show="showMessage" :message="message" type="primary" />
+    <SnackBar :show="showSnakeBar" :message="message" type="primary" :hideSnackBar="hideSnackBar" />
     <div class="col-9-lg pt-70">
       <div class="px-20">
         <h1>Dashboard</h1>
@@ -95,8 +95,8 @@ export default {
       collaborators: [],
       collaboratorLoading: true,
       userLoading: true,
-      message: "",
-      showMessage: false
+      message: "Welcome to GitSupreme",
+      showSnakeBar: false
     };
   },
   created() {
@@ -110,10 +110,12 @@ export default {
       this.collaborators = res.data;
     });
 
-    setTimeout(() => {
-      this.message = "Welcome to GitSupreme";
-      this.showMessage = true;
-    }, 2000);
+    setTimeout(() => (this.showSnakeBar = true), 2000);
+  },
+  methods: {
+    hideSnackBar() {
+      this.showSnakeBar = false;
+    }
   }
 };
 </script>

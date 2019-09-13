@@ -9,22 +9,21 @@
         }"
     >
       <span>{{message}}</span>
-      <i class="fas fa-times cursor-pointer pull-right pl-10" @click="show = false"></i>
+      <i class="fas fa-times cursor-pointer pull-right pl-10" @click="hideSnackBar"></i>
     </div>
   </div>
 </template>
 
 <script>
-import { setTimeout } from "timers";
 export default {
   name: "SnackBar",
-  props: ["show", "message", "type"],
-  created() {
-    setTimeout(() => {
-      if (this.$props.show) {
-        setTimeout(() => (this.$props.show = false), 3000);
-      }
-    });
+  props: ["show", "message", "type", "hideSnackBar"],
+  updated() {
+    if (this.$props.show) {
+      setTimeout(() => {
+        this.$props.hideSnackBar();
+      }, 3000);
+    }
   }
 };
 </script>
