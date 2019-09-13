@@ -15,10 +15,10 @@
         <i class="fas fa-chart-line" />
         Dashboard
       </router-link>
-      <router-link to="/teams" class="sidebar-link" active-class="active">
+      <!-- <router-link to="/teams" class="sidebar-link" active-class="active">
         <i class="fas fa-users" />
         Teams
-      </router-link>
+      </router-link> -->
       <router-link to="/collaborators" class="sidebar-link" active-class="active">
         <i class="fas fa-user" />
         Collaborators

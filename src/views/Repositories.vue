@@ -3,10 +3,18 @@
     <Sidebar />
     <div class="col-9-lg pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
-        <h1>Repositories</h1>
+        <div class="row">
+          <div class="col-8-lg">
+            <h1>Repositories</h1>
+          </div>
+          <div class="col-4-lg pt-10">
+            <input type="text" v-model="search" placeholder="Search Repository" />
+            <i class="fas fa-search pull-right position-relative r-10" style="top: -27px"></i>
+          </div>
+        </div>
         <div class="row" v-if="repositoriesLoading">
           <div class="col-3" v-for="i in 12" :key="i">
-            <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10"/>
+            <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10" />
           </div>
         </div>
         <div class="row">
@@ -42,15 +50,29 @@ export default {
   components: { Sidebar, SkeletonLoader },
   data() {
     return {
+      search: "",
       repositories: [],
-      repositoriesLoading: true
+      repositoriesLoading: true,
+      repositoriesOriginal: []
     };
   },
   created() {
     axios.get(`/repositories/`).then(res => {
       this.repositoriesLoading = false;
       this.repositories = res.data;
+      this.repositoriesOriginal = res.data;
     });
+  },
+  watch: {
+    search() {
+      if (this.search === "") {
+        this.repositories = this.repositoriesOriginal;
+      } else {
+        this.repositories = this.repositories.filter(repo =>
+          repo.name.toLowerCase().includes(this.search.toLowerCase())
+        );
+      }
+    }
   }
 };
 </script>

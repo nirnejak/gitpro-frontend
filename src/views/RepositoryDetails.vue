@@ -61,6 +61,7 @@
                 :name="collaborator.login"
                 :id="collaborator.login"
                 class="d-none"
+                @change="addRemoveCollaborator(collaborator.login)"
               />
               <label :for="collaborator.login" class="collaborator-check-label">
                 <i class="fas fa-check-circle text-light"></i>
@@ -110,6 +111,17 @@ export default {
       this.repository = res.data.repository;
       this.collaborators = res.data.collaborators;
     });
+  },
+  methods: {
+    addRemoveCollaborator(collab) {
+      if (this.selectedCollaborators.include(collab)) {
+        this.selectedCollaborators = this.selectedCollaborators.filter(
+          collaborator => collaborator !== collab
+        );
+      } else {
+        this.selectedCollaborators.push(collab);
+      }
+    }
   }
 };
 </script>

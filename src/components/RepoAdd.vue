@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" placeholder="Search Repo" v-model="search" />
+    <input type="text" placeholder="Search Repository" v-model="search" />
 
     <br />
     <div class="row">
@@ -25,7 +25,7 @@
     </div>
     <br />
 
-    <div class="repo-list-container">
+    <div class="repo-list-container mb-15">
       <div
         class="repo-item cursor-pointer bd-light border-radius-5 p-10 my-5"
         v-for="repository in repositories"
@@ -46,7 +46,6 @@
         </div>
       </div>
     </div>
-    <br />
     <div class="is-center">
       <button class="button primary">Add</button>
     </div>
@@ -104,10 +103,23 @@ export default {
     selectRepo(repo) {
       if (this.selectedRepositories.includes(repo)) {
         this.selectedRepositories = this.selectedRepositories.filter(
-          repository => repository.name !== repo
+          repoName => repoName !== repo
         );
       } else {
         this.selectedRepositories.push(repo);
+      }
+    },
+    addtoRepos() {
+      if (this.selectedRepositories.length > 0) {
+        let data = {
+          selectedRepositories: this.selectedRepositories
+        };
+        axios
+          .put(`/collaborators/${this.props.collaborator.login}`, data)
+          .then(res => {
+            console.log(res.data);
+          });
+      } else {
       }
     }
   }

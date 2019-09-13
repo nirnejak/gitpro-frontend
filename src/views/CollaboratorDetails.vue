@@ -3,7 +3,7 @@
     <Sidebar />
     <SnackBar :show="showMessage" :message="message" type="primary" />
 
-    <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Repository">
+    <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
       <RepoAdd />
     </Modal>
 

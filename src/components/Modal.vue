@@ -6,7 +6,8 @@
         <div class="close-btn pull-right w-5 is-text-right pr-5">
           <i class="fas fa-times cursor-pointer" @click="hideModal"></i>
         </div>
-        <div class="modal-title pull-right w-95">{{modalTitle}}</div>
+        <h4 class="modal-title pull-right w-95">{{modalTitle}}</h4>
+        <br />
       </div>
       <div class="modal-body">
         <slot></slot>
