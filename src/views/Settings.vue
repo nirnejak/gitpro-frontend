@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import axios from "@/configAxios";
+
 import Sidebar from "@/components/Sidebar";
 import ToggleButton from "@/components/ToggleButton";
 
@@ -42,6 +44,14 @@ export default {
       console.log("Include Public Toggle");
     },
     deactivateAccount() {
+      axios.delete(`/users/${localStorage.login}`).then(res => {
+        this.$message.success({
+          message: res.data.message,
+          position: "bottom-right",
+          showClose: true
+        });
+        this.$router.push("/logout");
+      });
       console.log("Deactivate Account");
     }
   }
