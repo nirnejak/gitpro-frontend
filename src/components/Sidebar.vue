@@ -37,7 +37,7 @@
       </router-link>
     </div>
     <div class="sidebar-footer">
-      <div class="row">
+      <div class="row pb-10">
         <div class="col-3 is-center">
           <small class="text-dark">Developed by Inkoop Pvt. Ltd.</small>
         </div>
