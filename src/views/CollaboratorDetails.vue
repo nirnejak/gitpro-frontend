@@ -4,7 +4,11 @@
     <SnackBar :show="showMessage" :message="message" type="primary" />
 
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
-      <RepoAdd :collaborator="collaborator" :hideModal="hideModal" />
+      <RepoAdd
+        :collaborator="collaborator"
+        :hideModal="hideModal"
+        :alreadyCollaborator="collaborator.repositories"
+      />
     </Modal>
 
     <div class="col-9-lg pt-70 h-100vh mb-0" style="overflow-y: auto;">
@@ -64,7 +68,12 @@
               <i class="fas fa-times"></i>&nbsp;
               Revoke Access
             </button>
-            <button type="submit" class="button primary outline" @click="showModal = true">
+            <button
+              type="submit"
+              class="button primary outline"
+              @click="showModal = true"
+              v-if="!showModal"
+            >
               <i class="fas fa-plus"></i>&nbsp;
               Add to Repo
             </button>
@@ -148,7 +157,8 @@ export default {
           .then(res => {
             this.$message.success({
               message: res.data.message,
-              position: "bottom-right"
+              position: "bottom-right",
+              showClose: true
             });
             if (index === this.selectedRepositories - 1) {
               this.showMessage = false;

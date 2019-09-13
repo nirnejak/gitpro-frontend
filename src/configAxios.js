@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Vue from 'vue'
 
 if (process.env.NODE_ENV === 'production') {
   axios.defaults.baseURL = 'https://github-supreme.herokuapp.com'
@@ -23,8 +24,11 @@ axios.interceptors.response.use(
           // TODO: Capture Error through sentry
           window.location.href = `/error/${error.response.status}`
         } else {
-          // TODO: Show Error Toast Message
-          console.log('404 Not Found')
+          Vue.message.error({
+            message: '404 Not Found',
+            position: 'bottom-right',
+            showClose: true
+          })
         }
       } else {
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
@@ -33,10 +37,12 @@ axios.interceptors.response.use(
             window.location.href = `/error/${error.response.status}`
           }
         } else {
-          const errors = Object.keys(error.response.data.errors)
-          errors.map((item) => {
-            // TODO: Show in Toast Message
-            // `${title(item)}: ${error.response.data.errors[item]}`
+          error.response.data.errors.map((err) => {
+            Vue.message.error({
+              message: `${err[0]}: ${err[1]}`,
+              position: 'bottom-right',
+              showClose: true
+            })
           })
         }
       }

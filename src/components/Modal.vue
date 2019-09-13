@@ -1,7 +1,7 @@
 <template>
   <div class="modal-container" v-if="showModal">
     <div class="modal-bg" @click="hideModal"></div>
-    <div class="modal-content w-50">
+    <div class="modal-content">
       <div class="modal-header pb-50">
         <div class="close-btn pull-right w-5 is-text-right pr-5">
           <i class="fas fa-times cursor-pointer" @click="hideModal"></i>
@@ -58,6 +58,12 @@ export default {
 
   animation-name: scaleUp;
   animation-duration: 0.7s;
+
+  width: 50% !important;
+
+  @media (max-width: 767px) {
+    width: 80% !important;
+  }
 }
 
 @keyframes scaleUp {

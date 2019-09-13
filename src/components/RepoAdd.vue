@@ -55,7 +55,7 @@ import axios from "@/configAxios";
 export default {
   name: "RepoAdd",
   components: {},
-  props: ["collaborator", "hideModal"],
+  props: ["collaborator", "hideModal", "alreadyCollaborator"],
   data() {
     return {
       search: "",
@@ -67,8 +67,15 @@ export default {
   },
   created() {
     axios.get("/repositories").then(res => {
-      this.repositories = res.data;
-      this.repositoriesOriginal = res.data;
+      // Filter out the Repos user already has access to
+      this.repositoriesOriginal = res.data.filter(repo => {
+        for (let i = 0; i < this.$props.alreadyCollaborator.length; i++) {
+          if (this.$props.alreadyCollaborator[i].name === repo.name)
+            return false;
+        }
+        return true;
+      });
+      this.repositories = this.repositoriesOriginal;
     });
   },
   watch: {
@@ -110,22 +117,24 @@ export default {
     },
     addtoRepos() {
       if (this.selectedRepositories.length > 0) {
+        let data = {
+          selectedRepositories: this.selectedRepositories
+        };
         axios
-          .put(
-            `/collaborators/${this.$props.collaborator.login}?addRepos=true`,
-            { selectedRepositories: this.selectedRepositories }
-          )
+          .put(`/collaborators/${this.$props.collaborator.login}`, data)
           .then(res => {
             this.$message.success({
               message: res.data.message,
-              position: "bottom-right"
+              position: "bottom-right",
+              showClose: true
             });
             this.$props.hideModal();
           });
       } else {
         this.$message.error({
           message: "Please select a Repository to Send Invitation",
-          position: "bottom-right"
+          position: "bottom-right",
+          showClose: true
         });
       }
     }
