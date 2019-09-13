@@ -1,13 +1,25 @@
 <template>
   <div>
-    <input class="tgl tgl-flat" id="cb4" type="checkbox" />
-    <label class="tgl-btn" for="cb4"></label>
+    <input
+      class="tgl tgl-flat"
+      type="checkbox"
+      :id="id"
+      v-model="isChecked"
+      @change="$emit('change', $event.target.checked)"
+    />
+    <label class="tgl-btn" :for="id"></label>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ToggleButton"
+  name: "ToggleButton",
+  props: ["id", "value"],
+  data() {
+    return {
+      isChecked: this.$props.value
+    };
+  }
 };
 </script>
 
@@ -75,21 +87,21 @@ export default {
 .tgl-flat + .tgl-btn {
   padding: 2px;
   transition: all 0.2s ease;
-  background: #fff;
-  border: 4px solid rgba(0, 0, 0, 0.7);
+  background: var(--card-background);
+  border: 4px solid var(--body-color);
   border-radius: 2em;
 }
 .tgl-flat + .tgl-btn:after {
   transition: all 0.2s ease;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--body-color);
   content: "";
   border-radius: 1em;
 }
 .tgl-flat:checked + .tgl-btn {
-  border: 4px solid #000000;
+  border: 4px solid var(--body-color);
 }
 .tgl-flat:checked + .tgl-btn:after {
   left: 50%;
-  background: #000000;
+  background: var(--body-color);
 }
 </style>

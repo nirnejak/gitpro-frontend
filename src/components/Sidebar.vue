@@ -1,8 +1,8 @@
 <template>
-  <div class="col-3 bg-white h-100vh mb-0">
+  <div class="col-3 bg-card h-100vh mb-0">
     <div class="pr-50 pl-50 pt-50 pb-10 is-horizontal-align">
       <div
-        class="bg-white rounded-circle bg-cover w-70"
+        class="bg-card rounded-circle bg-cover w-70"
         :style="`background-image: url(${user.avatar_url}); padding-top: 70%;`"
       ></div>
     </div>
@@ -91,7 +91,7 @@ export default {
     color: var(--color-primary);
     &:hover {
       transition: 0.3s ease;
-      background: #d5e1ff;
+      background: var(--sidebar-hover);
     }
     i {
       margin-right: 5px;

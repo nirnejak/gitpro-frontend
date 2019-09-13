@@ -12,21 +12,21 @@
         </div>
         <div class="row">
           <div class="col-4 p-5" v-if="!userLoading">
-            <div class="bg-white border-radius-10 p-20">
+            <div class="bg-card border-radius-10 p-20">
               <i class="fas fa-code-branch mr-5"></i>
               {{user.total_repositories}}
               Total Repositories
             </div>
           </div>
           <div class="col-4 p-5" v-if="!userLoading">
-            <div class="bg-white border-radius-10 p-20">
+            <div class="bg-card border-radius-10 p-20">
               <i class="fas fa-user mr-5"></i>
               {{user.total_collaborators}}
               Total Collaborators
             </div>
           </div>
           <div class="col-4 p-5" v-if="!userLoading">
-            <div class="bg-white border-radius-10 p-20">
+            <div class="bg-card border-radius-10 p-20">
               <i class="fas fa-user mr-5"></i>
               {{user.total_collaborators}}
               Total Collaborators
@@ -57,13 +57,13 @@
                   <div class="is-center">
                     <div class="collaborator-avatar position-relative">
                       <div
-                        class="bg-white rounded-circle bg-cover"
+                        class="bg-card rounded-circle bg-cover"
                         :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
                       ></div>
                       <div class="overlay rounded-circle"></div>
                     </div>
                   </div>
-                  <p class="is-text-center mt-10 text-black">{{collaborator.name}}</p>
+                  <p class="is-text-center mt-10 text-highcontrast">{{collaborator.name}}</p>
                   <small class="is-text-center text-dark is-center">{{collaborator.login}}</small>
                 </router-link>
               </div>

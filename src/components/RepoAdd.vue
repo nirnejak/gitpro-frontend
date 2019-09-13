@@ -83,7 +83,7 @@ export default {
       if (this.search === "") {
         this.repositories = this.repositoriesOriginal;
       } else {
-        this.repositories = this.repositories.filter(repo =>
+        this.repositories = this.repositoriesOriginal.filter(repo =>
           repo.name.toLowerCase().includes(this.search.toLowerCase())
         );
       }

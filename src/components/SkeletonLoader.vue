@@ -30,7 +30,7 @@ export default {
     background-image: linear-gradient(
       to right,
       transparent,
-      #f4f4f4,
+      var(--body-background),
       transparent
     );
     animation-name: moveGradient;

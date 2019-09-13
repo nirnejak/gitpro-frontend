@@ -22,7 +22,7 @@
               v-if="collaboratorDetailsLoading"
             />
             <div
-              class="bg-white border-radius-10 bg-cover w-100"
+              class="bg-card border-radius-10 bg-cover w-100"
               :style="`background-image: url(${collaborator.avatar_url}); padding-top: 100%;`"
               v-else
             ></div>
@@ -101,7 +101,7 @@
               @change="addRemoveRepo(repository.name)"
             />
             <label :for="repository.name" class="repo-checkbox">
-              <div class="bg-white border-radius-5 p-20 my-5">
+              <div class="bg-card border-radius-5 p-20 my-5">
                 <div class="row">
                   <div class="col-10 text-overflow-ellipsis">
                     <i class="fas fa-code-branch"></i>

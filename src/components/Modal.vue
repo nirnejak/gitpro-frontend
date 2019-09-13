@@ -50,7 +50,7 @@ export default {
   top: 50%;
   left: 50%;
 
-  background: white;
+  background: var(--card-background);
   padding: 20px;
 
   border-radius: 10px;

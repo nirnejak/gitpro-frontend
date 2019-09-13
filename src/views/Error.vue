@@ -1,6 +1,6 @@
 <template>
   <div class="centered-container">
-    <div class="card bg-white is-text-center p-20 px-100">
+    <div class="card bg-card is-text-center p-20 px-100">
       <div v-if="$route.params.code === '404'">
         <h1 class="error-code">404</h1>
         <p class="text-dark">Not Found</p>

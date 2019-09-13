@@ -4,12 +4,8 @@
   overflow: hidden;
 }
 
-.text-black {
-  color: black;
-}
-
-.bg-white {
-  background: white;
+.text-highcontrast {
+  color: var(--body-highcontrast);
 }
 
 $cursors: ("default", "pointer", "not-allowed", "context-menu");

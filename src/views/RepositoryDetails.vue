@@ -68,14 +68,14 @@
               </label>
               <div class="collaborator-avatar position-relative">
                 <div
-                  class="bg-white rounded-circle bg-cover"
+                  class="bg-card rounded-circle bg-cover"
                   :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
                 ></div>
                 <div class="overlay rounded-circle"></div>
               </div>
             </div>
             <router-link :to="`/collaborators/${collaborator.login}`">
-              <p class="is-text-center mt-10 text-black">{{collaborator.name}}</p>
+              <p class="is-text-center mt-10 text-highcontrast">{{collaborator.name}}</p>
             </router-link>
             <router-link :to="`/collaborators/${collaborator.login}`">
               <small class="is-text-center text-dark is-center">{{collaborator.login}}</small>
