@@ -55,6 +55,7 @@ import axios from "@/configAxios";
 export default {
   name: "RepoAdd",
   components: {},
+  props: ["collaborator", "hideModal"],
   data() {
     return {
       search: "",
@@ -111,11 +112,15 @@ export default {
       if (this.selectedRepositories.length > 0) {
         axios
           .put(
-            `/collaborators/${this.props.collaborator.login}?addRepos=true`,
+            `/collaborators/${this.$props.collaborator.login}?addRepos=true`,
             { selectedRepositories: this.selectedRepositories }
           )
           .then(res => {
-            console.log(res.data);
+            this.$message.success({
+              message: res.data.message,
+              position: "bottom-right"
+            });
+            this.$props.hideModal();
           });
       } else {
         this.$message.error({

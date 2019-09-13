@@ -4,7 +4,7 @@
     <SnackBar :show="showMessage" :message="message" type="primary" />
 
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
-      <RepoAdd />
+      <RepoAdd :collaborator="collaborator" :hideModal="hideModal" />
     </Modal>
 
     <div class="col-9-lg pt-70 h-100vh mb-0" style="overflow-y: auto;">

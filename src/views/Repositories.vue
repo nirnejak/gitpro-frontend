@@ -8,7 +8,7 @@
             <h1>Repositories</h1>
           </div>
           <div class="col-4-lg pt-10">
-            <input type="text" v-model="search" placeholder="Search Repository" />
+            <input type="text" v-model="search" placeholder="Search Repository" class="pr-30" />
             <i class="fas fa-search pull-right position-relative r-10" style="top: -27px"></i>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default {
       if (this.search === "") {
         this.repositories = this.repositoriesOriginal;
       } else {
-        this.repositories = this.repositories.filter(repo =>
+        this.repositories = this.repositoriesOriginal.filter(repo =>
           repo.name.toLowerCase().includes(this.search.toLowerCase())
         );
       }
