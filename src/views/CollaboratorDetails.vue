@@ -2,6 +2,11 @@
   <div class="row">
     <Sidebar />
     <SnackBar :show="showMessage" :message="message" type="primary" />
+
+    <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Repository">
+      <RepoAdd />
+    </Modal>
+
     <div class="col-9-lg pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
         <div class="row">
@@ -46,18 +51,22 @@
           </div>
         </div>
         <div class="row mt-30">
-          <div class="col-8-lg">
+          <div class="col-4-lg">
             <h2>Repositories</h2>
           </div>
-          <div class="col-4-lg is-right">
+          <div class="col-8-lg is-right">
             <button
               type="submit"
-              class="button primary outline"
+              class="button primary outline text-error bd-error"
               v-if="selectedRepositories.length > 0"
               @click="revokeAccess()"
             >
               <i class="fas fa-times"></i>&nbsp;
               Revoke Access
+            </button>
+            <button type="submit" class="button primary outline" @click="showModal = true">
+              <i class="fas fa-plus"></i>&nbsp;
+              Add to Repo
             </button>
           </div>
         </div>
@@ -108,10 +117,12 @@ import axios from "@/configAxios";
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/SkeletonLoader";
 import SnackBar from "@/components/SnackBar";
+import Modal from "@/components/Modal";
+import RepoAdd from "@/components/RepoAdd";
 
 export default {
   name: "CollaboratorDetails",
-  components: { Sidebar, SkeletonLoader, SnackBar },
+  components: { Sidebar, SkeletonLoader, SnackBar, Modal, RepoAdd },
   data() {
     return {
       user: { login: localStorage.login },
@@ -119,7 +130,8 @@ export default {
       collaboratorDetailsLoading: true,
       selectedRepositories: [],
       message: "",
-      showMessage: false
+      showMessage: false,
+      showModal: false
     };
   },
   created() {
@@ -138,7 +150,7 @@ export default {
             this.showMessage = true;
             if (index === this.selectedRepositories - 1) {
               this.showMessage = false;
-              $router.push('/dashboard')
+              $router.push("/dashboard");
             }
           })
           .catch(err => console.log(err));
@@ -152,6 +164,9 @@ export default {
       } else {
         this.selectedRepositories.push(repoName);
       }
+    },
+    hideModal() {
+      this.showModal = false;
     }
   }
 };
