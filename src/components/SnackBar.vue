@@ -34,8 +34,8 @@ $height: 40px;
 $bottom: -40px;
 
 .snackbar-container {
-  position: fixed;
-  z-index: 999;
+  position: fixed !important;
+  z-index: 10000;
   right: 0;
   bottom: $bottom;
 

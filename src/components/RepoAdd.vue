@@ -1,9 +1,7 @@
 <template>
   <div>
     <input type="text" placeholder="Search Repository" v-model="search" />
-
-    <br />
-    <div class="row">
+    <div class="row mb-10 mt-15">
       <div class="col-6">
         <p class="text-dark">
           Repositories
@@ -23,7 +21,6 @@
         ></i>
       </div>
     </div>
-    <br />
 
     <div class="repo-list-container mb-15">
       <div
@@ -47,7 +44,7 @@
       </div>
     </div>
     <div class="is-center">
-      <button class="button primary">Add</button>
+      <button class="button primary" @click="addtoRepos">Add</button>
     </div>
   </div>
 </template>
@@ -57,6 +54,7 @@ import axios from "@/configAxios";
 
 export default {
   name: "RepoAdd",
+  components: {},
   data() {
     return {
       search: "",
@@ -111,15 +109,19 @@ export default {
     },
     addtoRepos() {
       if (this.selectedRepositories.length > 0) {
-        let data = {
-          selectedRepositories: this.selectedRepositories
-        };
         axios
-          .put(`/collaborators/${this.props.collaborator.login}`, data)
+          .put(
+            `/collaborators/${this.props.collaborator.login}?addRepos=true`,
+            { selectedRepositories: this.selectedRepositories }
+          )
           .then(res => {
             console.log(res.data);
           });
       } else {
+        this.$message.error({
+          message: "Please select a Repository to Send Invitation",
+          position: "bottom-right"
+        });
       }
     }
   }

@@ -146,8 +146,10 @@ export default {
         axios
           .put(`/collaborators/${this.collaborator.login}?repo=${repo}`)
           .then(res => {
-            this.message = res.data.message;
-            this.showMessage = true;
+            this.$message.success({
+              message: res.data.message,
+              position: "bottom-right"
+            });
             if (index === this.selectedRepositories - 1) {
               this.showMessage = false;
               $router.push("/dashboard");

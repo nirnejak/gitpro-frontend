@@ -4,9 +4,12 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 
+import Message from 'vue-m-message'
+
 import 'circular-std'
 
 Vue.config.productionTip = false
+Vue.use(Message)
 
 new Vue({
   router,
