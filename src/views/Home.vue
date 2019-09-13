@@ -9,15 +9,32 @@
           Get Started
           <i class="fas fa-sm fa-arrow-right"></i>
         </router-link>
+        <br />
+        <br />
+        <span></span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Typed from "typed.js";
+
 export default {
   name: "home",
-  components: {}
+  components: {},
+  data() {
+    return {
+      options: {
+        strings: ["Build", "Collaborate", "Share"],
+        typeSpeed: 40,
+        loop: true
+      }
+    };
+  },
+  mounted() {
+    const typed = new Typed("span", this.options);
+  }
 };
 </script>
 
