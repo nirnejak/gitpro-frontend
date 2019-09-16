@@ -16,6 +16,7 @@
           class="col-3 p-5 collaborator-avatar-container"
           v-for="collaborator in collaborators"
           :key="collaborator.login"
+          @click="selectCollaborator(collaborator.login)"
         >
           <div class="is-center">
             <input
@@ -26,22 +27,28 @@
               @click="selectCollaborator(collaborator.login)"
             />
             <label :for="collaborator.login" class="collaborator-check-label">
-              <i class="fas fa-check-circle text-light"></i>
+              <i
+                class="fas fa-check-circle text-light"
+                :class="{
+                'text-primary': selectedCollaborators.includes(collaborator.login),
+                'text-light': !selectedCollaborators.includes(collaborator.login),
+              }"
+              ></i>
             </label>
-            <div class="collaborator-avatar position-relative">
-              <div
-                class="bg-card rounded-circle bg-cover"
-                :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
-              ></div>
-              <div class="overlay rounded-circle"></div>
-            </div>
+            <label :for="collaborator.login">
+              <div class="collaborator-avatar position-relative">
+                <div
+                  class="bg-card rounded-circle bg-cover"
+                  :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
+                ></div>
+                <div class="overlay rounded-circle"></div>
+              </div>
+            </label>
           </div>
-          <router-link :to="`/collaborators/${collaborator.login}`">
+          <label :for="collaborator.login" class="cursor-pointer">
             <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
-          </router-link>
-          <router-link :to="`/collaborators/${collaborator.login}`">
             <small class="text-center text-dark is-center">{{collaborator.login}}</small>
-          </router-link>
+          </label>
         </div>
       </div>
     </div>
@@ -108,7 +115,7 @@ export default {
           selectedCollaborators: this.selectedCollaborators
         };
         axios
-          .put(`/collaborators/${this.$props.collaborator.login}`, data)
+          .put(`/repositories/${this.$props.repository.name}`, data)
           .then(res => {
             this.$message.success({
               message: res.data.message,
