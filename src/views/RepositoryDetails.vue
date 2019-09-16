@@ -33,11 +33,15 @@
         </div>
 
         <div class="row mt-100">
-          <div class="col-8-lg">
+          <div class="col-4-lg">
             <h2>Collaborators</h2>
           </div>
-          <div class="col-4-lg is-right">
-            <button class="button primary outline" v-if="selectedCollaborators.length > 0">
+          <div class="col-8-lg is-right">
+            <button
+              class="button primary outline text-error bd-error"
+              v-if="selectedCollaborators.length > 0"
+              @click="revokeAccess()"
+            >
               <i class="fas fa-times"></i>&nbsp;
               Revoke Access
             </button>
@@ -117,8 +121,30 @@ export default {
     });
   },
   methods: {
+    revokeAccess() {
+      let confirm = window.confirm(
+        "Are you sure you want to remove the collaborators from the repository?"
+      );
+      if (confirm) {
+        this.selectedCollaborators.forEach((collaborator, index) => {
+          axios
+            .put(`/repositories/${this.repository.name}?collaborator=${collaborator}`)
+            .then(res => {
+              if (index === this.selectedCollaborators - 1) {
+                this.$message.success({
+                  message: res.data.message,
+                  position: "bottom-right",
+                  showClose: true
+                });
+                $router.push("/repositories");
+              }
+            })
+            .catch(err => console.log(err));
+        });
+      }
+    },
     addRemoveCollaborator(collab) {
-      if (this.selectedCollaborators.include(collab)) {
+      if (this.selectedCollaborators.includes(collab)) {
         this.selectedCollaborators = this.selectedCollaborators.filter(
           collaborator => collaborator !== collab
         );
