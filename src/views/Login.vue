@@ -1,6 +1,6 @@
 <template>
   <div class="centered-container">
-    <div class="is-text-center p-30 px-80">
+    <div class="text-center p-30 px-80">
       <div>
         <a href="http://localhost:5000/auth/github" class="button dark is-center">
           <i class="fab fa-sm fa-github"></i>&nbsp;

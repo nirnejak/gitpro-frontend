@@ -1,6 +1,6 @@
 <template>
   <div class="centered-container">
-    <div class="is-text-center p-20 px-100">
+    <div class="text-center p-20 px-100">
       <p class="text-dark">Welcome to</p>
       <h1 class="error-code">GitHub Supreme</h1>
       <br />

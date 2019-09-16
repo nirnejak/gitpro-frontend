@@ -52,7 +52,7 @@
           </div>
           <div class="col-12" v-if="collaborators.length === 0 && !repositoryDetailsLoading">
             <div class="is-center is-vertical-align py-100">
-              <h3 class="text-dark is-text-center">
+              <h3 class="text-dark text-center">
                 <i class="fas fa-3x fa-times"></i>
                 <br />No Collaborators
               </h3>
@@ -83,10 +83,10 @@
               </div>
             </div>
             <router-link :to="`/collaborators/${collaborator.login}`">
-              <p class="is-text-center mt-10 text-highcontrast">{{collaborator.name}}</p>
+              <p class="text-center mt-10 text-highcontrast">{{collaborator.name}}</p>
             </router-link>
             <router-link :to="`/collaborators/${collaborator.login}`">
-              <small class="is-text-center text-dark is-center">{{collaborator.login}}</small>
+              <small class="text-center text-dark is-center">{{collaborator.login}}</small>
             </router-link>
           </div>
         </div>

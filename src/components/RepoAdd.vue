@@ -8,7 +8,7 @@
           <small>({{selectedRepositories.length}} Selected)</small>
         </p>
       </div>
-      <div class="col-6 is-text-right">
+      <div class="col-6 text-right">
         <i
           class="fas fa-sort-alpha-up text-primary cursor-pointer"
           @click="sortAlphaUp()"
@@ -31,7 +31,7 @@
       >
         <div class="row">
           <div class="col-10">{{repository.name}}</div>
-          <div class="col-2 is-text-right">
+          <div class="col-2 text-right">
             <i
               class="fas fa-lg fa-check-circle"
               :class="{

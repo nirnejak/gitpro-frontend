@@ -3,7 +3,17 @@
     <Sidebar />
     <div class="col-9-lg pt-70">
       <div class="px-20">
-        <h1>Collaborators</h1>
+        <div class="row">
+          <div class="col-8-lg">
+            <h1>Collaborators</h1>
+          </div>
+          <div class="col-4-lg pt-10 text-right">
+            <button class="button primary">
+              Add Collaborator
+              &nbsp;<i class="fas fa-plus" />
+            </button>
+          </div>
+        </div>
         <div class="row" v-if="collaboratorLoading">
           <div class="col-2 p-5" v-for="i in 6" :key="i">
             <div class="is-center">
@@ -27,8 +37,8 @@
                   <div class="overlay rounded-circle"></div>
                 </div>
               </div>
-              <p class="is-text-center mt-10 text-highcontrast">{{collaborator.name}}</p>
-              <small class="is-text-center text-dark is-center">{{collaborator.login}}</small>
+              <p class="text-center mt-10 text-highcontrast">{{collaborator.name}}</p>
+              <small class="text-center text-dark is-center">{{collaborator.login}}</small>
             </router-link>
           </div>
         </div>
