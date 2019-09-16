@@ -158,13 +158,16 @@ export default {
           axios
             .put(`/collaborators/${this.collaborator.login}?repo=${repo}`)
             .then(res => {
-              if (index === this.selectedRepositories - 1) {
+              if (index === this.selectedRepositories.length - 1) {
+                this.collaborator.repositories = this.collaborator.repositories.filter(
+                  repo => !this.selectedRepositories.includes(repo.name)
+                );
+                this.selectedRepositories = [];
                 this.$message.success({
                   message: res.data.message,
                   position: "bottom-right",
                   showClose: true
                 });
-                $router.push("/dashboard");
               }
             })
             .catch(err => console.log(err));

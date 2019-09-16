@@ -128,9 +128,17 @@ export default {
       if (confirm) {
         this.selectedCollaborators.forEach((collaborator, index) => {
           axios
-            .put(`/repositories/${this.repository.name}?collaborator=${collaborator}`)
+            .put(
+              `/repositories/${this.repository.name}?collaborator=${collaborator}`
+            )
             .then(res => {
-              if (index === this.selectedCollaborators - 1) {
+              if (index === this.selectedCollaborators.length - 1) {
+                this.collaborators = this.collaborators.filter(
+                  collaborator =>
+                    !this.selectedCollaborators.includes(collaborator.login)
+                );
+                this.selectedCollaborators = [];
+
                 this.$message.success({
                   message: res.data.message,
                   position: "bottom-right",
