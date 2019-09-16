@@ -19,7 +19,24 @@
 <script>
 export default {
   name: "Modal",
-  props: ["showModal", "hideModal", "modalTitle"]
+  props: ["showModal", "hideModal", "modalTitle"],
+  mounted() {
+    document.addEventListener("keydown", this.escFunction, false);
+  },
+  updated() {
+    document.addEventListener("keydown", this.escFunction, false);
+  },
+  methods: {
+    escFunction(event) {
+      if (event.keyCode === 27 && this.$props.showModal) {
+        this.$props.hideModal();
+      }
+    }
+  },
+  unmounted() {
+    if (document)
+      document.removeEventListener("keydown", this.escFunction, false);
+  }
 };
 </script>
 
