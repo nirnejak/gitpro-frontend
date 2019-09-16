@@ -72,7 +72,7 @@
       </div>
     </div>
     <div class="is-center">
-      <button class="button primary" @click="addtoRepos">Create</button>
+      <button class="button primary" @click="AddToReposs">Create</button>
     </div>
   </div>
 </template>
@@ -156,7 +156,7 @@ export default {
         this.selectedRepositories.push(repo);
       }
     },
-    addtoRepos() {
+    AddToReposs() {
       if (this.selectedRepositories.length > 0 && this.selectedUser) {
         let data = {
           ...this.selectedUser,

@@ -2,7 +2,7 @@
   <div class="row">
     <Sidebar />
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
-      <RepoAdd
+      <AddToRepos
         :collaborator="collaborator"
         :hideModal="hideModal"
         :alreadyCollaborator="collaborator.repositories"
@@ -74,10 +74,9 @@
               type="submit"
               class="button primary outline"
               @click="showModal = true"
-              v-if="!showModal"
             >
               <i class="fas fa-plus"></i>&nbsp;
-              Add to Repo
+              Add to Repos
             </button>
           </div>
         </div>
@@ -128,11 +127,11 @@ import axios from "@/configAxios";
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/UI/SkeletonLoader";
 import Modal from "@/components/UI/Modal";
-import RepoAdd from "@/components/RepoAdd";
+import AddToRepos from "@/components/AddToRepos";
 
 export default {
   name: "CollaboratorDetails",
-  components: { Sidebar, SkeletonLoader, Modal, RepoAdd },
+  components: { Sidebar, SkeletonLoader, Modal, AddToRepos },
   data() {
     return {
       user: { login: localStorage.login },

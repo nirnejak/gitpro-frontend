@@ -1,6 +1,14 @@
 <template>
   <div class="row">
     <Sidebar />
+    <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
+      <AddToRepos
+        :collaborator="collaborator"
+        :hideModal="hideModal"
+        :alreadyCollaborator="collaborator.repositories"
+      />
+    </Modal>
+
     <div class="col-9-lg pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
         <div class="row">
@@ -48,6 +56,14 @@
             <button class="button dark outline" @click="refreshData">
               <i class="fas fa-sync-alt"></i>&nbsp;
               Refersh Data
+            </button>
+            <button
+              type="submit"
+              class="button primary outline"
+              @click="showModal = true"
+            >
+              <i class="fas fa-plus"></i>&nbsp;
+              Add Collaborator
             </button>
           </div>
           <div class="col-12" v-if="collaborators.length === 0 && !repositoryDetailsLoading">
@@ -100,6 +116,8 @@ import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/UI/SkeletonLoader";
+import Modal from "@/components/UI/Modal";
+import AddToRepos from "@/components/AddToRepos";
 
 export default {
   name: "RepositoryDetails",

@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="is-center">
-      <button class="button primary" @click="addtoRepos">Add</button>
+      <button class="button primary" @click="AddToReposs">Add</button>
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@
 import axios from "@/configAxios";
 
 export default {
-  name: "RepoAdd",
+  name: "AddToRepos",
   components: {},
   props: ["collaborator", "hideModal", "alreadyCollaborator"],
   data() {
@@ -115,7 +115,7 @@ export default {
         this.selectedRepositories.push(repo);
       }
     },
-    addtoRepos() {
+    AddToReposs() {
       if (this.selectedRepositories.length > 0) {
         let data = {
           selectedRepositories: this.selectedRepositories
