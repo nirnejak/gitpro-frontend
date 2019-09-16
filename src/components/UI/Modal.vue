@@ -28,7 +28,7 @@ export default {
   width: 100%;
   height: 100vh;
 
-  position: fixed;
+  position: absolute;
   top: 0px;
   left: 0px;
 }
@@ -37,7 +37,7 @@ export default {
   width: 100%;
   height: 100vh;
 
-  position: fixed;
+  position: absolute;
   top: 0px;
   left: 0px;
   z-index: 998;
@@ -46,7 +46,7 @@ export default {
 
 .modal-content {
   z-index: 999;
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
 

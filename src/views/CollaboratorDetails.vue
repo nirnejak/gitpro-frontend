@@ -126,8 +126,8 @@
 import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
-import SkeletonLoader from "@/components/SkeletonLoader";
-import Modal from "@/components/Modal";
+import SkeletonLoader from "@/components/UI/SkeletonLoader";
+import Modal from "@/components/UI/Modal";
 import RepoAdd from "@/components/RepoAdd";
 
 export default {

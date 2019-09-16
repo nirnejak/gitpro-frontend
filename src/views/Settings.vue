@@ -45,7 +45,7 @@
 import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
-import ToggleButton from "@/components/ToggleButton";
+import ToggleButton from "@/components/UI/ToggleButton";
 
 import { darkTheme, lightTheme } from "@/config";
 

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <Sidebar />
-    <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
+    <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Collaborator">
       <h1>Modal</h1>
     </Modal>
 
@@ -12,7 +12,7 @@
             <h1>Collaborators</h1>
           </div>
           <div class="col-4-lg pt-10 text-right">
-            <button class="button primary" @click="addCollaborator">
+            <button class="button primary" @click="showModal = true" v-if="!showModal">
               Add Collaborator
               &nbsp;
               <i class="fas fa-plus" />
@@ -56,8 +56,8 @@
 import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
-import SkeletonLoader from "@/components/SkeletonLoader";
-import Modal from "@/components/Modal";
+import SkeletonLoader from "@/components/UI/SkeletonLoader";
+import Modal from "@/components/UI/Modal";
 import RepoAdd from "@/components/RepoAdd";
 
 export default {
@@ -77,8 +77,8 @@ export default {
     });
   },
   methods: {
-    addCollaborator() {
-      console.log("Add Collaborator");
+    showAddCollaboratorModal() {
+      this.showModal = true;
     },
     hideModal() {
       this.showModal = false;

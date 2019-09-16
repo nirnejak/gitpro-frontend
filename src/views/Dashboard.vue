@@ -11,21 +11,21 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-4 p-5" v-if="!userLoading">
+          <div class="col-4" v-if="!userLoading">
             <div class="bg-card border-radius-10 p-20">
               <i class="fas fa-code-branch mr-5"></i>
               {{user.total_repositories}}
               Total Repositories
             </div>
           </div>
-          <div class="col-4 p-5" v-if="!userLoading">
+          <div class="col-4" v-if="!userLoading">
             <div class="bg-card border-radius-10 p-20">
               <i class="fas fa-user mr-5"></i>
               {{user.total_collaborators}}
               Total Collaborators
             </div>
           </div>
-          <div class="col-4 p-5" v-if="!userLoading">
+          <div class="col-4" v-if="!userLoading">
             <div class="bg-card border-radius-10 p-20">
               <i class="fas fa-user mr-5"></i>
               {{user.total_collaborators}}
@@ -79,8 +79,8 @@
 import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
-import SkeletonLoader from "@/components/SkeletonLoader";
-import SnackBar from "@/components/SnackBar";
+import SkeletonLoader from "@/components/UI/SkeletonLoader";
+import SnackBar from "@/components/UI/SnackBar";
 import { setTimeout } from "timers";
 
 export default {

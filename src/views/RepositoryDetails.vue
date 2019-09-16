@@ -99,7 +99,7 @@
 import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
-import SkeletonLoader from "@/components/SkeletonLoader";
+import SkeletonLoader from "@/components/UI/SkeletonLoader";
 
 export default {
   name: "RepositoryDetails",
