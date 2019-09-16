@@ -12,6 +12,7 @@
   --body-highcontrast: #000000;
   --card-background: white;
   --sidebar-hover: #d5e1ff;
+  --color-loader-bg: rgba(0, 0, 0, 0.04);
   --font-family: "CircularStd", -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next", "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
@@ -43,4 +44,8 @@ body {
   border-bottom: 2px white dotted;
 
   transform: rotate(45deg);
+}
+
+.is-text-center {
+  text-align: center !important;
 }

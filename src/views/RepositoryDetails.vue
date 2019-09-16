@@ -41,6 +41,10 @@
               <i class="fas fa-times"></i>&nbsp;
               Revoke Access
             </button>
+            <button class="button dark outline" @click="refreshData">
+              <i class="fas fa-sync-alt"></i>&nbsp;
+              Refersh Data
+            </button>
           </div>
           <div class="col-12" v-if="collaborators.length === 0 && !repositoryDetailsLoading">
             <div class="is-center is-vertical-align py-100">
@@ -121,6 +125,15 @@ export default {
       } else {
         this.selectedCollaborators.push(collab);
       }
+    },
+    refreshData() {
+      axios.get("/fetch/repositories/").then(res => {
+        this.$message.success({
+          message: res.data.message,
+          position: "bottom-right",
+          showClose: true
+        });
+      });
     }
   }
 };

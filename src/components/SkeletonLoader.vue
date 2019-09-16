@@ -23,8 +23,7 @@ export default {
 
 .loader {
   overflow: hidden;
-  // background: rgba(0, 0, 0, 0.04);
-  background: var(--card-background);
+  background: var(--color-loader-bg);
   & > .gradient {
     width: 10%;
     height: 100%;

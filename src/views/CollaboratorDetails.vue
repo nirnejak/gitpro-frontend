@@ -66,6 +66,10 @@
               <i class="fas fa-times"></i>&nbsp;
               Revoke Access
             </button>
+            <button class="button dark outline" @click="refreshData">
+              <i class="fas fa-sync-alt"></i>&nbsp;
+              Refersh Data
+            </button>
             <button
               type="submit"
               class="button primary outline"
@@ -173,6 +177,15 @@ export default {
     },
     hideModal() {
       this.showModal = false;
+    },
+    refreshData() {
+      axios.get("/fetch/repositories/").then(res => {
+        this.$message.success({
+          message: res.data.message,
+          position: "bottom-right",
+          showClose: true
+        });
+      });
     }
   }
 };

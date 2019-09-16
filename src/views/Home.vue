@@ -1,18 +1,16 @@
 <template>
   <div class="centered-container">
     <div class="is-text-center p-20 px-100">
-      <div>
-        <p class="text-dark">Welcome to</p>
-        <h1 class="error-code">GitHub Supreme</h1>
-        <br />
-        <router-link to="/login" class="button primary">
-          Get Started
-          <i class="fas fa-sm fa-arrow-right"></i>
-        </router-link>
-        <br />
-        <br />
-        <span></span>
-      </div>
+      <p class="text-dark">Welcome to</p>
+      <h1 class="error-code">GitHub Supreme</h1>
+      <br />
+      <router-link to="/login" class="button primary">
+        Get Started
+        <i class="fas fa-sm fa-arrow-right"></i>
+      </router-link>
+      <br />
+      <br />
+      <span></span>
     </div>
   </div>
 </template>
