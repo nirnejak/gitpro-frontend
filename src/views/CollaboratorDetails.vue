@@ -150,21 +150,26 @@ export default {
   },
   methods: {
     revokeAccess() {
-      this.selectedRepositories.forEach((repo, index) => {
-        axios
-          .put(`/collaborators/${this.collaborator.login}?repo=${repo}`)
-          .then(res => {
-            if (index === this.selectedRepositories - 1) {
-              this.$message.success({
-                message: res.data.message,
-                position: "bottom-right",
-                showClose: true
-              });
-              $router.push("/dashboard");
-            }
-          })
-          .catch(err => console.log(err));
-      });
+      let confirm = window.confirm(
+        "Are you sure you want to remove the collaborator from these repos?"
+      );
+      if (confirm) {
+        this.selectedRepositories.forEach((repo, index) => {
+          axios
+            .put(`/collaborators/${this.collaborator.login}?repo=${repo}`)
+            .then(res => {
+              if (index === this.selectedRepositories - 1) {
+                this.$message.success({
+                  message: res.data.message,
+                  position: "bottom-right",
+                  showClose: true
+                });
+                $router.push("/dashboard");
+              }
+            })
+            .catch(err => console.log(err));
+        });
+      }
     },
     addRemoveRepo(repoName) {
       if (this.selectedRepositories.includes(repoName)) {
