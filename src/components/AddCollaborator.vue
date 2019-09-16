@@ -52,7 +52,7 @@
 
     <div class="repo-list-container mb-15">
       <div
-        class="repo-item cursor-pointer bd-light border-radius-5 p-10 my-5"
+        class="cursor-pointer bd-light border-radius-5 p-10 my-5"
         v-for="repository in repositories"
         :key="repository.name"
         @click="selectRepo(repository.name)"
@@ -72,7 +72,7 @@
       </div>
     </div>
     <div class="is-center">
-      <button class="button primary" @click="AddToReposs">Create</button>
+      <button class="button primary" @click="addToRepos">Create</button>
     </div>
   </div>
 </template>
@@ -156,7 +156,7 @@ export default {
         this.selectedRepositories.push(repo);
       }
     },
-    AddToReposs() {
+    addToRepos() {
       if (this.selectedRepositories.length > 0 && this.selectedUser) {
         let data = {
           ...this.selectedUser,

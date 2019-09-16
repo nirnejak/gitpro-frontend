@@ -1,11 +1,11 @@
 <template>
   <div class="row">
     <Sidebar />
-    <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
-      <AddToRepos
-        :collaborator="collaborator"
+    <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Collaborators">
+      <AddCollaboratorsToRepo
+        :repository="repository"
         :hideModal="hideModal"
-        :alreadyCollaborator="collaborator.repositories"
+        :alreadyCollaborators="collaborators"
       />
     </Modal>
 
@@ -57,11 +57,7 @@
               <i class="fas fa-sync-alt"></i>&nbsp;
               Refersh Data
             </button>
-            <button
-              type="submit"
-              class="button primary outline"
-              @click="showModal = true"
-            >
+            <button type="submit" class="button primary outline" @click="showModal = true">
               <i class="fas fa-plus"></i>&nbsp;
               Add Collaborator
             </button>
@@ -117,18 +113,19 @@ import axios from "@/configAxios";
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/UI/SkeletonLoader";
 import Modal from "@/components/UI/Modal";
-import AddToRepos from "@/components/AddToRepos";
+import AddCollaboratorsToRepo from "@/components/AddCollaboratorsToRepo";
 
 export default {
   name: "RepositoryDetails",
-  components: { Sidebar, SkeletonLoader },
+  components: { Sidebar, SkeletonLoader, Modal, AddCollaboratorsToRepo },
   data() {
     return {
       user: { login: localStorage.login },
       repository: {},
       collaborators: [],
       repositoryDetailsLoading: true,
-      selectedCollaborators: []
+      selectedCollaborators: [],
+      showModal: false
     };
   },
   created() {
@@ -177,6 +174,9 @@ export default {
       } else {
         this.selectedCollaborators.push(collab);
       }
+    },
+    hideModal() {
+      this.showModal = false;
     },
     refreshData() {
       axios.get("/fetch/repositories/").then(res => {
