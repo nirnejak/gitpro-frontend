@@ -2,23 +2,11 @@
   <div>
     <input type="text" placeholder="Search Collaborator" v-model="search" />
     <div class="row mb-10 mt-15">
-      <div class="col-6">
+      <div class="col-12">
         <p class="text-dark">
           Collaborators
           <small>({{selectedCollaborators.length}} Selected)</small>
         </p>
-      </div>
-      <div class="col-6 text-right">
-        <i
-          class="fas fa-sort-alpha-up text-primary cursor-pointer"
-          @click="sortAlphaUp()"
-          v-if="sort==='down' || sort==='not-sorted'"
-        ></i>
-        <i
-          class="fas fa-sort-alpha-down text-primary cursor-pointer"
-          @click="sortAlphaDown()"
-          v-if="sort==='up'"
-        ></i>
       </div>
     </div>
 
@@ -98,29 +86,13 @@ export default {
       if (this.search === "") {
         this.collaborators = this.collaboratorsOriginal;
       } else {
-        this.collaborators = this.collaboratorsOriginal.filter(repo =>
-          repo.name.toLowerCase().includes(this.search.toLowerCase())
+        this.collaborators = this.collaboratorsOriginal.filter(collaborator =>
+          collaborator.login.toLowerCase().includes(this.search.toLowerCase())
         );
       }
     }
   },
   methods: {
-    sortAlphaUp() {
-      this.sort = "up";
-      this.collaborators = this.collaborators.sort((repo1, repo2) => {
-        if (repo1.name < repo2.name) return 1;
-        if (repo1.name > repo2.name) return -1;
-        return 0;
-      });
-    },
-    sortAlphaDown() {
-      this.sort = "down";
-      this.collaborators = this.collaborators.sort((repo1, repo2) => {
-        if (repo1.name < repo2.name) return -1;
-        if (repo1.name > repo2.name) return 1;
-        return 0;
-      });
-    },
     selectCollaborator(collab) {
       if (this.selectedCollaborators.includes(collab)) {
         this.selectedCollaborators = this.selectedCollaborators.filter(
