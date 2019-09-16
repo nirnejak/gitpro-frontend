@@ -7,7 +7,7 @@
           <div class="col-1-lg is-vertical-align">
             <i class="fas fa-4x fa-code-branch mr-5"></i>
           </div>
-          <div class="col-5-lg is-vertical-align">
+          <div class="col-7-lg is-vertical-align">
             <div>
               <h1 class="m-0">{{$route.params.name}}</h1>
               <p class="m-0 text-dark">{{repository.description}}</p>

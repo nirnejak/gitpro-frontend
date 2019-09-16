@@ -25,7 +25,7 @@
               v-else
             ></div>
           </div>
-          <div class="col-5-lg is-vertical-align">
+          <div class="col-6-lg is-vertical-align">
             <div class="ml-10">
               <h1 class="m-0">{{collaborator.name}}</h1>
               <SkeletonLoader
