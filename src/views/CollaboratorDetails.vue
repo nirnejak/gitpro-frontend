@@ -39,7 +39,7 @@
           </div>
           <div class="col-4-lg is-vertical-align is-right">
             <div>
-              <span href="#" class="text-error cursor-pointer pr-20">
+              <span href="#" class="text-error cursor-pointer pr-20" @click="removeCollaborator">
                 <i class="fas fa-user-times"></i>&nbsp;
                 Remove Collaborator
               </span>
@@ -186,6 +186,21 @@ export default {
           showClose: true
         });
       });
+    },
+    removeCollaborator() {
+      let confirm = window.confirm(
+        "Removing collaborator will revoke his/her access from all the repositories. Are you sure you want to remove collaborator?"
+      );
+      if (confirm) {
+        axios.delete(`/collaborators/${this.collaborator.login}`).then(res => {
+          this.$message.success({
+            message: res.data.message,
+            position: "bottom-right",
+            showClose: true
+          });
+          this.$router.push("/collaborators");
+        });
+      }
     }
   }
 };
