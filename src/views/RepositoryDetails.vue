@@ -83,7 +83,7 @@
               </div>
             </div>
             <router-link :to="`/collaborators/${collaborator.login}`">
-              <p class="text-center mt-10 text-highcontrast">{{collaborator.name}}</p>
+              <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
             </router-link>
             <router-link :to="`/collaborators/${collaborator.login}`">
               <small class="text-center text-dark is-center">{{collaborator.login}}</small>

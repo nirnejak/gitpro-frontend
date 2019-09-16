@@ -63,7 +63,7 @@
                       <div class="overlay rounded-circle"></div>
                     </div>
                   </div>
-                  <p class="text-center mt-10 text-highcontrast">{{collaborator.name}}</p>
+                  <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
                   <small class="text-center text-dark is-center">{{collaborator.login}}</small>
                 </router-link>
               </div>

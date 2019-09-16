@@ -1,6 +1,10 @@
 <template>
   <div class="row">
     <Sidebar />
+    <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
+      <h1>Modal</h1>
+    </Modal>
+
     <div class="col-9-lg pt-70">
       <div class="px-20">
         <div class="row">
@@ -8,9 +12,10 @@
             <h1>Collaborators</h1>
           </div>
           <div class="col-4-lg pt-10 text-right">
-            <button class="button primary">
+            <button class="button primary" @click="addCollaborator">
               Add Collaborator
-              &nbsp;<i class="fas fa-plus" />
+              &nbsp;
+              <i class="fas fa-plus" />
             </button>
           </div>
         </div>
@@ -37,7 +42,7 @@
                   <div class="overlay rounded-circle"></div>
                 </div>
               </div>
-              <p class="text-center mt-10 text-highcontrast">{{collaborator.name}}</p>
+              <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
               <small class="text-center text-dark is-center">{{collaborator.login}}</small>
             </router-link>
           </div>
@@ -52,14 +57,17 @@ import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/SkeletonLoader";
+import Modal from "@/components/Modal";
+import RepoAdd from "@/components/RepoAdd";
 
 export default {
   name: "Collaborators",
-  components: { Sidebar, SkeletonLoader },
+  components: { Sidebar, SkeletonLoader, Modal },
   data() {
     return {
       collaborators: [],
-      collaboratorLoading: true
+      collaboratorLoading: true,
+      showModal: false
     };
   },
   created() {
@@ -67,6 +75,14 @@ export default {
       this.collaboratorLoading = false;
       this.collaborators = res.data;
     });
+  },
+  methods: {
+    addCollaborator() {
+      console.log("Add Collaborator");
+    },
+    hideModal() {
+      this.showModal = false;
+    }
   }
 };
 </script>

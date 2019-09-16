@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-3" v-for="repository in repositories" :key="repository.name">
             <div class="bg-card border-radius-5 p-20 my-10">
-              <router-link :to="`/repositories/${repository.name}`" class="text-highcontrast">
+              <router-link :to="`/repositories/${repository.name}`" class="text-high-contrast">
                 <div class="row">
                   <div class="col-10 text-overflow-ellipsis">
                     <i class="fas fa-code-branch mr-5"></i>
