@@ -2,7 +2,7 @@
   <div class="row">
     <Sidebar />
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Collaborator">
-      <h1>Modal</h1>
+      <AddCollaborator />
     </Modal>
 
     <div class="col-9-lg pt-70">
@@ -58,11 +58,12 @@ import axios from "@/configAxios";
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/UI/SkeletonLoader";
 import Modal from "@/components/UI/Modal";
-import RepoAdd from "@/components/RepoAdd";
+
+import AddCollaborator from "@/components/AddCollaborator";
 
 export default {
   name: "Collaborators",
-  components: { Sidebar, SkeletonLoader, Modal },
+  components: { Sidebar, SkeletonLoader, Modal, AddCollaborator },
   data() {
     return {
       collaborators: [],
