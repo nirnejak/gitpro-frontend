@@ -2,7 +2,7 @@
   <div class="row">
     <Sidebar />
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Collaborator">
-      <AddCollaborator />
+      <AddCollaborator :hideModal="hideModal" />
     </Modal>
 
     <div class="col-9-lg pt-70">

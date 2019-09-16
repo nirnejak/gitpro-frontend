@@ -94,7 +94,7 @@ export default {
       sort: "not-sorted",
       repositoriesOriginal: [],
       repositories: [],
-      selectedRepositories: [],
+      selectedRepositories: []
     };
   },
   created() {
@@ -163,12 +163,20 @@ export default {
           repositories: this.selectedRepositories
         };
         axios.post(`/collaborators/`, data).then(res => {
-          this.$message.success({
-            message: res.data.message,
-            position: "bottom-right",
-            showClose: true
-          });
-          this.$props.hideModal();
+          if (res.data.success) {
+            this.$message.success({
+              message: res.data.message,
+              position: "bottom-right",
+              showClose: true
+            });
+            this.$props.hideModal();
+          } else {
+            this.$message.error({
+              message: res.data.message,
+              position: "bottom-right",
+              showClose: true
+            });
+          }
         });
       } else {
         this.$message.error({
