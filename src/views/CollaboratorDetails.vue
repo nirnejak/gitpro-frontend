@@ -92,7 +92,6 @@
             class="col-3"
             v-for="repository in collaborator.repositories"
             :key="repository.name"
-            @click="addRemoveRepo(repository.name)"
           >
             <input
               type="checkbox"
@@ -102,7 +101,7 @@
               @change="addRemoveRepo(repository.name)"
             />
             <label :for="repository.name" class="repo-checkbox">
-              <div class="bg-card border-radius-5 p-20 my-5">
+              <div class="bg-card border-radius-5 p-20 my-10">
                 <div class="row">
                   <div class="col-10 text-overflow-ellipsis">
                     <i class="fas fa-code-branch"></i>

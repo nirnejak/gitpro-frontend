@@ -86,13 +86,15 @@
               <label :for="collaborator.login" class="collaborator-check-label">
                 <i class="fas fa-check-circle text-light"></i>
               </label>
-              <div class="collaborator-avatar position-relative">
-                <div
-                  class="bg-card rounded-circle bg-cover"
-                  :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
-                ></div>
-                <div class="overlay rounded-circle"></div>
-              </div>
+              <label :for="collaborator.login">
+                <div class="collaborator-avatar position-relative">
+                  <div
+                    class="bg-card rounded-circle bg-cover"
+                    :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
+                  ></div>
+                  <div class="overlay rounded-circle"></div>
+                </div>
+              </label>
             </div>
             <router-link :to="`/collaborators/${collaborator.login}`">
               <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>

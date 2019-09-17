@@ -26,16 +26,16 @@ export default {
   updated() {
     document.addEventListener("keydown", this.escFunction, false);
   },
+  unmounted() {
+    if (document)
+      document.removeEventListener("keydown", this.escFunction, false);
+  },
   methods: {
     escFunction(event) {
       if (event.keyCode === 27 && this.$props.showModal) {
         this.$props.hideModal();
       }
     }
-  },
-  unmounted() {
-    if (document)
-      document.removeEventListener("keydown", this.escFunction, false);
   }
 };
 </script>
