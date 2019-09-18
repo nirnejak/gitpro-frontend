@@ -120,11 +120,17 @@
         <div class="row">
           <div class="col-12">
             <div
-              class="bg-card border-radius-5 p-20 my-10"
+              class="bg-card border-radius-5 p-20 my-20"
               v-for="(activity, index) in activities"
               :key="index"
             >
-              <div class="activity-container" v-html="prettyHtml(index)"></div>
+              <h3 class="text-dark">Repository: {{activity.repository}}</h3>
+              <div
+                class="activity-container"
+                v-for="(data, index) in activity.data"
+                :key="index"
+                v-html="prettyHtml(data)"
+              ></div>
             </div>
           </div>
         </div>
@@ -178,15 +184,21 @@ export default {
             .get(`/activities/${this.$route.params.login}`, { params })
             .then(res => {
               this.activitiesLoading = false;
-              this.activities = [...this.activities, ...res.data];
+              this.activities = [
+                ...this.activities,
+                {
+                  repository: repository.name,
+                  data: [...res.data]
+                }
+              ];
             });
         });
       }
     });
   },
   methods: {
-    prettyHtml(index) {
-      return Diff2Html.getPrettyHtml(this.activities[index], {
+    prettyHtml(diff) {
+      return Diff2Html.getPrettyHtml(diff, {
         inputFormat: "diff",
         showFiles: true,
         matching: "lines",
