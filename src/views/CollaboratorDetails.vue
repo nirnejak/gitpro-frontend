@@ -70,11 +70,7 @@
               <i class="fas fa-sync-alt"></i>&nbsp;
               Refersh Data
             </button>
-            <button
-              type="submit"
-              class="button primary outline"
-              @click="showModal = true"
-            >
+            <button type="submit" class="button primary outline" @click="showModal = true">
               <i class="fas fa-plus"></i>&nbsp;
               Add to Repos
             </button>
@@ -88,11 +84,7 @@
         </div>
 
         <div class="row" v-if="collaborator">
-          <div
-            class="col-3"
-            v-for="repository in collaborator.repositories"
-            :key="repository.name"
-          >
+          <div class="col-3" v-for="repository in collaborator.repositories" :key="repository.name">
             <input
               type="checkbox"
               :name="repository.name"
@@ -115,12 +107,37 @@
             </label>
           </div>
         </div>
+
+        <div class="row mt-30">
+          <div class="col-4-lg">
+            <h2>Today's Activity</h2>
+          </div>
+          <div class="col-8-lg is-right">
+            <p class="text-dark">{{ Date() | formatDate }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="bg-card border-radius-5 p-20 my-10"
+              v-for="(activity, index) in activities"
+              :key="index"
+            >
+              <div class="activity-container" v-html="prettyHtml(index)"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import moment from "moment";
+import { Diff2Html } from "diff2html";
+import "diff2html/dist/diff2html.min.css";
+
 import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
@@ -137,16 +154,45 @@ export default {
       collaborator: {},
       collaboratorDetailsLoading: true,
       selectedRepositories: [],
-      showModal: false
+      showModal: false,
+      activities: [],
+      activitiesLoading: true
     };
   },
   created() {
     axios.get(`/collaborators/${this.$route.params.login}`).then(res => {
       this.collaboratorDetailsLoading = false;
       this.collaborator = res.data;
+      if (this.collaborator.repositories.length > 0) {
+        let before = new Date();
+        let after = new Date();
+        after.setDate(after.getDate() - 1);
+
+        this.collaborator.repositories.forEach(repository => {
+          let params = {
+            repository: repository.name,
+            after: moment(after).format("YYYY-MM-DD"),
+            before: moment(before).format("YYYY-MM-DD")
+          };
+          axios
+            .get(`/activities/${this.$route.params.login}`, { params })
+            .then(res => {
+              this.activitiesLoading = false;
+              this.activities = [...this.activities, ...res.data];
+            });
+        });
+      }
     });
   },
   methods: {
+    prettyHtml(index) {
+      return Diff2Html.getPrettyHtml(this.activities[index], {
+        inputFormat: "diff",
+        showFiles: true,
+        matching: "lines",
+        outputFormat: "side-by-side"
+      });
+    },
     revokeAccess() {
       let confirm = window.confirm(
         "Are you sure you want to remove the collaborator from these repos?"
@@ -224,6 +270,12 @@ input[type="checkbox"]:checked + label.repo-checkbox > div {
   border: var(--color-primary) 1px solid;
   & > div > div > i.fa-check-circle {
     color: var(--color-primary) !important;
+  }
+}
+
+.activity-container {
+  td {
+    padding: 0.1rem 0.4rem;
   }
 }
 </style>
