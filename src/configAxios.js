@@ -17,18 +17,14 @@ axios.interceptors.response.use(
   error => {
     if (error.response) {
       if (error.response.status === 401 || error.response.status === 403) {
-        // TODO: Logout User
         console.log(`${error.response.status} Error`)
+        window.location.href = '/logout/'
       } else if (error.response.status === 404) {
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
           // TODO: Capture Error through sentry
           window.location.href = `/error/${error.response.status}`
         } else {
-          Vue.message.error({
-            message: '404 Not Found',
-            position: 'bottom-right',
-            showClose: true
-          })
+          __VUE_DEVTOOLS_TOAST__(error.response.data.message || '404 Not Found', 'error')
         }
       } else {
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
@@ -37,13 +33,7 @@ axios.interceptors.response.use(
             window.location.href = `/error/${error.response.status}`
           }
         } else {
-          error.response.data.errors.map((err) => {
-            Vue.message.error({
-              message: `${err[0]}: ${err[1]}`,
-              position: 'bottom-right',
-              showClose: true
-            })
-          })
+          __VUE_DEVTOOLS_TOAST__(error.response.data.message, 'error')
         }
       }
     }
@@ -51,7 +41,7 @@ axios.interceptors.response.use(
       window.location.href = '/error/0'
     }
     if (error.code === 'ECONNABORTED') {
-      // TODO: Show "Request Timeout" Toast Message
+      __VUE_DEVTOOLS_TOAST__('Request Timeout', 'error')
     }
     return Promise.reject(error)
   }
