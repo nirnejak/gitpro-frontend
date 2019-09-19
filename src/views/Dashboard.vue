@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <Sidebar />
+    <Sidebar :show="true" />
     <SnackBar :show="showSnakeBar" :message="message" type="primary" :hideSnackBar="hideSnackBar" />
     <div class="col-9-lg pt-70">
       <div class="px-20">

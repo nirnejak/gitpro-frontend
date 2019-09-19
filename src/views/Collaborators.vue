@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <Sidebar />
+    <Sidebar :show="true" />
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Collaborator">
       <AddCollaborator :hideModal="hideModal" />
     </Modal>

@@ -1,0 +1,267 @@
+<template>
+  <div class="row">
+    <Sidebar :show="showSidebar" />
+    <div
+      class="h-100vh mb-0"
+      :class="{'col-9-lg': showSidebar, 'col-12': !showSidebar}"
+      style="overflow-y: auto;"
+    >
+      <i
+        class="fas cursor-pointer p-20"
+        :class="{'fa-bars': !showSidebar, 'fa-times': showSidebar}"
+        @click="showSidebar=!showSidebar"
+      ></i>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1>Activities</h1>
+          </div>
+        </div>
+        <div class="row" v-if="formDataLoading">
+          <div class="col-12">
+            <SkeletonLoader width="100%" height="114px" radius="5px" class="my-10" />
+          </div>
+        </div>
+        <div class="row" v-if="!formDataLoading">
+          <div class="col-12">
+            <div class="bg-card border-radius-5 p-20 my-10">
+              <div class="row">
+                <div class="col-6-lg collaborator">
+                  <p class="pb-5">Collaborator</p>
+                  <multiselect
+                    placeholder="Select Collaborator"
+                    v-model="selectedCollaborator"
+                    :options="collaborators"
+                    :show-labels="false"
+                  />
+                </div>
+                <div class="col-6-lg repositories">
+                  <p class="pb-5">Repositories</p>
+                  <multiselect
+                    placeholder="Select Repositories"
+                    v-model="selectedRepos"
+                    :options="repositories"
+                    :show-labels="false"
+                    :close-on-select="false"
+                    :multiple="true"
+                  />
+                </div>
+              </div>
+              <div class="row mt-20 sidebar-links">
+                <div class="col-4-lg text-center">
+                  <span
+                    class="sidebar-link cursor-pointer"
+                    :class="{active: date === 'yesterday'}"
+                    @click="date = 'yesterday'; pickedDate = ''"
+                  >Yesterday</span>
+                </div>
+                <div class="col-4-lg text-center">
+                  <span
+                    class="sidebar-link cursor-pointer"
+                    :class="{active: date === 'today'}"
+                    @click="date = 'today'; pickedDate = ''"
+                  >Today</span>
+                </div>
+                <div class="col-4-lg text-center">
+                  <v-date-picker
+                    v-model="pickedDate"
+                    :popover="{ placement: 'bottom', visibility: 'click' }"
+                  >
+                    <span
+                      class="sidebar-link cursor-pointer"
+                      :class="{active: date === 'pick'}"
+                      @click="date = 'pick'"
+                    >{{pickedDate || 'Pick a Date'}}</span>
+                  </v-date-picker>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" v-if="activitiesLoading">
+          <div class="col-12" v-for="i in 2" :key="i">
+            <SkeletonLoader width="100%" height="300px" radius="5px" class="my-10" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="bg-card border-radius-5 p-20 my-20"
+              v-for="(activity, index) in activities"
+              :key="index"
+            >
+              <h3 class="text-dark">Repository: {{activity.repository}}</h3>
+              <div
+                class="activity-container"
+                v-for="(diff, index) in activity.diffs"
+                :key="index"
+                v-html="prettyHtml(diff)"
+              ></div>
+              <div v-if="activity.diffs.length === 0 && activitiesLoading === false">
+                <h4 class="text-center text-dark py-20">No Activity</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import moment from "moment";
+import { Diff2Html } from "diff2html";
+import "diff2html/dist/diff2html.min.css";
+
+import axios from "@/configAxios";
+
+import Sidebar from "@/components/Sidebar";
+import SkeletonLoader from "@/components/UI/SkeletonLoader";
+import { watch } from "fs";
+
+export default {
+  name: "Activities",
+  components: { Sidebar, SkeletonLoader },
+  data() {
+    return {
+      showSidebar: true,
+      search: "",
+      repositories: [],
+      selectedRepos: [],
+      collaborators: [],
+      selectedCollaborator: null,
+      formDataLoading: true,
+      activitiesLoading: false,
+      date: "today",
+      pickedDate: "",
+
+      activities: []
+    };
+  },
+  async created() {
+    const repositories_res = await axios.get("/repositories/");
+    const collaborators_res = await axios.get("/collaborators/");
+    this.repositories = repositories_res.data.map(repo => repo.name);
+    this.collaborators = collaborators_res.data.map(collab => collab.login);
+    this.formDataLoading = false;
+
+    let repository = this.$router.history.current.query.repository;
+    if (repository && this.repositories.includes(repository)) {
+      this.selectedRepos.push(repository);
+    }
+
+    let collaborator = this.$router.history.current.query.collaborator;
+    if (collaborator && this.collaborators.includes(collaborator)) {
+      this.selectedCollaborator = collaborator;
+    }
+  },
+  methods: {
+    fetchActivity() {
+      if (this.selectedRepos.length > 0 && this.selectedCollaborator) {
+        this.activitiesLoading = true;
+        this.activities = [];
+
+        let before, after;
+        if (this.date === "today") {
+          before = new Date();
+          after = new Date();
+          after.setDate(after.getDate() - 1);
+        } else if (this.date === "yesterday") {
+          before = new Date();
+          after = new Date();
+          before.setDate(before.getDate() - 1);
+          after.setDate(after.getDate() - 2);
+        } else if (this.date === "pick") {
+          before = new Date(this.pickedDate);
+          after = new Date(this.pickedDate);
+          after.setDate(after.getDate() - 1);
+        }
+
+        this.selectedRepos.forEach(async repository => {
+          let params = {
+            repository,
+            after: moment(after).format("YYYY-MM-DD"),
+            before: moment(before).format("YYYY-MM-DD")
+          };
+          const res = await axios.get(
+            `/activities/${this.selectedCollaborator}`,
+            { params }
+          );
+          this.activitiesLoading = false;
+          this.activities = [...this.activities, res.data];
+        });
+      }
+    },
+    prettyHtml(diff) {
+      return Diff2Html.getPrettyHtml(diff, {
+        inputFormat: "diff",
+        showFiles: true,
+        matching: "lines",
+        outputFormat: "side-by-side"
+      });
+    }
+  },
+  watch: {
+    selectedRepos() {
+      if (this.selectedRepos.length !== 0) this.fetchActivity();
+    },
+    selectedCollaborator() {
+      if (this.selectedCollaborator) this.fetchActivity();
+    },
+    date() {
+      if (this.date && this.date !== "pick") this.fetchActivity();
+    },
+    pickedDate() {
+      if (this.pickedDate && typeof this.pickedDate !== "string")
+        this.pickedDate = moment(this.pickedDate).format("DD-MM-YYYY");
+    }
+  }
+};
+</script>
+
+<style lang="scss">
+.collaborator {
+  input[type="text"].multiselect__input {
+    transition: none !important;
+    border: 0px !important;
+  }
+  .multiselect__tags {
+    min-height: 43px;
+  }
+}
+.repositories {
+  input[type="text"].multiselect__input {
+    transition: none !important;
+    border: 0px !important;
+  }
+}
+
+.multiselect__single {
+  padding-top: 2px;
+}
+
+.multiselect__option--highlight,
+.multiselect__tag {
+  background: var(--color-primary);
+  color: white !important;
+}
+
+.multiselect__tag-icon {
+  background: transparent;
+  &:focus,
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  &:after {
+    color: white;
+  }
+}
+
+.activity-container {
+  td {
+    padding: 0.1rem 0.4rem;
+  }
+}
+</style>

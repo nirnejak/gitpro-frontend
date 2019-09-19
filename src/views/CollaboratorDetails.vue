@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <Sidebar />
+    <Sidebar :show="true" />
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
       <AddToRepos
         :collaborator="collaborator"
@@ -127,10 +127,15 @@
               <h3 class="text-dark">Repository: {{activity.repository}}</h3>
               <div
                 class="activity-container"
-                v-for="(data, index) in activity.data"
+                v-for="(diff, index) in activity.diffs"
                 :key="index"
-                v-html="prettyHtml(data)"
+                v-html="prettyHtml(diff)"
               ></div>
+              <div v-if="activity.diffs.length === 0 && activitiesLoading === false">
+                <h4 class="text-center text-dark py-20">
+                  No Activity
+                </h4>
+              </div>
             </div>
           </div>
         </div>
@@ -184,13 +189,7 @@ export default {
             .get(`/activities/${this.$route.params.login}`, { params })
             .then(res => {
               this.activitiesLoading = false;
-              this.activities = [
-                ...this.activities,
-                {
-                  repository: repository.name,
-                  data: [...res.data]
-                }
-              ];
+              this.activities = [...this.activities, res.data];
             });
         });
       }

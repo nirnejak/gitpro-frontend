@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from './views/Home.vue'
 
 import { lightTheme } from './config'
 
@@ -12,8 +13,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      // component: Home
-      component: () => import('./views/Home.vue')
+      component: Home
     },
     {
       path: '/about',
@@ -56,11 +56,8 @@ export default new Router({
       name: 'collaborators',
       component: () => import('./views/Collaborators.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) {
-          next()
-        } else {
-          next({ path: '/login' })
-        }
+        if (localStorage.jwtToken) next()
+        else next({ path: '/login' })
       }
     },
     {
@@ -68,11 +65,8 @@ export default new Router({
       name: 'collaborator',
       component: () => import('./views/CollaboratorDetails.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) {
-          next()
-        } else {
-          next({ path: '/login' })
-        }
+        if (localStorage.jwtToken) next()
+        else next({ path: '/login' })
       }
     },
     {
@@ -80,11 +74,8 @@ export default new Router({
       name: 'repository',
       component: () => import('./views/Repositories.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) {
-          next()
-        } else {
-          next({ path: '/login' })
-        }
+        if (localStorage.jwtToken) next()
+        else next({ path: '/login' })
       }
     },
     {
@@ -92,11 +83,17 @@ export default new Router({
       name: 'repositories',
       component: () => import('./views/RepositoryDetails.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) {
-          next()
-        } else {
-          next({ path: '/login' })
-        }
+        if (localStorage.jwtToken) next()
+        else next({ path: '/login' })
+      }
+    },
+    {
+      path: '/activities',
+      name: 'activities',
+      component: () => import('./views/Activities.vue'),
+      beforeEnter: (to, from, next) => {
+        if (localStorage.jwtToken) next()
+        else next({ path: '/login' })
       }
     },
     {
@@ -104,11 +101,8 @@ export default new Router({
       name: 'teams',
       component: () => import('./views/Teams.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) {
-          next()
-        } else {
-          next({ path: '/login' })
-        }
+        if (localStorage.jwtToken) next()
+        else next({ path: '/login' })
       }
     },
     {
@@ -116,11 +110,8 @@ export default new Router({
       name: 'settings',
       component: () => import('./views/Settings.vue'),
       beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) {
-          next()
-        } else {
-          next({ path: '/login' })
-        }
+        if (localStorage.jwtToken) next()
+        else next({ path: '/login' })
       }
     },
     {

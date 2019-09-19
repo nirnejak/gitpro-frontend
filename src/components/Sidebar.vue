@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3 bg-card h-100vh mb-0">
+  <div class="col-3 bg-card h-100vh mb-0" v-if="show">
     <div class="pr-50 pl-50 pt-50 pb-10 is-horizontal-align">
       <div
         class="bg-card rounded-circle bg-cover w-70"
@@ -18,7 +18,7 @@
       <!-- <router-link to="/teams" class="sidebar-link" active-class="active">
         <i class="fas fa-users" />
         Teams
-      </router-link> -->
+      </router-link>-->
       <router-link to="/collaborators" class="sidebar-link" active-class="active">
         <i class="fas fa-user" />
         Collaborators
@@ -26,6 +26,10 @@
       <router-link to="/repositories" class="sidebar-link" active-class="active">
         <i class="fas fa-code-branch" />
         Repositories
+      </router-link>
+      <router-link to="/activities" class="sidebar-link" active-class="active">
+        <i class="fas fa-columns"></i>
+        Activities
       </router-link>
       <router-link to="/settings" class="sidebar-link" active-class="active">
         <i class="fas fa-cog" />
@@ -51,6 +55,7 @@ import axios from "@/configAxios";
 
 export default {
   name: "Sidebar",
+  props: ["show"],
   data() {
     return {
       user: {

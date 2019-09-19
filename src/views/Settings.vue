@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <Sidebar />
+    <Sidebar :show="true" />
     <div class="col-9-lg pt-70">
       <div class="px-20">
         <h1>Settings</h1>
