@@ -24,7 +24,7 @@ axios.interceptors.response.use(
           // TODO: Capture Error through sentry
           window.location.href = `/error/${error.response.status}`
         } else {
-          __VUE_DEVTOOLS_TOAST__(error.response.data.message || '404 Not Found', 'error')
+          if (__VUE_DEVTOOLS_TOAST__) __VUE_DEVTOOLS_TOAST__(error.response.data.message || '404 Not Found', 'error')
         }
       } else {
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
@@ -33,7 +33,7 @@ axios.interceptors.response.use(
             window.location.href = `/error/${error.response.status}`
           }
         } else {
-          __VUE_DEVTOOLS_TOAST__(error.response.data.message, 'error')
+          if (__VUE_DEVTOOLS_TOAST__) __VUE_DEVTOOLS_TOAST__(error.response.data.message, 'error')
         }
       }
     }
@@ -41,7 +41,7 @@ axios.interceptors.response.use(
       window.location.href = '/error/0'
     }
     if (error.code === 'ECONNABORTED') {
-      __VUE_DEVTOOLS_TOAST__('Request Timeout', 'error')
+      if (__VUE_DEVTOOLS_TOAST__) __VUE_DEVTOOLS_TOAST__('Request Timeout', 'error')
     }
     return Promise.reject(error)
   }
