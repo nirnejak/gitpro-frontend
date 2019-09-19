@@ -13,21 +13,21 @@
         <div class="row">
           <div class="col-4" v-if="!userLoading">
             <div class="bg-card border-radius-10 p-20">
-              <i class="fas fa-code-branch mr-5"></i>
+              <i class="fas fa-code-branch mr-5" />
               {{user.total_repositories}}
               Total Repositories
             </div>
           </div>
           <div class="col-4" v-if="!userLoading">
             <div class="bg-card border-radius-10 p-20">
-              <i class="fas fa-user mr-5"></i>
+              <i class="fas fa-user mr-5" />
               {{user.total_collaborators}}
               Total Collaborators
             </div>
           </div>
           <div class="col-4" v-if="!userLoading">
             <div class="bg-card border-radius-10 p-20">
-              <i class="fas fa-user mr-5"></i>
+              <i class="fas fa-user mr-5" />
               {{user.total_collaborators}}
               Total Collaborators
             </div>
@@ -59,8 +59,8 @@
                       <div
                         class="bg-card rounded-circle bg-cover"
                         :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
-                      ></div>
-                      <div class="overlay rounded-circle"></div>
+                      />
+                      <div class="overlay rounded-circle" />
                     </div>
                   </div>
                   <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>

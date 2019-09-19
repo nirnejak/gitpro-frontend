@@ -13,7 +13,7 @@
       <div class="px-20">
         <div class="row">
           <div class="col-1-lg is-vertical-align">
-            <i class="fas fa-4x fa-code-branch mr-5"></i>
+            <i class="fas fa-4x fa-code-branch mr-5" />
           </div>
           <div class="col-7-lg is-vertical-align">
             <div>
@@ -34,7 +34,7 @@
               class="sidebar-link pr-20"
               target="_blank"
             >
-              <i class="fas fa-external-link-alt"></i>&nbsp;
+              <i class="fas fa-external-link-alt" />&nbsp;
               View on GitHub
             </a>
           </div>
@@ -50,22 +50,22 @@
               v-if="selectedCollaborators.length > 0"
               @click="revokeAccess()"
             >
-              <i class="fas fa-times"></i>&nbsp;
+              <i class="fas fa-times" />&nbsp;
               Revoke Access
             </button>
             <button class="button dark outline" @click="refreshData">
-              <i class="fas fa-sync-alt"></i>&nbsp;
+              <i class="fas fa-sync-alt" />&nbsp;
               Refersh Data
             </button>
             <button type="submit" class="button primary outline" @click="showModal = true">
-              <i class="fas fa-plus"></i>&nbsp;
+              <i class="fas fa-plus" />&nbsp;
               Add Collaborator
             </button>
           </div>
           <div class="col-12" v-if="collaborators.length === 0 && !repositoryDetailsLoading">
             <div class="is-center is-vertical-align py-100">
               <h3 class="text-dark text-center">
-                <i class="fas fa-3x fa-times"></i>
+                <i class="fas fa-3x fa-times" />
                 <br />No Collaborators
               </h3>
             </div>
@@ -84,15 +84,15 @@
                 @change="addRemoveCollaborator(collaborator.login)"
               />
               <label :for="collaborator.login" class="collaborator-check-label">
-                <i class="fas fa-check-circle text-light"></i>
+                <i class="fas fa-check-circle text-light" />
               </label>
               <label :for="collaborator.login">
                 <div class="collaborator-avatar position-relative">
                   <div
                     class="bg-card rounded-circle bg-cover"
                     :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
-                  ></div>
-                  <div class="overlay rounded-circle"></div>
+                  />
+                  <div class="overlay rounded-circle" />
                 </div>
               </label>
             </div>

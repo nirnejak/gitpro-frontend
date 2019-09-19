@@ -23,7 +23,7 @@
               class="bg-card border-radius-10 bg-cover w-100"
               :style="`background-image: url(${collaborator.avatar_url}); padding-top: 100%;`"
               v-else
-            ></div>
+            />
           </div>
           <div class="col-6-lg is-vertical-align">
             <div class="ml-10">
@@ -40,13 +40,13 @@
           <div class="col-4-lg is-vertical-align is-right">
             <div>
               <span href="#" class="text-error cursor-pointer pr-20" @click="removeCollaborator">
-                <i class="fas fa-user-times"></i>&nbsp;
+                <i class="fas fa-user-times" />&nbsp;
                 Remove Collaborator
               </span>
               <br />
               <br />
               <a :href="`http://github.com/${$route.params.login}`" class="pr-20" target="_blank">
-                <i class="fas fa-external-link-alt"></i>&nbsp;
+                <i class="fas fa-external-link-alt" />&nbsp;
                 View on GitHub
               </a>
             </div>
@@ -63,15 +63,15 @@
               v-if="selectedRepositories.length > 0"
               @click="revokeAccess()"
             >
-              <i class="fas fa-times"></i>&nbsp;
+              <i class="fas fa-times" />&nbsp;
               Revoke Access
             </button>
             <button class="button dark outline" @click="refreshData">
-              <i class="fas fa-sync-alt"></i>&nbsp;
+              <i class="fas fa-sync-alt" />&nbsp;
               Refersh Data
             </button>
             <button type="submit" class="button primary outline" @click="showModal = true">
-              <i class="fas fa-plus"></i>&nbsp;
+              <i class="fas fa-plus" />&nbsp;
               Add to Repos
             </button>
           </div>
@@ -96,11 +96,11 @@
               <div class="bg-card border-radius-5 p-20 my-10">
                 <div class="row">
                   <div class="col-10 text-overflow-ellipsis">
-                    <i class="fas fa-code-branch"></i>
+                    <i class="fas fa-code-branch" />
                     {{repository.name}}
                   </div>
                   <div class="col-2">
-                    <i class="fas fa-check-circle text-light pull-right mt-5"></i>
+                    <i class="fas fa-check-circle text-light pull-right mt-5" />
                   </div>
                 </div>
               </div>
@@ -130,11 +130,9 @@
                 v-for="(diff, index) in activity.diffs"
                 :key="index"
                 v-html="prettyHtml(diff)"
-              ></div>
+              />
               <div v-if="activity.diffs.length === 0 && activitiesLoading === false">
-                <h4 class="text-center text-dark py-20">
-                  No Activity
-                </h4>
+                <h4 class="text-center text-dark py-20">No Activity</h4>
               </div>
             </div>
           </div>

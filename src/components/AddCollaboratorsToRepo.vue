@@ -33,15 +33,15 @@
                 'text-primary': selectedCollaborators.includes(collaborator.login),
                 'text-light': !selectedCollaborators.includes(collaborator.login),
               }"
-              ></i>
+              />
             </label>
             <label :for="collaborator.login">
               <div class="collaborator-avatar position-relative">
                 <div
                   class="bg-card rounded-circle bg-cover"
                   :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
-                ></div>
-                <div class="overlay rounded-circle"></div>
+                />
+                <div class="overlay rounded-circle" />
               </div>
             </label>
           </div>

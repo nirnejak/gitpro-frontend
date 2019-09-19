@@ -10,7 +10,7 @@
         class="fas cursor-pointer p-20"
         :class="{'fa-bars': !showSidebar, 'fa-times': showSidebar}"
         @click="showSidebar=!showSidebar"
-      ></i>
+       />
       <div class="row">
         <div class="col-12">
           <h1>Activities</h1>
@@ -97,7 +97,7 @@
               v-for="(diff, index) in activity.diffs"
               :key="index"
               v-html="prettyHtml(diff)"
-            ></div>
+            />
             <div v-if="activity.diffs.length === 0 && activitiesLoading === false">
               <h4 class="text-center text-dark py-20">No Activity</h4>
             </div>

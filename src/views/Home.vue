@@ -6,7 +6,7 @@
       <br />
       <router-link to="/login" class="button primary">
         Get Started
-        <i class="fas fa-sm fa-arrow-right"></i>
+        <i class="fas fa-sm fa-arrow-right" />
       </router-link>
       <br />
       <br />

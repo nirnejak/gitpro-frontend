@@ -4,7 +4,7 @@
       <div
         class="bg-card rounded-circle bg-cover w-70"
         :style="`background-image: url(${user.avatar_url}); padding-top: 70%;`"
-      ></div>
+      />
     </div>
     <div>
       <h4 class="is-center mb-0">{{user.name}}</h4>
@@ -28,7 +28,7 @@
         Repositories
       </router-link>
       <router-link to="/activities" class="sidebar-link" active-class="active">
-        <i class="fas fa-columns"></i>
+        <i class="fas fa-columns" />
         Activities
       </router-link>
       <router-link to="/settings" class="sidebar-link" active-class="active">

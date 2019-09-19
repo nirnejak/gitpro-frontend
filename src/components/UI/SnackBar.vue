@@ -9,7 +9,7 @@
         }"
     >
       <span>{{message}}</span>
-      <i class="fas fa-times cursor-pointer pull-right pl-10" @click="hideSnackBar"></i>
+      <i class="fas fa-times cursor-pointer pull-right pl-10" @click="hideSnackBar" />
     </div>
   </div>
 </template>

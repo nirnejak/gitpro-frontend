@@ -38,8 +38,8 @@
                   <div
                     class="bg-card rounded-circle bg-cover"
                     :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
-                  ></div>
-                  <div class="overlay rounded-circle"></div>
+                  />
+                  <div class="overlay rounded-circle" />
                 </div>
               </div>
               <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>

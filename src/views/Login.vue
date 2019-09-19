@@ -3,7 +3,7 @@
     <div class="text-center p-30 px-80">
       <div>
         <a href="http://localhost:5000/auth/github" class="button dark is-center">
-          <i class="fab fa-sm fa-github"></i>&nbsp;
+          <i class="fab fa-sm fa-github" />&nbsp;
           Continue using GitHub
         </a>
       </div>

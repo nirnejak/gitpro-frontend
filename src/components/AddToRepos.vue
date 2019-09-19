@@ -13,12 +13,12 @@
           class="fas fa-sort-alpha-up text-primary cursor-pointer"
           @click="sortAlphaUp()"
           v-if="sort==='down' || sort==='not-sorted'"
-        ></i>
+        />
         <i
           class="fas fa-sort-alpha-down text-primary cursor-pointer"
           @click="sortAlphaDown()"
           v-if="sort==='up'"
-        ></i>
+        />
       </div>
     </div>
 
@@ -38,7 +38,7 @@
                 'text-primary': selectedRepositories.includes(repository.name),
                 'text-light': !selectedRepositories.includes(repository.name),
               }"
-            ></i>
+            />
           </div>
         </div>
       </div>

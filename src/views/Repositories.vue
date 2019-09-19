@@ -9,7 +9,7 @@
           </div>
           <div class="col-4-lg pt-10">
             <input type="text" v-model="search" placeholder="Search Repository" class="pr-30" />
-            <i class="fas fa-search pull-right position-relative r-10" style="top: -27px"></i>
+            <i class="fas fa-search pull-right position-relative r-10" style="top: -27px" />
           </div>
         </div>
         <div class="row" v-if="repositoriesLoading">
@@ -20,17 +20,21 @@
         <div class="row">
           <div class="col-3" v-for="repository in repositories" :key="repository.name">
             <div class="bg-card border-radius-5 p-20 my-10">
-              <router-link :to="`/repositories/${repository.name}`" class="text-high-contrast">
-                <div class="row">
-                  <div class="col-10 text-overflow-ellipsis">
-                    <i class="fas fa-code-branch mr-5"></i>
+              <div class="row">
+                <div class="col-10 text-overflow-ellipsis">
+                  <router-link :to="`/repositories/${repository.name}`" class="text-high-contrast">
+                    <i class="fas fa-code-branch mr-5" />
                     {{repository.name}}
-                  </div>
-                  <div class="col-2">
-                    <i class="fas fa-eye pull-right mt-5"></i>
-                  </div>
+                  </router-link>
                 </div>
-              </router-link>
+                <div class="col-2 text-right">
+                  <i
+                    class="fa-star mt-5 cursor-pointer text-high-contrast"
+                    :class="{'fas': repository.isFavourite, 'far': !repository.isFavourite}"
+                    @click="starRepo(repository.name, !repository.isFavourite)"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -72,6 +76,21 @@ export default {
           repo.name.toLowerCase().includes(this.search.toLowerCase())
         );
       }
+    }
+  },
+  methods: {
+    async starRepo(repository, isFavourite) {
+      const res = await axios.put(`/repositories/${repository}`, {
+        isFavourite
+      });
+      this.repositoriesOriginal = this.repositoriesOriginal.map(repo => {
+        if (repo.name === res.data.name) {
+          repo.isFavourite = res.data.isFavourite;
+          return repo;
+        }
+        return repo;
+      });
+      this.repositories = this.repositoriesOriginal;
     }
   }
 };
