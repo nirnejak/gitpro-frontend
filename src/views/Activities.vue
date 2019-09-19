@@ -3,7 +3,7 @@
     <Sidebar :show="showSidebar" />
     <div
       class="h-100vh mb-0"
-      :class="{'col-9-lg': showSidebar, 'col-12': !showSidebar}"
+      :class="{'col-9-lg': showSidebar, 'col-12 px-30': !showSidebar}"
       style="overflow-y: auto;"
     >
       <i
@@ -11,97 +11,95 @@
         :class="{'fa-bars': !showSidebar, 'fa-times': showSidebar}"
         @click="showSidebar=!showSidebar"
       ></i>
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <h1>Activities</h1>
-          </div>
+      <div class="row">
+        <div class="col-12">
+          <h1>Activities</h1>
         </div>
-        <div class="row" v-if="formDataLoading">
-          <div class="col-12">
-            <SkeletonLoader width="100%" height="114px" radius="5px" class="my-10" />
-          </div>
+      </div>
+      <div class="row" v-if="formDataLoading">
+        <div class="col-12">
+          <SkeletonLoader width="100%" height="114px" radius="5px" class="my-10" />
         </div>
-        <div class="row" v-if="!formDataLoading">
-          <div class="col-12">
-            <div class="bg-card border-radius-5 p-20 my-10">
-              <div class="row">
-                <div class="col-6-lg collaborator">
-                  <p class="pb-5">Collaborator</p>
-                  <multiselect
-                    placeholder="Select Collaborator"
-                    v-model="selectedCollaborator"
-                    :options="collaborators"
-                    :show-labels="false"
-                  />
-                </div>
-                <div class="col-6-lg repositories">
-                  <p class="pb-5">Repositories</p>
-                  <multiselect
-                    placeholder="Select Repositories"
-                    v-model="selectedRepos"
-                    :options="repositories"
-                    :show-labels="false"
-                    :close-on-select="false"
-                    :multiple="true"
-                  />
-                </div>
+      </div>
+      <div class="row" v-if="!formDataLoading">
+        <div class="col-12">
+          <div class="bg-card border-radius-5 p-20 my-10">
+            <div class="row">
+              <div class="col-6-lg collaborator">
+                <p class="pb-5">Collaborator</p>
+                <multiselect
+                  placeholder="Select Collaborator"
+                  v-model="selectedCollaborator"
+                  :options="collaborators"
+                  :show-labels="false"
+                />
               </div>
-              <div class="row mt-20 sidebar-links">
-                <div class="col-4-lg text-center">
+              <div class="col-6-lg repositories">
+                <p class="pb-5">Repositories</p>
+                <multiselect
+                  placeholder="Select Repositories"
+                  v-model="selectedRepos"
+                  :options="repositories"
+                  :show-labels="false"
+                  :close-on-select="false"
+                  :multiple="true"
+                />
+              </div>
+            </div>
+            <div class="row mt-20 sidebar-links">
+              <div class="col-4-lg text-center">
+                <span
+                  class="sidebar-link cursor-pointer"
+                  :class="{active: date === 'yesterday'}"
+                  @click="date = 'yesterday'; pickedDate = ''"
+                >Yesterday</span>
+              </div>
+              <div class="col-4-lg text-center">
+                <span
+                  class="sidebar-link cursor-pointer"
+                  :class="{active: date === 'today'}"
+                  @click="date = 'today'; pickedDate = ''"
+                >Today</span>
+              </div>
+              <div class="col-4-lg text-center">
+                <v-date-picker
+                  v-model="pickedDate"
+                  :popover="{ placement: 'bottom', visibility: 'click' }"
+                >
                   <span
                     class="sidebar-link cursor-pointer"
-                    :class="{active: date === 'yesterday'}"
-                    @click="date = 'yesterday'; pickedDate = ''"
-                  >Yesterday</span>
-                </div>
-                <div class="col-4-lg text-center">
-                  <span
-                    class="sidebar-link cursor-pointer"
-                    :class="{active: date === 'today'}"
-                    @click="date = 'today'; pickedDate = ''"
-                  >Today</span>
-                </div>
-                <div class="col-4-lg text-center">
-                  <v-date-picker
-                    v-model="pickedDate"
-                    :popover="{ placement: 'bottom', visibility: 'click' }"
-                  >
-                    <span
-                      class="sidebar-link cursor-pointer"
-                      :class="{active: date === 'pick'}"
-                      @click="date = 'pick'"
-                    >{{pickedDate || 'Pick a Date'}}</span>
-                  </v-date-picker>
-                </div>
+                    :class="{active: date === 'pick'}"
+                    @click="date = 'pick'"
+                  >{{pickedDate || 'Pick a Date'}}</span>
+                </v-date-picker>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="row" v-if="activitiesLoading">
-          <div class="col-12" v-for="i in 2" :key="i">
-            <SkeletonLoader width="100%" height="300px" radius="5px" class="my-10" />
-          </div>
+      <div class="row" v-if="activitiesLoading">
+        <div class="col-12" v-for="i in 2" :key="i">
+          <SkeletonLoader width="100%" height="300px" radius="5px" class="my-10" />
         </div>
+      </div>
 
-        <div class="row">
-          <div class="col-12">
+      <div class="row">
+        <div class="col-12">
+          <div
+            class="bg-card border-radius-5 p-20 my-20"
+            v-for="(activity, index) in activities"
+            :key="index"
+          >
+            <h3 class="text-dark">Repository: {{activity.repository}}</h3>
             <div
-              class="bg-card border-radius-5 p-20 my-20"
-              v-for="(activity, index) in activities"
+              class="activity-container"
+              v-for="(diff, index) in activity.diffs"
               :key="index"
-            >
-              <h3 class="text-dark">Repository: {{activity.repository}}</h3>
-              <div
-                class="activity-container"
-                v-for="(diff, index) in activity.diffs"
-                :key="index"
-                v-html="prettyHtml(diff)"
-              ></div>
-              <div v-if="activity.diffs.length === 0 && activitiesLoading === false">
-                <h4 class="text-center text-dark py-20">No Activity</h4>
-              </div>
+              v-html="prettyHtml(diff)"
+            ></div>
+            <div v-if="activity.diffs.length === 0 && activitiesLoading === false">
+              <h4 class="text-center text-dark py-20">No Activity</h4>
             </div>
           </div>
         </div>
@@ -216,6 +214,8 @@ export default {
     pickedDate() {
       if (this.pickedDate && typeof this.pickedDate !== "string")
         this.pickedDate = moment(this.pickedDate).format("DD-MM-YYYY");
+
+      if (this.pickedDate && typeof this.pickedDate === "string") this.fetchActivity();
     }
   }
 };
