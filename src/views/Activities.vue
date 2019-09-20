@@ -10,7 +10,7 @@
         class="fas cursor-pointer p-20"
         :class="{'fa-bars': !showSidebar, 'fa-times': showSidebar}"
         @click="showSidebar=!showSidebar"
-       />
+      />
       <div class="row">
         <div class="col-12">
           <h1>Activities</h1>
@@ -51,14 +51,14 @@
                 <span
                   class="sidebar-link cursor-pointer"
                   :class="{active: date === 'yesterday'}"
-                  @click="date = 'yesterday'; pickedDate = ''"
+                  @click="date = 'yesterday'; pickedDate = ''; pickedDateFormatted = ''"
                 >Yesterday</span>
               </div>
               <div class="col-4-lg text-center">
                 <span
                   class="sidebar-link cursor-pointer"
                   :class="{active: date === 'today'}"
-                  @click="date = 'today'; pickedDate = ''"
+                  @click="date = 'today'; pickedDate = ''; pickedDateFormatted = ''"
                 >Today</span>
               </div>
               <div class="col-4-lg text-center">
@@ -70,7 +70,7 @@
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'pick'}"
                     @click="date = 'pick'"
-                  >{{pickedDate || 'Pick a Date'}}</span>
+                  >{{pickedDateFormatted || 'Pick a Date'}}</span>
                 </v-date-picker>
               </div>
             </div>
@@ -134,6 +134,7 @@ export default {
       activitiesLoading: false,
       date: "today",
       pickedDate: "",
+      pickedDateFormatted: "",
 
       activities: []
     };
@@ -213,9 +214,10 @@ export default {
     },
     pickedDate() {
       if (this.pickedDate && typeof this.pickedDate !== "string")
-        this.pickedDate = moment(this.pickedDate).format("DD-MM-YYYY");
-
-      if (this.pickedDate && typeof this.pickedDate === "string") this.fetchActivity();
+        this.pickedDateFormatted = moment(this.pickedDate).format("DD-MM-YYYY");
+      
+      if (this.pickedDate && this.pickedDateFormatted !== "")
+        this.fetchActivity();
     }
   }
 };
