@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Vue from 'vue'
 
 if (process.env.NODE_ENV === 'production') {
   axios.defaults.baseURL = 'https://github-supreme.herokuapp.com'
@@ -22,6 +21,7 @@ axios.interceptors.response.use(
       } else if (error.response.status === 404) {
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
           // TODO: Capture Error through sentry
+          localStorage.errorMessage = error.response.data.message
           window.location.href = `/error/${error.response.status}`
         } else {
           if (__VUE_DEVTOOLS_TOAST__) __VUE_DEVTOOLS_TOAST__(error.response.data.message || '404 Not Found', 'error')
@@ -30,6 +30,7 @@ axios.interceptors.response.use(
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
           // TODO: Capture Error through sentry
           if (error.response.status.toString().startsWith('5')) {
+            localStorage.errorMessage = error.response.data.message
             window.location.href = `/error/${error.response.status}`
           }
         } else {
@@ -42,6 +43,8 @@ axios.interceptors.response.use(
       window.location.href = '/error/0'
     }
     if (error.code === 'ECONNABORTED') {
+      localStorage.errorMessage = 'Request Timeout'
+      window.location.href = '/error/1'
       if (__VUE_DEVTOOLS_TOAST__) __VUE_DEVTOOLS_TOAST__('Request Timeout', 'error')
     }
     return Promise.reject(error)

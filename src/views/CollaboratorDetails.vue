@@ -126,6 +126,12 @@
           </div>
         </div>
 
+        <div class="row" v-if="activitiesLoading">
+          <div class="col-12">
+            <SkeletonLoader width="100%" height="300px" radius="5px" class="my-20" />
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-12">
             <div
@@ -133,7 +139,19 @@
               v-for="(activity, index) in activities"
               :key="index"
             >
-              <h3 class="text-dark">Repository: {{activity.repository}}</h3>
+              <div class="row">
+                <div class="col-7-lg">
+                  <h3 class="text-dark">Repository: {{activity.repository}}</h3>
+                </div>
+                <div class="col-3-lg">
+                  <p>Total Commits: {{activity.diffs.length}}</p>
+                </div>
+                <div class="col-2-lg text-right">
+                  <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${activity.repository}`">
+                    View Full Activity
+                  </router-link>
+                </div>
+              </div>
               <div
                 class="activity-container"
                 v-for="(diff, index) in activity.diffs"
@@ -192,11 +210,13 @@ export default {
             after: moment(after).format("YYYY-MM-DD"),
             before: moment(before).format("YYYY-MM-DD")
           };
+          window.activities = [];
           axios
             .get(`/activities/${this.$route.params.login}`, { params })
             .then(res => {
               this.activitiesLoading = false;
-              this.activities = [...this.activities, res.data];
+              this.activities.push(res.data);
+              window.activities.push(res.data);
             });
         });
       }

@@ -3,7 +3,7 @@
     <Sidebar :show="showSidebar" />
     <div class="h-100vh mb-0" :class="{'col-9-lg': showSidebar, 'col-12 px-30': !showSidebar}">
       <i
-        class="fas cursor-pointer p-20"
+        class="fas cursor-pointer py-20"
         :class="{'fa-bars': !showSidebar, 'fa-times': showSidebar}"
         @click="showSidebar=!showSidebar"
       />
