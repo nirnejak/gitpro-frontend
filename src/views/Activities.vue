@@ -33,6 +33,10 @@
                   :options="collaborators"
                   :show-labels="false"
                 />
+                <div class="mt-15">
+                  <input type="checkbox" v-model="force" id="force" />
+                  <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
+                </div>
               </div>
               <div class="col-6-lg repositories">
                 <p class="pb-5">Repositories</p>
@@ -46,7 +50,7 @@
                 />
               </div>
             </div>
-            <div class="row mt-20 sidebar-links">
+            <div class="row mt-10 sidebar-links">
               <div class="col-4-lg text-center">
                 <span
                   class="sidebar-link cursor-pointer"
@@ -135,6 +139,7 @@ export default {
       date: "today",
       pickedDate: "",
       pickedDateFormatted: "",
+      force: false,
 
       activities: []
     };
@@ -182,7 +187,8 @@ export default {
           let params = {
             repository,
             after: moment(after).format("YYYY-MM-DD"),
-            before: moment(before).format("YYYY-MM-DD")
+            before: moment(before).format("YYYY-MM-DD"),
+            force: this.force
           };
           const res = await axios.get(
             `/activities/${this.selectedCollaborator}`,
@@ -215,9 +221,12 @@ export default {
     pickedDate() {
       if (this.pickedDate && typeof this.pickedDate !== "string")
         this.pickedDateFormatted = moment(this.pickedDate).format("DD-MM-YYYY");
-      
+
       if (this.pickedDate && this.pickedDateFormatted !== "")
         this.fetchActivity();
+    },
+    force() {
+      this.fetchActivity();
     }
   }
 };
