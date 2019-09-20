@@ -136,6 +136,44 @@
           <div class="col-12">
             <div
               class="bg-card border-radius-5 p-20 my-20"
+              v-for="activityStat in activityStats"
+              :key="activityStat.repository"
+            >
+              <div class="row">
+                <div class="col-8">
+                  <h4>{{activityStat.repository}}</h4>
+                </div>
+                <div class="col-4 text-right">
+                  <router-link
+                    :to="`/activities/?collaborator=${collaborator.login}&repository=${activityStat.repository}`"
+                  >View Full Activity</router-link>
+                </div>
+              </div>
+              <div v-for="(fileStat, index) in activityStat.fileStats" :key="index">
+                <div class="row my-10">
+                  <div class="col-10-lg">
+                    <p>
+                      {{fileStat.from}}
+                      <i class="fas fa-long-arrow-alt-right mx-10" />
+                      {{fileStat.to}}
+                    </p>
+                  </div>
+                  <div class="col-1-lg text-right">
+                    <span class="tag text-success border-radius-5">+ {{fileStat.additions}}</span>
+                  </div>
+                  <div class="col-1-lg text-left">
+                    <span class="tag text-error border-radius-5">- {{fileStat.deletions}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="bg-card border-radius-5 p-20 my-20"
               v-for="(activity, index) in activities"
               :key="index"
             >
@@ -147,9 +185,9 @@
                   <p>Total Commits: {{activity.diffs.length}}</p>
                 </div>
                 <div class="col-2-lg text-right">
-                  <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${activity.repository}`">
-                    View Full Activity
-                  </router-link>
+                  <router-link
+                    :to="`/activities/?collaborator=${collaborator.login}&repository=${activity.repository}`"
+                  >View Full Activity</router-link>
                 </div>
               </div>
               <div
@@ -171,6 +209,7 @@
 
 <script>
 import moment from "moment";
+import parse from "parse-diff";
 import { Diff2Html } from "diff2html";
 import "diff2html/dist/diff2html.min.css";
 
@@ -192,6 +231,7 @@ export default {
       selectedRepositories: [],
       showModal: false,
       activities: [],
+      activityStats: [],
       activitiesLoading: true
     };
   },
@@ -204,20 +244,34 @@ export default {
         let after = new Date();
         after.setDate(after.getDate() - 1);
 
+        let promises = [];
+
         this.collaborator.repositories.forEach(repository => {
           let params = {
             repository: repository.name,
             after: moment(after).format("YYYY-MM-DD"),
             before: moment(before).format("YYYY-MM-DD")
           };
-          window.activities = [];
-          axios
-            .get(`/activities/${this.$route.params.login}`, { params })
-            .then(res => {
-              this.activitiesLoading = false;
-              this.activities.push(res.data);
-              window.activities.push(res.data);
+          promises.push(
+            axios.get(`/activities/${this.$route.params.login}`, { params })
+          );
+        });
+        Promise.all(promises).then(response => {
+          response.forEach(res => {
+            this.activitiesLoading = false;
+            this.activities.push(res.data);
+          });
+          this.activities.forEach(activity => {
+            let fileStats = [];
+            activity.diffs.forEach(diff => {
+              let files = parse(diff);
+              files.forEach(file => fileStats.push(file));
             });
+            this.activityStats.push({
+              repository: activity.repository,
+              fileStats
+            });
+          });
         });
       }
     });

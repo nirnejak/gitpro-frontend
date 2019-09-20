@@ -16,6 +16,7 @@
     "diff": "^4.0.1",
     "diff2html": "^2.11.3",
     "moment": "^2.24.0",
+    "parse-diff": "^0.6.0",
     "register-service-worker": "^1.6.2",
     "socket.io-client": "^2.2.0",
     "typed.js": "^2.0.10",
