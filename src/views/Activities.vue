@@ -1,11 +1,7 @@
 <template>
   <div class="row">
     <Sidebar :show="showSidebar" />
-    <div
-      class="h-100vh mb-0"
-      :class="{'col-9-lg': showSidebar, 'col-12 px-30': !showSidebar}"
-      style="overflow-y: auto;"
-    >
+    <div class="h-100vh mb-0" :class="{'col-9-lg': showSidebar, 'col-12 px-30': !showSidebar}">
       <i
         class="fas cursor-pointer p-20"
         :class="{'fa-bars': !showSidebar, 'fa-times': showSidebar}"
@@ -95,13 +91,33 @@
             v-for="(activity, index) in activities"
             :key="index"
           >
-            <h3 class="text-dark">Repository: {{activity.repository}}</h3>
-            <div
-              class="activity-container"
-              v-for="(diff, index) in activity.diffs"
-              :key="index"
-              v-html="prettyHtml(diff)"
-            />
+            <div class="row">
+              <div class="col-11">
+                <h3 class="text-dark">Repository: {{activity.repository}}</h3>
+              </div>
+              <div class="col-1 text-right">
+                <i
+                  class="fas fa-lg fa-minus-square text-dark cursor-pointer mt-10"
+                  v-if="!activity.isHidden"
+                  @click="activity.isHidden = !activity.isHidden"
+                />
+                <i
+                  class="fas fa-lg fa-plus-square text-dark cursor-pointer mt-10"
+                  v-if="activity.isHidden"
+                  @click="activity.isHidden = !activity.isHidden"
+                />
+              </div>
+            </div>
+            <transition name="fade">
+              <div v-if="!activity.isHidden">
+                <div
+                  class="activity-container"
+                  v-for="(diff, index) in activity.diffs"
+                  :key="index"
+                  v-html="prettyHtml(diff)"
+                />
+              </div>
+            </transition>
             <div v-if="activity.diffs.length === 0 && activitiesLoading === false">
               <h4 class="text-center text-dark py-20">No Activity</h4>
             </div>
@@ -195,7 +211,8 @@ export default {
             { params }
           );
           this.activitiesLoading = false;
-          this.activities = [...this.activities, res.data];
+          let activity = { ...res.data, isHidden: false };
+          this.activities = [...this.activities, activity];
         });
       }
     },
@@ -274,5 +291,13 @@ export default {
   td {
     padding: 0.1rem 0.4rem;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
