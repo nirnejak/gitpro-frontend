@@ -46,18 +46,18 @@
           </div>
           <div class="col-8-lg is-right">
             <button
-              class="button primary outline text-error bd-error"
+              class="button clear text-error px-10"
               v-if="selectedCollaborators.length > 0"
               @click="revokeAccess()"
             >
               <i class="fas fa-times" />&nbsp;
               Revoke Access
             </button>
-            <button class="button dark outline" @click="refreshData">
+            <button class="button clear text-dark px-10" @click="refreshData">
               <i class="fas fa-sync-alt" />&nbsp;
               Refersh Data
             </button>
-            <button type="submit" class="button primary outline" @click="showModal = true">
+            <button type="submit" class="button clear px-10" @click="showModal = true">
               <i class="fas fa-plus" />&nbsp;
               Add Collaborator
             </button>

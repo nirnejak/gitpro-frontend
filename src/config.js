@@ -1,5 +1,6 @@
 export const darkTheme = {
   '--color-primary': '#0e57ff',
+  '--color-success': '#28bd14',
   '--body-background': '#20242A',
   '--body-color': '#ffffff',
   '--body-high-contrast': '#ffffff',
@@ -11,6 +12,7 @@ export const darkTheme = {
 
 export const lightTheme = {
   '--color-primary': '#0e57ff',
+  '--color-success': '#14854F',
   '--body-background': '#f4f4f4',
   '--body-color': '#000000',
   '--body-high-contrast': '#000000',

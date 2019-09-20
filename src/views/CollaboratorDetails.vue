@@ -53,13 +53,13 @@
           </div>
         </div>
         <div class="row mt-30">
-          <div class="col-3-lg">
+          <div class="col-4-lg">
             <h2>Repositories</h2>
           </div>
-          <div class="col-9-lg is-right">
+          <div class="col-8-lg is-right">
             <button
               type="submit"
-              class="button primary outline text-success bd-success"
+              class="button clear text-success px-10"
               v-if="selectedRepositories.length > 0"
               @click="viewActivity()"
             >
@@ -68,18 +68,18 @@
             </button>
             <button
               type="submit"
-              class="button primary outline text-error bd-error"
+              class="button clear text-error px-10"
               v-if="selectedRepositories.length > 0"
               @click="revokeAccess()"
             >
               <i class="fas fa-times" />&nbsp;
               Revoke Access
             </button>
-            <button class="button dark outline" @click="refreshData">
+            <button class="button clear text-dark px-10" @click="refreshData">
               <i class="fas fa-sync-alt" />&nbsp;
               Refersh Data
             </button>
-            <button type="submit" class="button primary outline" @click="showModal = true">
+            <button type="submit" class="button clear px-10" @click="showModal = true">
               <i class="fas fa-plus" />&nbsp;
               Add to Repos
             </button>
