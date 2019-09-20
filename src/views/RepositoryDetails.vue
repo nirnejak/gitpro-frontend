@@ -86,7 +86,7 @@
               <label :for="collaborator.login" class="collaborator-check-label">
                 <i class="fas fa-check-circle text-light" />
               </label>
-              <label :for="collaborator.login">
+              <router-link :to="`/collaborators/${collaborator.login}`">
                 <div class="collaborator-avatar position-relative">
                   <div
                     class="bg-card rounded-circle bg-cover"
@@ -94,13 +94,13 @@
                   />
                   <div class="overlay rounded-circle" />
                 </div>
-              </label>
+              </router-link>
             </div>
             <router-link :to="`/collaborators/${collaborator.login}`">
-              <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
+              <p class="text-center mt-10 text-high-contrast">{{collaborator.name || collaborator.login}}</p>
             </router-link>
-            <router-link :to="`/collaborators/${collaborator.login}`">
-              <small class="text-center text-dark is-center">{{collaborator.login}}</small>
+            <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${$route.params.name}`">
+              <small class="text-center text-primary is-center">View Activity</small>
             </router-link>
           </div>
         </div>
