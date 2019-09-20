@@ -167,22 +167,30 @@ export default {
     this.collaborators = collaborators_res.data.map(collab => collab.login);
     this.formDataLoading = false;
 
-    let repository = this.$router.history.current.query.repository;
-    if (repository && this.repositories.includes(repository)) {
-      this.selectedRepos.push(repository);
-    }
-
     let collaborator = this.$router.history.current.query.collaborator;
     if (collaborator && this.collaborators.includes(collaborator)) {
       this.selectedCollaborator = collaborator;
+    }
+
+    let repository = this.$router.history.current.query.repository;
+    if (repository) {
+      if (repository.includes(",")) {
+        repository = repository.split(",");
+        repository.forEach(repo => {
+          if (this.repositories.includes(repo)) {
+            this.selectedRepos.push(repo);
+          }
+        });
+      } else {
+        if (this.repositories.includes(repository)) {
+          this.selectedRepos.push(repository);
+        }
+      }
     }
   },
   methods: {
     fetchActivity() {
       if (this.selectedRepos.length > 0 && this.selectedCollaborator) {
-        this.activitiesLoading = true;
-        this.activities = [];
-
         let before, after;
         if (this.date === "today") {
           before = new Date();
@@ -199,20 +207,28 @@ export default {
           after.setDate(after.getDate() - 1);
         }
 
-        this.selectedRepos.forEach(async repository => {
+        this.activitiesLoading = true;
+        this.activities = [];
+        this.selectedRepos.forEach(repository => {
           let params = {
             repository,
             after: moment(after).format("YYYY-MM-DD"),
             before: moment(before).format("YYYY-MM-DD"),
             force: this.force
           };
-          const res = await axios.get(
-            `/activities/${this.selectedCollaborator}`,
-            { params }
-          );
-          this.activitiesLoading = false;
-          let activity = { ...res.data, isHidden: false };
-          this.activities = [...this.activities, activity];
+          axios
+            .get(`/activities/${this.selectedCollaborator}`, { params })
+            .then(res => {
+              this.activitiesLoading = false;
+              let activity = { ...res.data, isHidden: false };
+
+              let flag = true;
+              this.activities.forEach(acti => {
+                if (acti.repository === activity.repository) flag = false;
+              });
+              if (flag) this.activities.push(activity);
+
+            });
         });
       }
     },

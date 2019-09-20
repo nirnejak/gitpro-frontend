@@ -53,10 +53,19 @@
           </div>
         </div>
         <div class="row mt-30">
-          <div class="col-4-lg">
+          <div class="col-3-lg">
             <h2>Repositories</h2>
           </div>
-          <div class="col-8-lg is-right">
+          <div class="col-9-lg is-right">
+            <button
+              type="submit"
+              class="button primary outline text-success bd-success"
+              v-if="selectedRepositories.length > 0"
+              @click="viewActivity()"
+            >
+              <i class="fas fa-columns" />&nbsp;
+              View Activity
+            </button>
             <button
               type="submit"
               class="button primary outline text-error bd-error"
@@ -235,6 +244,15 @@ export default {
       } else {
         this.selectedRepositories.push(repoName);
       }
+    },
+    viewActivity() {
+      this.$router.push({
+        path: "/activities",
+        query: {
+          collaborator: this.collaborator.login,
+          repository: this.selectedRepositories.join(",")
+        }
+      });
     },
     hideModal() {
       this.showModal = false;
