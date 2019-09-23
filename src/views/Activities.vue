@@ -93,16 +93,16 @@
           >
             <div class="row">
               <div class="col-11">
-                <h3 class="text-dark">Repository: {{activity.repository}}</h3>
+                <h4>Repository: {{activity.repository}}</h4>
               </div>
               <div class="col-1 text-right">
                 <i
-                  class="fas fa-lg fa-minus-square text-dark cursor-pointer mt-10"
+                  class="fas fa-lg fa-minus-square cursor-pointer mt-10"
                   v-if="!activity.isHidden"
                   @click="activity.isHidden = !activity.isHidden"
                 />
                 <i
-                  class="fas fa-lg fa-plus-square text-dark cursor-pointer mt-10"
+                  class="fas fa-lg fa-plus-square cursor-pointer mt-10"
                   v-if="activity.isHidden"
                   @click="activity.isHidden = !activity.isHidden"
                 />
@@ -110,15 +110,20 @@
             </div>
             <transition name="fade">
               <div v-if="!activity.isHidden">
-                <div
-                  class="activity-container"
-                  v-for="(diff, index) in activity.diffs"
-                  :key="index"
-                  v-html="prettyHtml(diff)"
-                />
+                <div v-for="(contribution, index) in activity.contributions" :key="index" class="my-20">
+                  <div class="row">
+                    <div class="col-6">
+                      <p>Commit: {{contribution.commitMessage}}</p>
+                    </div>
+                    <div class="col-6 text-right pt-5">
+                      <p>{{contribution.hash}}</p>
+                    </div>
+                  </div>
+                  <div class="activity-container" v-html="prettyHtml(contribution.diff)" />
+                </div>
               </div>
             </transition>
-            <div v-if="activity.diffs.length === 0 && activitiesLoading === false">
+            <div v-if="activity.contributions.length === 0 && activitiesLoading === false">
               <h4 class="text-center text-dark py-20">No Activity</h4>
             </div>
           </div>
@@ -227,7 +232,6 @@ export default {
                 if (acti.repository === activity.repository) flag = false;
               });
               if (flag) this.activities.push(activity);
-
             });
         });
       }
