@@ -3,6 +3,8 @@ import moment from 'moment'
 import Multiselect from 'vue-multiselect'
 import VCalendar from 'v-calendar'
 
+import { Diff2Html } from 'diff2html';
+
 import App from './App.vue'
 import router from './router'
 import store from './store'

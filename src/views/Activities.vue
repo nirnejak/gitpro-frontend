@@ -110,16 +110,16 @@
             </div>
             <transition name="fade">
               <div v-if="!activity.isHidden">
-                <div v-for="(contribution, index) in activity.contributions" :key="index" class="my-20">
+                <div v-for="(commit, index) in activity.contributions" :key="index" class="my-20">
                   <div class="row">
                     <div class="col-6">
-                      <p>Commit: {{contribution.commitMessage}}</p>
+                      <p>Commit: {{commit.commitMessage}}</p>
                     </div>
                     <div class="col-6 text-right pt-5">
-                      <p>{{contribution.hash}}</p>
+                      <p>{{commit.hash}}</p>
                     </div>
                   </div>
-                  <div class="activity-container" v-html="prettyHtml(contribution.diff)" />
+                  <div class="activity-container" v-html="prettyHtml(commit.diff)" />
                 </div>
               </div>
             </transition>
@@ -181,11 +181,9 @@ export default {
     if (repository) {
       if (repository.includes(",")) {
         repository = repository.split(",");
-        repository.forEach(repo => {
-          if (this.repositories.includes(repo)) {
-            this.selectedRepos.push(repo);
-          }
-        });
+        this.selectedRepos = repository.filter(repo =>
+          this.repositories.includes(repo)
+        );
       } else {
         if (this.repositories.includes(repository)) {
           this.selectedRepos.push(repository);
@@ -214,6 +212,8 @@ export default {
 
         this.activitiesLoading = true;
         this.activities = [];
+
+        let fetchPromises = [];
         this.selectedRepos.forEach(repository => {
           let params = {
             repository,
@@ -221,28 +221,29 @@ export default {
             before: moment(before).format("YYYY-MM-DD"),
             force: this.force
           };
-          axios
-            .get(`/activities/${this.selectedCollaborator}`, { params })
-            .then(res => {
-              this.activitiesLoading = false;
-              let activity = { ...res.data, isHidden: false };
+          fetchPromises.push(
+            axios.get(`/activities/${this.selectedCollaborator}`, { params })
+          );
+        });
 
-              let flag = true;
-              this.activities.forEach(acti => {
-                if (acti.repository === activity.repository) flag = false;
-              });
-              if (flag) this.activities.push(activity);
-            });
+        Promise.all(fetchPromises).then(responses => {
+          this.activitiesLoading = false;
+          this.activities = responses.map(res => ({
+            ...res.data,
+            isHidden: false
+          }));
         });
       }
     },
     prettyHtml(diff) {
-      return Diff2Html.getPrettyHtml(diff, {
-        inputFormat: "diff",
-        showFiles: true,
-        matching: "lines",
-        outputFormat: "side-by-side"
-      });
+      return diff
+        ? Diff2Html.getPrettyHtml(diff, {
+            inputFormat: "diff",
+            showFiles: true,
+            matching: "lines",
+            outputFormat: "side-by-side"
+          })
+        : "";
     }
   },
   watch: {

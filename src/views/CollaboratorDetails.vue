@@ -143,7 +143,7 @@
                 <div class="col-8">
                   <h4>{{activityStat.repository}}</h4>
                 </div>
-                <div class="col-4 text-right">
+                <div class="col-4 text-right pt-10">
                   <router-link
                     :to="`/activities/?collaborator=${collaborator.login}&repository=${activityStat.repository}`"
                   >View Full Activity</router-link>
@@ -151,9 +151,12 @@
               </div>
               <div v-for="(commit, index) in activityStat.contributions" :key="index" class="my-10">
                 <hr v-if="index !== 0" />
-                <div>{{commit.commitMessage}}({{commit.hash}})</div>
+                <div class="row my-10">
+                  <div class="col-6 text-primary">{{commit.commitMessage}}</div>
+                  <div class="col-6 text-right">{{commit.hash}}</div>
+                </div>
                 <div
-                  class="row my-5 text-dark"
+                  class="row text-dark my-5"
                   v-for="(fileStat, index) in commit.files"
                   :key="index"
                 >
@@ -165,50 +168,18 @@
                     </p>
                   </div>
                   <div class="col-1 text-right">
-                    <span class="tag text-success border-radius-5">+ {{fileStat.additions}}</span>
+                    <span
+                      class="tag text-success border-radius-5"
+                      title="Additions"
+                    >+ {{fileStat.additions}}</span>
                   </div>
                   <div class="col-1 text-left">
-                    <span class="tag text-error border-radius-5">- {{fileStat.deletions}}</span>
+                    <span
+                      class="tag text-error border-radius-5"
+                      title="Deletions"
+                    >- {{fileStat.deletions}}</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <div
-              class="bg-card border-radius-5 p-20 my-20"
-              v-for="(activity, index) in activities"
-              :key="index"
-            >
-              <div class="row">
-                <div class="col-7-lg">
-                  <h3 class="text-dark">Repository: {{activity.repository}}</h3>
-                </div>
-                <div class="col-3-lg">
-                  <p>Total Commits: {{activity.contributions.length}}</p>
-                </div>
-                <div class="col-2-lg text-right">
-                  <router-link
-                    :to="`/activities/?collaborator=${collaborator.login}&repository=${activity.repository}`"
-                  >View Full Activity</router-link>
-                </div>
-              </div>
-              <div v-for="(contribution, index) in activity.contributions" :key="index">
-                <div class="row">
-                  <div class="col-6">
-                    <p>Commit: {{contribution.commitMessage}}</p>
-                  </div>
-                  <div class="col-6 text-right pt-5">
-                    <p>{{contribution.hash}}</p>
-                  </div>
-                </div>
-                <div class="activity-container" v-html="prettyHtml(contribution.diff)" />
-              </div>
-              <div v-if="activity.contributions.length === 0 && activitiesLoading === false">
-                <h4 class="text-center text-dark py-20">No Activity</h4>
               </div>
             </div>
           </div>
@@ -241,7 +212,6 @@ export default {
       collaboratorDetailsLoading: true,
       selectedRepositories: [],
       showModal: false,
-      activities: [],
       activityStats: [],
       activitiesLoading: true
     };
@@ -256,7 +226,6 @@ export default {
         after.setDate(after.getDate() - 1);
 
         let promises = [];
-
         this.collaborator.repositories.forEach(repository => {
           let params = {
             repository: repository.name,
@@ -268,14 +237,10 @@ export default {
           );
         });
         Promise.all(promises).then(response => {
-          this.activities = [];
-          response.forEach(res => {
-            this.activitiesLoading = false;
-            this.activities.push(res.data);
-          });
+          this.activitiesLoading = false;
+          let activities = response.map(res => res.data);
 
-          this.activityStats = [];
-          this.activities.forEach(activity => {
+          this.activityStats = activities.map(activity => {
             let contributions = [];
             activity.contributions.forEach(commit => {
               let contribution = {
@@ -285,10 +250,10 @@ export default {
               };
               contributions.push(contribution);
             });
-            this.activityStats.push({
+            return {
               repository: activity.repository,
               contributions
-            });
+            }
           });
         });
       }
