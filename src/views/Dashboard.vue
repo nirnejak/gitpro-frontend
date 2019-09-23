@@ -77,7 +77,7 @@
           </div>
           <div class="col-6 text-right text-dark pt-10">For Favourite Repositories</div>
 
-          <div class="col-6 my-20" v-for="(activity, index) in activities" :key="index">
+          <div class="col-4 my-20" v-for="(activity, index) in activities" :key="index">
             <div class="bg-card border-radius-10 p-20">
               <div class="row">
                 <div class="col-6">
