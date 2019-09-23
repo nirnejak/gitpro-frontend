@@ -149,19 +149,25 @@
                   >View Full Activity</router-link>
                 </div>
               </div>
-              <div v-for="(fileStat, index) in activityStat.fileStats" :key="index">
-                <div class="row my-10">
-                  <div class="col-10-lg">
+              <div v-for="(commit, index) in activityStat.contributions" :key="index" class="my-10">
+                <hr v-if="index !== 0" />
+                <div>{{commit.commitMessage}}({{commit.hash}})</div>
+                <div
+                  class="row my-5 text-dark"
+                  v-for="(fileStat, index) in commit.files"
+                  :key="index"
+                >
+                  <div class="col-10">
                     <p>
                       {{fileStat.from}}
                       <i class="fas fa-long-arrow-alt-right mx-10" />
                       {{fileStat.to}}
                     </p>
                   </div>
-                  <div class="col-1-lg text-right">
+                  <div class="col-1 text-right">
                     <span class="tag text-success border-radius-5">+ {{fileStat.additions}}</span>
                   </div>
-                  <div class="col-1-lg text-left">
+                  <div class="col-1 text-left">
                     <span class="tag text-error border-radius-5">- {{fileStat.deletions}}</span>
                   </div>
                 </div>
@@ -182,7 +188,7 @@
                   <h3 class="text-dark">Repository: {{activity.repository}}</h3>
                 </div>
                 <div class="col-3-lg">
-                  <p>Total Commits: {{activity.diffs.length}}</p>
+                  <p>Total Commits: {{activity.contributions.length}}</p>
                 </div>
                 <div class="col-2-lg text-right">
                   <router-link
@@ -190,13 +196,18 @@
                   >View Full Activity</router-link>
                 </div>
               </div>
-              <div
-                class="activity-container"
-                v-for="(diff, index) in activity.diffs"
-                :key="index"
-                v-html="prettyHtml(diff)"
-              />
-              <div v-if="activity.diffs.length === 0 && activitiesLoading === false">
+              <div v-for="(contribution, index) in activity.contributions" :key="index">
+                <div class="row">
+                  <div class="col-6">
+                    <p>Commit: {{contribution.commitMessage}}</p>
+                  </div>
+                  <div class="col-6 text-right pt-5">
+                    <p>{{contribution.hash}}</p>
+                  </div>
+                </div>
+                <div class="activity-container" v-html="prettyHtml(contribution.diff)" />
+              </div>
+              <div v-if="activity.contributions.length === 0 && activitiesLoading === false">
                 <h4 class="text-center text-dark py-20">No Activity</h4>
               </div>
             </div>
@@ -257,19 +268,26 @@ export default {
           );
         });
         Promise.all(promises).then(response => {
+          this.activities = [];
           response.forEach(res => {
             this.activitiesLoading = false;
             this.activities.push(res.data);
           });
+
+          this.activityStats = [];
           this.activities.forEach(activity => {
-            let fileStats = [];
-            activity.diffs.forEach(diff => {
-              let files = parse(diff);
-              files.forEach(file => fileStats.push(file));
+            let contributions = [];
+            activity.contributions.forEach(commit => {
+              let contribution = {
+                commitMessage: commit.commitMessage,
+                hash: commit.hash,
+                files: parse(commit.diff)
+              };
+              contributions.push(contribution);
             });
             this.activityStats.push({
               repository: activity.repository,
-              fileStats
+              contributions
             });
           });
         });
