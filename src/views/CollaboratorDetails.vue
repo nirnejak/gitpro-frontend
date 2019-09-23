@@ -149,31 +149,43 @@
                   >View Full Activity</router-link>
                 </div>
               </div>
-              <div v-for="(commit, index) in activityStat.contributions" :key="index" class="my-10">
+              <div
+                v-for="(commit, index) in activityStat.contributions"
+                :key="commit.hash"
+                class="my-10"
+              >
                 <hr v-if="index !== 0" />
                 <div class="row my-10">
                   <div class="col-6 text-primary">{{commit.commitMessage}}</div>
-                  <div class="col-6 text-right">{{commit.hash}}</div>
+                  <div class="col-6 text-right">
+                    <a
+                      :href="`http://github.com/${user.login}/${activityStat.repository}/commit/${commit.hash}`"
+                      class="text-high-contrast"
+                      target="_blank"
+                      title="View Commit on GitHub"
+                    >
+                      {{commit.hash}}
+                      <i class="fas fa-sm fa-external-link-alt" />
+                    </a>
+                  </div>
                 </div>
                 <div
                   class="row text-dark my-5"
                   v-for="(fileStat, index) in commit.files"
                   :key="index"
                 >
-                  <div class="col-10">
+                  <div class="col-10-lg">
                     <p>
                       {{fileStat.from}}
                       <i class="fas fa-long-arrow-alt-right mx-10" />
                       {{fileStat.to}}
                     </p>
                   </div>
-                  <div class="col-1 text-right">
+                  <div class="col-2-lg text-center">
                     <span
                       class="tag text-success border-radius-5"
                       title="Additions"
                     >+ {{fileStat.additions}}</span>
-                  </div>
-                  <div class="col-1 text-left">
                     <span
                       class="tag text-error border-radius-5"
                       title="Deletions"
@@ -253,7 +265,7 @@ export default {
             return {
               repository: activity.repository,
               contributions
-            }
+            };
           });
         });
       }

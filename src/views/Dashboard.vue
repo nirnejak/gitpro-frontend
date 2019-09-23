@@ -70,12 +70,54 @@
             </div>
           </div>
         </div>
+
+        <div class="row my-30">
+          <div class="col-6">
+            <h2>Today's Activities</h2>
+          </div>
+          <div class="col-6 text-right text-dark pt-10">For Favourite Repositories</div>
+
+          <div class="col-6 my-20" v-for="(activity, index) in activities" :key="index">
+            <div class="bg-card border-radius-10 p-20">
+              <div class="row">
+                <div class="col-6">
+                  <i class="fas fa-code-branch mr-5" />
+                  {{activity.repository}}
+                </div>
+                <div class="col-6 text-right">
+                  <i class="far fa-user mr-5" />
+                  {{activity.author}}
+                </div>
+              </div>
+              <div class="row mt-15">
+                <div class="col-12" v-for="commit in activity.contributions" :key="commit.hash">
+                  <div class="row">
+                    <div class="col-9 text-primary">{{commit.commitMessage}}</div>
+                    <div class="col-3 text-right text-dark">{{commit.files.length}} Files</div>
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <div class="row mt-5">
+                <div class="col-12 text-center">
+                  <router-link
+                    :to="`/activities/?collaborator=${activity.author}&repository=${activity.repository}`"
+                    class="text-dark"
+                  >View Full Activity</router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import moment from "moment";
+import parse from "parse-diff";
+
 import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
@@ -89,6 +131,7 @@ export default {
   data() {
     return {
       user: {
+        login: localStorage.login,
         total_repositories: 0,
         total_collaborators: 0
       },
@@ -96,14 +139,56 @@ export default {
       collaboratorLoading: true,
       userLoading: true,
       message: "Welcome to GitSupreme",
-      showSnakeBar: false
+      showSnakeBar: false,
+      favourite_repositories: [],
+
+      activities: [],
+      activitiesLoading: false
     };
   },
-  created() {
+  async created() {
     axios.get(`/users/${localStorage.login}?stats=true`).then(res => {
       this.userLoading = false;
+      this.favourite_repositories = res.data.favourite_repositories;
       this.user.total_repositories = res.data.total_repositories;
       this.user.total_collaborators = res.data.total_collaborators;
+
+      if (this.favourite_repositories.length === 0) {
+        this.activitiesLoading = false;
+      } else {
+        let before = new Date();
+        let after = new Date();
+        after.setDate(after.getDate() - 1);
+
+        let activityFetchPromises = [];
+        this.favourite_repositories.forEach(repository => {
+          let params = {
+            repository: repository.name,
+            after: moment(after).format("YYYY-MM-DD"),
+            before: moment(before).format("YYYY-MM-DD")
+          };
+          activityFetchPromises.push(axios.get("/activities", { params }));
+        });
+
+        Promise.all(activityFetchPromises).then(responses => {
+          this.activitiesLoading = false;
+          responses = responses.map(res => res.data).filter(res => res.length);
+          let activities = [];
+          responses.forEach(res => {
+            activities = [...activities, ...res];
+          });
+
+          activities = activities.map(activity => {
+            activity.contributions = activity.contributions.map(commit => {
+              commit["files"] = parse(commit.diff);
+              return commit;
+            });
+            return activity;
+          });
+
+          this.activities = activities;
+        });
+      }
     });
     axios.get("/collaborators").then(res => {
       this.collaboratorLoading = false;
