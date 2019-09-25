@@ -63,6 +63,7 @@
                 <v-date-picker
                   v-model="pickedDate"
                   :popover="{ placement: 'bottom', visibility: 'click' }"
+                  :max-date='new Date()'
                 >
                   <span
                     class="sidebar-link cursor-pointer"
@@ -84,13 +85,22 @@
 
       <div class="row">
         <div class="col-12">
+          <h3 class="mt-20">Commits</h3>
+          <div class="bg-card border-radius-5 p-20 my-20" v-if="!activityLoading && activity.contributions.length === 0">
+            <div class="my-20">
+              <h4 class="text-center">No Contributions</h4>
+              <p class="text-dark text-center">
+                No Activity on <strong>{{selectedRepo}}</strong> by <strong>{{selectedCollaborator}}</strong>
+              </p>
+            </div>
+          </div>
           <div class="bg-card border-radius-5 p-20 my-20" v-for="(commit, index) in activity.contributions" :key="index">
             <div class="row">
-              <div class="col-11 pb-20">
-                <h4>Commit: {{commit.commitMessage}}</h4>
+              <div class="col-11">
+                <h4 class="my-0">{{commit.commitMessage}}</h4>
                 <a
                   :href="`http://github.com/${user.login}/${activity.repository}/commit/${commit.hash}`"
-                  class="text-high-contrast"
+                  class="text-dark"
                   target="_blank"
                   title="View Commit on GitHub"
                 >
@@ -112,7 +122,7 @@
               </div>
             </div>
             <transition name="fade">
-              <div v-if="!commit.isHidden">
+              <div v-if="!commit.isHidden" class="pt-20">
                 <div class="activity-container" v-html="prettyHtml(commit.diff)" />
               </div>
             </transition>
