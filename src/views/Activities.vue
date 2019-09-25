@@ -83,7 +83,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" v-if="!activityLoading">
         <div class="col-12">
           <h3 class="mt-20">Commits</h3>
           <div class="bg-card border-radius-5 p-20 my-20" v-if="!activityLoading && activity.contributions.length === 0">
