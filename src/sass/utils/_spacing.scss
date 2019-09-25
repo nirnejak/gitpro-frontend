@@ -4,6 +4,18 @@ $spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80
   .border-radius-#{$space} {
     border-radius: #{$space}px !important;
   }
+  .border-top-right-radius-#{$space} {
+    border-top-right-radius: #{$space}px !important;
+  }
+  .border-top-left-radius-#{$space} {
+    border-top-left-radius: #{$space}px !important;
+  }
+  .border-bottom-right-radius-#{$space} {
+    border-bottom-right-radius: #{$space}px !important;
+  }
+  .border-bottom-left-radius-#{$space} {
+    border-bottom-left-radius: #{$space}px !important;
+  }
   .h-#{$space}vh {
     min-height: #{$space}vh !important;
   }

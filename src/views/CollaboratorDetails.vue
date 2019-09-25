@@ -93,7 +93,7 @@
               @change="addRemoveRepo(repository.name)"
             />
             <label :for="repository.name" class="repo-checkbox my-10">
-              <div class="bg-card p-20" style="border-top-right-radius: 5px; border-top-left-radius: 5px;">
+              <div class="bg-card border-top-left-radius-5 border-top-right-radius-5 p-20">
                 <div class="row">
                   <div class="col-10 text-overflow-ellipsis">
                     <i class="fas fa-code-branch" />
@@ -105,7 +105,7 @@
                 </div>
               </div>
             </label>
-            <div class="bg-primary text-white text-center" style="border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; padding: 2px 0px;">
+            <div class="bg-primary text-white text-center border-bottom-right-radius-5 border-bottom-left-radius-5" style="padding: 2px 0px;">
               <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}`">
                 <small class="text-center text-white is-center">View Activity</small>
               </router-link>
