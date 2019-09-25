@@ -59,15 +59,6 @@
           <div class="col-8-lg is-right">
             <button
               type="submit"
-              class="button clear text-success px-10"
-              v-if="selectedRepositories.length > 0"
-              @click="viewActivity()"
-            >
-              <i class="fas fa-columns" />&nbsp;
-              View Activity
-            </button>
-            <button
-              type="submit"
               class="button clear text-error px-10"
               v-if="selectedRepositories.length > 0"
               @click="revokeAccess()"
@@ -322,15 +313,6 @@ export default {
       } else {
         this.selectedRepositories.push(repoName);
       }
-    },
-    viewActivity() {
-      this.$router.push({
-        path: "/activities",
-        query: {
-          collaborator: this.collaborator.login,
-          repository: this.selectedRepositories.join(",")
-        }
-      });
     },
     hideModal() {
       this.showModal = false;

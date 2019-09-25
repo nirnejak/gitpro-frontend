@@ -35,14 +35,12 @@
                 </div>
               </div>
               <div class="col-6-lg repositories">
-                <p class="pb-5">Repositories</p>
+                <p class="pb-5">Repository</p>
                 <multiselect
-                  placeholder="Select Repositories"
-                  v-model="selectedRepos"
+                  placeholder="Select Repository"
+                  v-model="selectedRepo"
                   :options="repositories"
                   :show-labels="false"
-                  :close-on-select="false"
-                  :multiple="true"
                 />
               </div>
             </div>
@@ -78,7 +76,7 @@
         </div>
       </div>
 
-      <div class="row" v-if="activitiesLoading">
+      <div class="row" v-if="activityLoading">
         <div class="col-12" v-for="i in 2" :key="i">
           <SkeletonLoader width="100%" height="300px" radius="5px" class="my-10" />
         </div>
@@ -86,46 +84,38 @@
 
       <div class="row">
         <div class="col-12">
-          <div
-            class="bg-card border-radius-5 p-20 my-20"
-            v-for="(activity, index) in activities"
-            :key="index"
-          >
+          <div class="bg-card border-radius-5 p-20 my-20" v-for="(commit, index) in activity.contributions" :key="index">
             <div class="row">
-              <div class="col-11">
-                <h4>Repository: {{activity.repository}}</h4>
+              <div class="col-11 pb-20">
+                <h4>Commit: {{commit.commitMessage}}</h4>
+                <a
+                  :href="`http://github.com/${user.login}/${activity.repository}/commit/${commit.hash}`"
+                  class="text-high-contrast"
+                  target="_blank"
+                  title="View Commit on GitHub"
+                >
+                  {{commit.hash}}
+                  <i class="fas fa-sm fa-external-link-alt" />
+                </a>
               </div>
               <div class="col-1 text-right">
                 <i
                   class="fas fa-lg fa-minus-square cursor-pointer mt-10"
-                  v-if="!activity.isHidden"
-                  @click="activity.isHidden = !activity.isHidden"
+                  v-if="!commit.isHidden"
+                  @click="commit.isHidden = !commit.isHidden"
                 />
                 <i
                   class="fas fa-lg fa-plus-square cursor-pointer mt-10"
-                  v-if="activity.isHidden"
-                  @click="activity.isHidden = !activity.isHidden"
+                  v-if="commit.isHidden"
+                  @click="commit.isHidden = !commit.isHidden"
                 />
               </div>
             </div>
             <transition name="fade">
-              <div v-if="!activity.isHidden">
-                <div v-for="(commit, index) in activity.contributions" :key="index" class="my-20">
-                  <div class="row">
-                    <div class="col-6">
-                      <p>Commit: {{commit.commitMessage}}</p>
-                    </div>
-                    <div class="col-6 text-right pt-5">
-                      <p>{{commit.hash}}</p>
-                    </div>
-                  </div>
-                  <div class="activity-container" v-html="prettyHtml(commit.diff)" />
-                </div>
+              <div v-if="!commit.isHidden">
+                <div class="activity-container" v-html="prettyHtml(commit.diff)" />
               </div>
             </transition>
-            <div v-if="activity.contributions.length === 0 && activitiesLoading === false">
-              <h4 class="text-center text-dark py-20">No Activity</h4>
-            </div>
           </div>
         </div>
       </div>
@@ -149,20 +139,23 @@ export default {
   components: { Sidebar, SkeletonLoader },
   data() {
     return {
+      user: {
+        login: localStorage.login
+      },
       showSidebar: true,
       search: "",
       repositories: [],
-      selectedRepos: [],
+      selectedRepo: null,
       collaborators: [],
       selectedCollaborator: null,
       formDataLoading: true,
-      activitiesLoading: false,
+      activityLoading: false,
       date: "today",
       pickedDate: "",
       pickedDateFormatted: "",
       force: false,
 
-      activities: []
+      activity: []
     };
   },
   async created() {
@@ -178,22 +171,13 @@ export default {
     }
 
     let repository = this.$router.history.current.query.repository;
-    if (repository) {
-      if (repository.includes(",")) {
-        repository = repository.split(",");
-        this.selectedRepos = repository.filter(repo =>
-          this.repositories.includes(repo)
-        );
-      } else {
-        if (this.repositories.includes(repository)) {
-          this.selectedRepos.push(repository);
-        }
-      }
+    if (repository && this.repositories.includes(repository)) {
+      this.selectedRepo = repository;
     }
   },
   methods: {
     fetchActivity() {
-      if (this.selectedRepos.length > 0 && this.selectedCollaborator) {
+      if (this.selectedRepo && this.selectedCollaborator) {
         let before, after;
         if (this.date === "today") {
           before = new Date();
@@ -210,29 +194,24 @@ export default {
           after.setDate(after.getDate() - 1);
         }
 
-        this.activitiesLoading = true;
-        this.activities = [];
+        this.activityLoading = true;
+        this.activity = [];
 
-        let fetchPromises = [];
-        this.selectedRepos.forEach(repository => {
-          let params = {
-            repository,
-            after: moment(after).format("YYYY-MM-DD"),
-            before: moment(before).format("YYYY-MM-DD"),
-            force: this.force
-          };
-          fetchPromises.push(
-            axios.get(`/activities/${this.selectedCollaborator}`, { params })
-          );
-        });
-
-        Promise.all(fetchPromises).then(responses => {
-          this.activitiesLoading = false;
-          this.activities = responses.map(res => ({
-            ...res.data,
-            isHidden: false
-          }));
-        });
+        let params = {
+          repository: this.selectedRepo,
+          after: moment(after).format("YYYY-MM-DD"),
+          before: moment(before).format("YYYY-MM-DD"),
+          force: this.force
+        };
+        axios.get(`/activities/${this.selectedCollaborator}`, { params })
+        .then(res => {
+          this.activityLoading = false;
+          this.activity = res.data
+          this.activity.contributions = this.activity.contributions.map(commit => ({
+              ...commit,
+              isHidden: false
+            }))
+        })
       }
     },
     prettyHtml(diff) {
@@ -247,8 +226,8 @@ export default {
     }
   },
   watch: {
-    selectedRepos() {
-      if (this.selectedRepos.length !== 0) this.fetchActivity();
+    selectedRepo() {
+      if (this.selectedRepo) this.fetchActivity();
     },
     selectedCollaborator() {
       if (this.selectedCollaborator) this.fetchActivity();
