@@ -7,7 +7,7 @@
       v-model="isChecked"
       @change="$emit('change', $event.target.checked)"
     />
-    <label class="tgl-btn" :for="id"></label>
+    <label class="tgl-btn" :for="id" />
   </div>
 </template>
 

@@ -16,7 +16,7 @@
             </div>
             <div class="col-10">
               <p class="m-0 p-0">{{result.login}}</p>
-              <small class="text-dark" v-html="result.type"></small>
+              <small class="text-dark" v-html="result.type" />
             </div>
           </div>
         </li>

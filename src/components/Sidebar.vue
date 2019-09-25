@@ -43,7 +43,7 @@
     <div class="sidebar-footer">
       <div class="row pb-10">
         <div class="col-3 is-center">
-          <small class="text-dark">Developed by Inkoop Pvt. Ltd.</small>
+          <small class="text-dark">Developed by <a href="https://inkoop.io" target="_blank">Inkoop.io</a></small>
         </div>
       </div>
     </div>

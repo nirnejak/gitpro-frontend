@@ -10,7 +10,6 @@
       </router-link>
       <br />
       <br />
-      <span></span>
     </div>
   </div>
 </template>

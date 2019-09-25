@@ -1,6 +1,6 @@
 <template>
   <div class="modal-container" v-if="showModal">
-    <div class="modal-bg" @click="hideModal"/>
+    <div class="modal-bg" @click="hideModal" />
     <div class="modal-content">
       <div class="modal-header pb-50">
         <div class="close-btn pull-right w-5 text-right pr-5">
@@ -10,7 +10,7 @@
         <br />
       </div>
       <div class="modal-body">
-        <slot></slot>
+        <slot />
       </div>
     </div>
   </div>

@@ -27,9 +27,9 @@
           </div>
           <div class="col-4" v-if="!userLoading">
             <div class="bg-card border-radius-10 p-20">
-              <i class="fas fa-user mr-5" />
-              {{user.total_collaborators}}
-              Total Collaborators
+              <i class="fas fa-code mr-5" />
+              {{activities.length}}
+              Repositories with Activity
             </div>
           </div>
         </div>
@@ -76,6 +76,12 @@
             <h2>Today's Activities</h2>
           </div>
           <div class="col-6 text-right text-dark pt-10">For Favourite Repositories</div>
+
+          <div class="col-12" v-if="!activitiesLoading && activities.length === 0">
+            <h3 class="text-center text-dark my-20">
+              <br />No Activity
+            </h3>
+          </div>
 
           <div class="col-4 my-20" v-for="(activity, index) in activities" :key="index">
             <div class="bg-card border-radius-10 p-20">
