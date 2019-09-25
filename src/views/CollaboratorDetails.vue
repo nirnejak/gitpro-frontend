@@ -101,8 +101,8 @@
               class="d-none"
               @change="addRemoveRepo(repository.name)"
             />
-            <label :for="repository.name" class="repo-checkbox">
-              <div class="bg-card border-radius-5 p-20 my-10">
+            <label :for="repository.name" class="repo-checkbox my-10">
+              <div class="bg-card p-20" style="border-top-right-radius: 5px; border-top-left-radius: 5px;">
                 <div class="row">
                   <div class="col-10 text-overflow-ellipsis">
                     <i class="fas fa-code-branch" />
@@ -114,6 +114,11 @@
                 </div>
               </div>
             </label>
+            <div class="bg-primary text-white text-center" style="border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; padding: 2px 0px;">
+              <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}`">
+                <small class="text-center text-white is-center">View Activity</small>
+              </router-link>
+            </div>
           </div>
         </div>
 
@@ -122,7 +127,11 @@
             <h2>Today's Activity</h2>
           </div>
           <div class="col-8-lg is-right">
-            <p class="text-dark">{{ Date() | formatDate }}</p>
+            <p class="text-dark">
+              <i class="fas fa-sm fa-star"/>
+              Showing for Favourite Repositories only
+            </p>
+            <!-- <p class="text-dark">{{ Date() | formatDate }}</p> -->
           </div>
         </div>
 
@@ -238,7 +247,7 @@ export default {
         after.setDate(after.getDate() - 1);
 
         let promises = [];
-        this.collaborator.repositories.forEach(repository => {
+        this.collaborator.repositories.filter(repo => repo.isFavourite).forEach(repository => {
           let params = {
             repository: repository.name,
             after: moment(after).format("YYYY-MM-DD"),

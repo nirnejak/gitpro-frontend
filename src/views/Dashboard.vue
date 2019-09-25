@@ -71,12 +71,20 @@
           </div>
         </div>
 
-        <div class="row my-30">
+        <div class="row mt-30">
           <div class="col-6">
             <h2>Today's Activities</h2>
           </div>
           <div class="col-6 text-right text-dark pt-10">For Favourite Repositories</div>
+        </div>
 
+        <div class="row mb-20" v-if="activitiesLoading">
+          <div class="col-4 my-20" v-for="i in 3" :key="i">
+            <SkeletonLoader width="100%" height="200px" radius="10px" />
+          </div>
+        </div>
+
+        <div class="row mb-30">
           <div class="col-12" v-if="!activitiesLoading && activities.length === 0">
             <h3 class="text-center text-dark my-20">
               <br />No Activity
@@ -149,7 +157,7 @@ export default {
       favourite_repositories: [],
 
       activities: [],
-      activitiesLoading: false
+      activitiesLoading: true
     };
   },
   async created() {
