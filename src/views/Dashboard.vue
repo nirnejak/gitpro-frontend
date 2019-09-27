@@ -89,6 +89,11 @@
             <h3 class="text-center text-dark my-20">
               <br />No Activity
             </h3>
+            <p
+              class="text-dark text-center"
+            >
+            This section only shows already fetched activities. To fetch more activities, goto <router-link to="activities">Activities</router-link> section
+            </p>
           </div>
 
           <div class="col-4 my-20" v-for="(activity, index) in activities" :key="index">

@@ -63,7 +63,7 @@
                 <v-date-picker
                   v-model="pickedDate"
                   :popover="{ placement: 'bottom', visibility: 'click' }"
-                  :max-date='new Date()'
+                  :max-date="new Date()"
                 >
                   <span
                     class="sidebar-link cursor-pointer"
@@ -85,16 +85,27 @@
 
       <div class="row" v-if="!activityLoading">
         <div class="col-12">
-          <h3 class="mt-20">Commits</h3>
-          <div class="bg-card border-radius-5 p-20 my-20" v-if="!activityLoading && activity.contributions.length === 0">
-            <div class="my-20">
-              <h4 class="text-center">No Contributions</h4>
-              <p class="text-dark text-center">
-                No Activity on <strong>{{selectedRepo}}</strong> by <strong>{{selectedCollaborator}}</strong>
-              </p>
+          <h3 class="mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
+          <div v-if="Object.keys(activity).length !== 0">
+            <div
+              class="bg-card border-radius-5 p-20 my-20"
+              v-if="!activityLoading && activity.contributions.length === 0"
+            >
+              <div class="my-20">
+                <h4 class="text-center">No Contributions</h4>
+                <p class="text-dark text-center">
+                  No Activity on
+                  <strong>{{selectedRepo}}</strong> by
+                  <strong>{{selectedCollaborator}}</strong>
+                </p>
+              </div>
             </div>
           </div>
-          <div class="bg-card border-radius-5 p-20 my-20" v-for="(commit, index) in activity.contributions" :key="index">
+          <div
+            class="bg-card border-radius-5 p-20 my-20"
+            v-for="(commit, index) in activity.contributions"
+            :key="index"
+          >
             <div class="row">
               <div class="col-11">
                 <h4 class="my-0">{{commit.commitMessage}}</h4>
@@ -165,7 +176,7 @@ export default {
       pickedDateFormatted: "",
       force: false,
 
-      activity: []
+      activity: {}
     };
   },
   async created() {
@@ -213,15 +224,18 @@ export default {
           before: moment(before).format("YYYY-MM-DD"),
           force: this.force
         };
-        axios.get(`/activities/${this.selectedCollaborator}`, { params })
-        .then(res => {
-          this.activityLoading = false;
-          this.activity = res.data
-          this.activity.contributions = this.activity.contributions.map(commit => ({
-              ...commit,
-              isHidden: false
-            }))
-        })
+        axios
+          .get(`/activities/${this.selectedCollaborator}`, { params })
+          .then(res => {
+            this.activityLoading = false;
+            this.activity = res.data;
+            this.activity.contributions = this.activity.contributions.map(
+              commit => ({
+                ...commit,
+                isHidden: false
+              })
+            );
+          });
       }
     },
     prettyHtml(diff) {
