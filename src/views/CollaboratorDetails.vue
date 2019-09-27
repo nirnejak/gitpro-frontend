@@ -99,16 +99,17 @@
             <label :for="repository.name" class="repo-checkbox my-10">
               <div class="bg-card border-radius-5 p-20">
                 <div class="row">
-                  <div class="col-9 text-overflow-ellipsis">
-                    <i class="fas fa-code-branch" />
+                  <div class="col-6 text-overflow-ellipsis">
+                    <i class="fas fa-check-circle text-light mt-5 mr-10" />
+                    <!-- <i class="fas fa-code-branch" /> -->
                     {{repository.name}}
                   </div>
-                  <div class="col-3 text-right">
-                    <i class="fas fa-check-circle text-light mt-5 mr-10" />
+                  <div class="col-6 text-right">
                     <router-link
                       :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}&owner=${repository.owner}`"
+                      class="text-primary"
                     >
-                      <i class="fas fa-eye text-high-contrast mt-5" />
+                      View Activity
                     </router-link>
                   </div>
                 </div>
