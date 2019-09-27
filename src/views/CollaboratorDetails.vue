@@ -105,8 +105,13 @@
                 </div>
               </div>
             </label>
-            <div class="bg-primary text-white text-center border-bottom-right-radius-5 border-bottom-left-radius-5" style="padding: 2px 0px;">
-              <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}`">
+            <div
+              class="bg-primary text-white text-center border-bottom-right-radius-5 border-bottom-left-radius-5"
+              style="padding: 2px 0px;"
+            >
+              <router-link
+                :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}`"
+              >
                 <small class="text-center text-white is-center">View Activity</small>
               </router-link>
             </div>
@@ -119,7 +124,7 @@
           </div>
           <div class="col-8-lg is-right">
             <p class="text-dark">
-              <i class="fas fa-sm fa-star"/>
+              <i class="fas fa-sm fa-star" />
               Showing for Favourite Repositories only
             </p>
             <!-- <p class="text-dark">{{ Date() | formatDate }}</p> -->
@@ -149,6 +154,9 @@
                   >View Full Activity</router-link>
                 </div>
               </div>
+              <div class="my-20" v-if="activityStat.contributions.length === 0">
+                <h4 class="text-center text-dark">No Contributions Today</h4>
+              </div>
               <div
                 v-for="(commit, index) in activityStat.contributions"
                 :key="commit.hash"
@@ -156,8 +164,12 @@
               >
                 <hr v-if="index !== 0" />
                 <div class="row my-10">
-                  <div class="col-6 text-primary">{{commit.commitMessage}}</div>
-                  <div class="col-6 text-right">
+                  <div class="col-5 text-primary">{{commit.commitMessage}}</div>
+                  <div class="col-2 text-center">
+                    <i class="fas fa-code-branch mr-5" />
+                    {{commit.branch}}
+                  </div>
+                  <div class="col-5 text-right">
                     <a
                       :href="`http://github.com/${user.login}/${activityStat.repository}/commit/${commit.hash}`"
                       class="text-high-contrast"
@@ -238,16 +250,18 @@ export default {
         after.setDate(after.getDate() - 1);
 
         let promises = [];
-        this.collaborator.repositories.filter(repo => repo.isFavourite).forEach(repository => {
-          let params = {
-            repository: repository.name,
-            after: moment(after).format("YYYY-MM-DD"),
-            before: moment(before).format("YYYY-MM-DD")
-          };
-          promises.push(
-            axios.get(`/activities/${this.$route.params.login}`, { params })
-          );
-        });
+        this.collaborator.repositories
+          .filter(repo => repo.isFavourite)
+          .forEach(repository => {
+            let params = {
+              repository: repository.name,
+              after: moment(after).format("YYYY-MM-DD"),
+              before: moment(before).format("YYYY-MM-DD")
+            };
+            promises.push(
+              axios.get(`/activities/${this.$route.params.login}`, { params })
+            );
+          });
         Promise.all(promises).then(response => {
           this.activitiesLoading = false;
           let activities = response.map(res => res.data);
@@ -258,6 +272,7 @@ export default {
               let contribution = {
                 commitMessage: commit.commitMessage,
                 hash: commit.hash,
+                branch: commit.branch,
                 files: parse(commit.diff)
               };
               contributions.push(contribution);

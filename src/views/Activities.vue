@@ -107,7 +107,7 @@
             :key="index"
           >
             <div class="row">
-              <div class="col-11">
+              <div class="col-9">
                 <h4 class="my-0">{{commit.commitMessage}}</h4>
                 <a
                   :href="`http://github.com/${user.login}/${activity.repository}/commit/${commit.hash}`"
@@ -119,7 +119,9 @@
                   <i class="fas fa-sm fa-external-link-alt" />
                 </a>
               </div>
-              <div class="col-1 text-right">
+              <div class="col-3 text-right">
+                <i class="fas fa-code-branch" />&nbsp;
+                <span class="text-dark mr-20">{{commit.branch}}</span>
                 <i
                   class="fas fa-lg fa-minus-square cursor-pointer mt-10"
                   v-if="!commit.isHidden"
@@ -163,7 +165,7 @@ export default {
       user: {
         login: localStorage.login
       },
-      showSidebar: true,
+      showSidebar: false,
       search: "",
       repositories: [],
       selectedRepo: null,
