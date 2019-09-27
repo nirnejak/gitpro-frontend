@@ -79,7 +79,7 @@ export default new Router({
       }
     },
     {
-      path: '/repositories/:name',
+      path: '/repositories/:owner/:name',
       name: 'repositories',
       component: () => import('./views/RepositoryDetails.vue'),
       beforeEnter: (to, from, next) => {

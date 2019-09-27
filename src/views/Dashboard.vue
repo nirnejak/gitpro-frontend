@@ -120,7 +120,7 @@
               <div class="row mt-5">
                 <div class="col-12 text-center">
                   <router-link
-                    :to="`/activities/?collaborator=${activity.author}&repository=${activity.repository}`"
+                    :to="`/activities/?collaborator=${activity.author}&repository=${activity.repository}&owner=${activity.owner}`"
                     class="text-dark"
                   >View Full Activity</router-link>
                 </div>

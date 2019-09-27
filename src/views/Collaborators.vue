@@ -28,7 +28,7 @@
         </div>
         <div class="row">
           <div
-            class="col-2 p-5 collaborator-avatar-container"
+            class="col-2 p-5 collaborator-avatar-container pb-30"
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >

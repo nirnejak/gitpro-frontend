@@ -39,6 +39,7 @@
                 <multiselect
                   placeholder="Select Repository"
                   v-model="selectedRepo"
+                  label="ownerAndRepo"
                   :options="repositories"
                   :show-labels="false"
                 />
@@ -95,7 +96,7 @@
                 <h4 class="text-center">No Contributions</h4>
                 <p class="text-dark text-center">
                   No Activity on
-                  <strong>{{selectedRepo}}</strong> by
+                  <strong>{{selectedRepo.name}}</strong> by
                   <strong>{{selectedCollaborator}}</strong>
                 </p>
               </div>
@@ -184,7 +185,10 @@ export default {
   async created() {
     const repositories_res = await axios.get("/repositories/");
     const collaborators_res = await axios.get("/collaborators/");
-    this.repositories = repositories_res.data.map(repo => repo.name);
+    this.repositories = repositories_res.data.map(repo => ({
+      ...repo,
+      ownerAndRepo: `${repo.owner}/${repo.name}`
+    }));
     this.collaborators = collaborators_res.data.map(collab => collab.login);
     this.formDataLoading = false;
 
@@ -194,8 +198,13 @@ export default {
     }
 
     let repository = this.$router.history.current.query.repository;
-    if (repository && this.repositories.includes(repository)) {
-      this.selectedRepo = repository;
+    let owner = this.$router.history.current.query.owner;
+    if (repository && owner) {
+      let ownerAndRepo = `${owner}/${repository}`;
+      let repo = this.repositories.filter(
+        repo => repo.ownerAndRepo === ownerAndRepo
+      );
+      if (repo.length > 0) this.selectedRepo = repo[0];
     }
   },
   methods: {
@@ -221,7 +230,8 @@ export default {
         this.activity = [];
 
         let params = {
-          repository: this.selectedRepo,
+          repository: this.selectedRepo.name,
+          owner: this.selectedRepo.owner,
           after: moment(after).format("YYYY-MM-DD"),
           before: moment(before).format("YYYY-MM-DD"),
           force: this.force

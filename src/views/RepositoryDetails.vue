@@ -27,10 +27,10 @@
               />
             </div>
           </div>
-          <div class="col-4-lg is-vertical-align is-right">
+          <div class="col-4-lg is-vertical-align is-right" v-if="repository">
             <!-- TODO: Add Optional Link for GitHub/Bitbucket/Gitlab -->
             <a
-              :href="`http://github.com/${user.login}/${$route.params.name}`"
+              :href="`http://github.com/${$route.params.owner}/${$route.params.name}`"
               class="sidebar-link pr-20"
               target="_blank"
             >
@@ -71,7 +71,7 @@
             </div>
           </div>
           <div
-            class="col-2 p-5 collaborator-avatar-container"
+            class="col-2 p-5 collaborator-avatar-container pb-30"
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
@@ -131,7 +131,7 @@ export default {
     };
   },
   created() {
-    axios.get(`/repositories/${this.$route.params.name}`).then(res => {
+    axios.get(`/repositories/${this.$route.params.owner}/${this.$route.params.name}`).then(res => {
       this.repositoryDetailsLoading = false;
       this.repository = res.data.repository;
       this.collaborators = res.data.collaborators;

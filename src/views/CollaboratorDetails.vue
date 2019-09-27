@@ -78,13 +78,17 @@
         </div>
 
         <div class="row" v-if="collaboratorDetailsLoading">
-          <div class="col-3" v-for="i in 4" :key="i">
+          <div class="col-4" v-for="i in 4" :key="i">
             <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10" />
           </div>
         </div>
 
         <div class="row" v-if="collaborator">
-          <div class="col-3" v-for="repository in collaborator.repositories" :key="repository.name">
+          <div
+            class="col-4 my-20"
+            v-for="repository in myRepositories"
+            :key="`${repository.owner}/${repository.name}`"
+          >
             <input
               type="checkbox"
               :name="repository.name"
@@ -93,27 +97,67 @@
               @change="addRemoveRepo(repository.name)"
             />
             <label :for="repository.name" class="repo-checkbox my-10">
-              <div class="bg-card border-top-left-radius-5 border-top-right-radius-5 p-20">
+              <div class="bg-card border-radius-5 p-20">
                 <div class="row">
-                  <div class="col-10 text-overflow-ellipsis">
+                  <div class="col-9 text-overflow-ellipsis">
                     <i class="fas fa-code-branch" />
                     {{repository.name}}
                   </div>
-                  <div class="col-2">
-                    <i class="fas fa-check-circle text-light pull-right mt-5" />
+                  <div class="col-3 text-right">
+                    <i class="fas fa-check-circle text-light mt-5 mr-10" />
+                    <router-link
+                      :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}&owner=${repository.owner}`"
+                    >
+                      <i class="fas fa-eye text-high-contrast mt-5" />
+                    </router-link>
                   </div>
                 </div>
               </div>
             </label>
-            <div
-              class="bg-primary text-white text-center border-bottom-right-radius-5 border-bottom-left-radius-5"
-              style="padding: 2px 0px;"
-            >
-              <router-link
-                :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}`"
-              >
-                <small class="text-center text-white is-center">View Activity</small>
-              </router-link>
+          </div>
+        </div>
+
+        <div class="row mt-30">
+          <div class="col-6">
+            <h2>Common Repositories</h2>
+          </div>
+          <div class="col-6 is-right">
+            <p class="text-dark">
+              Repositories shared with you and
+              <strong>{{$route.params.login}}</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="row" v-if="collaboratorDetailsLoading">
+          <div class="col-4" v-for="i in 3" :key="i">
+            <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10" />
+          </div>
+        </div>
+
+        <div class="row" v-if="collaborator">
+          <div
+            class="col-4 my-20"
+            v-for="repository in commonRepositories"
+            :key="`${repository.owner}/${repository.name}`"
+          >
+            <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
+            <label :for="repository.name" class="repo-checkbox my-10"></label>
+            <div class="bg-card border-radius-5 p-20">
+              <div class="row">
+                <div class="col-10 text-overflow-ellipsis">
+                  <i class="fas fa-code-branch" />
+                  {{repository.owner}}/{{repository.name}}
+                </div>
+                <div class="col-2">
+                  <router-link
+                    :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}&owner=${repository.owner}`"
+                    title="View Activity"
+                  >
+                    <i class="fas fa-eye pull-right text-high-contrast mt-5" />
+                  </router-link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -127,7 +171,6 @@
               <i class="fas fa-sm fa-star" />
               Showing for Favourite Repositories only
             </p>
-            <!-- <p class="text-dark">{{ Date() | formatDate }}</p> -->
           </div>
         </div>
 
@@ -150,7 +193,7 @@
                 </div>
                 <div class="col-4 text-right pt-10">
                   <router-link
-                    :to="`/activities/?collaborator=${collaborator.login}&repository=${activityStat.repository}`"
+                    :to="`/activities/?collaborator=${collaborator.login}&repository=${activityStat.repository}&owner=${activityStat.owner}`"
                   >View Full Activity</router-link>
                 </div>
               </div>
@@ -234,7 +277,9 @@ export default {
       user: { login: localStorage.login },
       collaborator: {},
       collaboratorDetailsLoading: true,
+      myRepositories: [],
       selectedRepositories: [],
+      commonRepositories: [],
       showModal: false,
       activityStats: [],
       activitiesLoading: true
@@ -244,6 +289,14 @@ export default {
     axios.get(`/collaborators/${this.$route.params.login}`).then(res => {
       this.collaboratorDetailsLoading = false;
       this.collaborator = res.data;
+
+      this.myRepositories = this.collaborator.repositories.filter(
+        repo => repo.owner === this.user.login
+      );
+      this.commonRepositories = this.collaborator.repositories.filter(
+        repo => repo.owner !== this.user.login
+      );
+
       if (this.collaborator.repositories.length > 0) {
         let before = new Date();
         let after = new Date();
@@ -255,6 +308,7 @@ export default {
           .forEach(repository => {
             let params = {
               repository: repository.name,
+              owner: repository.owner,
               after: moment(after).format("YYYY-MM-DD"),
               before: moment(before).format("YYYY-MM-DD")
             };
@@ -279,6 +333,7 @@ export default {
             });
             return {
               repository: activity.repository,
+              owner: activity.owner,
               contributions
             };
           });

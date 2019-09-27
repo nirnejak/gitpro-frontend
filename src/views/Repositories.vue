@@ -13,26 +13,30 @@
           </div>
         </div>
         <div class="row" v-if="repositoriesLoading">
-          <div class="col-3" v-for="i in 12" :key="i">
+          <div class="col-4" v-for="i in 12" :key="i">
             <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10" />
           </div>
         </div>
 
         <div class="row" v-if="starredRepositories.length > 0">
-          <div class="col-3" v-for="repository in starredRepositories" :key="repository.name">
+          <div
+            class="col-4"
+            v-for="repository in starredRepositories"
+            :key="`${repository.owner}/${repository.name}`"
+          >
             <div class="bg-card border-radius-5 p-20 my-10">
               <div class="row">
                 <div class="col-10 text-overflow-ellipsis">
                   <router-link :to="`/repositories/${repository.name}`" class="text-high-contrast">
                     <i class="fas fa-code-branch mr-5" />
-                    {{repository.name}}
+                    {{repository.owner}}/{{repository.name}}
                   </router-link>
                 </div>
                 <div class="col-2 text-right">
                   <i
                     class="fa-star mt-5 cursor-pointer text-high-contrast"
                     :class="{'fas': repository.isFavourite, 'far': !repository.isFavourite}"
-                    @click="starRepo(repository.name, !repository.isFavourite)"
+                    @click="starRepo(repository.name, repository.owner, !repository.isFavourite)"
                   />
                 </div>
               </div>
@@ -43,20 +47,24 @@
         <hr class="my-30" v-if="starredRepositories.length > 0" />
 
         <div class="row">
-          <div class="col-3" v-for="repository in repositories" :key="repository.name">
+          <div
+            class="col-4"
+            v-for="repository in repositories"
+            :key="`${repository.owner}/${repository.name}`"
+          >
             <div class="bg-card border-radius-5 p-20 my-10">
               <div class="row">
                 <div class="col-10 text-overflow-ellipsis">
-                  <router-link :to="`/repositories/${repository.name}`" class="text-high-contrast">
+                  <router-link :to="`/repositories/${repository.owner}/${repository.name}`" class="text-high-contrast">
                     <i class="fas fa-code-branch mr-5" />
-                    {{repository.name}}
+                    {{repository.owner}}/{{repository.name}}
                   </router-link>
                 </div>
                 <div class="col-2 text-right">
                   <i
                     class="fa-star mt-5 cursor-pointer text-high-contrast"
                     :class="{'fas': repository.isFavourite, 'far': !repository.isFavourite}"
-                    @click="starRepo(repository.name, !repository.isFavourite)"
+                    @click="starRepo(repository.name, repository.owner , !repository.isFavourite)"
                   />
                 </div>
               </div>
@@ -119,10 +127,11 @@ export default {
     }
   },
   methods: {
-    async starRepo(repository, isFavourite) {
-      const res = await axios.put(`/repositories/${repository}`, {
-        isFavourite
-      });
+    async starRepo(repository, owner, isFavourite) {
+      const res = await axios.put(
+        `/repositories/${repository}?owner=${owner}`,
+        { isFavourite }
+      );
       this.repositoriesOriginal = this.repositoriesOriginal.map(repo => {
         if (repo.name === res.data.name) {
           repo.isFavourite = res.data.isFavourite;
