@@ -99,7 +99,7 @@
             <router-link :to="`/collaborators/${collaborator.login}`">
               <p class="text-center mt-10 text-high-contrast">{{collaborator.name || collaborator.login}}</p>
             </router-link>
-            <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${$route.params.name}`">
+            <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${$route.params.name}&owner=${$route.params.owner}`">
               <small class="text-center text-primary is-center">View Activity</small>
             </router-link>
           </div>
