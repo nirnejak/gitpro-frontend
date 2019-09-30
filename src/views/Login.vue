@@ -2,7 +2,7 @@
   <div class="centered-container">
     <div class="text-center p-30 px-80">
       <div>
-        <a href="http://localhost:5000/auth/github" class="button dark is-center">
+        <a :href="loginUrl" class="button dark is-center">
           <i class="fab fa-sm fa-github" />&nbsp;
           Continue using GitHub
         </a>
@@ -13,7 +13,17 @@
 
 <script>
 export default {
-  name: "Login"
+  name: "Login",
+  data: {
+    loginUrl: "http://localhost:5000/auth/github"
+  },
+  created() {
+    if (process.env.NODE_ENV === "production") {
+      this.loginUrl = "https://github-supreme.herokuapp.com/auth/github";
+    } else {
+      this.loginUrl = "http://localhost:5000/auth/github";
+    }
+  }
 };
 </script>
 

@@ -18,7 +18,8 @@
           <div class="col-7-lg is-vertical-align">
             <div>
               <h1 class="m-0">{{$route.params.name}}</h1>
-              <p class="m-0 text-dark">{{repository.description}}</p>
+              <p class="text-dark mb-5">by <span class="text-high-contrast">{{repository.owner}}</span></p>
+              <p class="text-dark">{{repository.description}}</p>
               <SkeletonLoader
                 width="100%"
                 height="20px"
@@ -40,7 +41,7 @@
           </div>
         </div>
 
-        <div class="row mt-100">
+        <div class="row mt-70">
           <div class="col-4-lg">
             <h2>Collaborators</h2>
           </div>

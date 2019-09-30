@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <div class="nav" style="height: 50px;">
+    <!-- <div class="nav" style="height: 50px;">
       <div class="nav-left">
         <div class="nav-brand px-20">
           <h4>GitSupreme</h4>
@@ -12,16 +12,20 @@
           <i class="fas fa-xs fa-arrow-right" />
         </router-link>
       </div>
-    </div>
+    </div>-->
     <div class="container">
       <div class="row">
         <div class="col-6-lg">
-          <div class="is-vertical-align" style="height: calc(100vh - 80px)">
+          <div class="is-vertical-align" style="height: calc(100vh - 30px)">
             <div class="p-20">
-              <h1 class="error-code">
-                <span></span>
-                <br />made easy
+              <h3>GitSupreme</h3>
+              <h1 class="error-code" style="line-height: 7rem;">
+                <span>Collaboration</span>
+                <br />simplified
               </h1>
+              <p
+                class="text-dark mt-30"
+              >A platform to make repository management and developer activity tracking easier.</p>
               <router-link to="/login" class="button primary get-started ml-20 mt-50">
                 Get Started
                 <i class="fas fa-sm fa-arrow-right" />
@@ -29,17 +33,58 @@
             </div>
           </div>
         </div>
-        <div class="col-6-lg"></div>
+        <div class="col-6-lg">
+          <div class="is-vertical-align" style="height: calc(100vh - 30px)">
+            <img src="@/assets/version_control.svg" alt width="80%" />
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="is-center" style="height: 30px;">
-      <i class="fas fa-arrow-down" />
+
+      <div class="is-center" style="height: 30px;">
+        <i
+          class="fas fa-arrow-down cursor-pointer"
+          v-scroll-to="{
+            el: '#featuresSection',
+            duration: 2000,
+            easing: [.6, .80, .30, 1.9],
+            offset: 200
+          }"
+        />
+      </div>
+
+      <div class="row py-100" id="featuresSection">
+        <div class="col-4">
+          <div class="card card-shadow border-radius-10 p-30 mx-20">
+            <h3 class="text-center">Manage Contributors</h3>
+            <p
+              class="text-dark text-left"
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint magnam eos corrupti pariatur rem! Itaque repudiandae quidem amet vitae nam nemo nisi id! Aperiam, harum delectus! Facere et adipisci accusamus.</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card card-shadow border-radius-10 p-30 mx-20">
+            <h3 class="text-center">See Activity</h3>
+            <p
+              class="text-dark text-left"
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint magnam eos corrupti pariatur rem! Itaque repudiandae quidem amet vitae nam nemo nisi id! Aperiam, harum delectus! Facere et adipisci accusamus.</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card card-shadow border-radius-10 p-30 mx-20">
+            <h3 class="text-center">Feature Three</h3>
+            <p
+              class="text-dark text-left"
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint magnam eos corrupti pariatur rem! Itaque repudiandae quidem amet vitae nam nemo nisi id! Aperiam, harum delectus! Facere et adipisci accusamus.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Typed from "typed.js";
+import HeroImage from "@/assets/version_control.svg";
 
 export default {
   name: "home",
@@ -47,7 +92,7 @@ export default {
   data() {
     return {
       options: {
-        strings: ["Collaboration", "Tracking"],
+        strings: ["Collaboration", "Management", "Activity Tracking"],
         typeSpeed: 100,
         loop: true
       }
