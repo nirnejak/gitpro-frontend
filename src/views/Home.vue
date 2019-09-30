@@ -1,15 +1,39 @@
 <template>
-  <div class="centered-container">
-    <div class="text-center p-20 px-100">
-      <p class="text-dark">Welcome to</p>
-      <h1 class="error-code">GitHub Supreme</h1>
-      <br />
-      <router-link to="/login" class="button primary">
-        Get Started
-        <i class="fas fa-sm fa-arrow-right" />
-      </router-link>
-      <br />
-      <br />
+  <div class="home-container">
+    <div class="nav" style="height: 50px;">
+      <div class="nav-left">
+        <div class="nav-brand px-20">
+          <h4>GitSupreme</h4>
+        </div>
+      </div>
+      <div class="nav-right">
+        <router-link to="/login" class="button primary">
+          Login
+          <i class="fas fa-xs fa-arrow-right" />
+        </router-link>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-6-lg">
+          <div class="is-vertical-align" style="height: calc(100vh - 80px)">
+            <div class="p-20">
+              <h1 class="error-code">
+                <span></span>
+                <br />made easy
+              </h1>
+              <router-link to="/login" class="button primary get-started ml-20 mt-50">
+                Get Started
+                <i class="fas fa-sm fa-arrow-right" />
+              </router-link>
+            </div>
+          </div>
+        </div>
+        <div class="col-6-lg"></div>
+      </div>
+    </div>
+    <div class="is-center" style="height: 30px;">
+      <i class="fas fa-arrow-down" />
     </div>
   </div>
 </template>
@@ -23,8 +47,8 @@ export default {
   data() {
     return {
       options: {
-        strings: ["Build", "Collaborate", "Share"],
-        typeSpeed: 40,
+        strings: ["Collaboration", "Tracking"],
+        typeSpeed: 100,
         loop: true
       }
     };
@@ -37,16 +61,33 @@ export default {
 
 <style lang="scss" scoped>
 h1.error-code {
-  font-size: 5rem;
+  font-size: 6rem;
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
-.button {
+.button.get-started {
   transform: scale(1.2);
 }
 
-.centered-container {
+.fa-arrow-down {
+  animation: 2s upDown infinite;
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+// .centered-container {
+.home-container {
   background-image: radial-gradient(
     circle farthest-corner at 10% 20%,
     rgba(239, 246, 249, 1) 0%,

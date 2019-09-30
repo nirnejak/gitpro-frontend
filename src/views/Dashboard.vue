@@ -101,7 +101,7 @@
             </h3>
             <p class="text-dark text-center">
               This section only shows already fetched/processed activities. To fetch/process more activities, goto
-              <router-link to="activities">Activities</router-link>section
+              <router-link to="activities">Activities</router-link> section.
             </p>
           </div>
 

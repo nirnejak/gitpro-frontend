@@ -23,10 +23,6 @@ body {
   color: var(--body-color);
 }
 
-.bg-card {
-  background: var(--card-background);
-}
-
 @import "components/collaborator-avatar";
 
 @import "utils/main";
