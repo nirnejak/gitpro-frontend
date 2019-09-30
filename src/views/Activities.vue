@@ -190,6 +190,7 @@ export default {
       ownerAndRepo: `${repo.owner}/${repo.name}`
     }));
     this.collaborators = collaborators_res.data.map(collab => collab.login);
+    this.collaborators.push(this.user.login);
     this.formDataLoading = false;
 
     let collaborator = this.$router.history.current.query.collaborator;
