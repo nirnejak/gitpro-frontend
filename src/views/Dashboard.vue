@@ -46,7 +46,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12" v-if="collaborators">
+          <div class="col-12" v-if="collaborators.length">
             <div class="row">
               <div
                 class="col-2 p-5 collaborator-avatar-container"
@@ -65,6 +65,16 @@
                   </div>
                   <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
                   <small class="text-center text-dark is-center">{{collaborator.login}}</small>
+                </router-link>
+              </div>
+              <div class="col-2 p-5 collaborator-avatar-container">
+                <router-link to="/collaborators/">
+                  <div
+                    class="bg-light rounded-circle bg-cover is-center"
+                    style="width: var(--avatar-dimension); height: var(--avatar-dimension);"
+                  >
+                    <span class="text-high-contrast">View All</span>
+                  </div>
                 </router-link>
               </div>
             </div>
@@ -89,10 +99,9 @@
             <h3 class="text-center text-dark my-20">
               <br />No Activity
             </h3>
-            <p
-              class="text-dark text-center"
-            >
-            This section only shows already fetched activities. To fetch more activities, goto <router-link to="activities">Activities</router-link> section
+            <p class="text-dark text-center">
+              This section only shows already fetched/processed activities. To fetch/process more activities, goto
+              <router-link to="activities">Activities</router-link>section
             </p>
           </div>
 
@@ -211,7 +220,7 @@ export default {
     });
     axios.get("/collaborators").then(res => {
       this.collaboratorLoading = false;
-      this.collaborators = res.data;
+      this.collaborators = res.data.filter((collaborator, index) => index < 5);
     });
 
     setTimeout(() => (this.showSnakeBar = true), 2000);
