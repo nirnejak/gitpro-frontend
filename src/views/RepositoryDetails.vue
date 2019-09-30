@@ -57,7 +57,7 @@
               <i class="fas fa-sync-alt" />&nbsp;
               Refersh Data
             </button>
-            <button type="submit" class="button clear px-10" @click="showModal = true">
+            <button type="submit" class="button clear px-10" @click="showModal = true" v-if="user.login === repository.owner">
               <i class="fas fa-plus" />&nbsp;
               Add Collaborator
             </button>
@@ -82,8 +82,9 @@
                 :id="collaborator.login"
                 class="d-none"
                 @change="addRemoveCollaborator(collaborator.login)"
+                v-if="user.login === repository.owner"
               />
-              <label :for="collaborator.login" class="collaborator-check-label">
+              <label :for="collaborator.login" class="collaborator-check-label" v-if="user.login === repository.owner">
                 <i class="fas fa-check-circle text-light" />
               </label>
               <router-link :to="`/collaborators/${collaborator.login}`">
