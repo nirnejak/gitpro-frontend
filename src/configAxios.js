@@ -40,10 +40,12 @@ axios.interceptors.response.use(
       }
     }
     if (error.message === 'Network Error' && process.env.NODE_ENV === 'production') {
+      Sentry.captureException(error)
       if (__VUE_DEVTOOLS_TOAST__) __VUE_DEVTOOLS_TOAST__(error.message, 'error')
       window.location.href = '/error/0'
     }
     if (error.code === 'ECONNABORTED') {
+      Sentry.captureException(error)
       localStorage.errorMessage = 'Request Timeout'
       window.location.href = '/error/1'
       if (__VUE_DEVTOOLS_TOAST__) __VUE_DEVTOOLS_TOAST__('Request Timeout', 'error')
