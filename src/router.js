@@ -44,6 +44,7 @@ export default new Router({
           if (to.query.token) {
             localStorage.login = to.query.login
             localStorage.jwtToken = to.query.token
+            console.log("here")
             next({ path: '/dashboard' })
           } else {
             next({ path: '/login' })
