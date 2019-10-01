@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as Sentry from '@sentry/browser'
 
 if (process.env.NODE_ENV === 'production') {
-  axios.defaults.baseURL = 'https://github-supreme.herokuapp.com'
+  axios.defaults.baseURL = 'https://github-supreme.herokuapp.com/api'
 } else {
   axios.defaults.baseURL = 'http://localhost:5000/api'
 }
