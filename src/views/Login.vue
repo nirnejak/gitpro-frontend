@@ -18,10 +18,10 @@ export default {
     loginUrl: ""
   },
   created() {
-    if (process.env.NODE_ENV === "development") {
-      this.loginUrl = "http://localhost:5000/auth/github";
-    } else {
+    if (process.env.NODE_ENV === "production") {
       this.loginUrl = "https://github-supreme.herokuapp.com/auth/github";
+    } else {
+      this.loginUrl = "http://localhost:5000/auth/github";
     }
   }
 };
