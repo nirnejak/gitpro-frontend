@@ -23,8 +23,7 @@ axios.interceptors.response.use(
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
           Sentry.captureException(error)
           localStorage.errorMessage = error.response.data.message
-          let redirect = window.confirm('Confirm Redirect')
-          if (redirect) window.location.href = `/error/${error.response.status}`
+          window.location.href = `/error/${error.response.status}`
         } else {
           if (__VUE_DEVTOOLS_TOAST__) __VUE_DEVTOOLS_TOAST__(error.response.data.message || '404 Not Found', 'error')
         }
