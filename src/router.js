@@ -38,15 +38,12 @@ export default new Router({
       name: 'dashboard',
       component: () => import('./views/Dashboard.vue'),
       beforeEnter: (to, from, next) => {
-        console.log("here0")
         if (localStorage.jwtToken) {
-          console.log("here1")
           next()
         } else {
           if (to.query.token) {
             localStorage.login = to.query.login
             localStorage.jwtToken = to.query.token
-            console.log("here2")
             next({ path: '/dashboard' })
           } else {
             next({ path: '/login' })

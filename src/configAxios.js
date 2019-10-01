@@ -1,4 +1,5 @@
 import axios from 'axios'
+import * as Sentry from '@sentry/browser'
 
 if (process.env.NODE_ENV === 'production') {
   axios.defaults.baseURL = 'https://github-supreme.herokuapp.com'
@@ -20,7 +21,7 @@ axios.interceptors.response.use(
         window.location.href = '/logout/'
       } else if (error.response.status === 404) {
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
-          // TODO: Capture Error through sentry
+          Sentry.captureException(error)
           localStorage.errorMessage = error.response.data.message
           window.location.href = `/error/${error.response.status}`
         } else {
@@ -28,7 +29,7 @@ axios.interceptors.response.use(
         }
       } else {
         if (process.env.NODE_ENV === 'production' && navigator.onLine) {
-          // TODO: Capture Error through sentry
+          Sentry.captureException(error)
           if (error.response.status.toString().startsWith('5')) {
             localStorage.errorMessage = error.response.data.message
             window.location.href = `/error/${error.response.status}`

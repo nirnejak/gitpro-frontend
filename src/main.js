@@ -8,10 +8,18 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 
+import * as Sentry from '@sentry/browser'
+import * as Integrations from '@sentry/integrations'
+
 import Message from 'vue-m-message'
 
 import 'circular-std'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
+
+Sentry.init({
+  dns: 'https://6b54e15a63de435681f11ef35cf13b10@sentry.io/1766629',
+  integrations: [new Integrations.Vue({Vue, attachProps: true})]
+})
 
 Vue.config.productionTip = false
 Vue.use(Message)
