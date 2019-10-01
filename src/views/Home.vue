@@ -20,7 +20,7 @@
             <div class="p-20">
               <h3>GitSupreme</h3>
               <h1 class="error-code" style="line-height: 7rem;">
-                <span>Collaboration</span>
+                <span></span>
                 <br />simplified
               </h1>
               <p

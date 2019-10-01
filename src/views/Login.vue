@@ -15,7 +15,7 @@
 export default {
   name: "Login",
   data: {
-    loginUrl: "http://localhost:5000/auth/github"
+    loginUrl: "https://github-supreme.herokuapp.com/auth/github"
   },
   created() {
     if (process.env.NODE_ENV === "production") {
