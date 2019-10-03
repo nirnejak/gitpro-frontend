@@ -26,10 +26,11 @@
               <p
                 class="text-dark mt-30"
               >A platform to make repository management and developer activity tracking easier.</p>
-              <router-link to="/login" class="button primary get-started ml-20 mt-50">
+              <a :href="loginUrl" class="button primary get-started ml-20 mt-50">
+                <i class="fab fa-sm fa-github" />&nbsp;
                 Get Started
                 <i class="fas fa-sm fa-arrow-right" />
-              </router-link>
+              </a>
             </div>
           </div>
         </div>
@@ -95,8 +96,16 @@ export default {
         strings: ["Collaboration", "Management", "Activity Tracking"],
         typeSpeed: 100,
         loop: true
-      }
+      },
+      loginUrl: ""
     };
+  },
+  created() {
+    if (process.env.NODE_ENV === "production") {
+      this.loginUrl = "https://github-supreme.herokuapp.com/auth/github";
+    } else {
+      this.loginUrl = "http://localhost:5000/auth/github";
+    }
   },
   mounted() {
     const typed = new Typed("span", this.options);

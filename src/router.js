@@ -13,25 +13,19 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('./views/About.vue')
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('./views/Login.vue'),
+      component: Home,
       beforeEnter: (to, from, next) => {
         if (localStorage.jwtToken) {
-          // TODO: Toast Message - Already Logged In
           next({ path: '/dashboard' })
         } else {
           next()
         }
       }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('./views/About.vue')
     },
     {
       path: '/dashboard',
