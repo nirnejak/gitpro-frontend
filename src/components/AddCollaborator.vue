@@ -89,6 +89,9 @@ export default {
   components: { Autocomplete },
   data() {
     return {
+      user: {
+        login: localStorage.login
+      },
       selectedUser: {},
       search: "",
       sort: "not-sorted",
@@ -99,7 +102,9 @@ export default {
   },
   created() {
     axios.get("/repositories").then(res => {
-      this.repositoriesOriginal = res.data;
+      this.repositoriesOriginal = res.data.filter(
+        repo => repo.owner === this.user.login
+      );
       this.repositories = this.repositoriesOriginal;
     });
   },
