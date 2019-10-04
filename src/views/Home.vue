@@ -93,7 +93,7 @@ export default {
   data() {
     return {
       options: {
-        strings: ["Collaboration", "Management", "Activity Tracking"],
+        strings: ["Collaboration", "Repo Management", "Activity Tracking"],
         typeSpeed: 100,
         loop: true
       },

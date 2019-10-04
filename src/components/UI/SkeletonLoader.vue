@@ -1,6 +1,6 @@
 <template>
   <div class="loader" :style="{width, height, 'border-radius': radius}">
-    <div class="gradient"/>
+    <div class="gradient" />
   </div>
 </template>
 
