@@ -40,7 +40,7 @@ export default new Router({
             localStorage.jwtToken = to.query.token
             next({ path: '/dashboard' })
           } else {
-            next({ path: '/login' })
+            next({ path: '/' })
           }
         }
       }
@@ -51,7 +51,7 @@ export default new Router({
       component: () => import('./views/Collaborators.vue'),
       beforeEnter: (to, from, next) => {
         if (localStorage.jwtToken) next()
-        else next({ path: '/login' })
+        else next({ path: '/' })
       }
     },
     {
@@ -60,7 +60,7 @@ export default new Router({
       component: () => import('./views/CollaboratorDetails.vue'),
       beforeEnter: (to, from, next) => {
         if (localStorage.jwtToken) next()
-        else next({ path: '/login' })
+        else next({ path: '/' })
       }
     },
     {
@@ -69,7 +69,7 @@ export default new Router({
       component: () => import('./views/Repositories.vue'),
       beforeEnter: (to, from, next) => {
         if (localStorage.jwtToken) next()
-        else next({ path: '/login' })
+        else next({ path: '/' })
       }
     },
     {
@@ -78,7 +78,7 @@ export default new Router({
       component: () => import('./views/RepositoryDetails.vue'),
       beforeEnter: (to, from, next) => {
         if (localStorage.jwtToken) next()
-        else next({ path: '/login' })
+        else next({ path: '/' })
       }
     },
     {
@@ -87,7 +87,7 @@ export default new Router({
       component: () => import('./views/Activities.vue'),
       beforeEnter: (to, from, next) => {
         if (localStorage.jwtToken) next()
-        else next({ path: '/login' })
+        else next({ path: '/' })
       }
     },
     {
@@ -96,7 +96,7 @@ export default new Router({
       component: () => import('./views/Teams.vue'),
       beforeEnter: (to, from, next) => {
         if (localStorage.jwtToken) next()
-        else next({ path: '/login' })
+        else next({ path: '/' })
       }
     },
     {
@@ -105,7 +105,7 @@ export default new Router({
       component: () => import('./views/Settings.vue'),
       beforeEnter: (to, from, next) => {
         if (localStorage.jwtToken) next()
-        else next({ path: '/login' })
+        else next({ path: '/' })
       }
     },
     {
