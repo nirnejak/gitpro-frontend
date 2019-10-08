@@ -133,7 +133,7 @@ export default {
         { isFavourite }
       );
       this.repositoriesOriginal = this.repositoriesOriginal.map(repo => {
-        if (repo.name === res.data.name) {
+        if (repo.name === res.data.name && repo.owner === res.data.owner) {
           repo.isFavourite = res.data.isFavourite;
           return repo;
         }
