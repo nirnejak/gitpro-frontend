@@ -68,7 +68,7 @@
             </button>
             <button class="button clear text-dark px-10" @click="refreshData">
               <i class="fas fa-sync-alt" />&nbsp;
-              Refersh Data
+              Refresh Data
             </button>
             <button type="submit" class="button clear px-10" @click="showModal = true">
               <i class="fas fa-plus" />&nbsp;

@@ -4,7 +4,17 @@
     <SnackBar :show="showSnakeBar" :message="message" type="primary" :hideSnackBar="hideSnackBar" />
     <div class="col-9-lg pt-70">
       <div class="px-20">
-        <h1>Dashboard</h1>
+        <div class="row">
+          <div class="col-6">
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-6">
+            <button class="button clear text-dark px-10" @click="refreshData">
+              <i class="fas fa-sync-alt" />&nbsp;
+              Refresh Data
+            </button>
+          </div>
+        </div>
         <div class="row" v-if="userLoading">
           <div class="col-4" v-for="i in 3" :key="i">
             <SkeletonLoader width="100%" height="70px" radius="10px" class="my-10" />
@@ -53,33 +63,33 @@
                 v-for="collaborator in collaborators"
                 :key="collaborator.login"
               >
-              <div class="collaborator-avatar-container">
-                <router-link :to="`/collaborators/${collaborator.login}`">
-                  <div class="is-center">
-                    <div class="collaborator-avatar position-relative">
-                      <div
-                        class="bg-card rounded-circle bg-cover"
-                        :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
-                      />
-                      <div class="overlay rounded-circle" />
+                <div class="collaborator-avatar-container">
+                  <router-link :to="`/collaborators/${collaborator.login}`">
+                    <div class="is-center">
+                      <div class="collaborator-avatar position-relative">
+                        <div
+                          class="bg-card rounded-circle bg-cover"
+                          :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
+                        />
+                        <div class="overlay rounded-circle" />
+                      </div>
                     </div>
-                  </div>
-                  <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
-                  <small class="text-center text-dark is-center">{{collaborator.login}}</small>
-                </router-link>
-              </div>
+                    <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
+                    <small class="text-center text-dark is-center">{{collaborator.login}}</small>
+                  </router-link>
+                </div>
               </div>
               <div class="col-2 p-5">
-              <div class="collaborator-avatar-container">
-                <router-link to="/collaborators/">
-                  <div
-                    class="bg-light rounded-circle bg-cover is-center"
-                    style="width: var(--avatar-dimension); height: var(--avatar-dimension);"
-                  >
-                    <span class="text-high-contrast">View All</span>
-                  </div>
-                </router-link>
-              </div>
+                <div class="collaborator-avatar-container">
+                  <router-link to="/collaborators/">
+                    <div
+                      class="bg-light rounded-circle bg-cover is-center"
+                      style="width: var(--avatar-dimension); height: var(--avatar-dimension);"
+                    >
+                      <span class="text-high-contrast">View All</span>
+                    </div>
+                  </router-link>
+                </div>
               </div>
             </div>
           </div>
@@ -105,7 +115,7 @@
             </h3>
             <p class="text-dark text-center">
               This section only shows already fetched/processed activities. To fetch/process more activities, goto
-              <router-link to="activities">Activities</router-link> section.
+              <router-link to="activities">Activities</router-link>section.
             </p>
           </div>
 
@@ -232,6 +242,15 @@ export default {
   methods: {
     hideSnackBar() {
       this.showSnakeBar = false;
+    },
+    refreshData() {
+      axios.get("/fetch/repositories/").then(res => {
+        this.$message.success({
+          message: res.data.message,
+          position: "bottom-right",
+          showClose: true
+        });
+      });
     }
   }
 };
