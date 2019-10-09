@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="is-center">
-      <button class="button primary" @click="AddToRepos">Add</button>
+      <button class="button primary" @click="addToRepos">Add</button>
     </div>
   </div>
 </template>
