@@ -83,7 +83,7 @@
                 <div class="collaborator-avatar-container">
                   <router-link to="/collaborators/">
                     <div
-                      class="bg-light rounded-circle bg-cover is-center"
+                      class="bg-card rounded-circle bg-cover is-center"
                       style="width: var(--avatar-dimension); height: var(--avatar-dimension);"
                     >
                       <span class="text-high-contrast">View All</span>
@@ -115,7 +115,7 @@
             </h3>
             <p class="text-dark text-center">
               This section only shows already fetched/processed activities. To fetch/process more activities, goto
-              <router-link to="activities">Activities</router-link>section.
+              <router-link to="activities">Activities</router-link> section.
             </p>
           </div>
 
