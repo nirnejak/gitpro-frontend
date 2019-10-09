@@ -3,7 +3,7 @@
     <!-- <div class="nav" style="height: 50px;">
       <div class="nav-left">
         <div class="nav-brand px-20">
-          <h4>GitSupreme</h4>
+          <h4>GitPro</h4>
         </div>
       </div>
       <div class="nav-right">
@@ -18,7 +18,7 @@
         <div class="col-6-lg">
           <div class="is-vertical-align" style="height: calc(100vh - 30px)">
             <div class="p-20">
-              <h3>GitSupreme</h3>
+              <h3>GitPro</h3>
               <h1 class="error-code" style="line-height: 7rem;">
                 <span></span>
                 <br />simplified

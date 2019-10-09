@@ -170,7 +170,7 @@ export default {
       collaborators: [],
       collaboratorLoading: true,
       userLoading: true,
-      message: "Welcome to GitSupreme",
+      message: "Welcome to GitPro",
       showSnakeBar: false,
       favourite_repositories: [],
 
