@@ -58,6 +58,9 @@ export default {
   props: ["collaborator", "hideModal", "alreadyCollaborator"],
   data() {
     return {
+      user: {
+        login: localStorage.login
+      },
       search: "",
       sort: "not-sorted",
       repositoriesOriginal: [],
@@ -68,13 +71,15 @@ export default {
   created() {
     axios.get("/repositories").then(res => {
       // Filter out the Repos user already has access to
-      this.repositoriesOriginal = res.data.filter(repo => {
-        for (let i = 0; i < this.$props.alreadyCollaborator.length; i++) {
-          if (this.$props.alreadyCollaborator[i].name === repo.name)
-            return false;
-        }
-        return true;
-      });
+      this.repositoriesOriginal = res.data
+        .filter(repo => repo.owner === this.user.login)
+        .filter(repo => {
+          for (let i = 0; i < this.$props.alreadyCollaborator.length; i++) {
+            if (this.$props.alreadyCollaborator[i].name === repo.name)
+              return false;
+          }
+          return true;
+        });
       this.repositories = this.repositoriesOriginal;
     });
   },
