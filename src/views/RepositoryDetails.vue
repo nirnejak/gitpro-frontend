@@ -72,10 +72,11 @@
             </div>
           </div>
           <div
-            class="col-2 p-5 collaborator-avatar-container pb-30"
+            class="col-2 p-5 pb-30"
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
+          <div class="collaborator-avatar-container">
             <div class="is-center">
               <input
                 type="checkbox"
@@ -104,6 +105,7 @@
             <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${$route.params.name}&owner=${$route.params.owner}`">
               <small class="text-center text-primary is-center">View Activity</small>
             </router-link>
+          </div>
           </div>
         </div>
       </div>

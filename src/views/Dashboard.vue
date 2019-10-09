@@ -49,10 +49,11 @@
           <div class="col-12" v-if="collaborators.length">
             <div class="row">
               <div
-                class="col-2 p-5 collaborator-avatar-container"
+                class="col-2 p-5"
                 v-for="collaborator in collaborators"
                 :key="collaborator.login"
               >
+              <div class="collaborator-avatar-container">
                 <router-link :to="`/collaborators/${collaborator.login}`">
                   <div class="is-center">
                     <div class="collaborator-avatar position-relative">
@@ -67,7 +68,9 @@
                   <small class="text-center text-dark is-center">{{collaborator.login}}</small>
                 </router-link>
               </div>
-              <div class="col-2 p-5 collaborator-avatar-container">
+              </div>
+              <div class="col-2 p-5">
+              <div class="collaborator-avatar-container">
                 <router-link to="/collaborators/">
                   <div
                     class="bg-light rounded-circle bg-cover is-center"
@@ -76,6 +79,7 @@
                     <span class="text-high-contrast">View All</span>
                   </div>
                 </router-link>
+              </div>
               </div>
             </div>
           </div>

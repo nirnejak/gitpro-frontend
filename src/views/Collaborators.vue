@@ -28,10 +28,11 @@
         </div>
         <div class="row">
           <div
-            class="col-2 p-5 collaborator-avatar-container pb-30"
+            class="col-2 p-5 pb-30"
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
+          <div class="collaborator-avatar-container">
             <router-link :to="`/collaborators/${collaborator.login}`">
               <div class="is-center">
                 <div class="collaborator-avatar position-relative is-center">
@@ -45,6 +46,7 @@
               <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
               <small class="text-center text-dark is-center">{{collaborator.login}}</small>
             </router-link>
+          </div>
           </div>
         </div>
       </div>

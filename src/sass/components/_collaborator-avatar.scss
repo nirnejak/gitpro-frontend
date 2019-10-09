@@ -12,12 +12,12 @@
 }
 
 .collaborator-avatar-container {
-  // transform: translateY(10px);
+  transform: translateY(10px);
   transition: transform 0.5s ease;
 }
 
 .collaborator-avatar:hover {
-  // transform: translateY(-5px);
+  transform: translateY(-5px);
   transition: 0.5s ease;
   & .overlay {
     transition: 0.5s ease;

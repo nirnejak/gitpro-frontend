@@ -13,11 +13,12 @@
     <div class="collaborator-list-container mb-15">
       <div class="row">
         <div
-          class="col-3 p-5 collaborator-avatar-container"
+          class="col-3 p-5"
           v-for="collaborator in collaborators"
           :key="collaborator.login"
           @click="selectCollaborator(collaborator.login)"
         >
+        <div class="collaborator-avatar-container">
           <div class="is-center">
             <input
               type="checkbox"
@@ -49,6 +50,7 @@
             <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
             <small class="text-center text-dark is-center">{{collaborator.login}}</small>
           </label>
+          </div>
         </div>
       </div>
     </div>
