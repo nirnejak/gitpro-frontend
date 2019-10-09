@@ -8,7 +8,7 @@
           <div class="col-6">
             <h1>Dashboard</h1>
           </div>
-          <div class="col-6">
+          <div class="col-6 text-right">
             <button class="button clear text-dark px-10" @click="refreshData">
               <i class="fas fa-sync-alt" />&nbsp;
               Refresh Data
@@ -246,7 +246,7 @@ export default {
     refreshData() {
       axios.get("/fetch/repositories/").then(res => {
         this.$message.success({
-          message: res.data.message,
+          message: "Fetching Latest Data",
           position: "bottom-right",
           showClose: true
         });
