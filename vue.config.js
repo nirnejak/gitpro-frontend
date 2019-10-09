@@ -1,3 +1,15 @@
 module.exports = {
-  lintOnSave: false
+  lintOnSave: false,
+
+  pluginOptions: {
+    prerenderSpa: {
+      registry: undefined,
+      renderRoutes: [
+        '/'
+      ],
+      useRenderEvent: true,
+      headless: true,
+      onlyProduction: true
+    }
+  }
 }
