@@ -100,6 +100,15 @@ export default new Router({
       }
     },
     {
+      path: '/insights',
+      name: 'insights',
+      component: () => import('./views/Insights.vue'),
+      beforeEnter: (to, from, next) => {
+        if (localStorage.jwtToken) next()
+        else next({ path: '/' })
+      }
+    },
+    {
       path: '/settings',
       name: 'settings',
       component: () => import('./views/Settings.vue'),

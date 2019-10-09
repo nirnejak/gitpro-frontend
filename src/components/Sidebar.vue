@@ -31,6 +31,10 @@
         <i class="fas fa-columns" />
         Activities
       </router-link>
+      <router-link to="/insights" class="sidebar-link" active-class="active">
+        <i class="fas fa-chart-pie" />
+        Insights
+      </router-link>
       <router-link to="/settings" class="sidebar-link" active-class="active">
         <i class="fas fa-cog" />
         Settings
