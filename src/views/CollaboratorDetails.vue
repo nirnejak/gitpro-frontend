@@ -108,9 +108,7 @@
                     <router-link
                       :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}&owner=${repository.owner}`"
                       class="text-primary"
-                    >
-                      View Activity
-                    </router-link>
+                    >View Activity</router-link>
                   </div>
                 </div>
               </div>

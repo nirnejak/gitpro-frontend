@@ -13,7 +13,7 @@
                   <ToggleButton @change="includePublicToggle" id="includePublicToggle" />
                 </div>
               </div>
-              <br /> -->
+              <br />-->
               <div class="row">
                 <div class="col-10 is-vertical-align">Dark Mode</div>
                 <div class="col-2 is-center">

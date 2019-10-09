@@ -32,21 +32,21 @@
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
-          <div class="collaborator-avatar-container">
-            <router-link :to="`/collaborators/${collaborator.login}`">
-              <div class="is-center">
-                <div class="collaborator-avatar position-relative is-center">
-                  <div
-                    class="bg-card rounded-circle bg-cover"
-                    :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
-                  />
-                  <div class="overlay rounded-circle" />
+            <div class="collaborator-avatar-container">
+              <router-link :to="`/collaborators/${collaborator.login}`">
+                <div class="is-center">
+                  <div class="collaborator-avatar position-relative is-center">
+                    <div
+                      class="bg-card rounded-circle bg-cover"
+                      :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
+                    />
+                    <div class="overlay rounded-circle" />
+                  </div>
                 </div>
-              </div>
-              <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
-              <small class="text-center text-dark is-center">{{collaborator.login}}</small>
-            </router-link>
-          </div>
+                <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
+                <small class="text-center text-dark is-center">{{collaborator.login}}</small>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>

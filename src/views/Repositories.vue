@@ -27,7 +27,10 @@
             <div class="bg-card border-radius-5 p-20 my-10">
               <div class="row">
                 <div class="col-10 text-overflow-ellipsis">
-                  <router-link :to="`/repositories/${repository.owner}/${repository.name}`" class="text-high-contrast">
+                  <router-link
+                    :to="`/repositories/${repository.owner}/${repository.name}`"
+                    class="text-high-contrast"
+                  >
                     <i class="fas fa-code-branch mr-5" />
                     {{repository.owner}}/{{repository.name}}
                   </router-link>
@@ -55,7 +58,10 @@
             <div class="bg-card border-radius-5 p-20 my-10">
               <div class="row">
                 <div class="col-10 text-overflow-ellipsis">
-                  <router-link :to="`/repositories/${repository.owner}/${repository.name}`" class="text-high-contrast">
+                  <router-link
+                    :to="`/repositories/${repository.owner}/${repository.name}`"
+                    class="text-high-contrast"
+                  >
                     <i class="fas fa-code-branch mr-5" />
                     {{repository.owner}}/{{repository.name}}
                   </router-link>

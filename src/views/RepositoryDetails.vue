@@ -18,7 +18,10 @@
           <div class="col-7-lg is-vertical-align">
             <div>
               <h1 class="m-0">{{$route.params.name}}</h1>
-              <p class="text-dark mb-5">by <span class="text-high-contrast">{{repository.owner}}</span></p>
+              <p class="text-dark mb-5">
+                by
+                <span class="text-high-contrast">{{repository.owner}}</span>
+              </p>
               <p class="text-dark">{{repository.description}}</p>
               <SkeletonLoader
                 width="100%"
@@ -58,7 +61,12 @@
               <i class="fas fa-sync-alt" />&nbsp;
               Refersh Data
             </button>
-            <button type="submit" class="button clear px-10" @click="showModal = true" v-if="user.login === repository.owner">
+            <button
+              type="submit"
+              class="button clear px-10"
+              @click="showModal = true"
+              v-if="user.login === repository.owner"
+            >
               <i class="fas fa-plus" />&nbsp;
               Add Collaborator
             </button>
@@ -76,36 +84,44 @@
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
-          <div class="collaborator-avatar-container">
-            <div class="is-center">
-              <input
-                type="checkbox"
-                :name="collaborator.login"
-                :id="collaborator.login"
-                class="d-none"
-                @change="addRemoveCollaborator(collaborator.login)"
-                v-if="user.login === repository.owner"
-              />
-              <label :for="collaborator.login" class="collaborator-check-label" v-if="user.login === repository.owner">
-                <i class="fas fa-check-circle text-light" />
-              </label>
+            <div class="collaborator-avatar-container">
+              <div class="is-center">
+                <input
+                  type="checkbox"
+                  :name="collaborator.login"
+                  :id="collaborator.login"
+                  class="d-none"
+                  @change="addRemoveCollaborator(collaborator.login)"
+                  v-if="user.login === repository.owner"
+                />
+                <label
+                  :for="collaborator.login"
+                  class="collaborator-check-label"
+                  v-if="user.login === repository.owner"
+                >
+                  <i class="fas fa-check-circle text-light" />
+                </label>
+                <router-link :to="`/collaborators/${collaborator.login}`">
+                  <div class="collaborator-avatar position-relative">
+                    <div
+                      class="bg-card rounded-circle bg-cover"
+                      :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
+                    />
+                    <div class="overlay rounded-circle" />
+                  </div>
+                </router-link>
+              </div>
               <router-link :to="`/collaborators/${collaborator.login}`">
-                <div class="collaborator-avatar position-relative">
-                  <div
-                    class="bg-card rounded-circle bg-cover"
-                    :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
-                  />
-                  <div class="overlay rounded-circle" />
-                </div>
+                <p
+                  class="text-center mt-10 text-high-contrast"
+                >{{collaborator.name || collaborator.login}}</p>
+              </router-link>
+              <router-link
+                :to="`/activities/?collaborator=${collaborator.login}&repository=${$route.params.name}&owner=${$route.params.owner}`"
+              >
+                <small class="text-center text-primary is-center">View Activity</small>
               </router-link>
             </div>
-            <router-link :to="`/collaborators/${collaborator.login}`">
-              <p class="text-center mt-10 text-high-contrast">{{collaborator.name || collaborator.login}}</p>
-            </router-link>
-            <router-link :to="`/activities/?collaborator=${collaborator.login}&repository=${$route.params.name}&owner=${$route.params.owner}`">
-              <small class="text-center text-primary is-center">View Activity</small>
-            </router-link>
-          </div>
           </div>
         </div>
       </div>
@@ -135,11 +151,15 @@ export default {
     };
   },
   created() {
-    axios.get(`/repositories/${this.$route.params.owner}/${this.$route.params.name}`).then(res => {
-      this.repositoryDetailsLoading = false;
-      this.repository = res.data.repository;
-      this.collaborators = res.data.collaborators;
-    });
+    axios
+      .get(
+        `/repositories/${this.$route.params.owner}/${this.$route.params.name}`
+      )
+      .then(res => {
+        this.repositoryDetailsLoading = false;
+        this.repository = res.data.repository;
+        this.collaborators = res.data.collaborators;
+      });
   },
   methods: {
     revokeAccess() {
