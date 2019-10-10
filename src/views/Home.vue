@@ -45,15 +45,15 @@
         <i
           class="fas fa-arrow-down cursor-pointer"
           v-scroll-to="{
-            el: '#featuresSection',
+            el: '#manageContributorsSection',
             duration: 2000,
-            easing: [.6, .80, .30, 1.9],
-            offset: 200
+            offset: -50
+            // easing: [.6, .80, .30, 1.9],
           }"
         />
       </div>
 
-      <div class="row py-100">
+      <div class="row py-100" id="manageContributorsSection">
         <div class="col-6-lg">
           <div class="is-vertical-align">
             <img src="@/assets/collaboration.svg" alt width="80%" />
@@ -73,41 +73,30 @@
         <div class="col-6-lg">
           <div class="is-vertical-align">
             <div class="p-40">
-              <h1>Manage Contributors</h1>
+              <h1>See Activity</h1>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam pariatur inventore expedita laudantium! Quaerat veniam officiis provident quasi, doloribus voluptas consectetur nobis incidunt eveniet sequi? Accusamus autem temporibus suscipit blanditiis!</p>
             </div>
           </div>
         </div>
         <div class="col-6-lg">
           <div class="is-vertical-align">
-            <img src="@/assets/collaboration.svg" alt width="80%" />
+            <img src="@/assets/developer_activity.svg" alt width="80%" />
           </div>
         </div>
       </div>
 
-      <div class="row py-100" id="featuresSection">
-        <div class="col-4">
-          <div class="card card-shadow border-radius-10 p-30 mx-20">
-            <h3 class="text-center">Manage Contributors</h3>
-            <p
-              class="text-dark text-left"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint magnam eos corrupti pariatur rem! Itaque repudiandae quidem amet vitae nam nemo nisi id! Aperiam, harum delectus! Facere et adipisci accusamus.</p>
+      <div class="row py-100">
+        <div class="col-6-lg">
+          <div class="is-vertical-align">
+            <img src="@/assets/collaboration.svg" alt width="80%" />
           </div>
         </div>
-        <div class="col-4">
-          <div class="card card-shadow border-radius-10 p-30 mx-20">
-            <h3 class="text-center">See Activity</h3>
-            <p
-              class="text-dark text-left"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint magnam eos corrupti pariatur rem! Itaque repudiandae quidem amet vitae nam nemo nisi id! Aperiam, harum delectus! Facere et adipisci accusamus.</p>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="card card-shadow border-radius-10 p-30 mx-20">
-            <h3 class="text-center">Feature Three</h3>
-            <p
-              class="text-dark text-left"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint magnam eos corrupti pariatur rem! Itaque repudiandae quidem amet vitae nam nemo nisi id! Aperiam, harum delectus! Facere et adipisci accusamus.</p>
+        <div class="col-6-lg">
+          <div class="is-vertical-align">
+            <div class="p-40">
+              <h1>Manage Contributors</h1>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam pariatur inventore expedita laudantium! Quaerat veniam officiis provident quasi, doloribus voluptas consectetur nobis incidunt eveniet sequi? Accusamus autem temporibus suscipit blanditiis!</p>
+            </div>
           </div>
         </div>
       </div>
