@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="col-6-lg">
-          <div class="is-vertical-align" style="height: calc(100vh - 30px)">
+          <div class="is-vertical-align is-center" style="height: calc(100vh - 30px)">
             <img src="@/assets/version_control.svg" alt width="80%" />
           </div>
         </div>
@@ -55,15 +55,20 @@
 
       <div class="row py-100" id="manageContributorsSection">
         <div class="col-6-lg">
-          <div class="is-vertical-align">
+          <div class="is-vertical-align is-center">
             <img src="@/assets/collaboration.svg" alt width="80%" />
           </div>
         </div>
         <div class="col-6-lg">
-          <div class="is-vertical-align">
+          <div class="is-vertical-align is-center">
             <div class="p-40">
               <h1>Manage Contributors</h1>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam pariatur inventore expedita laudantium! Quaerat veniam officiis provident quasi, doloribus voluptas consectetur nobis incidunt eveniet sequi? Accusamus autem temporibus suscipit blanditiis!</p>
+              <br />
+              <a href="#">
+                Learn More
+                <i class="fas fa-arrow-right ml-5" />
+              </a>
             </div>
           </div>
         </div>
@@ -71,15 +76,20 @@
 
       <div class="row py-100">
         <div class="col-6-lg">
-          <div class="is-vertical-align">
+          <div class="is-vertical-align is-center">
             <div class="p-40">
               <h1>See Activity</h1>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam pariatur inventore expedita laudantium! Quaerat veniam officiis provident quasi, doloribus voluptas consectetur nobis incidunt eveniet sequi? Accusamus autem temporibus suscipit blanditiis!</p>
+              <br />
+              <a href="#">
+                Learn More
+                <i class="fas fa-arrow-right ml-5" />
+              </a>
             </div>
           </div>
         </div>
         <div class="col-6-lg">
-          <div class="is-vertical-align">
+          <div class="is-vertical-align is-center">
             <img src="@/assets/developer_activity.svg" alt width="80%" />
           </div>
         </div>
@@ -87,19 +97,32 @@
 
       <div class="row py-100">
         <div class="col-6-lg">
-          <div class="is-vertical-align">
+          <div class="is-vertical-align is-center">
             <img src="@/assets/collaboration.svg" alt width="80%" />
           </div>
         </div>
         <div class="col-6-lg">
-          <div class="is-vertical-align">
+          <div class="is-vertical-align is-center">
             <div class="p-40">
               <h1>Manage Contributors</h1>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam pariatur inventore expedita laudantium! Quaerat veniam officiis provident quasi, doloribus voluptas consectetur nobis incidunt eveniet sequi? Accusamus autem temporibus suscipit blanditiis!</p>
+              <br />
+              <a href="#">
+                Learn More
+                <i class="fas fa-arrow-right ml-5" />
+              </a>
             </div>
           </div>
         </div>
       </div>
+
+      <footer>
+        <div class="row py-50">
+          <div class="col-4"></div>
+          <div class="col-4"></div>
+          <div class="col-4"></div>
+        </div>
+      </footer>
     </div>
   </div>
 </template>
