@@ -102,7 +102,7 @@ export default {
   },
   created() {
     if (process.env.NODE_ENV === "production") {
-      this.loginUrl = "https://github-supreme.herokuapp.com/auth/github";
+      this.loginUrl = "https://api.gitpro.app/auth/github";
     } else {
       this.loginUrl = "http://localhost:5000/auth/github";
     }
@@ -140,7 +140,6 @@ h1.error-code {
   }
 }
 
-// .centered-container {
 .home-container {
   background-image: radial-gradient(
     circle farthest-corner at 10% 20%,
