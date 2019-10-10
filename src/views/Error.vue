@@ -1,9 +1,9 @@
 <template>
   <div class="centered-container">
-    <div class="card bg-card text-center p-20 px-100">
+    <div class="card bg-card text-center p-0 py-100">
       <div v-if="$route.params.code === '404'">
-        <h1 class="error-code">404</h1>
-        <p class="text-dark">Not Found</p>
+        <img src="@/assets/404.svg" alt width="50%" />
+        <h1 class="text-dark mt-40 mb-0">Page not found</h1>
       </div>
       <div v-if="$route.params.code === '0'">
         <h1>Not Connected</h1>
