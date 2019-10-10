@@ -53,6 +53,38 @@
         />
       </div>
 
+      <div class="row py-100">
+        <div class="col-6-lg">
+          <div class="is-vertical-align">
+            <img src="@/assets/collaboration.svg" alt width="80%" />
+          </div>
+        </div>
+        <div class="col-6-lg">
+          <div class="is-vertical-align">
+            <div class="p-40">
+              <h1>Manage Contributors</h1>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam pariatur inventore expedita laudantium! Quaerat veniam officiis provident quasi, doloribus voluptas consectetur nobis incidunt eveniet sequi? Accusamus autem temporibus suscipit blanditiis!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row py-100">
+        <div class="col-6-lg">
+          <div class="is-vertical-align">
+            <div class="p-40">
+              <h1>Manage Contributors</h1>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam pariatur inventore expedita laudantium! Quaerat veniam officiis provident quasi, doloribus voluptas consectetur nobis incidunt eveniet sequi? Accusamus autem temporibus suscipit blanditiis!</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6-lg">
+          <div class="is-vertical-align">
+            <img src="@/assets/collaboration.svg" alt width="80%" />
+          </div>
+        </div>
+      </div>
+
       <div class="row py-100" id="featuresSection">
         <div class="col-4">
           <div class="card card-shadow border-radius-10 p-30 mx-20">

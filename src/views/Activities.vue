@@ -243,10 +243,7 @@ export default {
             this.activityLoading = false;
             this.activity = res.data;
             this.activity.contributions = this.activity.contributions.map(
-              commit => ({
-                ...commit,
-                isHidden: false
-              })
+              commit => ({ ...commit, isHidden: false })
             );
           });
       }
