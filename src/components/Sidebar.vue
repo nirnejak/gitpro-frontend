@@ -44,12 +44,11 @@
         Logout
       </router-link>
     </div>
-    <div class="sidebar-footer">
-      <div class="row pb-10">
-        <div class="col-3 is-center">
-          <small class="text-dark">Developed by <a href="https://inkoop.io" target="_blank">Inkoop.io</a></small>
-        </div>
-      </div>
+    <div class="sidebar-footer text-center pt-100">
+      <small class="text-dark">
+        Developed by
+        <a href="https://inkoop.io" target="_blank">Inkoop.io</a>
+      </small>
     </div>
   </div>
 </template>
@@ -110,12 +109,5 @@ export default {
     background: var(--color-primary);
     color: white;
   }
-}
-
-.sidebar-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
 }
 </style>
