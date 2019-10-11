@@ -149,6 +149,8 @@
 
 <script>
 import moment from "moment";
+import momentTimezone from "moment-timezone";
+
 import { Diff2Html } from "diff2html";
 import "diff2html/dist/diff2html.min.css";
 
@@ -166,6 +168,7 @@ export default {
       user: {
         login: localStorage.login
       },
+      tz: "",
       showSidebar: false,
       search: "",
       repositories: [],
@@ -183,6 +186,12 @@ export default {
     };
   },
   async created() {
+    // Set User Timezone
+    let time = new Date();
+    let timeZoneOffset = time.getTimezoneOffset();
+    let timeZone = momentTimezone.tz.guess();
+    this.tz = momentTimezone.tz.zone(timeZone).abbr(timeZoneOffset);
+
     const repositories_res = await axios.get("/repositories/");
     const collaborators_res = await axios.get("/collaborators/");
     this.repositories = repositories_res.data.map(repo => ({
@@ -235,6 +244,7 @@ export default {
           owner: this.selectedRepo.owner,
           after: moment(after).format("YYYY-MM-DD"),
           before: moment(before).format("YYYY-MM-DD"),
+          tz: this.tz,
           force: this.force
         };
         axios
