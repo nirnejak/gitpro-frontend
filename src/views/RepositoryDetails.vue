@@ -79,6 +79,30 @@
               </h3>
             </div>
           </div>
+          <div class="col-2 p-5 pb-30">
+            <div class="collaborator-avatar-container">
+              <div class="is-center">
+                <router-link to="/dashboard">
+                  <div class="collaborator-avatar position-relative">
+                    <div
+                      class="bg-card rounded-circle bg-cover"
+                      :style="`background-image: url(${user.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
+                    />
+                    <div class="overlay rounded-circle" />
+                  </div>
+                </router-link>
+              </div>
+              <router-link to="/dashboard">
+                <p class="text-center mt-10 text-high-contrast">{{user.name || user.login}}</p>
+              </router-link>
+              <router-link
+                :to="`/activities/?collaborator=${user.login}&repository=${$route.params.name}&owner=${$route.params.owner}`"
+              >
+                <small class="text-center text-primary is-center">View Activity</small>
+              </router-link>
+            </div>
+          </div>
+
           <div
             class="col-2 p-5 pb-30"
             v-for="collaborator in collaborators"
@@ -142,7 +166,11 @@ export default {
   components: { Sidebar, SkeletonLoader, Modal, AddCollaboratorsToRepo },
   data() {
     return {
-      user: { login: localStorage.login },
+      user: {
+        login: localStorage.login,
+        avatar_url: localStorage.avatar_url,
+        name: localStorage.name
+      },
       repository: {},
       collaborators: [],
       repositoryDetailsLoading: true,

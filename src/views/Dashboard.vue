@@ -98,7 +98,7 @@
         <div class="row mt-30">
           <div class="col-6">
             <h2 class="mb-0">Today's Activities</h2>
-            <div>
+            <div class="text-dark">
               <small>(in Favourite Repositories)</small>
             </div>
           </div>
