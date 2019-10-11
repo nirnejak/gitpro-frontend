@@ -19,13 +19,13 @@
         <i class="fas fa-users" />
         Teams
       </router-link>-->
-      <router-link to="/collaborators" class="sidebar-link" active-class="active">
-        <i class="fas fa-user" />
-        Collaborators
-      </router-link>
       <router-link to="/repositories" class="sidebar-link" active-class="active">
         <i class="fas fa-code-branch" />
         Repositories
+      </router-link>
+      <router-link to="/collaborators" class="sidebar-link" active-class="active">
+        <i class="fas fa-user" />
+        Collaborators
       </router-link>
       <router-link to="/activities" class="sidebar-link" active-class="active">
         <i class="fas fa-columns" />

@@ -49,6 +49,8 @@ $directions: ("top", "right", "bottom", "right");
 }
 
 .bg-card {
+  display: block;
+  color: var(--body-color);
   background: var(--card-background);
 }
 

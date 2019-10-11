@@ -30,6 +30,10 @@
                   :options="repositories"
                   :show-labels="false"
                 />
+                <div class="mt-15">
+                  <input type="checkbox" v-model="force" id="force" />
+                  <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
+                </div>
               </div>
               <div class="col-6-lg collaborator">
                 <p class="pb-5">Collaborator</p>
@@ -39,10 +43,6 @@
                   :options="collaborators"
                   :show-labels="false"
                 />
-                <div class="mt-15">
-                  <input type="checkbox" v-model="force" id="force" />
-                  <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
-                </div>
               </div>
             </div>
             <div class="row mt-10 sidebar-links">

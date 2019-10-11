@@ -22,25 +22,25 @@
         </div>
         <div class="row">
           <div class="col-4" v-if="!userLoading">
-            <div class="bg-card border-radius-10 p-20">
+            <router-link to="/repositories" class="bg-card border-radius-10 p-20">
               <i class="fas fa-code-branch mr-5" />
               {{user.total_repositories}}
               Total Repositories
-            </div>
+            </router-link>
           </div>
           <div class="col-4" v-if="!userLoading">
-            <div class="bg-card border-radius-10 p-20">
+            <router-link to="/collaborators" class="bg-card border-radius-10 p-20">
               <i class="fas fa-user mr-5" />
               {{user.total_collaborators}}
               Total Collaborators
-            </div>
+            </router-link>
           </div>
           <div class="col-4" v-if="!userLoading">
-            <div class="bg-card border-radius-10 p-20">
+            <router-link to="/activities" class="bg-card border-radius-10 p-20">
               <i class="fas fa-code mr-5" />
               {{activities.length}}
               Repositories with Activity
-            </div>
+            </router-link>
           </div>
         </div>
         <div class="row mt-30">
@@ -97,9 +97,9 @@
 
         <div class="row mt-30">
           <div class="col-6">
-            <h2>Today's Activities</h2>
+            <h2 class="mb-0">Today's Activities</h2>
+            <div><small>(in Favourite Repositories)</small></div>
           </div>
-          <div class="col-6 text-right text-dark pt-10">For Favourite Repositories</div>
         </div>
 
         <div class="row mb-20" v-if="activitiesLoading">
@@ -116,6 +116,9 @@
             <p class="text-dark text-center">
               This section only shows already fetched/processed activities for favourite repositories. To fetch/process more activities, goto
               <router-link to="activities">Activities</router-link>&nbsp;section.
+            </p>
+            <br/>
+            <p class="text-center">
               <router-link to="repositories">Add Favourite Repositories</router-link>
             </p>
           </div>
