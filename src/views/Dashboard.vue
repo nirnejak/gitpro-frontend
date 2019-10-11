@@ -83,10 +83,10 @@
                 <div class="collaborator-avatar-container">
                   <router-link to="/collaborators/">
                     <div
-                      class="bg-card rounded-circle bg-cover is-center"
+                      class="bg-card rounded-circle bg-cover"
                       style="width: var(--avatar-dimension); height: var(--avatar-dimension);"
                     >
-                      <span class="text-high-contrast">View All</span>
+                      <span class="text-high-contrast is-center pt-60">View All</span>
                     </div>
                   </router-link>
                 </div>
@@ -98,7 +98,9 @@
         <div class="row mt-30">
           <div class="col-6">
             <h2 class="mb-0">Today's Activities</h2>
-            <div><small>(in Favourite Repositories)</small></div>
+            <div>
+              <small>(in Favourite Repositories)</small>
+            </div>
           </div>
         </div>
 
@@ -113,7 +115,7 @@
             <h3 class="text-center text-dark my-20">
               <br />No Activity
             </h3>
-            <br/>
+            <br />
             <p class="text-center">
               This section only shows already fetched/processed activities on favourite repositories.
               <br />To fetch/process more activities, goto
