@@ -21,6 +21,16 @@
         <div class="col-12">
           <div class="bg-card border-radius-5 p-20 my-10">
             <div class="row">
+              <div class="col-6-lg repositories">
+                <p class="pb-5">Repository</p>
+                <multiselect
+                  placeholder="Select Repository"
+                  v-model="selectedRepo"
+                  label="ownerAndRepo"
+                  :options="repositories"
+                  :show-labels="false"
+                />
+              </div>
               <div class="col-6-lg collaborator">
                 <p class="pb-5">Collaborator</p>
                 <multiselect
@@ -33,16 +43,6 @@
                   <input type="checkbox" v-model="force" id="force" />
                   <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
                 </div>
-              </div>
-              <div class="col-6-lg repositories">
-                <p class="pb-5">Repository</p>
-                <multiselect
-                  placeholder="Select Repository"
-                  v-model="selectedRepo"
-                  label="ownerAndRepo"
-                  :options="repositories"
-                  :show-labels="false"
-                />
               </div>
             </div>
             <div class="row mt-10 sidebar-links">
