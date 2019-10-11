@@ -187,7 +187,9 @@ export default {
       favourite_repositories: [],
 
       activities: [],
-      activitiesLoading: true
+      activitiesLoading: true,
+
+      refreshCount: 0
     };
   },
   async created() {
@@ -246,6 +248,13 @@ export default {
       this.showSnakeBar = false;
     },
     refreshData() {
+      this.refreshCount += 1;
+      if (this.refreshCount > 1) {
+        let confirm = window.confirm(
+          "Refreshing data will count against your API Quota. Do you still want to continue?"
+        );
+        if (!confirm) return;
+      }
       axios.get("/fetch/repositories/").then(res => {
         this.$message.success({
           message: "Fetching Latest Data",
