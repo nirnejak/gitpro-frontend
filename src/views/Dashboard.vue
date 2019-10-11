@@ -113,12 +113,11 @@
             <h3 class="text-center text-dark my-20">
               <br />No Activity
             </h3>
-            <p class="text-dark text-center">
-              This section only shows already fetched/processed activities for favourite repositories. To fetch/process more activities, goto
-              <router-link to="activities">Activities</router-link>&nbsp;section.
-            </p>
             <br/>
             <p class="text-center">
+              This section only shows already fetched/processed activities on favourite repositories.
+              <br />To fetch/process more activities, goto
+              <router-link to="activities">Activities</router-link>&nbsp;section or
               <router-link to="repositories">Add Favourite Repositories</router-link>
             </p>
           </div>
@@ -189,7 +188,9 @@ export default {
       favourite_repositories: [],
 
       activities: [],
-      activitiesLoading: true
+      activitiesLoading: true,
+
+      refreshCount: 0
     };
   },
   async created() {
@@ -248,6 +249,13 @@ export default {
       this.showSnakeBar = false;
     },
     refreshData() {
+      this.refreshCount += 1;
+      if (this.refreshCount > 1) {
+        let confirm = window.confirm(
+          "Refreshing data will count against your API Quota. Do you still want to continue?"
+        );
+        if (!confirm) return;
+      }
       axios.get("/fetch/repositories/").then(res => {
         this.$message.success({
           message: "Fetching Latest Data",
