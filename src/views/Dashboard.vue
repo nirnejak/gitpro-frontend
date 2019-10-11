@@ -114,8 +114,9 @@
               <br />No Activity
             </h3>
             <p class="text-dark text-center">
-              This section only shows already fetched/processed activities for favourite repositories. To fetch/process more activities, goto
-              <router-link to="activities">Activities</router-link>&nbsp;section.
+              This section only shows already fetched/processed activities on favourite repositories.
+              <br />To fetch/process more activities, goto
+              <router-link to="activities">Activities</router-link>&nbsp;section or
               <router-link to="repositories">Add Favourite Repositories</router-link>
             </p>
           </div>
