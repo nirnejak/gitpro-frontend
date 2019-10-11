@@ -10,7 +10,7 @@
             <i class="fas fa-3x fa-paper-plane mb-10" />
             <h2>Coming Soon</h2>
             <p>
-              anything you'd like to see?
+              Anything you'd like to see?
               <a href="#" target="_blank">Tell Us</a>
             </p>
           </div>
