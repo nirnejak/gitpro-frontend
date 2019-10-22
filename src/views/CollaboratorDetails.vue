@@ -79,7 +79,9 @@
 
         <div class="row" v-if="collaboratorDetailsLoading">
           <div class="col-4" v-for="i in 4" :key="i">
-            <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10" />
+            <div class="m-10">
+              <SkeletonLoader width="100%" height="70px" radius="5px" />
+            </div>
           </div>
         </div>
 
@@ -96,8 +98,8 @@
               class="d-none"
               @change="addRemoveRepo(repository.name)"
             />
-            <label :for="repository.name" class="repo-checkbox my-10">
-              <div class="bg-card border-radius-5 p-20">
+            <label :for="repository.name" class="repo-checkbox">
+              <div class="bg-card border-radius-5 p-20 m-10">
                 <div class="row">
                   <div class="col-6 text-overflow-ellipsis">
                     <i class="fas fa-check-circle text-light mt-5 mr-10" />
@@ -130,19 +132,21 @@
 
         <div class="row" v-if="collaboratorDetailsLoading">
           <div class="col-4" v-for="i in 3" :key="i">
-            <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10" />
+            <div class="m-10">
+              <SkeletonLoader width="100%" height="70px" radius="5px" />
+            </div>
           </div>
         </div>
 
         <div class="row" v-if="collaborator">
           <div
-            class="col-4 my-20"
+            class="col-4"
             v-for="repository in commonRepositories"
             :key="`${repository.owner}/${repository.name}`"
           >
             <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
-            <label :for="repository.name" class="repo-checkbox my-10"></label>
-            <div class="bg-card border-radius-5 p-20">
+            <label :for="repository.name" class="repo-checkbox"></label>
+            <div class="bg-card border-radius-5 p-20 m-10">
               <div class="row">
                 <div class="col-10 text-overflow-ellipsis">
                   <i class="fas fa-code-branch" />
@@ -176,6 +180,21 @@
         <div class="row" v-if="activitiesLoading">
           <div class="col-12">
             <SkeletonLoader width="100%" height="300px" radius="5px" class="my-20" />
+          </div>
+        </div>
+
+        <div class="row mb-30">
+          <div class="col-12" v-if="!activitiesLoading && activityStats.length === 0">
+            <h3 class="text-center text-dark my-20">
+              <br />No Activity
+            </h3>
+            <br />
+            <p class="text-center">
+              This section only shows already fetched/processed activities on favourite repositories.
+              <br />To fetch/process more activities, goto
+              <router-link to="activities">Activities</router-link>&nbsp;section or
+              <router-link to="repositories">Add Favourite Repositories</router-link>
+            </p>
           </div>
         </div>
 

@@ -14,7 +14,9 @@
         </div>
         <div class="row" v-if="repositoriesLoading">
           <div class="col-4" v-for="i in 12" :key="i">
-            <SkeletonLoader width="100%" height="70px" radius="5px" class="my-10" />
+            <div class="m-10">
+              <SkeletonLoader width="100%" height="70px" radius="5px" />
+            </div>
           </div>
         </div>
 
@@ -24,7 +26,7 @@
             v-for="repository in starredRepositories"
             :key="`${repository.owner}/${repository.name}`"
           >
-            <div class="bg-card border-radius-5 p-20 my-10">
+            <div class="bg-card border-radius-5 p-20 m-10">
               <div class="row">
                 <div class="col-10 text-overflow-ellipsis">
                   <router-link
@@ -55,7 +57,7 @@
             v-for="repository in repositories"
             :key="`${repository.owner}/${repository.name}`"
           >
-            <div class="bg-card border-radius-5 p-20 my-10">
+            <div class="bg-card border-radius-5 p-20 m-10">
               <div class="row">
                 <div class="col-10 text-overflow-ellipsis">
                   <router-link

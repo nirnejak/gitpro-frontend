@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding-left: calc(var(--grid-gutter)/2); padding-right: calc(var(--grid-gutter)/2);">
     <div class="top-collar">Beta</div>
     <router-view />
   </div>

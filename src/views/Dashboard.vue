@@ -17,26 +17,26 @@
         </div>
         <div class="row" v-if="userLoading">
           <div class="col-4" v-for="i in 3" :key="i">
-            <SkeletonLoader width="100%" height="70px" radius="10px" class="my-10" />
+            <SkeletonLoader width="100%" height="70px" radius="10px" class="m-10" />
           </div>
         </div>
         <div class="row">
           <div class="col-4" v-if="!userLoading">
-            <router-link to="/repositories" class="bg-card border-radius-10 p-20">
+            <router-link to="/repositories" class="bg-card border-radius-10 p-20 mx-10">
               <i class="fas fa-code-branch mr-5" />
               {{user.total_repositories}}
               Total Repositories
             </router-link>
           </div>
           <div class="col-4" v-if="!userLoading">
-            <router-link to="/collaborators" class="bg-card border-radius-10 p-20">
+            <router-link to="/collaborators" class="bg-card border-radius-10 p-20 mx-10">
               <i class="fas fa-user mr-5" />
               {{user.total_collaborators}}
               Total Collaborators
             </router-link>
           </div>
           <div class="col-4" v-if="!userLoading">
-            <router-link to="/activities" class="bg-card border-radius-10 p-20">
+            <router-link to="/activities" class="bg-card border-radius-10 p-20 mx-10">
               <i class="fas fa-code mr-5" />
               {{activities.length}}
               Repositories with Activity

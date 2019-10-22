@@ -2,144 +2,146 @@
   <div class="row">
     <Sidebar :show="showSidebar" />
     <div class="h-100vh mb-0" :class="{'col-9-lg': showSidebar, 'col-12 px-30': !showSidebar}">
-      <i
-        class="fas cursor-pointer py-20"
-        :class="{'fa-bars': !showSidebar, 'fa-times': showSidebar}"
-        @click="showSidebar=!showSidebar"
-      />
-      <div class="row">
-        <div class="col-12">
-          <h1>Activities</h1>
+      <div class="px-20">
+        <i
+          class="fas cursor-pointer py-20"
+          :class="{'fa-bars': !showSidebar, 'fa-times': showSidebar}"
+          @click="showSidebar=!showSidebar"
+        />
+        <div class="row">
+          <div class="col-12">
+            <h1>Activities</h1>
+          </div>
         </div>
-      </div>
-      <div class="row" v-if="formDataLoading">
-        <div class="col-12">
-          <SkeletonLoader width="100%" height="114px" radius="5px" class="my-10" />
+        <div class="row" v-if="formDataLoading">
+          <div class="col-12">
+            <SkeletonLoader width="100%" height="114px" radius="5px" class="my-10" />
+          </div>
         </div>
-      </div>
-      <div class="row" v-if="!formDataLoading">
-        <div class="col-12">
-          <div class="bg-card border-radius-5 p-20 my-10">
-            <div class="row">
-              <div class="col-6-lg repositories">
-                <p class="pb-5">Repository</p>
-                <multiselect
-                  placeholder="Select Repository"
-                  v-model="selectedRepo"
-                  label="ownerAndRepo"
-                  :options="repositories"
-                  :show-labels="false"
-                />
-                <div class="mt-15">
-                  <input type="checkbox" v-model="force" id="force" />
-                  <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
+        <div class="row" v-if="!formDataLoading">
+          <div class="col-12">
+            <div class="bg-card border-radius-5 p-20 my-10">
+              <div class="row">
+                <div class="col-6-lg repositories pr-10">
+                  <p class="pb-5">Repository</p>
+                  <multiselect
+                    placeholder="Select Repository"
+                    v-model="selectedRepo"
+                    label="ownerAndRepo"
+                    :options="repositories"
+                    :show-labels="false"
+                  />
+                  <div class="mt-15">
+                    <input type="checkbox" v-model="force" id="force" />
+                    <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
+                  </div>
+                </div>
+                <div class="col-6-lg collaborator pr-10">
+                  <p class="pb-5">Collaborator</p>
+                  <multiselect
+                    placeholder="Select Collaborator"
+                    v-model="selectedCollaborator"
+                    :options="collaborators"
+                    :show-labels="false"
+                  />
                 </div>
               </div>
-              <div class="col-6-lg collaborator">
-                <p class="pb-5">Collaborator</p>
-                <multiselect
-                  placeholder="Select Collaborator"
-                  v-model="selectedCollaborator"
-                  :options="collaborators"
-                  :show-labels="false"
-                />
-              </div>
-            </div>
-            <div class="row mt-10 sidebar-links" v-if="selectedRepo && selectedCollaborator">
-              <div class="col-4-lg text-center">
-                <span
-                  class="sidebar-link cursor-pointer"
-                  :class="{active: date === 'yesterday'}"
-                  @click="date = 'yesterday'; pickedDate = ''; pickedDateFormatted = ''"
-                >Yesterday</span>
-              </div>
-              <div class="col-4-lg text-center">
-                <span
-                  class="sidebar-link cursor-pointer"
-                  :class="{active: date === 'today'}"
-                  @click="date = 'today'; pickedDate = ''; pickedDateFormatted = ''"
-                >Today</span>
-              </div>
-              <div class="col-4-lg text-center">
-                <v-date-picker
-                  v-model="pickedDate"
-                  :popover="{ placement: 'bottom', visibility: 'click' }"
-                  :max-date="new Date()"
-                >
+              <div class="row mt-10 sidebar-links" v-if="selectedRepo && selectedCollaborator">
+                <div class="col-4-lg text-center">
                   <span
                     class="sidebar-link cursor-pointer"
-                    :class="{active: date === 'pick'}"
-                    @click="date = 'pick'"
-                  >{{pickedDateFormatted || 'Pick a Date'}}</span>
-                </v-date-picker>
+                    :class="{active: date === 'yesterday'}"
+                    @click="date = 'yesterday'; pickedDate = ''; pickedDateFormatted = ''"
+                  >Yesterday</span>
+                </div>
+                <div class="col-4-lg text-center">
+                  <span
+                    class="sidebar-link cursor-pointer"
+                    :class="{active: date === 'today'}"
+                    @click="date = 'today'; pickedDate = ''; pickedDateFormatted = ''"
+                  >Today</span>
+                </div>
+                <div class="col-4-lg text-center">
+                  <v-date-picker
+                    v-model="pickedDate"
+                    :popover="{ placement: 'bottom', visibility: 'click' }"
+                    :max-date="new Date()"
+                  >
+                    <span
+                      class="sidebar-link cursor-pointer"
+                      :class="{active: date === 'pick'}"
+                      @click="date = 'pick'"
+                    >{{pickedDateFormatted || 'Pick a Date'}}</span>
+                  </v-date-picker>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row" v-if="activityLoading">
-        <div class="col-12" v-for="i in 2" :key="i">
-          <SkeletonLoader width="100%" height="300px" radius="5px" class="my-10" />
+        <div class="row" v-if="activityLoading">
+          <div class="col-12" v-for="i in 2" :key="i">
+            <SkeletonLoader width="100%" height="300px" radius="5px" class="my-10" />
+          </div>
         </div>
-      </div>
 
-      <div class="row" v-if="!activityLoading">
-        <div class="col-12">
-          <h3 class="mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
-          <div v-if="Object.keys(activity).length !== 0">
+        <div class="row" v-if="!activityLoading">
+          <div class="col-12">
+            <h3 class="mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
+            <div v-if="Object.keys(activity).length !== 0">
+              <div
+                class="bg-card border-radius-5 p-20 my-20"
+                v-if="!activityLoading && activity.contributions.length === 0"
+              >
+                <div class="my-20">
+                  <h4 class="text-center">No Contributions</h4>
+                  <p class="text-dark text-center">
+                    No Activity on
+                    <strong>{{selectedRepo.name}}</strong> by
+                    <strong>{{selectedCollaborator}}</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
             <div
               class="bg-card border-radius-5 p-20 my-20"
-              v-if="!activityLoading && activity.contributions.length === 0"
+              v-for="(commit, index) in activity.contributions"
+              :key="index"
             >
-              <div class="my-20">
-                <h4 class="text-center">No Contributions</h4>
-                <p class="text-dark text-center">
-                  No Activity on
-                  <strong>{{selectedRepo.name}}</strong> by
-                  <strong>{{selectedCollaborator}}</strong>
-                </p>
+              <div class="row">
+                <div class="col-9">
+                  <h4 class="my-0">{{commit.commitMessage}}</h4>
+                  <a
+                    :href="`http://github.com/${user.login}/${activity.repository}/commit/${commit.hash}`"
+                    class="text-dark"
+                    target="_blank"
+                    title="View Commit on GitHub"
+                  >
+                    {{commit.hash}}
+                    <i class="fas fa-sm fa-external-link-alt" />
+                  </a>
+                </div>
+                <div class="col-3 text-right">
+                  <i class="fas fa-code-branch" />&nbsp;
+                  <span class="text-dark mr-20">{{commit.branch}}</span>
+                  <i
+                    class="fas fa-lg fa-minus-square cursor-pointer mt-10"
+                    v-if="!commit.isHidden"
+                    @click="commit.isHidden = !commit.isHidden"
+                  />
+                  <i
+                    class="fas fa-lg fa-plus-square cursor-pointer mt-10"
+                    v-if="commit.isHidden"
+                    @click="commit.isHidden = !commit.isHidden"
+                  />
+                </div>
               </div>
+              <transition name="fade">
+                <div v-if="!commit.isHidden" class="pt-20">
+                  <div class="activity-container" v-html="prettyHtml(commit.diff)" />
+                </div>
+              </transition>
             </div>
-          </div>
-          <div
-            class="bg-card border-radius-5 p-20 my-20"
-            v-for="(commit, index) in activity.contributions"
-            :key="index"
-          >
-            <div class="row">
-              <div class="col-9">
-                <h4 class="my-0">{{commit.commitMessage}}</h4>
-                <a
-                  :href="`http://github.com/${user.login}/${activity.repository}/commit/${commit.hash}`"
-                  class="text-dark"
-                  target="_blank"
-                  title="View Commit on GitHub"
-                >
-                  {{commit.hash}}
-                  <i class="fas fa-sm fa-external-link-alt" />
-                </a>
-              </div>
-              <div class="col-3 text-right">
-                <i class="fas fa-code-branch" />&nbsp;
-                <span class="text-dark mr-20">{{commit.branch}}</span>
-                <i
-                  class="fas fa-lg fa-minus-square cursor-pointer mt-10"
-                  v-if="!commit.isHidden"
-                  @click="commit.isHidden = !commit.isHidden"
-                />
-                <i
-                  class="fas fa-lg fa-plus-square cursor-pointer mt-10"
-                  v-if="commit.isHidden"
-                  @click="commit.isHidden = !commit.isHidden"
-                />
-              </div>
-            </div>
-            <transition name="fade">
-              <div v-if="!commit.isHidden" class="pt-20">
-                <div class="activity-container" v-html="prettyHtml(commit.diff)" />
-              </div>
-            </transition>
           </div>
         </div>
       </div>
