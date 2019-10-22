@@ -45,7 +45,7 @@
                 />
               </div>
             </div>
-            <div class="row mt-10 sidebar-links">
+            <div class="row mt-10 sidebar-links" v-if="selectedRepo && selectedCollaborator">
               <div class="col-4-lg text-center">
                 <span
                   class="sidebar-link cursor-pointer"
