@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="top-collar">Unreleased</div>
+    <div class="top-collar">Beta</div>
     <router-view />
   </div>
 </template>

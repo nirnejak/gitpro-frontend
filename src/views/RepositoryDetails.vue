@@ -71,14 +71,6 @@
               Add Collaborator
             </button>
           </div>
-          <div class="col-12" v-if="collaborators.length === 0 && !repositoryDetailsLoading">
-            <div class="is-center is-vertical-align py-100">
-              <h3 class="text-dark text-center">
-                <i class="fas fa-3x fa-times" />
-                <br />No Collaborators
-              </h3>
-            </div>
-          </div>
           <div class="col-2 p-5 pb-30">
             <div class="collaborator-avatar-container">
               <div class="is-center">
