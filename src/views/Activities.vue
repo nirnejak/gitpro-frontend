@@ -112,7 +112,7 @@
                 <div class="col-9">
                   <h4 class="my-0">{{commit.commitMessage}}</h4>
                   <a
-                    :href="`http://github.com/${user.login}/${activity.repository}/commit/${commit.hash}`"
+                    :href="`http://github.com/${activity.owner}/${activity.repository}/commit/${commit.hash}`"
                     class="text-dark"
                     target="_blank"
                     title="View Commit on GitHub"
@@ -138,7 +138,21 @@
               </div>
               <transition name="fade">
                 <div v-if="!commit.isHidden" class="pt-20">
-                  <div class="activity-container" v-html="prettyHtml(commit.diff)" />
+                  <div
+                    class="activity-container"
+                    v-html="prettyHtml(commit.diff)"
+                    v-if="commit.diff !== 'Error:Diff is too large'"
+                  />
+                  <h3
+                    class="text-center"
+                    v-if="commit.diff === 'Error:Diff is too large'"
+                  >Diff is too large</h3>
+                  <a
+                    :href="`http://github.com/${activity.owner}/${activity.repository}/commit/${commit.hash}`"
+                    class="is-center"
+                    target="_blank"
+                    title="View Commit on GitHub"
+                  >See commit on GitHub</a>
                 </div>
               </transition>
             </div>
