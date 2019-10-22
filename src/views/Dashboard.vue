@@ -22,21 +22,21 @@
         </div>
         <div class="row">
           <div class="col-4" v-if="!userLoading">
-            <router-link to="/repositories" class="bg-card border-radius-10 p-20 mx-10">
+            <router-link to="/repositories" class="bg-card border-radius-10 p-20 m-10">
               <i class="fas fa-code-branch mr-5" />
               {{user.total_repositories}}
               Total Repositories
             </router-link>
           </div>
           <div class="col-4" v-if="!userLoading">
-            <router-link to="/collaborators" class="bg-card border-radius-10 p-20 mx-10">
+            <router-link to="/collaborators" class="bg-card border-radius-10 p-20 m-10">
               <i class="fas fa-user mr-5" />
               {{user.total_collaborators}}
               Total Collaborators
             </router-link>
           </div>
           <div class="col-4" v-if="!userLoading">
-            <router-link to="/activities" class="bg-card border-radius-10 p-20 mx-10">
+            <router-link to="/activities" class="bg-card border-radius-10 p-20 m-10">
               <i class="fas fa-code mr-5" />
               {{activities.length}}
               Repositories with Activity
@@ -82,11 +82,13 @@
               <div class="col-2 p-5">
                 <div class="collaborator-avatar-container">
                   <router-link to="/collaborators/">
-                    <div
-                      class="bg-card rounded-circle bg-cover"
-                      style="width: var(--avatar-dimension); height: var(--avatar-dimension);"
-                    >
-                      <span class="text-high-contrast is-center pt-60">View All</span>
+                    <div class="is-center">
+                      <div
+                        class="bg-card rounded-circle bg-cover"
+                        style="width: var(--avatar-dimension); height: var(--avatar-dimension);"
+                      >
+                        <span class="text-high-contrast is-center pt-60">View All</span>
+                      </div>
                     </div>
                   </router-link>
                 </div>
@@ -260,7 +262,7 @@ export default {
       }
       axios.get("/fetch/repositories/").then(res => {
         this.$message.success({
-          message: "Fetching Latest Data",
+          message: res.data.message,
           position: "bottom-right",
           showClose: true
         });
