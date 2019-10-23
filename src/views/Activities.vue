@@ -30,9 +30,10 @@
                     label="ownerAndRepo"
                     :options="repositories"
                     :show-labels="false"
+                    :disabled="activityLoading"
                   />
                   <div class="mt-15">
-                    <input type="checkbox" v-model="force" id="force" />
+                    <input type="checkbox" v-model="force" id="force" :disabled="activityLoading" />
                     <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
                   </div>
                 </div>
@@ -43,6 +44,7 @@
                     v-model="selectedCollaborator"
                     :options="collaborators"
                     :show-labels="false"
+                    :disabled="activityLoading"
                   />
                 </div>
               </div>
@@ -51,14 +53,14 @@
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'yesterday'}"
-                    @click="date = 'yesterday'; pickedDate = ''; pickedDateFormatted = ''"
+                    @click="activityLoading ? null : date = 'yesterday'; pickedDate = ''; pickedDateFormatted = ''"
                   >Yesterday</span>
                 </div>
                 <div class="col-4-lg text-center">
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'today'}"
-                    @click="date = 'today'; pickedDate = ''; pickedDateFormatted = ''"
+                    @click="activityLoading ? null : date = 'today'; pickedDate = ''; pickedDateFormatted = ''"
                   >Today</span>
                 </div>
                 <div class="col-4-lg text-center">
@@ -66,11 +68,12 @@
                     v-model="pickedDate"
                     :popover="{ placement: 'bottom', visibility: 'click' }"
                     :max-date="new Date()"
+                    :disabled="activityLoading"
                   >
                     <span
                       class="sidebar-link cursor-pointer"
                       :class="{active: date === 'pick'}"
-                      @click="date = 'pick'"
+                      @click="activityLoading ? null : date = 'pick'"
                     >{{pickedDateFormatted || 'Pick a Date'}}</span>
                   </v-date-picker>
                 </div>
