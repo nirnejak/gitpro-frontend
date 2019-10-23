@@ -18,7 +18,7 @@ import 'vue-multiselect/dist/vue-multiselect.min.css'
 
 Sentry.init({
   dns: 'https://6b54e15a63de435681f11ef35cf13b10@sentry.io/1766629',
-  integrations: [new Integrations.Vue({Vue, attachProps: true})]
+  integrations: [new Integrations.Vue({ Vue, attachProps: true })]
 })
 
 Vue.config.productionTip = false
@@ -38,6 +38,15 @@ Vue.filter('fromNow', function (value) {
     return moment(String(value), 'DD MMM YYYY').fromNow()
   }
 })
+
+function gtag () { dataLayer.push(arguments) }
+
+if (process.env.NODE_ENV === 'production') {
+  window.dataLayer = window.dataLayer || []
+  gtag('js', new Date())
+
+  gtag('config', 'UA-150741640-1')
+}
 
 new Vue({
   router,
