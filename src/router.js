@@ -6,6 +6,11 @@ import { lightTheme } from './config'
 
 Vue.use(Router)
 
+const isAuthenticated = (to, from, next) => {
+  if (localStorage.jwtToken) next()
+  else next({ path: '/' })
+}
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -49,73 +54,49 @@ export default new Router({
       path: '/collaborators',
       name: 'collaborators',
       component: () => import('./views/Collaborators.vue'),
-      beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) next()
-        else next({ path: '/' })
-      }
+      beforeEnter: isAuthenticated
     },
     {
       path: '/collaborators/:login',
       name: 'collaborator',
       component: () => import('./views/CollaboratorDetails.vue'),
-      beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) next()
-        else next({ path: '/' })
-      }
+      beforeEnter: isAuthenticated
     },
     {
       path: '/repositories',
       name: 'repository',
       component: () => import('./views/Repositories.vue'),
-      beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) next()
-        else next({ path: '/' })
-      }
+      beforeEnter: isAuthenticated
     },
     {
       path: '/repositories/:owner/:name',
       name: 'repositories',
       component: () => import('./views/RepositoryDetails.vue'),
-      beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) next()
-        else next({ path: '/' })
-      }
+      beforeEnter: isAuthenticated
     },
     {
       path: '/activities',
       name: 'activities',
       component: () => import('./views/Activities.vue'),
-      beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) next()
-        else next({ path: '/' })
-      }
+      beforeEnter: isAuthenticated
     },
     {
       path: '/teams',
       name: 'teams',
       component: () => import('./views/Teams.vue'),
-      beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) next()
-        else next({ path: '/' })
-      }
+      beforeEnter: isAuthenticated
     },
     {
       path: '/insights',
       name: 'insights',
       component: () => import('./views/Insights.vue'),
-      beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) next()
-        else next({ path: '/' })
-      }
+      beforeEnter: isAuthenticated
     },
     {
       path: '/settings',
       name: 'settings',
       component: () => import('./views/Settings.vue'),
-      beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) next()
-        else next({ path: '/' })
-      }
+      beforeEnter: isAuthenticated
     },
     {
       path: '/logout',
