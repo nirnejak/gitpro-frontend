@@ -12,6 +12,10 @@
         </div>
         <div class="col-3">
           <div>
+            <strong>Quick Links</strong>
+          </div>
+          <br />
+          <div>
             <router-link to="/faq" class="text-dark">FAQ</router-link>
           </div>
           <br />
@@ -31,8 +35,16 @@
         </div>
         <div class="col-3">
           <div>
-            <a href="https://www.inkoop.io/" class="text-dark">&copy; Inkoop</a>
+            <strong>Contact</strong>
           </div>
+          <br />
+          <div>products@inkoop.io</div>
+          <br />
+          <div class="text-dark">
+            Developed by
+            <a href="https://inkoop.io" target="_blank">Inkoop.io</a>
+          </div>
+          <br />
         </div>
       </div>
     </div>

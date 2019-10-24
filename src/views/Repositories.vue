@@ -5,7 +5,7 @@
       <div class="px-20">
         <div class="row">
           <div class="col-8-lg">
-            <h1>Repositories</h1>
+            <h1>Repositories({{repositoriesOriginal.length}})</h1>
           </div>
           <div class="col-4-lg pt-10">
             <input type="text" v-model="search" placeholder="Search Repository" class="pr-30" />
