@@ -131,7 +131,7 @@ export default {
     };
   },
   created() {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
     if (process.env.NODE_ENV === "production") {
       this.loginUrl = "https://aws.gitpro.app/auth/github";
     } else {

@@ -11,7 +11,10 @@
             <h2>Coming Soon</h2>
             <p>
               Anything you'd like to see?
-              <a href="#" target="_blank">Tell Us</a>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe24lZ1ykY24mTfog59DlbOOFtrTTeaYoT0PNQ3cxmvl_o42w/viewform"
+                target="_blank"
+              >Tell Us</a>
             </p>
           </div>
         </div>

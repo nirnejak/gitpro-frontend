@@ -16,16 +16,22 @@
           </div>
           <br />
           <div>
-            <a href="#" class="text-dark">Submit Feedback</a>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe24lZ1ykY24mTfog59DlbOOFtrTTeaYoT0PNQ3cxmvl_o42w/viewform"
+              class="text-dark"
+            >Submit Feedback</a>
           </div>
           <br />
           <div>
-            <a href="#" class="text-dark">Request a Feature</a>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe24lZ1ykY24mTfog59DlbOOFtrTTeaYoT0PNQ3cxmvl_o42w/viewform"
+              class="text-dark"
+            >Request a Feature</a>
           </div>
         </div>
         <div class="col-3">
           <div>
-            <a href="#" class="text-dark">&copy; Inkoop</a>
+            <a href="https://www.inkoop.io/" class="text-dark">&copy; Inkoop</a>
           </div>
         </div>
       </div>
