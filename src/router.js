@@ -33,6 +33,11 @@ export default new Router({
       component: () => import('./views/About.vue')
     },
     {
+      path: '/faq',
+      name: 'faq',
+      component: () => import('./views/FAQ.vue')
+    },
+    {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('./views/Dashboard.vue'),
