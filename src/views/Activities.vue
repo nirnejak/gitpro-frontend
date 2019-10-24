@@ -255,16 +255,16 @@ export default {
         if (this.date === "today") {
           before = new Date();
           after = new Date();
-          after.setDate(after.getDate() - 1);
+          before.setDate(before.getDate() - 1);
         } else if (this.date === "yesterday") {
           before = new Date();
           after = new Date();
-          before.setDate(before.getDate() - 1);
-          after.setDate(after.getDate() - 2);
+          before.setDate(after.getDate() - 2);
+          after.setDate(before.getDate() - 1);
         } else if (this.date === "pick") {
           before = new Date(this.pickedDate);
           after = new Date(this.pickedDate);
-          after.setDate(after.getDate() - 1);
+          before.setDate(before.getDate() - 1);
         }
 
         this.activityLoading = true;
