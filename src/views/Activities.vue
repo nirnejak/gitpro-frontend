@@ -53,22 +53,27 @@
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'yesterday'}"
-                    @click="activityLoading ? null : date = 'yesterday'; pickedDate = ''; pickedDateFormatted = ''"
+                    @click="changeDate('yesterday')"
                   >Yesterday</span>
                 </div>
                 <div class="col-4-lg text-center">
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'today'}"
-                    @click="activityLoading ? null : date = 'today'; pickedDate = ''; pickedDateFormatted = ''"
+                    @click="changeDate('today')"
                   >Today</span>
                 </div>
                 <div class="col-4-lg text-center">
+                  <span
+                    class="sidebar-link cursor-pointer"
+                    :class="{active: date === 'pick'}"
+                    v-if="activityLoading"
+                  >{{pickedDateFormatted || 'Pick a Date'}}</span>
                   <v-date-picker
                     v-model="pickedDate"
                     :popover="{ placement: 'bottom', visibility: 'click' }"
                     :max-date="new Date()"
-                    :disabled="activityLoading"
+                    v-if="!activityLoading"
                   >
                     <span
                       class="sidebar-link cursor-pointer"
@@ -237,6 +242,13 @@ export default {
     }
   },
   methods: {
+    changeDate(date) {
+      if (this.activityLoading) return;
+
+      this.date = date;
+      this.pickedDate = "";
+      this.pickedDateFormatted = "";
+    },
     fetchActivity() {
       if (this.selectedRepo && this.selectedCollaborator) {
         let before, after;
