@@ -22,7 +22,7 @@
           <div class="col-12">
             <div class="bg-card border-radius-5 p-20 my-10">
               <div class="row">
-                <div class="col-6-lg repositories pr-10">
+                <div class="col-6 repositories pr-10">
                   <p class="pb-5">Repository</p>
                   <multiselect
                     placeholder="Select Repository"
@@ -37,7 +37,7 @@
                     <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
                   </div>
                 </div>
-                <div class="col-6-lg collaborator pr-10">
+                <div class="col-6 collaborator pr-10">
                   <p class="pb-5">Collaborator</p>
                   <multiselect
                     placeholder="Select Collaborator"
@@ -49,21 +49,21 @@
                 </div>
               </div>
               <div class="row mt-10 sidebar-links" v-if="selectedRepo && selectedCollaborator">
-                <div class="col-4-lg text-center">
+                <div class="col-4 text-center">
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'yesterday'}"
                     @click="changeDate('yesterday')"
                   >Yesterday</span>
                 </div>
-                <div class="col-4-lg text-center">
+                <div class="col-4 text-center">
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'today'}"
                     @click="changeDate('today')"
                   >Today</span>
                 </div>
-                <div class="col-4-lg text-center">
+                <div class="col-4 text-center">
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'pick'}"

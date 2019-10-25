@@ -44,12 +44,12 @@
     <div class="bg-card">
       <div class="container">
         <div class="row py-150" id="manageContributorsSection">
-          <div class="col-6-lg">
+          <div class="col-6">
             <div class="is-vertical-align is-center">
               <img src="@/assets/collaboration.svg" alt width="80%" />
             </div>
           </div>
-          <div class="col-6-lg">
+          <div class="col-6">
             <div class="is-vertical-align is-center">
               <div class="p-40">
                 <h1>Manage Contributors</h1>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="row py-100">
-          <div class="col-6-lg">
+          <div class="col-6">
             <div class="is-vertical-align is-center">
               <div class="p-40">
                 <h1>See Activity</h1>
@@ -78,7 +78,7 @@
               </div>
             </div>
           </div>
-          <div class="col-6-lg">
+          <div class="col-6">
             <div class="is-vertical-align is-center">
               <img src="@/assets/developer_activity.svg" alt width="80%" />
             </div>
@@ -86,12 +86,12 @@
         </div>
 
         <div class="row py-150">
-          <div class="col-6-lg">
+          <div class="col-6">
             <div class="is-vertical-align is-center">
               <img src="@/assets/insights.svg" alt width="80%" />
             </div>
           </div>
-          <div class="col-6-lg">
+          <div class="col-6">
             <div class="is-vertical-align is-center">
               <div class="p-40">
                 <h1>Get Insights</h1>

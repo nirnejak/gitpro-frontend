@@ -12,10 +12,10 @@
     <div class="col-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
         <div class="row">
-          <div class="col-1-lg is-vertical-align">
+          <div class="col-1 is-vertical-align">
             <i class="fas fa-4x fa-code-branch mr-5" />
           </div>
-          <div class="col-7-lg is-vertical-align">
+          <div class="col-7 is-vertical-align">
             <div>
               <h1 class="m-0">{{$route.params.name}}</h1>
               <p class="text-dark mb-5">
@@ -31,7 +31,7 @@
               />
             </div>
           </div>
-          <div class="col-4-lg is-vertical-align is-right" v-if="repository">
+          <div class="col-4 is-vertical-align is-right" v-if="repository">
             <!-- TODO: Add Optional Link for GitHub/Bitbucket/Gitlab -->
             <a
               :href="`http://github.com/${$route.params.owner}/${$route.params.name}`"
@@ -45,10 +45,10 @@
         </div>
 
         <div class="row mt-70">
-          <div class="col-4-lg">
+          <div class="col-4">
             <h2>Collaborators</h2>
           </div>
-          <div class="col-8-lg is-right">
+          <div class="col-8 is-right">
             <button
               class="button clear text-error px-10"
               v-if="selectedCollaborators.length > 0"
@@ -71,6 +71,8 @@
               Add Collaborator
             </button>
           </div>
+        </div>
+        <div class="row mt-70">
           <div class="col-2 p-5 pb-30">
             <div class="collaborator-avatar-container">
               <div class="is-center">

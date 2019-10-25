@@ -4,10 +4,10 @@
     <div class="col-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
         <div class="row">
-          <div class="col-8-lg">
+          <div class="col-8">
             <h1>Repositories({{repositoriesOriginal.length}})</h1>
           </div>
-          <div class="col-4-lg pt-10">
+          <div class="col-4 pt-10">
             <input type="text" v-model="search" placeholder="Search Repository" class="pr-30" />
             <i class="fas fa-search pull-right position-relative r-10" style="top: -27px" />
           </div>

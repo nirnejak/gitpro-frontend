@@ -12,7 +12,7 @@
     <div class="col-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
         <div class="row">
-          <div class="col-2-lg">
+          <div class="col-2">
             <SkeletonLoader
               width="100%"
               height="150px"
@@ -25,7 +25,7 @@
               v-else
             />
           </div>
-          <div class="col-6-lg is-vertical-align">
+          <div class="col-6 is-vertical-align">
             <div class="ml-10">
               <h1 class="m-0">{{collaborator.name}}</h1>
               <SkeletonLoader
@@ -37,7 +37,7 @@
               <h3 class="m-0 text-dark">{{$route.params.login}}</h3>
             </div>
           </div>
-          <div class="col-4-lg is-vertical-align is-right">
+          <div class="col-4 is-vertical-align is-right">
             <div>
               <span href="#" class="text-error cursor-pointer pr-20" @click="removeCollaborator">
                 <i class="fas fa-user-times" />&nbsp;
@@ -53,10 +53,10 @@
           </div>
         </div>
         <div class="row mt-30">
-          <div class="col-4-lg">
+          <div class="col-4">
             <h2>Repositories</h2>
           </div>
-          <div class="col-8-lg is-right">
+          <div class="col-8 is-right">
             <button
               type="submit"
               class="button clear text-error px-10"
@@ -166,10 +166,10 @@
         </div>
 
         <div class="row mt-30">
-          <div class="col-4-lg">
+          <div class="col-4">
             <h2>Today's Activity</h2>
           </div>
-          <div class="col-8-lg is-right">
+          <div class="col-8 is-right">
             <p class="text-dark">
               <i class="fas fa-sm fa-star" />
               Showing for Favourite Repositories only
@@ -247,14 +247,14 @@
                   v-for="(fileStat, index) in commit.files"
                   :key="index"
                 >
-                  <div class="col-10-lg">
+                  <div class="col-10">
                     <p>
                       {{fileStat.from}}
                       <i class="fas fa-long-arrow-alt-right mx-10" />
                       {{fileStat.to}}
                     </p>
                   </div>
-                  <div class="col-2-lg text-center">
+                  <div class="col-2 text-center">
                     <span
                       class="tag text-success border-radius-5"
                       title="Additions"

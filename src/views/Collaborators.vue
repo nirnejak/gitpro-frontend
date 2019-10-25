@@ -8,10 +8,10 @@
     <div class="col-9 pt-70">
       <div class="px-20">
         <div class="row">
-          <div class="col-8-lg">
+          <div class="col-8">
             <h1>Collaborators({{collaborators.length}})</h1>
           </div>
-          <div class="col-4-lg pt-10 text-right">
+          <div class="col-4 pt-10 text-right">
             <button class="button primary" @click="showModal = true" v-if="!showModal">
               Add Collaborator
               &nbsp;
