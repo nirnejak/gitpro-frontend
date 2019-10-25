@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <Sidebar :show="showSidebar" />
-    <div class="h-100vh mb-0" :class="{'col-9-lg': showSidebar, 'col-12 px-30': !showSidebar}">
+    <div class="h-100vh mb-0" :class="{'col-9': showSidebar, 'col-12 px-30': !showSidebar}">
       <div class="px-20">
         <i
           class="fas cursor-pointer py-20"

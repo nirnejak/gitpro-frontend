@@ -2,7 +2,7 @@
   <div class="row">
     <Sidebar :show="true" />
     <SnackBar :show="showSnakeBar" :message="message" type="primary" :hideSnackBar="hideSnackBar" />
-    <div class="col-9-lg pt-70">
+    <div class="col-9 pt-70">
       <div class="px-20">
         <div class="row">
           <div class="col-6">

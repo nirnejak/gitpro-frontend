@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <Sidebar :show="true" />
-    <div class="col-9-lg pt-70 h-100vh mb-0" style="overflow-y: auto;">
+    <div class="col-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
         <div class="row">
           <div class="col-8-lg">

@@ -5,7 +5,7 @@
       <AddCollaborator :hideModal="hideModal" />
     </Modal>
 
-    <div class="col-9-lg pt-70">
+    <div class="col-9 pt-70">
       <div class="px-20">
         <div class="row">
           <div class="col-8-lg">
