@@ -42,13 +42,24 @@
             </div>
             <br />
             <div>products@inkoop.io</div>
-            <br />
             <div class="text-dark">
-              Developed by
-              <a href="https://inkoop.io" target="_blank">Inkoop.io</a>
+              <a href="https://inkoop.io" target="_blank">https://inkoop.io</a>
             </div>
             <br />
-            <div>&nbsp;</div>
+            <div>
+              <a
+                href="https://www.producthunt.com/posts/gitpro?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-gitpro"
+                target="_blank"
+              >
+                <img
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=172272&theme=dark"
+                  alt="GitPro - Github's developer activity tracking simplified | Product Hunt Embed"
+                  style="width: 250px; height: 54px;"
+                  width="250px"
+                  height="54px"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>
