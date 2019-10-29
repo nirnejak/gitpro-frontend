@@ -43,28 +43,13 @@
     </div>
     <div class="bg-card">
       <div class="container">
-        <div class="row py-150" id="manageContributorsSection">
-          <div class="col-6">
-            <div class="is-vertical-align is-center">
-              <img src="@/assets/collaboration.svg" alt width="80%" />
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="is-vertical-align is-center">
-              <div class="p-40">
-                <h1>Manage Contributors</h1>
-                <p>Easily add or remove collaborators from a repository. Do bulk operations by adding to or removing from multiple repositories, or add an existing collaborator to other repositories.</p>
-                <br />
-                <a :href="loginUrl">
-                  Get Started
-                  <i class="fas fa-arrow-right ml-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="row py-100">
+        <div class="row py-150">
+          <div class="col-6">
+            <div class="is-vertical-align is-center">
+              <img src="@/assets/developer_activity.svg" alt width="80%" />
+            </div>
+          </div>
           <div class="col-6">
             <div class="is-vertical-align is-center">
               <div class="p-40">
@@ -78,9 +63,25 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="row py-100" id="manageContributorsSection">
           <div class="col-6">
             <div class="is-vertical-align is-center">
-              <img src="@/assets/developer_activity.svg" alt width="80%" />
+              <div class="p-40">
+                <h1>Manage Contributors</h1>
+                <p>Easily add or remove collaborators from a repository. Do bulk operations by adding to or removing from multiple repositories, or add an existing collaborator to other repositories.</p>
+                <br />
+                <a :href="loginUrl">
+                  Get Started
+                  <i class="fas fa-arrow-right ml-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="is-vertical-align is-center">
+              <img src="@/assets/collaboration.svg" alt width="80%" />
             </div>
           </div>
         </div>
