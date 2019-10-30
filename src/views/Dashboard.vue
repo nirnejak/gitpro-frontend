@@ -97,7 +97,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12" v-else>
+          <div class="col-12" v-if="!collaboratorLoading && !collaborators.length">
             <div class="text-center">
               <p>No Collaborators</p>
             </div>
