@@ -109,9 +109,9 @@
                     <strong>{{selectedCollaborator}}</strong>
                   </p>
                   <br />
-                  <p>
+                  <p class="text-center">
                     Users with activity on
-                    <strong>{{selectedRepo.name}}</strong>
+                    <strong>{{selectedRepo.name}}</strong> for selected date
                   </p>
                   <div class="text-center">
                     <button
