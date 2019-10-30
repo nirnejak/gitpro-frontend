@@ -108,6 +108,19 @@
                     <strong>{{selectedRepo.name}}</strong> by
                     <strong>{{selectedCollaborator}}</strong>
                   </p>
+                  <br />
+                  <p>
+                    Users with activity on
+                    <strong>{{selectedRepo.name}}</strong>
+                  </p>
+                  <div class="text-center">
+                    <button
+                      class="button primary outline bd-primary"
+                      v-for="(contributor, index) in activity.contributors"
+                      :key="index"
+                      @click="selectedCollaborator = contributor"
+                    >{{contributor}}</button>
+                  </div>
                 </div>
               </div>
             </div>
