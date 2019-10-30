@@ -133,8 +133,8 @@
             </p>
           </div>
 
-          <div class="col-4 my-20" v-for="(activity, index) in activities" :key="index">
-            <div class="bg-card border-radius-10 p-20">
+          <div class="col-4" v-for="(activity, index) in activities" :key="index">
+            <div class="bg-card border-radius-10 p-20 m-10">
               <div class="row">
                 <div class="col-6">
                   <i class="fas fa-code-branch mr-5" />
