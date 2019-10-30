@@ -116,6 +116,17 @@
               </div>
             </label>
           </div>
+          <div class="col-12" v-if="myRepositories.length === 0">
+            <p class="text-center">
+              You haven't added {{collaborator.name || collaborator.login}} to any of your repositories
+              <br />
+              <button
+                type="submit"
+                class="button clear px-10"
+                @click="showModal = true"
+              >Add to Repos</button>
+            </p>
+          </div>
         </div>
 
         <div class="row mt-30">
@@ -163,6 +174,14 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="col-12" v-if="commonRepositories.length === 0">
+          <p class="text-center">
+            There are no common repositories between you and {{collaborator.name || collaborator.login}}.
+            <br />
+            <button type="submit" class="button clear px-10" @click="showModal = true">Add to Repos</button>
+          </p>
         </div>
 
         <div class="row mt-30">
