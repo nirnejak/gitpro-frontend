@@ -108,10 +108,10 @@
                     <strong>{{selectedRepo.name}}</strong> by
                     <strong>{{selectedCollaborator}}</strong>
                   </p>
-                  <br />
-                  <p class="text-center">
-                    Users with activity on
+                  <p class="text-center" v-if="activity.contributors.length > 0">
+                    <br />Users with activity on
                     <strong>{{selectedRepo.name}}</strong> for selected date
+                    <br />
                   </p>
                   <div class="text-center">
                     <button
