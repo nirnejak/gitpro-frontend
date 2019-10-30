@@ -97,6 +97,11 @@
               </div>
             </div>
           </div>
+          <div class="col-12" v-else>
+            <div class="text-center">
+              <p>No Collaborators</p>
+            </div>
+          </div>
         </div>
 
         <div class="row mt-30">

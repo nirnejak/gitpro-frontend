@@ -26,6 +26,13 @@
             </div>
           </div>
         </div>
+        <div class="row" v-if="!collaboratorLoading && !collaborators.length">
+          <div class="col-12">
+            <div class="text-center">
+              <p>No Collaborators</p>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div
             class="col-2 p-5 pb-30"
