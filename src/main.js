@@ -39,9 +39,9 @@ Vue.filter('fromNow', function (value) {
   }
 })
 
-function gtag() { dataLayer.push(arguments) }
+function gtag () { dataLayer.push(arguments) }
 
-if (process.env.NODE_ENV === 'production' && !window.location.href.includes('dashboard')) {
+if (process.env.NODE_ENV === 'production') {
   window.dataLayer = window.dataLayer || []
   gtag('js', new Date())
 
