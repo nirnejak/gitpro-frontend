@@ -42,6 +42,7 @@
                   <multiselect
                     placeholder="Select Collaborator"
                     v-model="selectedCollaborator"
+                    label="nameAndOrLogin"
                     :options="collaborators"
                     :show-labels="false"
                     :disabled="activityLoading"
@@ -106,11 +107,12 @@
                   <p class="text-dark text-center">
                     No Activity on
                     <strong>{{selectedRepo.name}}</strong> by
-                    <strong>{{selectedCollaborator}}</strong>
+                    <strong>{{selectedCollaborator.nameAndOrLogin}}</strong>
                   </p>
                   <p class="text-center" v-if="activity.contributors.length > 0">
                     <br />Users with activity on
                     <strong>{{selectedRepo.name}}</strong> for selected date
+                    <br />
                     <br />
                   </p>
                   <div class="text-center">
@@ -118,7 +120,7 @@
                       class="button primary outline bd-primary"
                       v-for="(contributor, index) in activity.contributors"
                       :key="index"
-                      @click="selectedCollaborator = contributor"
+                      @click="selectedCollaborator = { login: contributor, nameAndOrLogin: contributor }"
                     >{{contributor}}</button>
                   </div>
                 </div>
@@ -203,7 +205,11 @@ export default {
   data() {
     return {
       user: {
-        login: localStorage.login
+        login: localStorage.login,
+        name: localStorage.name,
+        nameAndOrLogin: localStorage.name
+          ? `${localStorage.name}(${localStorage.login})`
+          : localStorage.login
       },
       tz: "",
       showSidebar: false,
@@ -235,13 +241,21 @@ export default {
       ...repo,
       ownerAndRepo: `${repo.owner}/${repo.name}`
     }));
-    this.collaborators = collaborators_res.data.map(collab => collab.login);
-    this.collaborators.push(this.user.login);
+    this.collaborators = collaborators_res.data.map(collaborator => ({
+      ...collaborator,
+      nameAndOrLogin: collaborator.name
+        ? `${collaborator.name}(${collaborator.login})`
+        : collaborator.login
+    }));
+    this.collaborators.push(this.user);
     this.formDataLoading = false;
 
     let collaborator = this.$router.history.current.query.collaborator;
-    if (collaborator && this.collaborators.includes(collaborator)) {
-      this.selectedCollaborator = collaborator;
+    if (collaborator) {
+      let collab = this.collaborators.filter(
+        collab => collab.login === collaborator
+      );
+      if (collab.length > 0) this.selectedCollaborator = collab[0];
     }
 
     let repository = this.$router.history.current.query.repository;
@@ -252,6 +266,29 @@ export default {
         repo => repo.ownerAndRepo === ownerAndRepo
       );
       if (repo.length > 0) this.selectedRepo = repo[0];
+    }
+  },
+  watch: {
+    selectedRepo() {
+      if (this.selectedRepo) {
+        this.fetchActivity();
+      }
+    },
+    selectedCollaborator() {
+      if (this.selectedCollaborator) this.fetchActivity();
+    },
+    date() {
+      if (this.date && this.date !== "pick") this.fetchActivity();
+    },
+    pickedDate() {
+      if (this.pickedDate && typeof this.pickedDate !== "string")
+        this.pickedDateFormatted = moment(this.pickedDate).format("DD-MM-YYYY");
+
+      if (this.pickedDate && this.pickedDateFormatted !== "")
+        this.fetchActivity();
+    },
+    force() {
+      this.fetchActivity();
     }
   },
   methods: {
@@ -311,27 +348,6 @@ export default {
             outputFormat: "side-by-side"
           })
         : "";
-    }
-  },
-  watch: {
-    selectedRepo() {
-      if (this.selectedRepo) this.fetchActivity();
-    },
-    selectedCollaborator() {
-      if (this.selectedCollaborator) this.fetchActivity();
-    },
-    date() {
-      if (this.date && this.date !== "pick") this.fetchActivity();
-    },
-    pickedDate() {
-      if (this.pickedDate && typeof this.pickedDate !== "string")
-        this.pickedDateFormatted = moment(this.pickedDate).format("DD-MM-YYYY");
-
-      if (this.pickedDate && this.pickedDateFormatted !== "")
-        this.fetchActivity();
-    },
-    force() {
-      this.fetchActivity();
     }
   }
 };
