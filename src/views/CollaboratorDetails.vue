@@ -87,7 +87,7 @@
 
         <div class="row" v-if="collaborator">
           <div
-            class="col-4 my-20"
+            class="col-4"
             v-for="repository in myRepositories"
             :key="`${repository.owner}/${repository.name}`"
           >

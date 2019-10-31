@@ -212,7 +212,7 @@ export default {
           : localStorage.login
       },
       tz: "",
-      showSidebar: false,
+      showSidebar: true,
       search: "",
       repositories: [],
       selectedRepo: null,
