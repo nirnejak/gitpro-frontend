@@ -8,7 +8,7 @@ Vue.use(Router)
 
 const isAuthenticated = (to, from, next) => {
   if (localStorage.jwtToken) next()
-  else next({ path: '/' })
+  else next({ path: '/login' })
 }
 
 export default new Router({
@@ -18,14 +18,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
-      beforeEnter: (to, from, next) => {
-        if (localStorage.jwtToken) {
-          next({ path: '/dashboard' })
-        } else {
-          next()
-        }
-      }
+      component: Home
     },
     {
       path: '/about',
@@ -40,7 +33,14 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: () => import('./views/Login.vue')
+      component: () => import('./views/Login.vue'),
+      beforeEnter: (to, from, next) => {
+        if (localStorage.jwtToken) {
+          next({ path: '/dashboard' })
+        } else {
+          next()
+        }
+      }
     },
     {
       path: '/dashboard',
@@ -55,7 +55,7 @@ export default new Router({
             localStorage.jwtToken = to.query.token
             next({ path: '/dashboard' })
           } else {
-            next({ path: '/' })
+            next({ path: '/login' })
           }
         }
       }
@@ -119,7 +119,7 @@ export default new Router({
         Object.keys(lightTheme).forEach(key => {
           rootElement.style.setProperty(key, lightTheme[key])
         })
-        next({ path: '/' })
+        next({ path: '/login' })
       }
     },
     {
