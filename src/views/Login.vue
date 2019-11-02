@@ -3,21 +3,27 @@
     <div class="row">
       <div class="col-7-md">
         <div class="is-vertical-align is-center h-100vh">
-          <div>
-            <h1 class="lead-title text-left">
-              <span class="text-primary">Continue</span>
-              <br />with GitHub
-            </h1>
-            <br />
-            <p class="text-dark">
-              <i class="fas fa-exclamation-circle fa-sm" />
-              We are only storing the data essential to do the task.
-              <br />Your fetched data and repositories are instantly deleted
-              <br />after processing the developer activity.
-              <br />
-              <br />Your data is safe, secure and private
-              <br />to you. No Ads or Tracking of any kind.
-            </p>
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+              <div class="p-20">
+                <h1 class="lead-title text-left">
+                  <span class="text-primary">Continue</span>
+                  <br />with GitHub
+                </h1>
+                <br />
+                <p class="text-dark">
+                  <i class="fas fa-exclamation-circle fa-sm" />
+                  We are only storing the data essential to do the task.
+                  Your fetched data and repositories are instantly deleted
+                  after processing the developer activity.
+                  <br />
+                  <br />Your data is safe, secure and private
+                  to you. No Ads or Tracking of any kind.
+                </p>
+              </div>
+            </div>
+            <div class="col-2"></div>
           </div>
         </div>
       </div>
