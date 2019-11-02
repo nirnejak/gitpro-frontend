@@ -35,7 +35,7 @@
               Register with GitHub
             </a>
 
-            <div class="row my-30">
+            <div class="row my-20">
               <div class="col-5">
                 <hr />
               </div>
