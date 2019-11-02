@@ -65,7 +65,7 @@
               <i class="fas fa-question-circle fa-sm mr-5"/>What about my data?
             </strong>
           </p>
-          <p>We are only storing the data essential data required to do the task. Your fetched repositories are instantly deleted after processing the developer activity. Your data is safe, secure and private to you. No Ads or Tracking of any kind.</p>
+          <p>We are only storing the data essential to do the task. Your fetched repositories are instantly deleted after processing the developer activity. Your data is safe, secure and private to you. No Ads or Tracking of any kind.</p>
         </div>
 
         <div class="col-12 py-20">

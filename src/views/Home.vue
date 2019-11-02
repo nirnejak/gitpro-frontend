@@ -7,7 +7,7 @@
             <div class="is-vertical-align" style="height: calc(100vh - 30px)">
               <div class="p-20">
                 <h3>GitPro</h3>
-                <h1 class="error-code" style="line-height: 7rem;">
+                <h1 class="lead-title">
                   <span></span>
                   <br />simplified
                 </h1>
@@ -138,7 +138,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1.error-code {
+h1.lead-title {
+  line-height: 7rem;
   font-size: 6rem;
   margin-top: 0px;
   margin-bottom: 0px;

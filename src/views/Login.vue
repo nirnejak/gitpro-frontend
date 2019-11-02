@@ -2,8 +2,25 @@
   <div class="hero-container">
     <div class="row">
       <div class="col-7-md">
-        <div class="is-vertical-align h-100vh">
-          <h1 class="text-center">Secure Login</h1>
+        <div class="is-vertical-align is-center h-100vh">
+          <div>
+            <h1 class="lead-title text-left">
+              Continue
+              <br />with GitHub
+            </h1>
+            <br />
+            <br />
+            <p>
+              GitHub Authentication is required,
+              <br />We are only storing the data essential
+              <br />to do the task. Your fetched data
+              <br />and repositories are instantly deleted
+              <br />after processing the developer activity.
+              <br />
+              <br />Your data is safe, secure and private
+              <br />to you. No Ads or Tracking of any kind.
+            </p>
+          </div>
         </div>
       </div>
       <div class="col-5-md bg-card offset-1">
@@ -11,7 +28,7 @@
           <div class="text-center">
             <h1>Login/SignUp</h1>
             <button class="button dark continue-github">
-              <i class="fab fa-sm fa-github" />
+              <i class="fab fa-sm fa-github mr-5" />
               Continue with GitHub
             </button>
 
@@ -31,7 +48,11 @@
                 </p>
                 <p class="text-left">
                   <i class="fas fa-trash mr-10" />
-                  Deleted after processing
+                  Data deleted after processing
+                </p>
+                <p class="text-left">
+                  <i class="fas fa-ad mr-10" />
+                  No Ads or Tracking
                 </p>
               </div>
             </div>
@@ -64,5 +85,11 @@ export default {
 <style>
 .button.continue-github {
   transform: scale(1.2);
+}
+h1.lead-title {
+  line-height: 6rem;
+  font-size: 5rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 </style>
