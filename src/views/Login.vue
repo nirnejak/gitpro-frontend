@@ -5,7 +5,7 @@
         <div class="is-vertical-align is-center h-100vh">
           <div>
             <h1 class="lead-title text-left">
-              Continue
+              <span class="text-primary">Continue</span>
               <br />with GitHub
             </h1>
             <br />
