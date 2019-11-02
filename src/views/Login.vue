@@ -9,12 +9,10 @@
               <br />with GitHub
             </h1>
             <br />
-            <br />
-            <p>
-              GitHub Authentication is required,
-              <br />We are only storing the data essential
-              <br />to do the task. Your fetched data
-              <br />and repositories are instantly deleted
+            <p class="text-dark">
+              <i class="fas fa-exclamation-circle fa-sm" />
+              We are only storing the data essential to do the task.
+              <br />Your fetched data and repositories are instantly deleted
               <br />after processing the developer activity.
               <br />
               <br />Your data is safe, secure and private
@@ -26,11 +24,25 @@
       <div class="col-5-md bg-card offset-1">
         <div class="is-vertical-align is-center h-100vh">
           <div class="text-center">
-            <h1>Login/SignUp</h1>
-            <button class="button dark continue-github">
+            <a :href="loginUrl" class="button dark continue-github">
               <i class="fab fa-sm fa-github mr-5" />
-              Continue with GitHub
-            </button>
+              Register with GitHub
+            </a>
+
+            <div class="row my-30">
+              <div class="col-5">
+                <hr />
+              </div>
+              <div class="col-2">or</div>
+              <div class="col-5">
+                <hr />
+              </div>
+            </div>
+
+            <a :href="loginUrl" class="button dark continue-github">
+              <i class="fab fa-sm fa-github mr-5" />
+              Login with GitHub
+            </a>
 
             <div>
               <div class="mt-70 text-dark">
@@ -48,7 +60,7 @@
                 </p>
                 <p class="text-left">
                   <i class="fas fa-trash mr-10" />
-                  Data deleted after processing
+                  Data deleted after use
                 </p>
                 <p class="text-left">
                   <i class="fas fa-ad mr-10" />
