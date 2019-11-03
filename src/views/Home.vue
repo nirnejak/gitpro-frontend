@@ -2,12 +2,12 @@
   <div>
     <div class="hero-container">
       <div class="container">
-        <div class="row">
-          <div class="col-6-md">
+        <div class="columns">
+          <div class="column is-6-md">
             <div class="is-vertical-align" style="height: calc(100vh - 30px)">
               <div class="p-20">
-                <h3>GitPro</h3>
-                <h1 class="lead-title">
+                <h3 class="is-size-4">GitPro</h3>
+                <h1 class="is-size-2 lead-title">
                   <span></span>
                   <br />simplified
                 </h1>
@@ -16,12 +16,12 @@
                 >A platform to make repository management and developer activity tracking easier.</p>
                 <router-link to="/login" class="button primary get-started ml-20 mt-50">
                   Get Started
-                  <i class="fas fa-sm fa-arrow-right" />
+                  <i class="fas fa-sm fa-arcolumns-right" />
                 </router-link>
               </div>
             </div>
           </div>
-          <div class="col-6-md">
+          <div class="column is-6-md">
             <div class="is-vertical-align is-center" style="height: calc(100vh - 30px)">
               <img src="@/assets/version_control.svg" alt width="80%" />
             </div>
@@ -30,7 +30,7 @@
       </div>
       <div class="is-center" style="height: 30px;">
         <i
-          class="fas fa-arrow-down cursor-pointer"
+          class="fas fa-arcolumns-down cursor-pointer"
           v-scroll-to="{
             el: '#seeActivitySection',
             duration: 2000,
@@ -42,63 +42,63 @@
     </div>
     <div class="bg-card">
       <div class="container">
-        <div class="row py-150" id="seeActivitySection">
-          <div class="col-6">
+        <div class="columns py-150" id="seeActivitySection">
+          <div class="column is-6">
             <div class="is-vertical-align is-center">
               <img src="@/assets/developer_activity.svg" alt width="80%" />
             </div>
           </div>
-          <div class="col-6">
+          <div class="column is-6">
             <div class="is-vertical-align is-center">
               <div class="p-40">
-                <h1>See Activity</h1>
+                <h1 class="is-size-2">See Activity</h1>
                 <p>See developer's contributions on your repositories. Goto their page for a daily summary or jump to Activitiy section for full git diff of their contributions.</p>
                 <br />
                 <router-link to="/login">
                   Get Started
-                  <i class="fas fa-arrow-right ml-5" />
+                  <i class="fas fa-arcolumns-right ml-5" />
                 </router-link>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="row py-100">
-          <div class="col-6">
+        <div class="columns py-100">
+          <div class="column is-6">
             <div class="is-vertical-align is-center">
               <div class="p-40">
-                <h1>Manage Contributors</h1>
+                <h1 class="is-size-2">Manage Contributors</h1>
                 <p>Easily add or remove collaborators from a repository. Do bulk operations by adding to or removing from multiple repositories, or add an existing collaborator to other repositories.</p>
                 <br />
                 <router-link to="/login">
                   Get Started
-                  <i class="fas fa-arrow-right ml-5" />
+                  <i class="fas fa-arcolumns-right ml-5" />
                 </router-link>
               </div>
             </div>
           </div>
-          <div class="col-6">
+          <div class="column is-6">
             <div class="is-vertical-align is-center">
               <img src="@/assets/collaboration.svg" alt width="80%" />
             </div>
           </div>
         </div>
 
-        <div class="row py-150">
-          <div class="col-6">
+        <div class="columns py-150">
+          <div class="column is-6">
             <div class="is-vertical-align is-center">
               <img src="@/assets/insights.svg" alt width="80%" />
             </div>
           </div>
-          <div class="col-6">
+          <div class="column is-6">
             <div class="is-vertical-align is-center">
               <div class="p-40">
-                <h1>Get Insights</h1>
+                <h1 class="is-size-2">Get Insights</h1>
                 <p>How are your developers doing? How is their coding pattern. Are they maintaining code standards and quality? Know it all here/</p>
                 <br />
                 <router-link to="/login">
                   Get Started
-                  <i class="fas fa-arrow-right ml-5" />
+                  <i class="fas fa-arcolumns-right ml-5" />
                 </router-link>
               </div>
             </div>
@@ -139,8 +139,8 @@ export default {
 
 <style lang="scss" scoped>
 h1.lead-title {
-  line-height: 7rem;
-  font-size: 6rem;
+  line-height: 5rem;
+  font-size: 4rem;
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -149,7 +149,7 @@ h1.lead-title {
   transform: scale(1.2);
 }
 
-.fa-arrow-down {
+.fa-arcolumns-down {
   animation: 2s upDown infinite;
 }
 

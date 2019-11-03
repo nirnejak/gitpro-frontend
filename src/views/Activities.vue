@@ -1,28 +1,28 @@
 <template>
-  <div class="row">
+  <div class="columns">
     <Sidebar :show="showSidebar" />
-    <div class="h-100vh mb-0" :class="{'col-9': showSidebar, 'col-12 px-30': !showSidebar}">
+    <div class="h-100vh mb-0" :class="{'column is-9': showSidebar, 'column px-30': !showSidebar}">
       <div class="px-20">
         <i
           class="fas cursor-pointer py-20"
           :class="{'fa-bars': !showSidebar, 'fa-times': showSidebar}"
           @click="showSidebar=!showSidebar"
         />
-        <div class="row">
-          <div class="col-12">
-            <h1>Activities</h1>
+        <div class="columns">
+          <div class="column">
+            <h1 class="is-size-2">Activities</h1>
           </div>
         </div>
-        <div class="row" v-if="formDataLoading">
-          <div class="col-12">
+        <div class="columns" v-if="formDataLoading">
+          <div class="column">
             <SkeletonLoader width="100%" height="114px" radius="5px" class="my-10" />
           </div>
         </div>
-        <div class="row" v-if="!formDataLoading">
-          <div class="col-12">
+        <div class="columns" v-if="!formDataLoading">
+          <div class="column">
             <div class="bg-card border-radius-5 p-20 my-10">
-              <div class="row">
-                <div class="col-6 repositories pr-10">
+              <div class="columns">
+                <div class="column is-6 repositories pr-10">
                   <p class="pb-5">Repository</p>
                   <multiselect
                     placeholder="Select Repository"
@@ -37,7 +37,7 @@
                     <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
                   </div>
                 </div>
-                <div class="col-6 collaborator pr-10">
+                <div class="column is-6 collaborator pr-10">
                   <p class="pb-5">Collaborator</p>
                   <multiselect
                     placeholder="Select Collaborator"
@@ -49,22 +49,22 @@
                   />
                 </div>
               </div>
-              <div class="row mt-10 sidebar-links" v-if="selectedRepo && selectedCollaborator">
-                <div class="col-4 text-center">
+              <div class="columns mt-10 sidebar-links" v-if="selectedRepo && selectedCollaborator">
+                <div class="column is-4 has-text-centered">
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'yesterday'}"
                     @click="changeDate('yesterday')"
                   >Yesterday</span>
                 </div>
-                <div class="col-4 text-center">
+                <div class="column is-4 has-text-centered">
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'today'}"
                     @click="changeDate('today')"
                   >Today</span>
                 </div>
-                <div class="col-4 text-center">
+                <div class="column is-4 has-text-centered">
                   <span
                     class="sidebar-link cursor-pointer"
                     :class="{active: date === 'pick'}"
@@ -88,34 +88,34 @@
           </div>
         </div>
 
-        <div class="row" v-if="activityLoading">
-          <div class="col-12" v-for="i in 2" :key="i">
+        <div class="columns" v-if="activityLoading">
+          <div class="column" v-for="i in 2" :key="i">
             <SkeletonLoader width="100%" height="300px" radius="5px" class="my-10" />
           </div>
         </div>
 
-        <div class="row" v-if="!activityLoading">
-          <div class="col-12">
-            <h3 class="mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
+        <div class="columns" v-if="!activityLoading">
+          <div class="column">
+            <h3 class="is-size-4 mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
             <div v-if="Object.keys(activity).length !== 0">
               <div
                 class="bg-card border-radius-5 p-20 my-20"
                 v-if="!activityLoading && activity.contributions.length === 0"
               >
                 <div class="my-20">
-                  <h4 class="text-center">No Contributions</h4>
-                  <p class="text-dark text-center">
+                  <h4 class="has-text-centered is-size-5">No Contributions</h4>
+                  <p class="text-dark has-text-centered">
                     No Activity on
                     <strong>{{selectedRepo.name}}</strong> by
                     <strong>{{selectedCollaborator.nameAndOrLogin}}</strong>
                   </p>
-                  <p class="text-center" v-if="activity.contributors.length > 0">
+                  <p class="has-text-centered" v-if="activity.contributors.length > 0">
                     <br />Users with activity on
                     <strong>{{selectedRepo.name}}</strong> for selected date
                     <br />
                     <br />
                   </p>
-                  <div class="text-center">
+                  <div class="has-text-centered">
                     <button
                       class="button primary outline bd-primary"
                       v-for="(contributor, index) in activity.contributors"
@@ -131,9 +131,9 @@
               v-for="(commit, index) in activity.contributions"
               :key="index"
             >
-              <div class="row">
-                <div class="col-9">
-                  <h4 class="my-0">{{commit.commitMessage}}</h4>
+              <div class="columns">
+                <div class="column is-9">
+                  <h4 class="is-size-5 my-0">{{commit.commitMessage}}</h4>
                   <a
                     :href="`http://github.com/${activity.owner}/${activity.repository}/commit/${commit.hash}`"
                     class="text-dark"
@@ -144,7 +144,7 @@
                     <i class="fas fa-sm fa-external-link-alt" />
                   </a>
                 </div>
-                <div class="col-3 text-right">
+                <div class="column is-3 has-text-right-tablet">
                   <i class="fas fa-code-branch" />&nbsp;
                   <span class="text-dark mr-20">{{commit.branch}}</span>
                   <i
@@ -167,7 +167,7 @@
                     v-if="commit.diff !== 'Error:Diff is too large'"
                   />
                   <h3
-                    class="text-center"
+                    class="is-size-4 has-text-centered"
                     v-if="commit.diff === 'Error:Diff is too large'"
                   >Diff is too large</h3>
                   <a

@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="columns">
     <Sidebar :show="true" />
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add to Repository">
       <AddToRepos
@@ -9,10 +9,10 @@
       />
     </Modal>
 
-    <div class="col-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
+    <div class="column is-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
-        <div class="row">
-          <div class="col-2">
+        <div class="columns">
+          <div class="column is-2">
             <SkeletonLoader
               width="100%"
               height="150px"
@@ -25,19 +25,19 @@
               v-else
             />
           </div>
-          <div class="col-6 is-vertical-align">
+          <div class="column is-6 is-vertical-align">
             <div class="ml-10">
-              <h1 class="m-0">{{collaborator.name}}</h1>
+              <h1 class="is-size-2 m-0">{{collaborator.name}}</h1>
               <SkeletonLoader
                 width="100%"
                 height="30px"
                 radius="5px"
                 v-if="collaboratorDetailsLoading"
               />
-              <h3 class="m-0 text-dark">{{$route.params.login}}</h3>
+              <h3 class="is-size-4 m-0 text-dark">{{$route.params.login}}</h3>
             </div>
           </div>
-          <div class="col-4 is-vertical-align is-right">
+          <div class="column is-4 is-vertical-align is-right">
             <div>
               <span href="#" class="text-error cursor-pointer pr-20" @click="removeCollaborator">
                 <i class="fas fa-user-times" />&nbsp;
@@ -52,42 +52,42 @@
             </div>
           </div>
         </div>
-        <div class="row mt-30">
-          <div class="col-4">
-            <h2>Repositories</h2>
+        <div class="columns mt-30">
+          <div class="column is-4">
+            <h2 class="is-size-3">Repositories</h2>
           </div>
-          <div class="col-8 is-right">
+          <div class="column is-8 is-right">
             <button
               type="submit"
-              class="button clear text-error px-10"
+              class="button is-outlined text-error px-10"
               v-if="selectedRepositories.length > 0"
               @click="revokeAccess()"
             >
               <i class="fas fa-times" />&nbsp;
               Revoke Access
             </button>
-            <button class="button clear text-dark px-10" @click="refreshData">
+            <button class="button is-outlined text-dark px-10" @click="refreshData">
               <i class="fas fa-sync-alt" />&nbsp;
               Refresh Data
             </button>
-            <button type="submit" class="button clear px-10" @click="showModal = true">
+            <button type="submit" class="button is-outlined px-10" @click="showModal = true">
               <i class="fas fa-plus" />&nbsp;
               Add to Repos
             </button>
           </div>
         </div>
 
-        <div class="row" v-if="collaboratorDetailsLoading">
-          <div class="col-4" v-for="i in 4" :key="i">
+        <div class="columns" v-if="collaboratorDetailsLoading">
+          <div class="column is-4" v-for="i in 4" :key="i">
             <div class="m-10">
               <SkeletonLoader width="100%" height="70px" radius="5px" />
             </div>
           </div>
         </div>
 
-        <div class="row" v-if="collaborator">
+        <div class="columns" v-if="collaborator">
           <div
-            class="col-4"
+            class="column is-4"
             v-for="repository in myRepositories"
             :key="`${repository.owner}/${repository.name}`"
           >
@@ -100,13 +100,13 @@
             />
             <label :for="repository.name" class="repo-checkbox">
               <div class="bg-card border-radius-5 p-20 m-10">
-                <div class="row">
-                  <div class="col-6 text-overflow-ellipsis">
+                <div class="columns">
+                  <div class="column is-6 text-overflow-ellipsis">
                     <i class="fas fa-check-circle text-light mt-5 mr-10" />
                     <!-- <i class="fas fa-code-branch" /> -->
                     {{repository.name}}
                   </div>
-                  <div class="col-6 text-right">
+                  <div class="column is-6 has-text-right-tablet">
                     <router-link
                       :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}&owner=${repository.owner}`"
                       class="text-primary"
@@ -116,24 +116,24 @@
               </div>
             </label>
           </div>
-          <div class="col-12" v-if="myRepositories.length === 0">
-            <p class="text-center">
+          <div class="column" v-if="myRepositories.length === 0">
+            <p class="has-text-centered">
               You haven't added {{collaborator.name || collaborator.login}} to any of your repositories
               <br />
               <button
                 type="submit"
-                class="button clear px-10"
+                class="button is-outlined px-10"
                 @click="showModal = true"
               >Add to Repos</button>
             </p>
           </div>
         </div>
 
-        <div class="row mt-30">
-          <div class="col-6">
-            <h2>Common Repositories</h2>
+        <div class="columns mt-30">
+          <div class="column is-6">
+            <h2 class="is-size-3">Common Repositories</h2>
           </div>
-          <div class="col-6 is-right">
+          <div class="column is-6 is-right">
             <p class="text-dark">
               Repositories shared with you and
               <strong>{{$route.params.login}}</strong>
@@ -141,29 +141,29 @@
           </div>
         </div>
 
-        <div class="row" v-if="collaboratorDetailsLoading">
-          <div class="col-4" v-for="i in 3" :key="i">
+        <div class="columns" v-if="collaboratorDetailsLoading">
+          <div class="column is-4" v-for="i in 3" :key="i">
             <div class="m-10">
               <SkeletonLoader width="100%" height="70px" radius="5px" />
             </div>
           </div>
         </div>
 
-        <div class="row" v-if="collaborator">
+        <div class="columns" v-if="collaborator">
           <div
-            class="col-4"
+            class="column is-4"
             v-for="repository in commonRepositories"
             :key="`${repository.owner}/${repository.name}`"
           >
             <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
             <label :for="repository.name" class="repo-checkbox"></label>
             <div class="bg-card border-radius-5 p-20 m-10">
-              <div class="row">
-                <div class="col-10 text-overflow-ellipsis">
+              <div class="columns">
+                <div class="column is-10 text-overflow-ellipsis">
                   <i class="fas fa-code-branch" />
                   {{repository.owner}}/{{repository.name}}
                 </div>
-                <div class="col-2">
+                <div class="column is-2">
                   <router-link
                     :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}&owner=${repository.owner}`"
                     title="View Activity"
@@ -176,19 +176,19 @@
           </div>
         </div>
 
-        <div class="col-12" v-if="commonRepositories.length === 0">
-          <p class="text-center">
+        <div class="column" v-if="commonRepositories.length === 0">
+          <p class="has-text-centered">
             There are no common repositories between you and {{collaborator.name || collaborator.login}}.
             <br />
-            <button type="submit" class="button clear px-10" @click="showModal = true">Add to Repos</button>
+            <button type="submit" class="button is-outlined px-10" @click="showModal = true">Add to Repos</button>
           </p>
         </div>
 
-        <div class="row mt-30">
-          <div class="col-4">
-            <h2>Today's Activity</h2>
+        <div class="columns mt-30">
+          <div class="column is-4">
+            <h2 class="is-size-3">Today's Activity</h2>
           </div>
-          <div class="col-8 is-right">
+          <div class="column is-8 is-right">
             <p class="text-dark">
               <i class="fas fa-sm fa-star" />
               Showing for Favourite Repositories only
@@ -196,19 +196,19 @@
           </div>
         </div>
 
-        <div class="row" v-if="activitiesLoading">
-          <div class="col-12">
+        <div class="columns" v-if="activitiesLoading">
+          <div class="column">
             <SkeletonLoader width="100%" height="300px" radius="5px" class="my-20" />
           </div>
         </div>
 
-        <div class="row mb-30">
-          <div class="col-12" v-if="!activitiesLoading && activityStats.length === 0">
-            <h3 class="text-center text-dark my-20">
+        <div class="columns mb-30">
+          <div class="column" v-if="!activitiesLoading && activityStats.length === 0">
+            <h3 class="is-size-4 has-text-centered text-dark my-20">
               <br />No Activity
             </h3>
             <br />
-            <p class="text-center">
+            <p class="has-text-centered">
               This section only shows already fetched/processed activities on favourite repositories.
               <br />To fetch/process more activities, goto
               <router-link to="activities">Activities</router-link>&nbsp;section or
@@ -217,25 +217,25 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-12">
+        <div class="columns">
+          <div class="column">
             <div
               class="bg-card border-radius-5 p-20 my-20"
               v-for="activityStat in activityStats"
               :key="activityStat.repository"
             >
-              <div class="row">
-                <div class="col-8">
-                  <h4>{{activityStat.repository}}</h4>
+              <div class="columns">
+                <div class="column is-8">
+                  <h4 class="is-size-5">{{activityStat.repository}}</h4>
                 </div>
-                <div class="col-4 text-right pt-10">
+                <div class="column is-4 has-text-right-tablet pt-10">
                   <router-link
                     :to="`/activities/?collaborator=${collaborator.login}&repository=${activityStat.repository}&owner=${activityStat.owner}`"
                   >View Full Activity</router-link>
                 </div>
               </div>
               <div class="my-20" v-if="activityStat.contributions.length === 0">
-                <h4 class="text-center text-dark">No Contributions Today</h4>
+                <h4 class="is-size-5 has-text-centered text-dark">No Contributions Today</h4>
               </div>
               <div
                 v-for="(commit, index) in activityStat.contributions"
@@ -243,13 +243,13 @@
                 class="my-10"
               >
                 <hr v-if="index !== 0" />
-                <div class="row my-10">
-                  <div class="col-5 text-primary">{{commit.commitMessage}}</div>
-                  <div class="col-2 text-center">
+                <div class="columns my-10">
+                  <div class="column is-5 text-primary">{{commit.commitMessage}}</div>
+                  <div class="column is-2 has-text-centered">
                     <i class="fas fa-code-branch mr-5" />
                     {{commit.branch}}
                   </div>
-                  <div class="col-5 text-right">
+                  <div class="column is-5 has-text-right-tablet">
                     <a
                       :href="`http://github.com/${user.login}/${activityStat.repository}/commit/${commit.hash}`"
                       class="text-high-contrast"
@@ -262,18 +262,18 @@
                   </div>
                 </div>
                 <div
-                  class="row text-dark my-5"
+                  class="columns text-dark my-5"
                   v-for="(fileStat, index) in commit.files"
                   :key="index"
                 >
-                  <div class="col-10">
+                  <div class="column is-10">
                     <p>
                       {{fileStat.from}}
-                      <i class="fas fa-long-arrow-alt-right mx-10" />
+                      <i class="fas fa-long-arcolumns-alt-right mx-10" />
                       {{fileStat.to}}
                     </p>
                   </div>
-                  <div class="col-2 text-center">
+                  <div class="column is-2 has-text-centered">
                     <span
                       class="tag text-success border-radius-5"
                       title="Additions"

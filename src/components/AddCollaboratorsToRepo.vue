@@ -1,8 +1,8 @@
 <template>
   <div>
     <input type="text" placeholder="Search Collaborator" v-model="search" />
-    <div class="row mb-10 mt-15">
-      <div class="col-12">
+    <div class="columns mb-10 mt-15">
+      <div class="column">
         <p class="text-dark">
           Collaborators
           <small>({{selectedCollaborators.length}} Selected)</small>
@@ -11,9 +11,9 @@
     </div>
 
     <div class="collaborator-list-container mb-15">
-      <div class="row">
+      <div class="columns">
         <div
-          class="col-3 p-5"
+          class="column is-3 p-5"
           v-for="collaborator in collaborators"
           :key="collaborator.login"
           @click="selectCollaborator(collaborator.login)"
@@ -47,8 +47,8 @@
             </label>
           </div>
           <label :for="collaborator.login" class="cursor-pointer">
-            <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
-            <small class="text-center text-dark is-center">{{collaborator.login}}</small>
+            <p class="has-text-centered mt-10 text-high-contrast">{{collaborator.name}}</p>
+            <small class="has-text-centered text-dark is-center">{{collaborator.login}}</small>
           </label>
           </div>
         </div>

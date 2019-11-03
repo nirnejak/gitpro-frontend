@@ -1,14 +1,14 @@
 <template>
-  <div class="row">
+  <div class="columns">
     <Sidebar :show="true" />
-    <div class="col-9 pt-70">
+    <div class="column is-9 pt-70">
       <div class="px-20">
-        <h1>Insights</h1>
+        <h1 class="is-size-2">Insights</h1>
 
         <div class="is-center h-70vh">
-          <div class="text-center text-dark">
+          <div class="has-text-centered text-dark">
             <i class="fas fa-3x fa-paper-plane mb-10" />
-            <h2>Coming Soon</h2>
+            <h2 class="is-size-3">Coming Soon</h2>
             <p>
               Anything you'd like to see?
               <a

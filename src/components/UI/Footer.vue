@@ -1,16 +1,16 @@
 <template>
   <footer>
     <div class="container">
-      <div class="row py-70 mt-30">
-        <div class="col-6">
-          <div class="text-center">
+      <div class="columns py-70 mt-30">
+        <div class="column is-6">
+          <div class="has-text-centered">
             <router-link to="/" class="text-high-contrast">
               <img src="@/assets/logo.svg" alt="GitPro Logo" width="30%" />
-              <h3 class="m-0">GitPro</h3>
+              <h3 class="is-size-4 m-0">GitPro</h3>
             </router-link>
           </div>
         </div>
-        <div class="col-3 is-vertical-align">
+        <div class="column is-3 is-vertical-align">
           <div>
             <div>
               <strong>Quick Links</strong>
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3 is-vertical-align">
+        <div class="column is-3 is-vertical-align">
           <div>
             <div>
               <strong>Contact</strong>

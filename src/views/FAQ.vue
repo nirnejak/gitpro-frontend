@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="container mt-100">
-      <div class="row">
-        <div class="col-12">
-          <h1>Frequently Asked Questions</h1>
+      <div class="columns">
+        <div class="column">
+          <h1 class="is-size-2">Frequently Asked Questions</h1>
           <hr />
         </div>
       </div>
-      <div class="row">
-        <div class="col-12 py-20">
+      <div class="columns">
+        <div class="column py-20">
           <p>
             <strong>
               <i class="fas fa-question-circle fa-sm mr-5"/>What is GitPro?
@@ -17,7 +17,7 @@
           <p>GitPro is a platform to make repository management and developer activity tracking easier. It works with GitHub(we’re working on BitBucket and GitLab Integration). You can manage your repositories and it’s collaborators through GitPro. You can also see and track developer activities.</p>
         </div>
 
-        <div class="col-12 py-20">
+        <div class="column py-20">
           <p>
             <strong>
               <i class="fas fa-question-circle fa-sm mr-5"/>How does it make repository management easy?
@@ -26,7 +26,7 @@
           <p>On GitPro you can see all the collaborators at glance. You can see what repositories they have access to. Change the access or invite a new collaborator. Similarly, you can see a repository. See it’s collaborators. Remove a collaborator or Invite a new Collaborator.</p>
         </div>
 
-        <div class="col-12 py-20">
+        <div class="column py-20">
           <p>
             <strong>
               <i class="fas fa-question-circle fa-sm mr-5"/>How does your platform track developer activity?
@@ -35,7 +35,7 @@
           <p>In simple terms, activity is what a developer has done in a day. There are certain ways you can see and track it.</p>
         </div>
         
-        <div class="col-12 py-20">
+        <div class="column py-20">
           <p>
             <strong>
               <i class="fas fa-question-circle fa-sm mr-5"/>What type of activities I can see?
@@ -50,7 +50,7 @@
           </p>
         </div>
         
-        <div class="col-12 py-20">
+        <div class="column py-20">
           <p>
             <strong>
               <i class="fas fa-question-circle fa-sm mr-5"/>How much do I have to Pay?
@@ -59,7 +59,7 @@
           <p>Nothing, It’s absolutely free.</p>
         </div>
 
-        <div class="col-12 py-20">
+        <div class="column py-20">
           <p>
             <strong>
               <i class="fas fa-question-circle fa-sm mr-5"/>What about my data?
@@ -68,7 +68,7 @@
           <p>We are only storing the data essential to do the task. Your fetched repositories are instantly deleted after processing the developer activity. Your data is safe, secure and private to you. No Ads or Tracking of any kind.</p>
         </div>
 
-        <div class="col-12 py-20">
+        <div class="column py-20">
           <p>
             <strong>
               <i class="fas fa-question-circle fa-sm mr-5"/>If you’re fetching data from GitHub then how are you making sure it’s updated?

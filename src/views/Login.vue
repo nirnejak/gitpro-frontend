@@ -1,13 +1,13 @@
 <template>
   <div class="hero-container">
-    <div class="row">
-      <div class="col-7-md">
+    <div class="columns">
+      <div class="column is-7-md">
         <div class="is-vertical-align is-center h-100vh">
-          <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
+          <div class="columns">
+            <div class="column is-2"></div>
+            <div class="column is-8">
               <div class="p-20">
-                <h1 class="lead-title text-left">
+                <h1 class="is-size-2 lead-title text-left">
                   <span class="text-primary">Continue</span>
                   <br />with GitHub
                 </h1>
@@ -23,24 +23,24 @@
                 </p>
               </div>
             </div>
-            <div class="col-2"></div>
+            <div class="column is-2"></div>
           </div>
         </div>
       </div>
-      <div class="col-5-md bg-card offset-1">
+      <div class="column is-5-md bg-card offset-1">
         <div class="is-vertical-align is-center h-100vh">
-          <div class="text-center">
+          <div class="has-text-centered">
             <a :href="loginUrl" class="button dark continue-github">
               <i class="fab fa-sm fa-github mr-5" />
               Register with GitHub
             </a>
 
-            <div class="row my-20">
-              <div class="col-5">
+            <div class="columns my-20">
+              <div class="column is-5">
                 <hr />
               </div>
-              <div class="col-2">or</div>
-              <div class="col-5">
+              <div class="column is-2">or</div>
+              <div class="column is-5">
                 <hr />
               </div>
             </div>

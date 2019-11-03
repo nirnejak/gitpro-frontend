@@ -1,22 +1,22 @@
 <template>
-  <div class="row">
+  <div class="columns">
     <Sidebar :show="true" />
-    <div class="col-9 pt-70">
+    <div class="column is-9 pt-70">
       <div class="px-20">
-        <h1>Settings</h1>
-        <div class="row">
-          <div class="col-12">
+        <h1 class="is-size-2">Settings</h1>
+        <div class="columns">
+          <div class="column">
             <div class="bg-card border-radius-10 p-20">
-              <!-- <div class="row">
-                <div class="col-10 is-vertical-align">Include Public Repositories</div>
-                <div class="col-2 is-center">
+              <!-- <div class="columns">
+                <div class="column is-10 is-vertical-align">Include Public Repositories</div>
+                <div class="column is-2 is-center">
                   <ToggleButton @change="includePublicToggle" id="includePublicToggle" />
                 </div>
               </div>
               <br />-->
-              <div class="row">
-                <div class="col-10 is-vertical-align">Dark Mode</div>
-                <div class="col-2 is-center">
+              <div class="columns">
+                <div class="column is-10 is-vertical-align">Dark Mode</div>
+                <div class="column is-2 is-center">
                   <ToggleButton
                     id="darkModeToggle"
                     :value="theme === 'dark'"
@@ -25,10 +25,10 @@
                 </div>
               </div>
               <br />
-              <div class="row">
-                <div class="col-10 is-vertical-align">Deactivate Account?</div>
-                <div class="col-2 is-center">
-                  <button class="button clear" @click="deactivateAccount">
+              <div class="columns">
+                <div class="column is-10 is-vertical-align">Deactivate Account?</div>
+                <div class="column is-2 is-center">
+                  <button class="button is-outlined" @click="deactivateAccount">
                     <span class="text-error">Deactivate</span>
                   </button>
                 </div>

@@ -1,13 +1,13 @@
 <template>
-  <div class="col-3 bg-card h-100vh mb-0" v-if="show">
-    <div class="pr-50 pl-50 pt-50 pb-10 is-horizontal-align">
+  <div class="column is-3 bg-card h-100vh mb-0" v-if="show">
+    <div class="pr-50 pl-50 pt-50 pb-10 has-text-centered">
       <div
         class="bg-card rounded-circle bg-cover w-70"
         :style="`background-image: url(${user.avatar_url}); padding-top: 70%;`"
       />
     </div>
     <div>
-      <h4 class="is-center mb-0">{{user.name}}</h4>
+      <h4 class="is-size-5 is-center mb-0">{{user.name}}</h4>
       <p class="text-dark is-center">{{user.login}}</p>
     </div>
     <div class="sidebar-links p-50" style="padding-top: 30px !important;">
@@ -44,7 +44,7 @@
         Logout
       </router-link>
     </div>
-    <div class="sidebar-footer text-center pt-100">
+    <div class="sidebar-footer has-text-centered pt-100">
       <small class="text-dark">
         Developed by
         <a href="https://inkoop.io" target="_blank">Inkoop.io</a>

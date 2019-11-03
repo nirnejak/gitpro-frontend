@@ -1,14 +1,14 @@
 <template>
   <div>
     <input type="text" placeholder="Search Repository" v-model="search" />
-    <div class="row mb-10 mt-15">
-      <div class="col-6">
+    <div class="columns mb-10 mt-15">
+      <div class="column is-6">
         <p class="text-dark">
           Repositories
           <small>({{selectedRepositories.length}} Selected)</small>
         </p>
       </div>
-      <div class="col-6 text-right">
+      <div class="column is-6 has-text-right-tablet">
         <i
           class="fas fa-sort-alpha-up text-primary cursor-pointer"
           @click="sortAlphaUp()"
@@ -29,9 +29,9 @@
         :key="repository.name"
         @click="selectRepo(repository.name)"
       >
-        <div class="row">
-          <div class="col-10">{{repository.name}}</div>
-          <div class="col-2 text-right">
+        <div class="columns">
+          <div class="column is-10">{{repository.name}}</div>
+          <div class="column is-2 has-text-right-tablet">
             <i
               class="fas fa-lg fa-check-circle"
               :class="{

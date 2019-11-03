@@ -7,14 +7,14 @@
     >
       <template v-slot:result="{result, props}">
         <li v-bind="props" class>
-          <div class="row cursor-pointer no-gutters">
-            <div class="col-2 is-center">
+          <div class="columns cursor-pointer no-gutters">
+            <div class="column is-2 is-center">
               <div
                 class="rounded-circle bg-cover"
                 :style="`background-image: url(${result.avatar_url}); width: 50px; padding-top: 50px;`"
               />
             </div>
-            <div class="col-10">
+            <div class="column is-10">
               <p class="m-0 p-0">{{result.login}}</p>
               <small class="text-dark" v-html="result.type" />
             </div>
@@ -23,14 +23,14 @@
       </template>
     </autocomplete>
 
-    <div class="row mb-10 mt-15">
-      <div class="col-6">
+    <div class="columns mb-10 mt-15">
+      <div class="column is-6">
         <p class="text-dark">
           Repositories
           <small>({{selectedRepositories.length}} Selected)</small>
         </p>
       </div>
-      <div class="col-6 text-right">
+      <div class="column is-6 has-text-right-tablet">
         <i
           class="fas fa-sort-alpha-up text-primary cursor-pointer"
           @click="sortAlphaUp()"
@@ -44,8 +44,8 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-12 mb-10">
+    <div class="columns">
+      <div class="column mb-10">
         <input type="text" placeholder="Search Repository" v-model="search" />
       </div>
     </div>
@@ -57,9 +57,9 @@
         :key="repository.name"
         @click="selectRepo(repository.name)"
       >
-        <div class="row">
-          <div class="col-10">{{repository.name}}</div>
-          <div class="col-2 text-right">
+        <div class="columns">
+          <div class="column is-10">{{repository.name}}</div>
+          <div class="column is-2 has-text-right-tablet">
             <i
               class="fas fa-lg fa-check-circle"
               :class="{

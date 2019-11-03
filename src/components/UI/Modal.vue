@@ -3,10 +3,10 @@
     <div class="modal-bg" @click="hideModal" />
     <div class="modal-content">
       <div class="modal-header pb-50">
-        <div class="close-btn pull-right w-5 text-right pr-5">
+        <div class="close-btn pull-right w-5 has-text-right-tablet pr-5">
           <i class="fas fa-times cursor-pointer" @click="hideModal" />
         </div>
-        <h4 class="modal-title pull-right w-95">{{modalTitle}}</h4>
+        <h4 class="modal-title pull-right w-95 is-size-5">{{modalTitle}}</h4>
         <br />
       </div>
       <div class="modal-body">

@@ -1,43 +1,43 @@
 <template>
-  <div class="row">
+  <div class="columns">
     <Sidebar :show="true" />
     <SnackBar :show="showSnakeBar" :message="message" type="primary" :hideSnackBar="hideSnackBar" />
-    <div class="col-9 pt-70">
+    <div class="column is-9 pt-70">
       <div class="px-20">
-        <div class="row">
-          <div class="col-6">
-            <h1>Dashboard</h1>
+        <div class="columns">
+          <div class="column is-6">
+            <h1 class="is-size-2">Dashboard</h1>
           </div>
-          <div class="col-6 text-right">
-            <button class="button clear text-dark px-10" @click="refreshData">
+          <div class="column is-6 has-text-right-tablet">
+            <button class="button is-outlined text-dark px-10" @click="refreshData">
               <i class="fas fa-sync-alt" />&nbsp;
               Refresh Data
             </button>
           </div>
         </div>
-        <div class="row" v-if="userLoading">
-          <div class="col-4" v-for="i in 3" :key="i">
+        <div class="columns" v-if="userLoading">
+          <div class="column is-4" v-for="i in 3" :key="i">
             <div class="m-10">
               <SkeletonLoader width="100%" height="70px" radius="10px" />
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-4" v-if="!userLoading">
+        <div class="columns">
+          <div class="column is-4" v-if="!userLoading">
             <router-link to="/repositories" class="bg-card border-radius-10 p-20 m-10">
               <i class="fas fa-code-branch mr-5" />
               {{user.total_repositories}}
               Total Repositories
             </router-link>
           </div>
-          <div class="col-4" v-if="!userLoading">
+          <div class="column is-4" v-if="!userLoading">
             <router-link to="/collaborators" class="bg-card border-radius-10 p-20 m-10">
               <i class="fas fa-user mr-5" />
               {{user.total_collaborators}}
               Total Collaborators
             </router-link>
           </div>
-          <div class="col-4" v-if="!userLoading">
+          <div class="column is-4" v-if="!userLoading">
             <router-link to="/activities" class="bg-card border-radius-10 p-20 m-10">
               <i class="fas fa-code mr-5" />
               {{activities.length}}
@@ -45,23 +45,23 @@
             </router-link>
           </div>
         </div>
-        <div class="row mt-30">
-          <div class="col-12">
-            <h2>Collaborators</h2>
+        <div class="columns mt-30">
+          <div class="column">
+            <h2 class="is-size-3">Collaborators</h2>
           </div>
-          <div class="col-12" v-if="collaboratorLoading">
-            <div class="row">
-              <div class="col-2 p-5" v-for="i in 6" :key="i">
+          <div class="column" v-if="collaboratorLoading">
+            <div class="columns">
+              <div class="column is-2 p-5" v-for="i in 6" :key="i">
                 <div class="is-center">
                   <SkeletonLoader width="150px" height="150px" radius="50%" />
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-12" v-if="collaborators.length">
-            <div class="row">
+          <div class="column" v-if="collaborators.length">
+            <div class="columns">
               <div
-                class="col-2 p-5"
+                class="column is-2 p-5"
                 v-for="collaborator in collaborators"
                 :key="collaborator.login"
               >
@@ -76,12 +76,12 @@
                         <div class="overlay rounded-circle" />
                       </div>
                     </div>
-                    <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
-                    <small class="text-center text-dark is-center">{{collaborator.login}}</small>
+                    <p class="has-text-centered mt-10 text-high-contrast">{{collaborator.name}}</p>
+                    <small class="has-text-centered text-dark is-center">{{collaborator.login}}</small>
                   </router-link>
                 </div>
               </div>
-              <div class="col-2 p-5">
+              <div class="column is-2 p-5">
                 <div class="collaborator-avatar-container">
                   <router-link to="/collaborators/">
                     <div class="is-center">
@@ -97,15 +97,15 @@
               </div>
             </div>
           </div>
-          <div class="col-12" v-if="!collaboratorLoading && !collaborators.length">
-            <div class="text-center">
+          <div class="column" v-if="!collaboratorLoading && !collaborators.length">
+            <div class="has-text-centered">
               <p>No Collaborators</p>
             </div>
           </div>
         </div>
 
-        <div class="row mt-30">
-          <div class="col-6">
+        <div class="columns mt-30">
+          <div class="column is-6">
             <h2 class="mb-0">Today's Activities</h2>
             <div class="text-dark">
               <small>(in Favourite Repositories)</small>
@@ -113,19 +113,19 @@
           </div>
         </div>
 
-        <div class="row mb-20" v-if="activitiesLoading">
-          <div class="col-4 my-20" v-for="i in 3" :key="i">
+        <div class="columns mb-20" v-if="activitiesLoading">
+          <div class="column is-4 my-20" v-for="i in 3" :key="i">
             <SkeletonLoader width="100%" height="200px" radius="10px" />
           </div>
         </div>
 
-        <div class="row mb-30">
-          <div class="col-12" v-if="!activitiesLoading && activities.length === 0">
-            <h3 class="text-center text-dark my-20">
+        <div class="columns mb-30">
+          <div class="column" v-if="!activitiesLoading && activities.length === 0">
+            <h3 class="is-size-4 has-text-centered text-dark my-20">
               <br />No Activity
             </h3>
             <br />
-            <p class="text-center">
+            <p class="has-text-centered">
               This section only shows already fetched/processed activities on favourite repositories.
               <br />To fetch/process more activities, goto
               <router-link to="activities">Activities</router-link>&nbsp;section or
@@ -133,29 +133,29 @@
             </p>
           </div>
 
-          <div class="col-4" v-for="(activity, index) in activities" :key="index">
+          <div class="column is-4" v-for="(activity, index) in activities" :key="index">
             <div class="bg-card border-radius-10 p-20 m-10">
-              <div class="row">
-                <div class="col-6">
+              <div class="columns">
+                <div class="column is-6">
                   <i class="fas fa-code-branch mr-5" />
                   {{activity.repository}}
                 </div>
-                <div class="col-6 text-right">
+                <div class="column is-6 has-text-right-tablet">
                   <i class="far fa-user mr-5" />
                   {{activity.author}}
                 </div>
               </div>
-              <div class="row mt-15">
-                <div class="col-12" v-for="commit in activity.contributions" :key="commit.hash">
-                  <div class="row">
-                    <div class="col-9 text-primary">{{commit.commitMessage}}</div>
-                    <div class="col-3 text-right text-dark">{{commit.files.length}} Files</div>
+              <div class="columns mt-15">
+                <div class="column" v-for="commit in activity.contributions" :key="commit.hash">
+                  <div class="columns">
+                    <div class="column is-9 text-primary">{{commit.commitMessage}}</div>
+                    <div class="column is-3 has-text-right-tablet text-dark">{{commit.files.length}} Files</div>
                   </div>
                   <hr />
                 </div>
               </div>
-              <div class="row mt-5">
-                <div class="col-12 text-center">
+              <div class="columns mt-5">
+                <div class="column has-text-centered">
                   <router-link
                     :to="`/activities/?collaborator=${activity.author}&repository=${activity.repository}&owner=${activity.owner}`"
                     class="text-dark"

@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="columns">
     <Sidebar :show="true" />
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Collaborators">
       <AddCollaboratorsToRepo
@@ -9,15 +9,15 @@
       />
     </Modal>
 
-    <div class="col-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
+    <div class="column is-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
-        <div class="row">
-          <div class="col-1 is-vertical-align">
+        <div class="columns">
+          <div class="column is-1 is-vertical-align">
             <i class="fas fa-4x fa-code-branch mr-5" />
           </div>
-          <div class="col-7 is-vertical-align">
+          <div class="column is-7 is-vertical-align">
             <div>
-              <h1 class="m-0">{{$route.params.name}}</h1>
+              <h1 class="is-size-2 m-0">{{$route.params.name}}</h1>
               <p class="text-dark mb-5">
                 by
                 <span class="text-high-contrast">{{repository.owner}}</span>
@@ -31,7 +31,7 @@
               />
             </div>
           </div>
-          <div class="col-4 is-vertical-align is-right" v-if="repository">
+          <div class="column is-4 is-vertical-align is-right" v-if="repository">
             <!-- TODO: Add Optional Link for GitHub/Bitbucket/Gitlab -->
             <a
               :href="`http://github.com/${$route.params.owner}/${$route.params.name}`"
@@ -44,26 +44,26 @@
           </div>
         </div>
 
-        <div class="row mt-70">
-          <div class="col-4">
-            <h2>Collaborators</h2>
+        <div class="columns mt-70">
+          <div class="column is-4">
+            <h2 class="is-size-3">Collaborators</h2>
           </div>
-          <div class="col-8 is-right">
+          <div class="column is-8 is-right">
             <button
-              class="button clear text-error px-10"
+              class="button is-outlined text-error px-10"
               v-if="selectedCollaborators.length > 0"
               @click="revokeAccess()"
             >
               <i class="fas fa-times" />&nbsp;
               Revoke Access
             </button>
-            <button class="button clear text-dark px-10" @click="refreshData">
+            <button class="button is-outlined text-dark px-10" @click="refreshData">
               <i class="fas fa-sync-alt" />&nbsp;
               Refersh Data
             </button>
             <button
               type="submit"
-              class="button clear px-10"
+              class="button is-outlined px-10"
               @click="showModal = true"
               v-if="user.login === repository.owner"
             >
@@ -72,8 +72,8 @@
             </button>
           </div>
         </div>
-        <div class="row mt-70">
-          <div class="col-2 p-5 pb-30">
+        <div class="columns mt-70">
+          <div class="column is-2 p-5 pb-30">
             <div class="collaborator-avatar-container">
               <div class="is-center">
                 <router-link to="/dashboard">
@@ -87,18 +87,18 @@
                 </router-link>
               </div>
               <router-link to="/dashboard">
-                <p class="text-center mt-10 text-high-contrast">{{user.name || user.login}}</p>
+                <p class="has-text-centered mt-10 text-high-contrast">{{user.name || user.login}}</p>
               </router-link>
               <router-link
                 :to="`/activities/?collaborator=${user.login}&repository=${$route.params.name}&owner=${$route.params.owner}`"
               >
-                <small class="text-center text-primary is-center">View Activity</small>
+                <small class="has-text-centered text-primary is-center">View Activity</small>
               </router-link>
             </div>
           </div>
 
           <div
-            class="col-2 p-5 pb-30"
+            class="column is-2 p-5 pb-30"
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
@@ -131,13 +131,13 @@
               </div>
               <router-link :to="`/collaborators/${collaborator.login}`">
                 <p
-                  class="text-center mt-10 text-high-contrast"
+                  class="has-text-centered mt-10 text-high-contrast"
                 >{{collaborator.name || collaborator.login}}</p>
               </router-link>
               <router-link
                 :to="`/activities/?collaborator=${collaborator.login}&repository=${$route.params.name}&owner=${$route.params.owner}`"
               >
-                <small class="text-center text-primary is-center">View Activity</small>
+                <small class="has-text-centered text-primary is-center">View Activity</small>
               </router-link>
             </div>
           </div>
