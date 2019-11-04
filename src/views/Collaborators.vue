@@ -7,18 +7,20 @@
 
     <div class="column is-9 pt-70">
       <div class="px-20">
-        <div class="columns">
+        <div class="columns mb-30">
           <div class="column is-8">
-            <h1 class="is-size-2">Collaborators({{collaborators.length}})</h1>
+            <h1 class="title is-size-3">Collaborators({{collaborators.length}})</h1>
           </div>
           <div class="column is-4 pt-10 has-text-right-tablet">
-            <button class="button primary" @click="showModal = true" v-if="!showModal">
-              Add Collaborator
-              &nbsp;
-              <i class="fas fa-plus" />
+            <button class="button is-primary" @click="showModal = true" v-if="!showModal">
+              <span>Add Collaborator</span>
+              <span class="icon is-small">
+                <i class="fas fa-plus" />
+              </span>
             </button>
           </div>
         </div>
+
         <div class="columns" v-if="collaboratorLoading">
           <div class="column is-2 p-5" v-for="i in 6" :key="i">
             <div class="is-center">
@@ -39,9 +41,9 @@
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
-            <div class="collaborator-avatar-container">
+            <div class="collaborator-avatar-container has-text-centered">
               <router-link :to="`/collaborators/${collaborator.login}`">
-                <div class="is-center">
+                <div class="columns is-centered">
                   <div class="collaborator-avatar position-relative is-center">
                     <div
                       class="bg-card rounded-circle bg-cover"
@@ -50,8 +52,8 @@
                     <div class="overlay rounded-circle" />
                   </div>
                 </div>
-                <p class="has-text-centered mt-10 text-high-contrast">{{collaborator.name}}</p>
-                <small class="has-text-centered text-dark is-center">{{collaborator.login}}</small>
+                <p class="mt-10 text-high-contrast">{{collaborator.name}}</p>
+                <small class="has-text-dark is-center">{{collaborator.login}}</small>
               </router-link>
             </div>
           </div>

@@ -6,12 +6,12 @@
           <div class="columns is-centered is-vcentered">
             <div class="column is-8">
               <div class="p-20">
-                <h1 class="title is-size-2 lead-title text-left">
+                <h1 class="title is-size-3 lead-title text-left">
                   <span class="has-text-primary">Continue</span>
                   <br />with GitHub
                 </h1>
                 <br />
-                <p class="text-dark">
+                <p class="has-text-dark">
                   <i class="fas fa-exclamation-circle fa-sm" />
                   We are only storing the data essential to do the task.
                   Your fetched data and repositories are instantly deleted
@@ -29,8 +29,8 @@
     <div class="column is-5 bg-card">
       <div class="hero is-fullheight">
         <div class="hero-body">
-          <div class="columns is-centered is-vcentered">
-            <div class="column is-10">
+          <div class="columns is-centered is-vcentered w-100">
+            <div class="column is-11 has-text-centered">
               <div class="p-20">
                 <a :href="loginUrl" class="button is-dark continue-github">
                   <i class="fab fa-sm fa-github mr-5" />
@@ -53,8 +53,8 @@
                 </a>
               </div>
 
-              <div class="has-text-left">
-                <div class="mt-70 text-dark">
+              <div class="columns is-centered">
+                <div class="mt-70 has-text-dark has-text-left">
                   <p class="text-left">
                     <i class="fas fa-user-lock mr-5" />
                     Secure login with GitHub

@@ -6,10 +6,10 @@
       <div class="px-20">
         <div class="columns">
           <div class="column is-6">
-            <h1 class="is-size-2">Dashboard</h1>
+            <h1 class="title is-size-3">Dashboard</h1>
           </div>
           <div class="column is-6 has-text-right-tablet">
-            <button class="button is-outlined text-dark px-10" @click="refreshData">
+            <button class="button is-outlined has-text-dark px-10" @click="refreshData">
               <i class="fas fa-sync-alt" />&nbsp;
               Refresh Data
             </button>
@@ -24,21 +24,21 @@
         </div>
         <div class="columns">
           <div class="column is-4" v-if="!userLoading">
-            <router-link to="/repositories" class="bg-card border-radius-10 p-20 m-10">
+            <router-link to="/repositories" class="bg-card border-radius-10 p-20 my-10">
               <i class="fas fa-code-branch mr-5" />
               {{user.total_repositories}}
               Total Repositories
             </router-link>
           </div>
           <div class="column is-4" v-if="!userLoading">
-            <router-link to="/collaborators" class="bg-card border-radius-10 p-20 m-10">
+            <router-link to="/collaborators" class="bg-card border-radius-10 p-20 my-10">
               <i class="fas fa-user mr-5" />
               {{user.total_collaborators}}
               Total Collaborators
             </router-link>
           </div>
           <div class="column is-4" v-if="!userLoading">
-            <router-link to="/activities" class="bg-card border-radius-10 p-20 m-10">
+            <router-link to="/activities" class="bg-card border-radius-10 p-20 my-10">
               <i class="fas fa-code mr-5" />
               {{activities.length}}
               Repositories with Activity
@@ -47,9 +47,11 @@
         </div>
         <div class="columns mt-30">
           <div class="column">
-            <h2 class="is-size-3">Collaborators</h2>
+            <h2 class="title is-size-4">Collaborators</h2>
           </div>
-          <div class="column" v-if="collaboratorLoading">
+        </div>
+        <div class="columns">
+          <div class="column is-12" v-if="collaboratorLoading">
             <div class="columns">
               <div class="column is-2 p-5" v-for="i in 6" :key="i">
                 <div class="is-center">
@@ -65,9 +67,9 @@
                 v-for="collaborator in collaborators"
                 :key="collaborator.login"
               >
-                <div class="collaborator-avatar-container">
+                <div class="collaborator-avatar-container has-text-centered">
                   <router-link :to="`/collaborators/${collaborator.login}`">
-                    <div class="is-center">
+                    <div class="columns is-centered">
                       <div class="collaborator-avatar position-relative">
                         <div
                           class="bg-card rounded-circle bg-cover"
@@ -76,22 +78,25 @@
                         <div class="overlay rounded-circle" />
                       </div>
                     </div>
-                    <p class="has-text-centered mt-10 text-high-contrast">{{collaborator.name}}</p>
-                    <small class="has-text-centered text-dark is-center">{{collaborator.login}}</small>
+                    <p class="mt-10 text-high-contrast">{{collaborator.name}}</p>
+                    <small class="has-text-dark is-center">{{collaborator.login}}</small>
                   </router-link>
                 </div>
               </div>
               <div class="column is-2 p-5">
-                <div class="collaborator-avatar-container">
+                <div class="collaborator-avatar-container has-text-centered">
                   <router-link to="/collaborators/">
-                    <div class="is-center">
+                    <div class="columns is-centered">
                       <div
                         class="bg-card rounded-circle bg-cover"
                         style="width: var(--avatar-dimension); height: var(--avatar-dimension);"
                       >
-                        <span class="text-high-contrast is-center pt-60">View All</span>
+                        <div class="columns is-centered pt-70">
+                          <span class="text-high-contrast">View All</span>
+                        </div>
                       </div>
                     </div>
+                    <p></p>
                   </router-link>
                 </div>
               </div>
@@ -107,7 +112,7 @@
         <div class="columns mt-30">
           <div class="column is-6">
             <h2 class="mb-0">Today's Activities</h2>
-            <div class="text-dark">
+            <div class="has-text-dark">
               <small>(in Favourite Repositories)</small>
             </div>
           </div>
@@ -121,7 +126,7 @@
 
         <div class="columns mb-30">
           <div class="column" v-if="!activitiesLoading && activities.length === 0">
-            <h3 class="is-size-4 has-text-centered text-dark my-20">
+            <h3 class="is-size-5 has-text-centered has-text-dark my-20">
               <br />No Activity
             </h3>
             <br />
@@ -149,7 +154,9 @@
                 <div class="column" v-for="commit in activity.contributions" :key="commit.hash">
                   <div class="columns">
                     <div class="column is-9 text-primary">{{commit.commitMessage}}</div>
-                    <div class="column is-3 has-text-right-tablet text-dark">{{commit.files.length}} Files</div>
+                    <div
+                      class="column is-3 has-text-right-tablet has-text-dark"
+                    >{{commit.files.length}} Files</div>
                   </div>
                   <hr />
                 </div>
@@ -158,7 +165,7 @@
                 <div class="column has-text-centered">
                   <router-link
                     :to="`/activities/?collaborator=${activity.author}&repository=${activity.repository}&owner=${activity.owner}`"
-                    class="text-dark"
+                    class="has-text-dark"
                   >View Full Activity</router-link>
                 </div>
               </div>

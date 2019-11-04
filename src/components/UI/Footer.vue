@@ -6,7 +6,7 @@
           <div class="has-text-centered">
             <router-link to="/" class="text-high-contrast">
               <img src="@/assets/logo.svg" alt="GitPro Logo" width="30%" />
-              <h3 class="is-size-4 m-0">GitPro</h3>
+              <h3 class="is-size-5 m-0">GitPro</h3>
             </router-link>
           </div>
         </div>
@@ -17,20 +17,20 @@
             </div>
             <br />
             <div>
-              <router-link to="/faq" class="text-dark">FAQ</router-link>
+              <router-link to="/faq" class="has-text-dark">FAQ</router-link>
             </div>
             <br />
             <div>
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSe24lZ1ykY24mTfog59DlbOOFtrTTeaYoT0PNQ3cxmvl_o42w/viewform"
-                class="text-dark"
+                class="has-text-dark"
               >Submit Feedback</a>
             </div>
             <br />
             <div>
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSe24lZ1ykY24mTfog59DlbOOFtrTTeaYoT0PNQ3cxmvl_o42w/viewform"
-                class="text-dark"
+                class="has-text-dark"
               >Request a Feature</a>
             </div>
           </div>
@@ -42,7 +42,7 @@
             </div>
             <br />
             <div>products@inkoop.io</div>
-            <div class="text-dark">
+            <div class="has-text-dark">
               <a href="https://inkoop.io" target="_blank">https://inkoop.io</a>
             </div>
             <br />

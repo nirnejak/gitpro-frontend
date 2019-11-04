@@ -3,7 +3,7 @@
     <Sidebar :show="true" />
     <div class="column is-9 pt-70">
       <div class="px-20">
-        <h1 class="is-size-2">Settings</h1>
+        <h1 class="is-size-3">Settings</h1>
         <div class="columns">
           <div class="column">
             <div class="bg-card border-radius-10 p-20">

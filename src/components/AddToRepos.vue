@@ -3,7 +3,7 @@
     <input type="text" placeholder="Search Repository" v-model="search" />
     <div class="columns mb-10 mt-15">
       <div class="column is-6">
-        <p class="text-dark">
+        <p class="has-text-dark">
           Repositories
           <small>({{selectedRepositories.length}} Selected)</small>
         </p>
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="is-center">
-      <button class="button primary" @click="addToRepos">Add</button>
+      <button class="button is-primary" @click="addToRepos">Add</button>
     </div>
   </div>
 </template>

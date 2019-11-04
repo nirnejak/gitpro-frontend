@@ -11,7 +11,7 @@
                 <br />simplified
               </h1>
               <p
-                class="text-dark mt-30"
+                class="has-text-dark mt-30"
               >A platform to make repository management and developer activity tracking easier.</p>
               <router-link to="/login" class="button is-primary get-started ml-10 mt-50">
                 <span>Get Started</span>
@@ -49,7 +49,7 @@
             <img src="@/assets/developer_activity.svg" alt width="70%" />
           </div>
           <div class="column is-6">
-            <h1 class="title is-size-2">See Activity</h1>
+            <h1 class="title is-size-3">See Activity</h1>
             <p>See developer's contributions on your repositories. Goto their page for a daily summary or jump to Activitiy section for full git diff of their contributions.</p>
             <br />
             <router-link to="/login">
@@ -65,7 +65,7 @@
       <div class="hero-body">
         <div class="columns is-vcentered">
           <div class="column is-6">
-            <h1 class="title is-size-2">Manage Contributors</h1>
+            <h1 class="title is-size-3">Manage Contributors</h1>
             <p>Easily add or remove collaborators from a repository. Do bulk operations by adding to or removing from multiple repositories, or add an existing collaborator to other repositories.</p>
             <br />
             <router-link to="/login">
@@ -87,7 +87,7 @@
             <img src="@/assets/insights.svg" alt width="60%" />
           </div>
           <div class="column is-6">
-            <h1 class="title is-size-2">Get Insights</h1>
+            <h1 class="title is-size-3">Get Insights</h1>
             <p>How are your developers doing? How is their coding pattern? Are they maintaining code standards and quality? Know it all here.</p>
             <br />
             <router-link to="/login">

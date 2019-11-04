@@ -17,12 +17,12 @@
           </div>
           <div class="column is-7 is-vertical-align">
             <div>
-              <h1 class="is-size-2 m-0">{{$route.params.name}}</h1>
-              <p class="text-dark mb-5">
+              <h1 class="is-size-3 m-0">{{$route.params.name}}</h1>
+              <p class="has-text-dark mb-5">
                 by
                 <span class="text-high-contrast">{{repository.owner}}</span>
               </p>
-              <p class="text-dark">{{repository.description}}</p>
+              <p class="has-text-dark">{{repository.description}}</p>
               <SkeletonLoader
                 width="100%"
                 height="20px"
@@ -46,7 +46,7 @@
 
         <div class="columns mt-70">
           <div class="column is-4">
-            <h2 class="is-size-3">Collaborators</h2>
+            <h2 class="is-size-4">Collaborators</h2>
           </div>
           <div class="column is-8 is-right">
             <button
@@ -57,7 +57,7 @@
               <i class="fas fa-times" />&nbsp;
               Revoke Access
             </button>
-            <button class="button is-outlined text-dark px-10" @click="refreshData">
+            <button class="button is-outlined has-text-dark px-10" @click="refreshData">
               <i class="fas fa-sync-alt" />&nbsp;
               Refersh Data
             </button>

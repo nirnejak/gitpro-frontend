@@ -10,7 +10,7 @@
         />
         <div class="columns">
           <div class="column">
-            <h1 class="is-size-2">Activities</h1>
+            <h1 class="is-size-3">Activities</h1>
           </div>
         </div>
         <div class="columns" v-if="formDataLoading">
@@ -34,7 +34,7 @@
                   />
                   <div class="mt-15">
                     <input type="checkbox" v-model="force" id="force" :disabled="activityLoading" />
-                    <label for="force" class="text-dark ml-5">Fetch Latest(Force)</label>
+                    <label for="force" class="has-text-dark ml-5">Fetch Latest(Force)</label>
                   </div>
                 </div>
                 <div class="column is-6 collaborator pr-10">
@@ -96,15 +96,15 @@
 
         <div class="columns" v-if="!activityLoading">
           <div class="column">
-            <h3 class="is-size-4 mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
+            <h3 class="is-size-5 mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
             <div v-if="Object.keys(activity).length !== 0">
               <div
                 class="bg-card border-radius-5 p-20 my-20"
                 v-if="!activityLoading && activity.contributions.length === 0"
               >
                 <div class="my-20">
-                  <h4 class="has-text-centered is-size-5">No Contributions</h4>
-                  <p class="text-dark has-text-centered">
+                  <h4 class="has-text-centered is-size-6">No Contributions</h4>
+                  <p class="has-text-dark has-text-centered">
                     No Activity on
                     <strong>{{selectedRepo.name}}</strong> by
                     <strong>{{selectedCollaborator.nameAndOrLogin}}</strong>
@@ -117,7 +117,7 @@
                   </p>
                   <div class="has-text-centered">
                     <button
-                      class="button primary outline bd-primary"
+                      class="button is-primary outline bd-primary"
                       v-for="(contributor, index) in activity.contributors"
                       :key="index"
                       @click="selectedCollaborator = { login: contributor, nameAndOrLogin: contributor }"
@@ -133,10 +133,10 @@
             >
               <div class="columns">
                 <div class="column is-9">
-                  <h4 class="is-size-5 my-0">{{commit.commitMessage}}</h4>
+                  <h4 class="is-size-6 my-0">{{commit.commitMessage}}</h4>
                   <a
                     :href="`http://github.com/${activity.owner}/${activity.repository}/commit/${commit.hash}`"
-                    class="text-dark"
+                    class="has-text-dark"
                     target="_blank"
                     title="View Commit on GitHub"
                   >
@@ -146,7 +146,7 @@
                 </div>
                 <div class="column is-3 has-text-right-tablet">
                   <i class="fas fa-code-branch" />&nbsp;
-                  <span class="text-dark mr-20">{{commit.branch}}</span>
+                  <span class="has-text-dark mr-20">{{commit.branch}}</span>
                   <i
                     class="fas fa-lg fa-minus-square cursor-pointer mt-10"
                     v-if="!commit.isHidden"
@@ -167,7 +167,7 @@
                     v-if="commit.diff !== 'Error:Diff is too large'"
                   />
                   <h3
-                    class="is-size-4 has-text-centered"
+                    class="is-size-5 has-text-centered"
                     v-if="commit.diff === 'Error:Diff is too large'"
                   >Diff is too large</h3>
                   <a

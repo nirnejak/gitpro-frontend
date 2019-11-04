@@ -3,7 +3,7 @@
     <input type="text" placeholder="Search Collaborator" v-model="search" />
     <div class="columns mb-10 mt-15">
       <div class="column">
-        <p class="text-dark">
+        <p class="has-text-dark">
           Collaborators
           <small>({{selectedCollaborators.length}} Selected)</small>
         </p>
@@ -48,7 +48,7 @@
           </div>
           <label :for="collaborator.login" class="cursor-pointer">
             <p class="has-text-centered mt-10 text-high-contrast">{{collaborator.name}}</p>
-            <small class="has-text-centered text-dark is-center">{{collaborator.login}}</small>
+            <small class="has-text-centered has-text-dark is-center">{{collaborator.login}}</small>
           </label>
           </div>
         </div>
@@ -56,7 +56,7 @@
     </div>
 
     <div class="is-center">
-      <button class="button primary" @click="addCollaboratorsToRepo">Add Collaborators</button>
+      <button class="button is-primary" @click="addCollaboratorsToRepo">Add Collaborators</button>
     </div>
   </div>
 </template>

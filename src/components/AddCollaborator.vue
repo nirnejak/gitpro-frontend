@@ -16,7 +16,7 @@
             </div>
             <div class="column is-10">
               <p class="m-0 p-0">{{result.login}}</p>
-              <small class="text-dark" v-html="result.type" />
+              <small class="has-text-dark" v-html="result.type" />
             </div>
           </div>
         </li>
@@ -25,7 +25,7 @@
 
     <div class="columns mb-10 mt-15">
       <div class="column is-6">
-        <p class="text-dark">
+        <p class="has-text-dark">
           Repositories
           <small>({{selectedRepositories.length}} Selected)</small>
         </p>
@@ -72,7 +72,7 @@
       </div>
     </div>
     <div class="is-center">
-      <button class="button primary" @click="addToRepos">Create</button>
+      <button class="button is-primary" @click="addToRepos">Create</button>
     </div>
   </div>
 </template>

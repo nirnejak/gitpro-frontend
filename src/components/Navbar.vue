@@ -4,7 +4,7 @@
       <router-link to="/">GitPro</router-link>
     </div>
     <div class="nav-right">
-      <router-link to="/login" class="button primary">Login</router-link>
+      <router-link to="/login" class="button is-primary">Login</router-link>
     </div>
   </nav>
 </template>

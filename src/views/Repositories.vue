@@ -2,77 +2,83 @@
   <div class="columns">
     <Sidebar :show="true" />
     <div class="column is-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
-      <div class="columns -4">
-        <div class="column is-8">
-          <h1 class="is-size-2">Repositories({{repositoriesOriginal.length}})</h1>
-        </div>
-        <div class="column is-4 pt-10">
-          <input type="text" v-model="search" placeholder="Search Repository" class="pr-30" />
-          <i class="fas fa-search pull-right position-relative r-10" style="top: -27px" />
-        </div>
-      </div>
-      <div class="columns" v-if="repositoriesLoading">
-        <div class="column is-4" v-for="i in 12" :key="i">
-          <div class="m-10">
-            <SkeletonLoader width="100%" height="70px" radius="5px" />
+      <div class="px-30">
+        <div class="columns mb-30">
+          <div class="column is-8">
+            <h1 class="title is-size-3">Repositories({{repositoriesOriginal.length}})</h1>
+          </div>
+          <div class="column is-4 pt-10">
+            <p class="control has-icons-right">
+              <input class="input" type="text" v-model="search" placeholder="Search Repository" />
+              <span class="icon is-small is-right">
+                <i class="fas fa-search" />
+              </span>
+            </p>
           </div>
         </div>
-      </div>
+        <div class="columns" v-if="repositoriesLoading">
+          <div class="column is-4" v-for="i in 12" :key="i">
+            <div class="m-10">
+              <SkeletonLoader width="100%" height="70px" radius="5px" />
+            </div>
+          </div>
+        </div>
 
-      <div class="columns" v-if="starredRepositories.length > 0">
-        <div
-          class="column is-4"
-          v-for="repository in starredRepositories"
-          :key="`${repository.owner}/${repository.name}`"
-        >
-          <div class="bg-card border-radius-5 p-20 m-10">
-            <div class="columns">
-              <div class="column is-10 text-overflow-ellipsis">
-                <router-link
-                  :to="`/repositories/${repository.owner}/${repository.name}`"
-                  class="text-high-contrast"
-                >
-                  <i class="fas fa-code-branch mr-5" />
-                  {{repository.owner}}/{{repository.name}}
-                </router-link>
-              </div>
-              <div class="column is-2 has-text-right-tablet">
-                <i
-                  class="fa-star mt-5 cursor-pointer text-high-contrast"
-                  :class="{'fas': repository.isFavourite, 'far': !repository.isFavourite}"
-                  @click="starRepo(repository.name, repository.owner, !repository.isFavourite)"
-                />
+        <div class="columns is-multiline" v-if="starredRepositories.length > 0">
+          <div
+            class="column is-4"
+            v-for="repository in starredRepositories"
+            :key="`${repository.owner}/${repository.name}`"
+          >
+            <div class="bg-card border-radius-5 p-20">
+              <div class="columns">
+                <div class="column is-10 text-overflow-ellipsis">
+                  <router-link
+                    :to="`/repositories/${repository.owner}/${repository.name}`"
+                    class="text-high-contrast"
+                  >
+                    <i class="fas fa-code-branch mr-5" />
+                    {{repository.owner}}/{{repository.name}}
+                  </router-link>
+                </div>
+                <div class="column is-2 has-text-right-tablet">
+                  <i
+                    class="fa-star mt-5 cursor-pointer text-high-contrast"
+                    :class="{'fas': repository.isFavourite, 'far': !repository.isFavourite}"
+                    @click="starRepo(repository.name, repository.owner, !repository.isFavourite)"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <hr class="my-30" v-if="starredRepositories.length > 0" />
+        <hr class="my-30 has-background-grey" v-if="starredRepositories.length > 0" />
 
-      <div class="columns">
-        <div
-          class="column is-4"
-          v-for="repository in repositories"
-          :key="`${repository.owner}/${repository.name}`"
-        >
-          <div class="bg-card border-radius-5 p-20 m-10">
-            <div class="columns">
-              <div class="column is-10 text-overflow-ellipsis">
-                <router-link
-                  :to="`/repositories/${repository.owner}/${repository.name}`"
-                  class="text-high-contrast"
-                >
-                  <i class="fas fa-code-branch mr-5" />
-                  {{repository.owner}}/{{repository.name}}
-                </router-link>
-              </div>
-              <div class="column is-2 has-text-right-tablet">
-                <i
-                  class="fa-star mt-5 cursor-pointer text-high-contrast"
-                  :class="{'fas': repository.isFavourite, 'far': !repository.isFavourite}"
-                  @click="starRepo(repository.name, repository.owner , !repository.isFavourite)"
-                />
+        <div class="columns is-multiline">
+          <div
+            class="column is-4"
+            v-for="repository in repositories"
+            :key="`${repository.owner}/${repository.name}`"
+          >
+            <div class="bg-card border-radius-5 p-20">
+              <div class="columns">
+                <div class="column is-10 text-overflow-ellipsis">
+                  <router-link
+                    :to="`/repositories/${repository.owner}/${repository.name}`"
+                    class="text-high-contrast"
+                  >
+                    <i class="fas fa-code-branch mr-5" />
+                    {{repository.owner}}/{{repository.name}}
+                  </router-link>
+                </div>
+                <div class="column is-2 has-text-right-tablet">
+                  <i
+                    class="fa-star mt-5 cursor-pointer text-high-contrast"
+                    :class="{'fas': repository.isFavourite, 'far': !repository.isFavourite}"
+                    @click="starRepo(repository.name, repository.owner , !repository.isFavourite)"
+                  />
+                </div>
               </div>
             </div>
           </div>

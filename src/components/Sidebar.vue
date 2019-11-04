@@ -1,14 +1,14 @@
 <template>
   <div class="column is-3 bg-card h-100vh mb-0" v-if="show">
-    <div class="text-center">
+    <div class="columns is-centered px-30 pt-50">
       <div
-        class="bg-card rounded-circle bg-cover w-70"
-        :style="`background-image: url(${user.avatar_url}); padding-top: 70%;`"
+        class="bg-card rounded-circle bg-cover w-60"
+        :style="`background-image: url(${user.avatar_url}); padding-top: 60%;`"
       />
     </div>
     <div class="has-text-centered">
-      <h4 class="is-size-5 mb-0">{{user.name}}</h4>
-      <p class="text-dark">{{user.login}}</p>
+      <h4 class="is-size-5 has-text-weight-semibold">{{user.name}}</h4>
+      <p class="has-text-dark">{{user.login}}</p>
     </div>
     <div class="sidebar-links p-50" style="padding-top: 30px !important;">
       <router-link to="/dashboard" class="sidebar-link" active-class="active">
@@ -45,7 +45,7 @@
       </router-link>
     </div>
     <div class="sidebar-footer has-text-centered pt-100">
-      <small class="text-dark">
+      <small class="has-text-dark">
         Developed by
         <a href="https://inkoop.io" target="_blank">Inkoop.io</a>
       </small>
