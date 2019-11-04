@@ -1,36 +1,34 @@
 <template>
   <div>
-    <div class="hero-container">
-      <div class="container">
-        <div class="columns">
-          <div class="column is-6-md">
-            <div class="is-vertical-align" style="height: calc(100vh - 30px)">
-              <div class="p-20">
-                <h3 class="is-size-4">GitPro</h3>
-                <h1 class="is-size-2 lead-title">
-                  <span></span>
-                  <br />simplified
-                </h1>
-                <p
-                  class="text-dark mt-30"
-                >A platform to make repository management and developer activity tracking easier.</p>
-                <router-link to="/login" class="button primary get-started ml-20 mt-50">
-                  Get Started
-                  <i class="fas fa-sm fa-arcolumns-right" />
-                </router-link>
-              </div>
+    <section class="hero is-fullheight bg-gradient">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-6-md">
+              <h2 class="subtitle">GitPro</h2>
+              <h1 class="title is-size-1">
+                <span></span>
+                <br />simplified
+              </h1>
+              <p
+                class="text-dark mt-30"
+              >A platform to make repository management and developer activity tracking easier.</p>
+              <router-link to="/login" class="button is-primary get-started ml-10 mt-50">
+                <span>Get Started</span>
+                <span class="icon is-small">
+                  <i class="fas fa-sm fa-arrow-right" />
+                </span>
+              </router-link>
             </div>
-          </div>
-          <div class="column is-6-md">
-            <div class="is-vertical-align is-center" style="height: calc(100vh - 30px)">
+            <div class="column is-6-md">
               <img src="@/assets/version_control.svg" alt width="80%" />
             </div>
           </div>
         </div>
       </div>
-      <div class="is-center" style="height: 30px;">
+      <div class="hero-foot has-text-centered">
         <i
-          class="fas fa-arcolumns-down cursor-pointer"
+          class="fas fa-arrow-down cursor-pointer"
           v-scroll-to="{
             el: '#seeActivitySection',
             duration: 2000,
@@ -39,7 +37,9 @@
           }"
         />
       </div>
-    </div>
+    </section>
+    <!-- </div> -->
+
     <div class="bg-card">
       <div class="container">
         <div class="columns py-150" id="seeActivitySection">
@@ -56,7 +56,7 @@
                 <br />
                 <router-link to="/login">
                   Get Started
-                  <i class="fas fa-arcolumns-right ml-5" />
+                  <i class="fas fa-arrow-right ml-5" />
                 </router-link>
               </div>
             </div>
@@ -72,7 +72,7 @@
                 <br />
                 <router-link to="/login">
                   Get Started
-                  <i class="fas fa-arcolumns-right ml-5" />
+                  <i class="fas fa-arrow-right ml-5" />
                 </router-link>
               </div>
             </div>
@@ -98,7 +98,7 @@
                 <br />
                 <router-link to="/login">
                   Get Started
-                  <i class="fas fa-arcolumns-right ml-5" />
+                  <i class="fas fa-arrow-right ml-5" />
                 </router-link>
               </div>
             </div>
@@ -149,7 +149,7 @@ h1.lead-title {
   transform: scale(1.2);
 }
 
-.fa-arcolumns-down {
+.fa-arrow-down {
   animation: 2s upDown infinite;
 }
 

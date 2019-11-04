@@ -1,6 +1,6 @@
 <template>
   <div class="column is-3 bg-card h-100vh mb-0" v-if="show">
-    <div class="">
+    <div class="text-center">
       <div
         class="bg-card rounded-circle bg-cover w-70"
         :style="`background-image: url(${user.avatar_url}); padding-top: 70%;`"

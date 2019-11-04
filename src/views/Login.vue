@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-container">
+  <div class="bg-gradient">
     <div class="columns">
       <div class="column is-7-md">
         <div class="is-vertical-align is-center h-100vh">
