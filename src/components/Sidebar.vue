@@ -1,14 +1,14 @@
 <template>
   <div class="column is-3 bg-card h-100vh mb-0" v-if="show">
-    <div class="pr-50 pl-50 pt-50 pb-10 has-text-centered">
+    <div class="">
       <div
         class="bg-card rounded-circle bg-cover w-70"
         :style="`background-image: url(${user.avatar_url}); padding-top: 70%;`"
       />
     </div>
-    <div>
-      <h4 class="is-size-5 is-center mb-0">{{user.name}}</h4>
-      <p class="text-dark is-center">{{user.login}}</p>
+    <div class="has-text-centered">
+      <h4 class="is-size-5 mb-0">{{user.name}}</h4>
+      <p class="text-dark">{{user.login}}</p>
     </div>
     <div class="sidebar-links p-50" style="padding-top: 30px !important;">
       <router-link to="/dashboard" class="sidebar-link" active-class="active">
