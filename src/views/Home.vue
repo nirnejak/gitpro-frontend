@@ -3,10 +3,10 @@
     <section class="hero is-fullheight bg-gradient">
       <div class="hero-body">
         <div class="container">
-          <div class="columns">
+          <div class="columns is-vcentered">
             <div class="column is-6-md">
               <h2 class="subtitle">GitPro</h2>
-              <h1 class="title is-size-1">
+              <h1 class="title is-size-1 mt-20">
                 <span></span>
                 <br />simplified
               </h1>
@@ -26,82 +26,74 @@
           </div>
         </div>
       </div>
-      <div class="hero-foot has-text-centered">
-        <i
-          class="fas fa-arrow-down cursor-pointer"
-          v-scroll-to="{
+      <div class="hero-foot">
+        <div class="container has-text-centered">
+          <i
+            class="fas fa-arrow-down cursor-pointer"
+            v-scroll-to="{
             el: '#seeActivitySection',
             duration: 2000,
             // offset: -50
             // easing: [.6, .80, .30, 1.9],
           }"
-        />
+          />
+        </div>
       </div>
     </section>
     <!-- </div> -->
 
-    <div class="bg-card">
-      <div class="container">
-        <div class="columns py-150" id="seeActivitySection">
+    <div class="hero is-medium">
+      <div class="hero-body">
+        <div class="columns is-vcentered" id="seeActivitySection">
           <div class="column is-6">
-            <div class="is-vertical-align is-center">
-              <img src="@/assets/developer_activity.svg" alt width="80%" />
-            </div>
+            <img src="@/assets/developer_activity.svg" alt width="70%" />
           </div>
           <div class="column is-6">
-            <div class="is-vertical-align is-center">
-              <div class="p-40">
-                <h1 class="is-size-2">See Activity</h1>
-                <p>See developer's contributions on your repositories. Goto their page for a daily summary or jump to Activitiy section for full git diff of their contributions.</p>
-                <br />
-                <router-link to="/login">
-                  Get Started
-                  <i class="fas fa-arrow-right ml-5" />
-                </router-link>
-              </div>
-            </div>
+            <h1 class="title is-size-2">See Activity</h1>
+            <p>See developer's contributions on your repositories. Goto their page for a daily summary or jump to Activitiy section for full git diff of their contributions.</p>
+            <br />
+            <router-link to="/login">
+              Get Started
+              <i class="fas fa-arrow-right ml-5" />
+            </router-link>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="columns py-100">
+    <div class="hero is-medium">
+      <div class="hero-body">
+        <div class="columns is-vcentered">
           <div class="column is-6">
-            <div class="is-vertical-align is-center">
-              <div class="p-40">
-                <h1 class="is-size-2">Manage Contributors</h1>
-                <p>Easily add or remove collaborators from a repository. Do bulk operations by adding to or removing from multiple repositories, or add an existing collaborator to other repositories.</p>
-                <br />
-                <router-link to="/login">
-                  Get Started
-                  <i class="fas fa-arrow-right ml-5" />
-                </router-link>
-              </div>
-            </div>
+            <h1 class="title is-size-2">Manage Contributors</h1>
+            <p>Easily add or remove collaborators from a repository. Do bulk operations by adding to or removing from multiple repositories, or add an existing collaborator to other repositories.</p>
+            <br />
+            <router-link to="/login">
+              Get Started
+              <i class="fas fa-arrow-right ml-5" />
+            </router-link>
           </div>
           <div class="column is-6">
-            <div class="is-vertical-align is-center">
-              <img src="@/assets/collaboration.svg" alt width="80%" />
-            </div>
+            <img src="@/assets/collaboration.svg" alt width="60%" />
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="columns py-150">
+    <div class="hero is-medium">
+      <div class="hero-body">
+        <div class="columns is-vcentered">
           <div class="column is-6">
-            <div class="is-vertical-align is-center">
-              <img src="@/assets/insights.svg" alt width="80%" />
-            </div>
+            <img src="@/assets/insights.svg" alt width="60%" />
           </div>
           <div class="column is-6">
-            <div class="is-vertical-align is-center">
-              <div class="p-40">
-                <h1 class="is-size-2">Get Insights</h1>
-                <p>How are your developers doing? How is their coding pattern. Are they maintaining code standards and quality? Know it all here/</p>
-                <br />
-                <router-link to="/login">
-                  Get Started
-                  <i class="fas fa-arrow-right ml-5" />
-                </router-link>
-              </div>
-            </div>
+            <h1 class="title is-size-2">Get Insights</h1>
+            <p>How are your developers doing? How is their coding pattern. Are they maintaining code standards and quality? Know it all here/</p>
+            <br />
+            <router-link to="/login">
+              Get Started
+              <i class="fas fa-arrow-right ml-5" />
+            </router-link>
           </div>
         </div>
       </div>
