@@ -1,14 +1,13 @@
 <template>
-  <div class="bg-gradient">
-    <div class="columns">
-      <div class="column is-7-md">
-        <div class="is-vertical-align is-center h-100vh">
-          <div class="columns">
-            <div class="column is-2"></div>
+  <div class="columns">
+    <div class="column is-7 bg-gradienta">
+      <div class="hero is-fullheight">
+        <div class="hero-body">
+          <div class="columns is-centered is-vcentered">
             <div class="column is-8">
               <div class="p-20">
-                <h1 class="is-size-2 lead-title text-left">
-                  <span class="text-primary">Continue</span>
+                <h1 class="title is-size-2 lead-title text-left">
+                  <span class="has-text-primary">Continue</span>
                   <br />with GitHub
                 </h1>
                 <br />
@@ -23,55 +22,60 @@
                 </p>
               </div>
             </div>
-            <div class="column is-2"></div>
           </div>
         </div>
       </div>
-      <div class="column is-5-md bg-card offset-1">
-        <div class="is-vertical-align is-center h-100vh">
-          <div class="has-text-centered">
-            <a :href="loginUrl" class="button dark continue-github">
-              <i class="fab fa-sm fa-github mr-5" />
-              Register with GitHub
-            </a>
+    </div>
+    <div class="column is-5 bg-card">
+      <div class="hero is-fullheight">
+        <div class="hero-body">
+          <div class="columns is-centered is-vcentered">
+            <div class="column is-10">
+              <div class="p-20">
+                <a :href="loginUrl" class="button is-dark continue-github">
+                  <i class="fab fa-sm fa-github mr-5" />
+                  Register with GitHub
+                </a>
 
-            <div class="columns my-20">
-              <div class="column is-5">
-                <hr />
+                <div class="columns my-10">
+                  <div class="column is-5">
+                    <hr />
+                  </div>
+                  <div class="column is-2">or</div>
+                  <div class="column is-5">
+                    <hr />
+                  </div>
+                </div>
+
+                <a :href="loginUrl" class="button is-dark continue-github">
+                  <i class="fab fa-sm fa-github mr-5" />
+                  Login with GitHub
+                </a>
               </div>
-              <div class="column is-2">or</div>
-              <div class="column is-5">
-                <hr />
-              </div>
-            </div>
 
-            <a :href="loginUrl" class="button dark continue-github">
-              <i class="fab fa-sm fa-github mr-5" />
-              Login with GitHub
-            </a>
-
-            <div>
-              <div class="mt-70 text-dark">
-                <p class="text-left">
-                  <i class="fas fa-user-lock mr-5" />
-                  Secure login with GitHub
-                </p>
-                <p class="text-left">
-                  <i class="fas fa-shield-alt mr-10" />
-                  All your data is secure
-                </p>
-                <p class="text-left">
-                  <i class="fas fa-user-shield mr-5" />
-                  User privacy, no tracking
-                </p>
-                <p class="text-left">
-                  <i class="fas fa-trash mr-10" />
-                  Data deleted after use
-                </p>
-                <p class="text-left">
-                  <i class="fas fa-ad mr-10" />
-                  No Ads or Tracking
-                </p>
+              <div class="has-text-left">
+                <div class="mt-70 text-dark">
+                  <p class="text-left">
+                    <i class="fas fa-user-lock mr-5" />
+                    Secure login with GitHub
+                  </p>
+                  <p class="text-left">
+                    <i class="fas fa-shield-alt mr-10" />
+                    All your data is secure
+                  </p>
+                  <p class="text-left">
+                    <i class="fas fa-user-shield mr-5" />
+                    User privacy, no tracking
+                  </p>
+                  <p class="text-left">
+                    <i class="fas fa-trash mr-10" />
+                    Data deleted after use
+                  </p>
+                  <p class="text-left">
+                    <i class="fas fa-ad mr-10" />
+                    No Ads or Tracking
+                  </p>
+                </div>
               </div>
             </div>
           </div>

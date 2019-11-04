@@ -20,7 +20,7 @@
                 </span>
               </router-link>
             </div>
-            <div class="column is-6-md">
+            <div class="column is-6-md has-text-centered">
               <img src="@/assets/version_control.svg" alt width="80%" />
             </div>
           </div>
@@ -45,7 +45,7 @@
     <div class="hero is-medium">
       <div class="hero-body">
         <div class="columns is-vcentered" id="seeActivitySection">
-          <div class="column is-6">
+          <div class="column is-6 has-text-centered">
             <img src="@/assets/developer_activity.svg" alt width="70%" />
           </div>
           <div class="column is-6">
@@ -73,7 +73,7 @@
               <i class="fas fa-arrow-right ml-5" />
             </router-link>
           </div>
-          <div class="column is-6">
+          <div class="column is-6 has-text-centered">
             <img src="@/assets/collaboration.svg" alt width="60%" />
           </div>
         </div>
@@ -83,12 +83,12 @@
     <div class="hero is-medium">
       <div class="hero-body">
         <div class="columns is-vcentered">
-          <div class="column is-6">
+          <div class="column is-6 has-text-centered">
             <img src="@/assets/insights.svg" alt width="60%" />
           </div>
           <div class="column is-6">
             <h1 class="title is-size-2">Get Insights</h1>
-            <p>How are your developers doing? How is their coding pattern. Are they maintaining code standards and quality? Know it all here/</p>
+            <p>How are your developers doing? How is their coding pattern? Are they maintaining code standards and quality? Know it all here.</p>
             <br />
             <router-link to="/login">
               Get Started
