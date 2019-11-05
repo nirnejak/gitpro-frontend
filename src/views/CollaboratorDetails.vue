@@ -25,17 +25,15 @@
               v-else
             />
           </div>
-          <div class="column is-6 is-vertical-align">
-            <div class="ml-10">
-              <h1 class="title is-size-2 m-0">{{collaborator.name}}</h1>
-              <SkeletonLoader
-                width="100%"
-                height="30px"
-                radius="5px"
-                v-if="collaboratorDetailsLoading"
-              />
-              <h3 class="is-size-4 m-0 text-dark">{{$route.params.login}}</h3>
-            </div>
+          <div class="column is-6 pt-30">
+            <h1 class="title is-size-3 mb-10">{{collaborator.name}}</h1>
+            <SkeletonLoader
+              width="100%"
+              height="30px"
+              radius="5px"
+              v-if="collaboratorDetailsLoading"
+            />
+            <h3 class="is-size-4 title m-0 text-dark">{{$route.params.login}}</h3>
           </div>
           <div class="column is-4 has-text-right">
             <p href="#" class="text-error cursor-pointer pr-20" @click="removeCollaborator">
@@ -100,14 +98,13 @@
               @change="addRemoveRepo(repository.name)"
             />
             <label :for="repository.name" class="repo-checkbox">
-              <div class="box border-radius-5 p-20">
+              <div class="box border-radius-5">
                 <div class="columns">
-                  <div class="column is-6 text-overflow-ellipsis">
-                    <i class="fas fa-check-circle text-light mt-5 mr-10" />
-                    <!-- <i class="fas fa-code-branch" /> -->
+                  <div class="column is-7 text-overflow-ellipsis">
+                    <i class="fas fa-check-circle text-light mr-5" />
                     {{repository.name}}
                   </div>
-                  <div class="column is-6 has-text-right-tablet">
+                  <div class="column is-5 has-text-right-tablet">
                     <router-link
                       :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}&owner=${repository.owner}`"
                       class="text-primary"
@@ -156,10 +153,10 @@
           >
             <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
             <label :for="repository.name" class="repo-checkbox"></label>
-            <div class="box border-radius-5 p-20">
+            <div class="box border-radius-5">
               <div class="columns">
                 <div class="column is-10 text-overflow-ellipsis">
-                  <i class="fas fa-code-branch" />
+                  <i class="fas fa-code-branch mr-5" />
                   {{repository.owner}}/{{repository.name}}
                 </div>
                 <div class="column is-2">
