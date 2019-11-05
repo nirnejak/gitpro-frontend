@@ -1,5 +1,5 @@
 <template>
-  <div class="column is-3 box h-100vh border-radius-0" v-if="show">
+  <div class="sidebar column is-3 box h-100vh border-radius-0" v-if="show">
     <div class="columns is-centered px-30 pt-50">
       <div
         class="bg-card rounded-circle bg-cover w-60"
@@ -86,6 +86,10 @@ export default {
 </script>
 
 <style lang="scss">
+.sidebar.box:not(:last-child) {
+  margin-bottom: 0rem;
+}
+
 .sidebar-links {
   .sidebar-link {
     display: block;
