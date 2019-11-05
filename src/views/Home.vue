@@ -8,7 +8,6 @@
         <div class="container">
           <div class="columns is-vcentered">
             <div class="column is-6-md">
-              <h2 class="subtitle">GitPro</h2>
               <h1 class="title is-size-1 mt-20">
                 <span id="heroTitle"></span>
                 <br />simplified
