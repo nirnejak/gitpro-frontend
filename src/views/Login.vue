@@ -10,7 +10,7 @@
             <div class="columns is-centered is-vcentered">
               <div class="column is-8">
                 <div class="p-20">
-                  <h1 class="title is-size-3 lead-title text-left" style="line-height: 3rem;">
+                  <h1 class="title is-size-1 lead-title text-left" style="line-height: 4rem;">
                     <span class="has-text-primary">Continue</span>
                     <br />with GitHub
                   </h1>
