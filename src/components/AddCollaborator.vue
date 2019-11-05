@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-    <div class="is-center">
+    <div class="has-text-centered">
       <button class="button is-primary" @click="addToRepos">Create</button>
     </div>
   </div>
