@@ -9,9 +9,11 @@
             <h1 class="title is-size-3">Dashboard</h1>
           </div>
           <div class="column is-6 has-text-right-tablet">
-            <button class="button is-outlined has-text-dark px-10" @click="refreshData">
-              <i class="fas fa-sync-alt" />&nbsp;
-              Refresh Data
+            <button class="button is-outline is-light has-text-dark" @click="refreshData">
+              <span class="icon is-small">
+                <i class="fas fa-sync-alt" />
+              </span>
+              <span>Refresh Data</span>
             </button>
           </div>
         </div>

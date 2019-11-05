@@ -27,7 +27,7 @@
           </div>
           <div class="column is-6 is-vertical-align">
             <div class="ml-10">
-              <h1 class="is-size-2 m-0">{{collaborator.name}}</h1>
+              <h1 class="title is-size-2 m-0">{{collaborator.name}}</h1>
               <SkeletonLoader
                 width="100%"
                 height="30px"
@@ -37,51 +37,52 @@
               <h3 class="is-size-4 m-0 text-dark">{{$route.params.login}}</h3>
             </div>
           </div>
-          <div class="column is-4 is-vertical-align is-right">
-            <div>
-              <span href="#" class="text-error cursor-pointer pr-20" @click="removeCollaborator">
-                <i class="fas fa-user-times" />&nbsp;
-                Remove Collaborator
-              </span>
-              <br />
-              <br />
-              <a :href="`http://github.com/${$route.params.login}`" class="pr-20" target="_blank">
-                <i class="fas fa-external-link-alt" />&nbsp;
-                View on GitHub
-              </a>
-            </div>
+          <div class="column is-4 has-text-right">
+            <p href="#" class="text-error cursor-pointer pr-20" @click="removeCollaborator">
+              <i class="fas fa-user-times" />&nbsp;
+              Remove Collaborator
+            </p>
+            <br />
+            <a :href="`http://github.com/${$route.params.login}`" class="pr-20" target="_blank">
+              <i class="fas fa-external-link-alt" />&nbsp;
+              View on GitHub
+            </a>
           </div>
         </div>
         <div class="columns mt-30">
           <div class="column is-4">
-            <h2 class="is-size-3">Repositories</h2>
+            <h2 class="title is-size-3">Repositories</h2>
           </div>
-          <div class="column is-8 is-right">
+          <div class="column is-8 has-text-right">
             <button
               type="submit"
-              class="button is-outlined text-error px-10"
+              class="button is-light is-danger mx-10"
               v-if="selectedRepositories.length > 0"
               @click="revokeAccess()"
             >
-              <i class="fas fa-times" />&nbsp;
-              Revoke Access
+              <span class="icon is-small">
+                <i class="fas fa-times" />
+              </span>
+              <span>Revoke Access</span>
             </button>
-            <button class="button is-outlined text-dark px-10" @click="refreshData">
-              <i class="fas fa-sync-alt" />&nbsp;
-              Refresh Data
+            <button class="button is-success is-light mx-10" @click="refreshData">
+              <span class="icon is-small">
+                <i class="fas fa-sync-alt" />
+              </span>
+              <span>Refresh Data</span>
             </button>
-            <button type="submit" class="button is-outlined px-10" @click="showModal = true">
-              <i class="fas fa-plus" />&nbsp;
-              Add to Repos
+            <button type="submit" class="button is-link is-light mx-10" @click="showModal = true">
+              <span class="icon is-small">
+                <i class="fas fa-plus" />
+              </span>
+              <span>Add to Repos</span>
             </button>
           </div>
         </div>
 
         <div class="columns" v-if="collaboratorDetailsLoading">
           <div class="column is-4" v-for="i in 4" :key="i">
-            <div class="m-10">
-              <SkeletonLoader width="100%" height="70px" radius="5px" />
-            </div>
+            <SkeletonLoader width="100%" height="70px" radius="5px" />
           </div>
         </div>
 
@@ -99,7 +100,7 @@
               @change="addRemoveRepo(repository.name)"
             />
             <label :for="repository.name" class="repo-checkbox">
-              <div class="bg-card border-radius-5 p-20 m-10">
+              <div class="bg-card border-radius-5 p-20">
                 <div class="columns">
                   <div class="column is-6 text-overflow-ellipsis">
                     <i class="fas fa-check-circle text-light mt-5 mr-10" />
@@ -131,9 +132,9 @@
 
         <div class="columns mt-30">
           <div class="column is-6">
-            <h2 class="is-size-3">Common Repositories</h2>
+            <h2 class="title is-size-3">Common Repositories</h2>
           </div>
-          <div class="column is-6 is-right">
+          <div class="column is-6 has-text-right">
             <p class="text-dark">
               Repositories shared with you and
               <strong>{{$route.params.login}}</strong>
@@ -143,9 +144,7 @@
 
         <div class="columns" v-if="collaboratorDetailsLoading">
           <div class="column is-4" v-for="i in 3" :key="i">
-            <div class="m-10">
-              <SkeletonLoader width="100%" height="70px" radius="5px" />
-            </div>
+            <SkeletonLoader width="100%" height="70px" radius="5px" />
           </div>
         </div>
 
@@ -157,7 +156,7 @@
           >
             <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
             <label :for="repository.name" class="repo-checkbox"></label>
-            <div class="bg-card border-radius-5 p-20 m-10">
+            <div class="bg-card border-radius-5 p-20">
               <div class="columns">
                 <div class="column is-10 text-overflow-ellipsis">
                   <i class="fas fa-code-branch" />
@@ -180,15 +179,19 @@
           <p class="has-text-centered">
             There are no common repositories between you and {{collaborator.name || collaborator.login}}.
             <br />
-            <button type="submit" class="button is-outlined px-10" @click="showModal = true">Add to Repos</button>
+            <button
+              type="submit"
+              class="button is-outlined px-10"
+              @click="showModal = true"
+            >Add to Repos</button>
           </p>
         </div>
 
         <div class="columns mt-30">
           <div class="column is-4">
-            <h2 class="is-size-3">Today's Activity</h2>
+            <h2 class="title is-size-3">Today's Activity</h2>
           </div>
-          <div class="column is-8 is-right">
+          <div class="column is-8 has-text-right">
             <p class="text-dark">
               <i class="fas fa-sm fa-star" />
               Showing for Favourite Repositories only

@@ -18,9 +18,7 @@
         </div>
         <div class="columns" v-if="repositoriesLoading">
           <div class="column is-4" v-for="i in 12" :key="i">
-            <div class="m-10">
-              <SkeletonLoader width="100%" height="70px" radius="5px" />
-            </div>
+            <SkeletonLoader width="100%" height="70px" radius="5px" />
           </div>
         </div>
 
