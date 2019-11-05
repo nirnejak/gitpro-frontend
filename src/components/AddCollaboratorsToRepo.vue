@@ -1,6 +1,11 @@
 <template>
   <div>
-    <input type="text" placeholder="Search Collaborator" v-model="search" />
+    <div class="control has-icons-right">
+      <input class="input" type="text" placeholder="Search Collaborator" v-model="search" />
+      <span class="icon is-small is-right">
+        <i class="fas fa-search" />
+      </span>
+    </div>
     <div class="columns mb-10 mt-15">
       <div class="column">
         <p class="has-text-dark">
@@ -18,44 +23,44 @@
           :key="collaborator.login"
           @click="selectCollaborator(collaborator.login)"
         >
-        <div class="collaborator-avatar-container">
-          <div class="is-center">
-            <input
-              type="checkbox"
-              :name="collaborator.login"
-              :id="collaborator.login"
-              class="d-none"
-              @click="selectCollaborator(collaborator.login)"
-            />
-            <label :for="collaborator.login" class="collaborator-check-label">
-              <i
-                class="fas fa-check-circle text-light"
-                :class="{
+          <div class="collaborator-avatar-container has-text-centered">
+            <div class="has-text-center">
+              <input
+                type="checkbox"
+                :name="collaborator.login"
+                :id="collaborator.login"
+                class="d-none"
+                @click="selectCollaborator(collaborator.login)"
+              />
+              <label :for="collaborator.login" class="collaborator-check-label">
+                <i
+                  class="fas fa-check-circle text-light"
+                  :class="{
                 'text-primary': selectedCollaborators.includes(collaborator.login),
                 'text-light': !selectedCollaborators.includes(collaborator.login),
               }"
-              />
-            </label>
-            <label :for="collaborator.login">
-              <div class="collaborator-avatar position-relative">
-                <div
-                  class="bg-card rounded-circle bg-cover"
-                  :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
                 />
-                <div class="overlay rounded-circle" />
-              </div>
+              </label>
+              <label :for="collaborator.login">
+                <div class="collaborator-avatar position-relative">
+                  <div
+                    class="bg-card rounded-circle bg-cover"
+                    :style="`background-image: url(${collaborator.avatar_url}); width: var(--avatar-dimension); padding-top: var(--avatar-dimension);`"
+                  />
+                  <div class="overlay rounded-circle" />
+                </div>
+              </label>
+            </div>
+            <label :for="collaborator.login" class="cursor-pointer">
+              <p class="mt-10 text-high-contrast">{{collaborator.name}}</p>
+              <small class="has-text-dark is-center">{{collaborator.login}}</small>
             </label>
-          </div>
-          <label :for="collaborator.login" class="cursor-pointer">
-            <p class="has-text-centered mt-10 text-high-contrast">{{collaborator.name}}</p>
-            <small class="has-text-centered has-text-dark is-center">{{collaborator.login}}</small>
-          </label>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="is-center">
+    <div class="has-text-centered">
       <button class="button is-primary" @click="addCollaboratorsToRepo">Add Collaborators</button>
     </div>
   </div>
