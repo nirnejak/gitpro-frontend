@@ -18,10 +18,11 @@
           <div class="column is-7 is-vertical-align">
             <div>
               <h1 class="title is-size-3 m-0">{{$route.params.name}}</h1>
-              <p class="has-text-dark mb-5">
+              <p class="has-text-dark">
                 by
                 <span class="text-high-contrast">{{repository.owner}}</span>
               </p>
+              <br />
               <p class="has-text-dark">{{repository.description}}</p>
               <SkeletonLoader
                 width="100%"
@@ -44,7 +45,7 @@
           </div>
         </div>
 
-        <div class="columns mt-70">
+        <div class="columns mt-40">
           <div class="column is-4">
             <h2 class="title is-size-4">Collaborators</h2>
           </div>
@@ -136,9 +137,7 @@
                 </router-link>
               </div>
               <router-link :to="`/collaborators/${collaborator.login}`">
-                <p
-                  class="mt-10 text-high-contrast"
-                >{{collaborator.name || collaborator.login}}</p>
+                <p class="mt-10 text-high-contrast">{{collaborator.name || collaborator.login}}</p>
               </router-link>
               <router-link
                 :to="`/activities/?collaborator=${collaborator.login}&repository=${$route.params.name}&owner=${$route.params.owner}`"

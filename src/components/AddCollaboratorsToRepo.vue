@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <div class="collaborator-list-container mb-15">
+    <div class="collaborator-list-container mb-15 p-10">
       <div class="columns">
         <div
           class="column is-3 p-5"
