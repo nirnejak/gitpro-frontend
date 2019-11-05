@@ -1,7 +1,6 @@
 <template>
   <div class="columns">
     <Sidebar :show="true" />
-    <SnackBar :show="showSnakeBar" :message="message" type="primary" :hideSnackBar="hideSnackBar" />
     <div class="column is-9 pt-70">
       <div class="px-20">
         <div class="columns">
@@ -113,7 +112,7 @@
 
         <div class="columns mt-30">
           <div class="column is-6">
-            <h2 class="mb-0">Today's Activities</h2>
+            <h2 class="is-size-4 title mb-0">Today's Activities</h2>
             <div class="has-text-dark">
               <small>(in Favourite Repositories)</small>
             </div>
@@ -159,7 +158,45 @@
                     class="column is-3 has-text-right-tablet has-text-dark"
                   >{{commit.files.length}} Files</div>
                 </div>
-                <hr class="m-0"/>
+                <hr class="m-0" />
+              </div>
+              <div class="columns mt-5">
+                <div class="column has-text-centered">
+                  <router-link
+                    :to="`/activities/?collaborator=${activity.author}&repository=${activity.repository}&owner=${activity.owner}`"
+                    class="has-text-dark"
+                  >View Full Activity</router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tile is-ancestor">
+          <div class="tile is-parent">
+            <div
+              class="tile is-child box is-4"
+              v-for="(activity, index) in activities"
+              :key="index"
+            >
+              <div class="columns">
+                <div class="column is-6">
+                  <i class="fas fa-code-branch mr-5" />
+                  {{activity.repository}}
+                </div>
+                <div class="column is-6 has-text-right-tablet">
+                  <i class="far fa-user mr-5" />
+                  {{activity.author}}
+                </div>
+              </div>
+              <div v-for="commit in activity.contributions" :key="commit.hash">
+                <div class="columns mb-0 mt-5">
+                  <div class="column is-9 text-primary">{{commit.commitMessage}}</div>
+                  <div
+                    class="column is-3 has-text-right-tablet has-text-dark"
+                  >{{commit.files.length}} Files</div>
+                </div>
+                <hr class="m-0" />
               </div>
               <div class="columns mt-5">
                 <div class="column has-text-centered">
@@ -185,12 +222,11 @@ import axios from "@/configAxios";
 
 import Sidebar from "@/components/Sidebar";
 import SkeletonLoader from "@/components/UI/SkeletonLoader";
-import SnackBar from "@/components/UI/SnackBar";
 import { setTimeout } from "timers";
 
 export default {
   name: "Dashboard",
-  components: { Sidebar, SkeletonLoader, SnackBar },
+  components: { Sidebar, SkeletonLoader },
   data() {
     return {
       user: {
@@ -201,8 +237,6 @@ export default {
       collaborators: [],
       collaboratorLoading: true,
       userLoading: true,
-      message: "Welcome to GitPro",
-      showSnakeBar: false,
       favourite_repositories: [],
 
       activities: [],
@@ -263,9 +297,6 @@ export default {
     setTimeout(() => (this.showSnakeBar = true), 2000);
   },
   methods: {
-    hideSnackBar() {
-      this.showSnakeBar = false;
-    },
     refreshData() {
       this.refreshCount += 1;
       if (this.refreshCount > 1) {
