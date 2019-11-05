@@ -123,7 +123,7 @@
           </div>
         </div>
 
-        <div class="columns mb-30">
+        <div class="columns is-multiline mb-30">
           <div class="column" v-if="!activitiesLoading && activities.length === 0">
             <h3 class="is-size-5 has-text-centered has-text-dark my-20">
               <br />No Activity

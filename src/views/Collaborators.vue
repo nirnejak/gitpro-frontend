@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="columns">
+        <div class="columns is-multiline">
           <div
             class="column is-2 p-5 pb-30"
             v-for="collaborator in collaborators"

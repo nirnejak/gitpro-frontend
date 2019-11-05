@@ -16,7 +16,7 @@
             </p>
           </div>
         </div>
-        <div class="columns" v-if="repositoriesLoading">
+        <div class="columns is-multiline" v-if="repositoriesLoading">
           <div class="column is-4" v-for="i in 12" :key="i">
             <SkeletonLoader width="100%" height="70px" radius="5px" />
           </div>
