@@ -171,44 +171,6 @@
             </div>
           </div>
         </div>
-
-        <div class="tile is-ancestor">
-          <div class="tile is-parent">
-            <div
-              class="tile is-child box is-4"
-              v-for="(activity, index) in activities"
-              :key="index"
-            >
-              <div class="columns">
-                <div class="column is-6">
-                  <i class="fas fa-code-branch mr-5" />
-                  {{activity.repository}}
-                </div>
-                <div class="column is-6 has-text-right-tablet">
-                  <i class="far fa-user mr-5" />
-                  {{activity.author}}
-                </div>
-              </div>
-              <div v-for="commit in activity.contributions" :key="commit.hash">
-                <div class="columns mb-0 mt-5">
-                  <div class="column is-9 text-primary">{{commit.commitMessage}}</div>
-                  <div
-                    class="column is-3 has-text-right-tablet has-text-dark"
-                  >{{commit.files.length}} Files</div>
-                </div>
-                <hr class="m-0" />
-              </div>
-              <div class="columns mt-5">
-                <div class="column has-text-centered">
-                  <router-link
-                    :to="`/activities/?collaborator=${activity.author}&repository=${activity.repository}&owner=${activity.owner}`"
-                    class="has-text-dark"
-                  >View Full Activity</router-link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
