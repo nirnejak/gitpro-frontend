@@ -141,7 +141,7 @@
           </div>
 
           <div class="column is-4" v-for="(activity, index) in activities" :key="index">
-            <div class="bg-card border-radius-10 p-20 m-10">
+            <div class="bg-card border-radius-10 p-20">
               <div class="columns">
                 <div class="column is-6">
                   <i class="fas fa-code-branch mr-5" />
@@ -152,16 +152,14 @@
                   {{activity.author}}
                 </div>
               </div>
-              <div class="columns mt-15">
-                <div class="column" v-for="commit in activity.contributions" :key="commit.hash">
-                  <div class="columns">
-                    <div class="column is-9 text-primary">{{commit.commitMessage}}</div>
-                    <div
-                      class="column is-3 has-text-right-tablet has-text-dark"
-                    >{{commit.files.length}} Files</div>
-                  </div>
-                  <hr />
+              <div v-for="commit in activity.contributions" :key="commit.hash">
+                <div class="columns mb-0 mt-5">
+                  <div class="column is-9 text-primary">{{commit.commitMessage}}</div>
+                  <div
+                    class="column is-3 has-text-right-tablet has-text-dark"
+                  >{{commit.files.length}} Files</div>
                 </div>
+                <hr class="m-0"/>
               </div>
               <div class="columns mt-5">
                 <div class="column has-text-centered">
