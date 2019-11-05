@@ -66,8 +66,8 @@
             <i
               class="fas fa-lg fa-check-circle"
               :class="{
-                'text-primary': selectedRepositories.includes(repository.name),
-                'text-light': !selectedRepositories.includes(repository.name),
+                'has-text-primary': selectedRepositories.includes(repository.name),
+                'has-text-light': !selectedRepositories.includes(repository.name),
               }"
             />
           </div>

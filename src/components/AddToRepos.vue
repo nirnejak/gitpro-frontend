@@ -1,6 +1,13 @@
 <template>
   <div>
-    <input type="text" placeholder="Search Repository" v-model="search" />
+    <div class="field">
+      <div class="control has-icons-right">
+        <input class="input" type="text" placeholder="Search Repository" v-model="search" />
+        <span class="icon is-small is-right">
+          <i class="fas fa-search" />
+        </span>
+      </div>
+    </div>
     <div class="columns mb-10 mt-15">
       <div class="column is-6">
         <p class="has-text-dark">
@@ -22,9 +29,9 @@
       </div>
     </div>
 
-    <div class="repo-list-container mb-15">
+    <div class="list is-hoverable repo-list-container mb-15">
       <div
-        class="cursor-pointer bd-light border-radius-5 p-10 my-5"
+        class="list-item cursor-pointer py-10"
         v-for="repository in repositories"
         :key="repository.name"
         @click="selectRepo(repository.name)"
@@ -35,15 +42,15 @@
             <i
               class="fas fa-lg fa-check-circle"
               :class="{
-                'text-primary': selectedRepositories.includes(repository.name),
-                'text-light': !selectedRepositories.includes(repository.name),
+                'has-text-primary': selectedRepositories.includes(repository.name),
+                'has-text-light': !selectedRepositories.includes(repository.name),
               }"
             />
           </div>
         </div>
       </div>
     </div>
-    <div class="is-center">
+    <div class="has-text-centered">
       <button class="button is-primary" @click="addToRepos">Add</button>
     </div>
   </div>
