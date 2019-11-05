@@ -88,15 +88,17 @@
           </div>
         </div>
 
-        <div class="columns" v-if="activityLoading">
-          <div class="column" v-for="i in 2" :key="i">
-            <SkeletonLoader width="100%" height="300px" radius="5px" class="my-10" />
+        <div v-if="activityLoading">
+          <div class="columns" v-for="i in 2" :key="i">
+            <div class="column">
+              <SkeletonLoader width="100%" height="300px" radius="5px" class="my-10" />
+            </div>
           </div>
         </div>
 
         <div class="columns" v-if="!activityLoading">
           <div class="column">
-            <h3 class="is-size-5 mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
+            <h3 class="is-size-5 title mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
             <div v-if="Object.keys(activity).length !== 0">
               <div
                 class="bg-card border-radius-5 p-20 my-20"
@@ -126,6 +128,7 @@
                 </div>
               </div>
             </div>
+
             <div
               class="bg-card border-radius-5 p-20 my-20"
               v-for="(commit, index) in activity.contributions"
@@ -160,9 +163,10 @@
                 </div>
               </div>
               <transition name="fade">
-                <div v-if="!commit.isHidden" class="pt-20">
+                <div v-if="!commit.isHidden" class="pt-20 has-text-centered">
                   <div
                     class="activity-container"
+                    style="width: 1000px;"
                     v-html="prettyHtml(commit.diff)"
                     v-if="commit.diff !== 'Error:Diff is too large'"
                   />

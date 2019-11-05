@@ -8,15 +8,15 @@
           <div class="column">
             <div class="bg-card border-radius-10 p-20">
               <!-- <div class="columns">
-                <div class="column is-10 is-vertical-align">Include Public Repositories</div>
-                <div class="column is-2 is-center">
+                <div class="column is-10">Include Public Repositories</div>
+                <div class="column is-2 has-text-centered">
                   <ToggleButton @change="includePublicToggle" id="includePublicToggle" />
                 </div>
               </div>
               <br />-->
-              <div class="columns">
-                <div class="column is-10 is-vertical-align">Dark Mode</div>
-                <div class="column is-2 is-center">
+              <!-- <div class="columns">
+                <div class="column is-10">Dark Mode</div>
+                <div class="column is-2 has-text-centered">
                   <ToggleButton
                     id="darkModeToggle"
                     :value="theme === 'dark'"
@@ -24,12 +24,12 @@
                   />
                 </div>
               </div>
-              <br />
+              <br /> -->
               <div class="columns">
-                <div class="column is-10 is-vertical-align">Deactivate Account?</div>
-                <div class="column is-2 is-center">
-                  <button class="button is-outlined" @click="deactivateAccount">
-                    <span class="text-error">Deactivate</span>
+                <div class="column is-10">Deactivate Account?</div>
+                <div class="column is-2 has-text-centered">
+                  <button class="button is-danger is-outlined" @click="deactivateAccount">
+                    Deactivate
                   </button>
                 </div>
               </div>
