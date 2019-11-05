@@ -329,7 +329,7 @@ export default {
           force: this.force
         };
         axios
-          .get(`/activities/${this.selectedCollaborator}`, { params })
+          .get(`/activities/${this.selectedCollaborator.login}`, { params })
           .then(res => {
             this.activityLoading = false;
             this.activity = res.data;
