@@ -38,7 +38,7 @@
           <div class="navbar-dropdown">
             <!-- <a class="navbar-item">About</a>
             <a class="navbar-item">Contact</a>
-            <hr class="navbar-divider" /> -->
+            <hr class="navbar-divider" />-->
             <a
               class="navbar-item"
               href="https://docs.google.com/forms/d/e/1FAIpQLSe24lZ1ykY24mTfog59DlbOOFtrTTeaYoT0PNQ3cxmvl_o42w/viewform"
@@ -58,10 +58,8 @@
       <div class="navbar-end" v-if="currentRouteName !== 'login'">
         <div class="navbar-item">
           <div class="buttons">
-            <router-link to="/login" class="button is-primary">
-              <strong>Register</strong>
-            </router-link>
-            <router-link to="/login" class="button is-light">Log in</router-link>
+            <router-link to="/login" class="button is-dark">Log in</router-link>
+            <router-link to="/login" class="button is-primary">Register</router-link>
           </div>
         </div>
       </div>

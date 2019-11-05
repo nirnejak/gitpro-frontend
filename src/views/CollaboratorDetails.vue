@@ -118,11 +118,12 @@
             <p class="has-text-centered">
               You haven't added {{collaborator.name || collaborator.login}} to any of your repositories
               <br />
-              <button
-                type="submit"
-                class="button is-primary is-light my-10"
-                @click="showModal = true"
-              >Add to Repos</button>
+              <button type="submit" class="button is-info is-light my-10" @click="showModal = true">
+                <span class="icon is-small">
+                  <i class="fas fa-plus" />
+                </span>
+                <span>Add to Repos</span>
+              </button>
             </p>
           </div>
         </div>
@@ -176,11 +177,12 @@
           <p class="has-text-centered">
             There are no common repositories between you and {{collaborator.name || collaborator.login}}.
             <br />
-            <button
-              type="submit"
-              class="button is-primary is-light my-10"
-              @click="showModal = true"
-            >Add to Repos</button>
+            <button type="submit" class="button is-info is-light my-10" @click="showModal = true">
+              <span class="icon is-small">
+                <i class="fas fa-plus" />
+              </span>
+              <span>Add to Repos</span>
+            </button>
           </p>
         </div>
 
