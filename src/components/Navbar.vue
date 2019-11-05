@@ -36,9 +36,9 @@
           <a class="navbar-link">More</a>
 
           <div class="navbar-dropdown">
-            <a class="navbar-item">About</a>
+            <!-- <a class="navbar-item">About</a>
             <a class="navbar-item">Contact</a>
-            <hr class="navbar-divider" />
+            <hr class="navbar-divider" /> -->
             <a
               class="navbar-item"
               href="https://docs.google.com/forms/d/e/1FAIpQLSe24lZ1ykY24mTfog59DlbOOFtrTTeaYoT0PNQ3cxmvl_o42w/viewform"
