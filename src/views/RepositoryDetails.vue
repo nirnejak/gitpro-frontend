@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="columns">
     <Sidebar :show="true" />
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Collaborators">
       <AddCollaboratorsToRepo
@@ -9,20 +9,21 @@
       />
     </Modal>
 
-    <div class="col-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
+    <div class="column is-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
-        <div class="row">
-          <div class="col-1 is-vertical-align">
+        <div class="columns">
+          <div class="column is-1 is-vertical-align">
             <i class="fas fa-4x fa-code-branch mr-5" />
           </div>
-          <div class="col-7 is-vertical-align">
+          <div class="column is-7 is-vertical-align">
             <div>
-              <h1 class="m-0">{{$route.params.name}}</h1>
-              <p class="text-dark mb-5">
+              <h1 class="title is-size-3 m-0">{{$route.params.name}}</h1>
+              <p class="has-text-dark">
                 by
                 <span class="text-high-contrast">{{repository.owner}}</span>
               </p>
-              <p class="text-dark">{{repository.description}}</p>
+              <br />
+              <p class="has-text-dark">{{repository.description}}</p>
               <SkeletonLoader
                 width="100%"
                 height="20px"
@@ -31,8 +32,7 @@
               />
             </div>
           </div>
-          <div class="col-4 is-vertical-align is-right" v-if="repository">
-            <!-- TODO: Add Optional Link for GitHub/Bitbucket/Gitlab -->
+          <div class="column is-4 has-text-right-tablet has-text-centered" v-if="repository">
             <a
               :href="`http://github.com/${$route.params.owner}/${$route.params.name}`"
               class="sidebar-link pr-20"
@@ -44,38 +44,44 @@
           </div>
         </div>
 
-        <div class="row mt-70">
-          <div class="col-4">
-            <h2>Collaborators</h2>
+        <div class="columns mt-40">
+          <div class="column is-4">
+            <h2 class="title is-size-4">Collaborators</h2>
           </div>
-          <div class="col-8 is-right">
+          <div class="column is-8 has-text-right-tablet has-text-centered">
             <button
-              class="button clear text-error px-10"
+              class="button is-danger is-light m-5"
               v-if="selectedCollaborators.length > 0"
               @click="revokeAccess()"
             >
-              <i class="fas fa-times" />&nbsp;
-              Revoke Access
+              <span class="icon is-small">
+                <i class="fas fa-times" />
+              </span>
+              <span>Revoke Access</span>
             </button>
-            <button class="button clear text-dark px-10" @click="refreshData">
-              <i class="fas fa-sync-alt" />&nbsp;
-              Refersh Data
+            <button class="button is-success is-light m-5" @click="refreshData">
+              <span class="icon is-small">
+                <i class="fas fa-sync-alt" />
+              </span>
+              <span>Refersh Data</span>
             </button>
             <button
               type="submit"
-              class="button clear px-10"
+              class="button is-link is-light m-5"
               @click="showModal = true"
               v-if="user.login === repository.owner"
             >
-              <i class="fas fa-plus" />&nbsp;
-              Add Collaborator
+              <span class="icon is-small">
+                <i class="fas fa-plus" />
+              </span>
+              <span>Add Collaborator</span>
             </button>
           </div>
         </div>
-        <div class="row mt-70">
-          <div class="col-2 p-5 pb-30">
-            <div class="collaborator-avatar-container">
-              <div class="is-center">
+        <div class="columns">
+          <div class="column is-2 p-5 pb-30">
+            <div class="collaborator-avatar-container has-text-centered">
+              <div class="columns is-centered is-mobile">
                 <router-link to="/dashboard">
                   <div class="collaborator-avatar position-relative">
                     <div
@@ -87,23 +93,23 @@
                 </router-link>
               </div>
               <router-link to="/dashboard">
-                <p class="text-center mt-10 text-high-contrast">{{user.name || user.login}}</p>
+                <p class="mt-10 text-high-contrast">{{user.name || user.login}}</p>
               </router-link>
               <router-link
                 :to="`/activities/?collaborator=${user.login}&repository=${$route.params.name}&owner=${$route.params.owner}`"
               >
-                <small class="text-center text-primary is-center">View Activity</small>
+                <small class="text-primary is-center">View Activity</small>
               </router-link>
             </div>
           </div>
 
           <div
-            class="col-2 p-5 pb-30"
+            class="column is-2 p-5 pb-30"
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
-            <div class="collaborator-avatar-container">
-              <div class="is-center">
+            <div class="collaborator-avatar-container has-text-centered">
+              <div class="columns is-centered is-mobile">
                 <input
                   type="checkbox"
                   :name="collaborator.login"
@@ -130,14 +136,12 @@
                 </router-link>
               </div>
               <router-link :to="`/collaborators/${collaborator.login}`">
-                <p
-                  class="text-center mt-10 text-high-contrast"
-                >{{collaborator.name || collaborator.login}}</p>
+                <p class="mt-10 text-high-contrast">{{collaborator.name || collaborator.login}}</p>
               </router-link>
               <router-link
                 :to="`/activities/?collaborator=${collaborator.login}&repository=${$route.params.name}&owner=${$route.params.owner}`"
               >
-                <small class="text-center text-primary is-center">View Activity</small>
+                <small class="text-primary is-center">View Activity</small>
               </router-link>
             </div>
           </div>

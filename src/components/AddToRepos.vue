@@ -1,14 +1,21 @@
 <template>
   <div>
-    <input type="text" placeholder="Search Repository" v-model="search" />
-    <div class="row mb-10 mt-15">
-      <div class="col-6">
-        <p class="text-dark">
+    <div class="field">
+      <div class="control has-icons-right">
+        <input class="input" type="text" placeholder="Search Repository" v-model="search" />
+        <span class="icon is-small is-right">
+          <i class="fas fa-search" />
+        </span>
+      </div>
+    </div>
+    <div class="columns mb-10 mt-15">
+      <div class="column is-6">
+        <p class="has-text-dark">
           Repositories
           <small>({{selectedRepositories.length}} Selected)</small>
         </p>
       </div>
-      <div class="col-6 text-right">
+      <div class="column is-6 has-text-right-tablet">
         <i
           class="fas fa-sort-alpha-up text-primary cursor-pointer"
           @click="sortAlphaUp()"
@@ -22,29 +29,29 @@
       </div>
     </div>
 
-    <div class="repo-list-container mb-15">
+    <div class="list is-hoverable repo-list-container mb-15">
       <div
-        class="cursor-pointer bd-light border-radius-5 p-10 my-5"
+        class="list-item cursor-pointer py-10"
         v-for="repository in repositories"
         :key="repository.name"
         @click="selectRepo(repository.name)"
       >
-        <div class="row">
-          <div class="col-10">{{repository.name}}</div>
-          <div class="col-2 text-right">
+        <div class="columns">
+          <div class="column is-10">{{repository.name}}</div>
+          <div class="column is-2 has-text-right-tablet">
             <i
               class="fas fa-lg fa-check-circle"
               :class="{
-                'text-primary': selectedRepositories.includes(repository.name),
-                'text-light': !selectedRepositories.includes(repository.name),
+                'has-text-primary': selectedRepositories.includes(repository.name),
+                'has-text-light': !selectedRepositories.includes(repository.name),
               }"
             />
           </div>
         </div>
       </div>
     </div>
-    <div class="is-center">
-      <button class="button primary" @click="addToRepos">Add</button>
+    <div class="has-text-centered">
+      <button class="button is-primary" @click="addToRepos">Add</button>
     </div>
   </div>
 </template>

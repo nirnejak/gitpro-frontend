@@ -1,107 +1,102 @@
 <template>
   <div>
-    <div class="hero-container">
-      <div class="container">
-        <div class="row">
-          <div class="col-6-md">
-            <div class="is-vertical-align" style="height: calc(100vh - 30px)">
-              <div class="p-20">
-                <h3>GitPro</h3>
-                <h1 class="lead-title">
-                  <span></span>
-                  <br />simplified
-                </h1>
-                <p
-                  class="text-dark mt-30"
-                >A platform to make repository management and developer activity tracking easier.</p>
-                <router-link to="/login" class="button primary get-started ml-20 mt-50">
-                  Get Started
+    <section class="hero is-fullheight bg-gradient">
+      <div class="hero-head">
+        <Navbar />
+      </div>
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-vcentered">
+            <div class="column is-6-md">
+              <h2 class="subtitle">GitPro</h2>
+              <h1 class="title is-size-1 mt-20">
+                <span id="heroTitle"></span>
+                <br />simplified
+              </h1>
+              <p
+                class="has-text-dark mt-30"
+              >A platform to make repository management and developer activity tracking easier.</p>
+              <router-link to="/login" class="button is-primary get-started ml-10 mt-50">
+                <span>Get Started</span>
+                <span class="icon is-small">
                   <i class="fas fa-sm fa-arrow-right" />
-                </router-link>
-              </div>
+                </span>
+              </router-link>
             </div>
-          </div>
-          <div class="col-6-md">
-            <div class="is-vertical-align is-center" style="height: calc(100vh - 30px)">
+            <div class="column is-6-md has-text-centered">
               <img src="@/assets/version_control.svg" alt width="80%" />
             </div>
           </div>
         </div>
       </div>
-      <div class="is-center" style="height: 30px;">
-        <i
-          class="fas fa-arrow-down cursor-pointer"
-          v-scroll-to="{
+      <div class="hero-foot">
+        <div class="container has-text-centered">
+          <i
+            class="fas fa-arrow-down cursor-pointer"
+            v-scroll-to="{
             el: '#seeActivitySection',
             duration: 2000,
             // offset: -50
             // easing: [.6, .80, .30, 1.9],
           }"
-        />
+          />
+        </div>
+      </div>
+    </section>
+    <!-- </div> -->
+
+    <div class="hero is-medium">
+      <div class="hero-body">
+        <div class="columns is-vcentered is-centered" id="seeActivitySection">
+          <div class="column is-5 has-text-centered">
+            <img src="@/assets/developer_activity.svg" alt width="70%" />
+          </div>
+          <div class="column is-4">
+            <h1 class="title is-size-3">See Activity</h1>
+            <p>See developer's contributions on your repositories. Goto their page for a daily summary or jump to Activitiy section for full git diff of their contributions.</p>
+            <br />
+            <router-link to="/login">
+              Get Started
+              <i class="fas fa-arrow-right ml-5" />
+            </router-link>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="bg-card">
-      <div class="container">
-        <div class="row py-150" id="seeActivitySection">
-          <div class="col-6">
-            <div class="is-vertical-align is-center">
-              <img src="@/assets/developer_activity.svg" alt width="80%" />
-            </div>
+
+    <div class="hero is-medium">
+      <div class="hero-body">
+        <div class="columns is-vcentered is-centered">
+          <div class="column is-4">
+            <h1 class="title is-size-3">Manage Contributors</h1>
+            <p>Easily add or remove collaborators from a repository. Do bulk operations by adding to or removing from multiple repositories, or add an existing collaborator to other repositories.</p>
+            <br />
+            <router-link to="/login">
+              Get Started
+              <i class="fas fa-arrow-right ml-5" />
+            </router-link>
           </div>
-          <div class="col-6">
-            <div class="is-vertical-align is-center">
-              <div class="p-40">
-                <h1>See Activity</h1>
-                <p>See developer's contributions on your repositories. Goto their page for a daily summary or jump to Activitiy section for full git diff of their contributions.</p>
-                <br />
-                <router-link to="/login">
-                  Get Started
-                  <i class="fas fa-arrow-right ml-5" />
-                </router-link>
-              </div>
-            </div>
+          <div class="column is-5 has-text-centered">
+            <img src="@/assets/collaboration.svg" alt width="60%" />
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="row py-100">
-          <div class="col-6">
-            <div class="is-vertical-align is-center">
-              <div class="p-40">
-                <h1>Manage Contributors</h1>
-                <p>Easily add or remove collaborators from a repository. Do bulk operations by adding to or removing from multiple repositories, or add an existing collaborator to other repositories.</p>
-                <br />
-                <router-link to="/login">
-                  Get Started
-                  <i class="fas fa-arrow-right ml-5" />
-                </router-link>
-              </div>
-            </div>
+    <div class="hero is-medium">
+      <div class="hero-body">
+        <div class="columns is-vcentered is-centered">
+          <div class="column is-5 has-text-centered">
+            <img src="@/assets/insights.svg" alt width="60%" />
           </div>
-          <div class="col-6">
-            <div class="is-vertical-align is-center">
-              <img src="@/assets/collaboration.svg" alt width="80%" />
-            </div>
-          </div>
-        </div>
-
-        <div class="row py-150">
-          <div class="col-6">
-            <div class="is-vertical-align is-center">
-              <img src="@/assets/insights.svg" alt width="80%" />
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="is-vertical-align is-center">
-              <div class="p-40">
-                <h1>Get Insights</h1>
-                <p>How are your developers doing? How is their coding pattern. Are they maintaining code standards and quality? Know it all here/</p>
-                <br />
-                <router-link to="/login">
-                  Get Started
-                  <i class="fas fa-arrow-right ml-5" />
-                </router-link>
-              </div>
-            </div>
+          <div class="column is-4">
+            <h1 class="title is-size-3">Get Insights</h1>
+            <p>How are your developers doing? How is their coding pattern? Are they maintaining code standards and quality? Know it all here.</p>
+            <br />
+            <router-link to="/login">
+              Get Started
+              <i class="fas fa-arrow-right ml-5" />
+            </router-link>
           </div>
         </div>
       </div>
@@ -113,12 +108,15 @@
 
 <script>
 import Typed from "typed.js";
+
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 import HeroImage from "@/assets/version_control.svg";
-import Footer from "@/components/UI/Footer";
 
 export default {
   name: "home",
-  components: { Footer },
+  components: { Footer, Navbar },
   data() {
     return {
       options: {
@@ -132,15 +130,15 @@ export default {
     window.scrollTo(0, 0);
   },
   mounted() {
-    const typed = new Typed("span", this.options);
+    const typed = new Typed("span#heroTitle", this.options);
   }
 };
 </script>
 
 <style lang="scss" scoped>
 h1.lead-title {
-  line-height: 7rem;
-  font-size: 6rem;
+  line-height: 5rem;
+  font-size: 4rem;
   margin-top: 0px;
   margin-bottom: 0px;
 }

@@ -1,9 +1,9 @@
 <template>
   <div class="centered-container">
-    <div class="card bg-card text-center p-0 py-100">
+    <div class="card box has-text-centered p-0 py-100">
       <div v-if="$route.params.code === '404'">
         <img src="@/assets/404.svg" alt width="50%" />
-        <h1 class="text-dark mt-40 mb-0">Page not found</h1>
+        <h1 class="is-size-3 has-text-dark mt-40 mb-0">Page not found</h1>
         <p>
           Goto
           <router-link to="/dashboard" v-if="user.login">Dashboard</router-link>
@@ -11,8 +11,8 @@
         </p>
       </div>
       <div v-if="$route.params.code === '0'" class="px-100">
-        <h1>Not Connected</h1>
-        <p class="text-dark">Unable to Connect to the Server</p>
+        <h1 class="is-size-3">Not Connected</h1>
+        <p class="has-text-dark">Unable to Connect to the Server</p>
         <p>
           Goto
           <router-link to="/dashboard" v-if="user.login">Dashboard</router-link>

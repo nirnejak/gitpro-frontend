@@ -15,6 +15,7 @@ import Message from 'vue-m-message'
 
 import 'circular-std'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
+import 'bulma/css/bulma.css'
 
 Sentry.init({
   dns: 'https://6b54e15a63de435681f11ef35cf13b10@sentry.io/1766629',

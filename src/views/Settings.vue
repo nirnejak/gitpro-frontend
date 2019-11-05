@@ -1,22 +1,22 @@
 <template>
-  <div class="row">
+  <div class="columns">
     <Sidebar :show="true" />
-    <div class="col-9 pt-70">
+    <div class="column is-9 pt-70">
       <div class="px-20">
-        <h1>Settings</h1>
-        <div class="row">
-          <div class="col-12">
-            <div class="bg-card border-radius-10 p-20">
-              <!-- <div class="row">
-                <div class="col-10 is-vertical-align">Include Public Repositories</div>
-                <div class="col-2 is-center">
+        <h1 class="title is-size-3">Settings</h1>
+        <div class="columns">
+          <div class="column">
+            <div class="box border-radius-10 p-20">
+              <!-- <div class="columns is-mobile">
+                <div class="column is-7">Include Public Repositories</div>
+                <div class="column is-5 has-text-centered">
                   <ToggleButton @change="includePublicToggle" id="includePublicToggle" />
                 </div>
               </div>
               <br />-->
-              <div class="row">
-                <div class="col-10 is-vertical-align">Dark Mode</div>
-                <div class="col-2 is-center">
+              <!-- <div class="columns is-mobile">
+                <div class="column is-7">Dark Mode</div>
+                <div class="column is-5 has-text-centered">
                   <ToggleButton
                     id="darkModeToggle"
                     :value="theme === 'dark'"
@@ -24,13 +24,11 @@
                   />
                 </div>
               </div>
-              <br />
-              <div class="row">
-                <div class="col-10 is-vertical-align">Deactivate Account?</div>
-                <div class="col-2 is-center">
-                  <button class="button clear" @click="deactivateAccount">
-                    <span class="text-error">Deactivate</span>
-                  </button>
+              <br />-->
+              <div class="columns is-mobile">
+                <div class="column is-7">Deactivate Account?</div>
+                <div class="column is-5 has-text-right">
+                  <button class="button is-danger is-outlined" @click="deactivateAccount">Deactivate</button>
                 </div>
               </div>
             </div>

@@ -1,47 +1,49 @@
 <template>
-  <div class="row">
+  <div class="columns">
     <Sidebar :show="true" />
     <Modal :showModal="showModal" :hideModal="hideModal" modalTitle="Add Collaborator">
       <AddCollaborator :hideModal="hideModal" />
     </Modal>
 
-    <div class="col-9 pt-70">
+    <div class="column is-9 pt-70">
       <div class="px-20">
-        <div class="row">
-          <div class="col-8">
-            <h1>Collaborators({{collaborators.length}})</h1>
+        <div class="columns mb-30">
+          <div class="column is-8">
+            <h1 class="title is-size-3">Collaborators({{collaborators.length}})</h1>
           </div>
-          <div class="col-4 pt-10 text-right">
-            <button class="button primary" @click="showModal = true" v-if="!showModal">
-              Add Collaborator
-              &nbsp;
-              <i class="fas fa-plus" />
+          <div class="column is-4 pt-10 has-text-right-tablet has-text-centered">
+            <button class="button is-primary" @click="showModal = true" v-if="!showModal">
+              <span>Add Collaborator</span>
+              <span class="icon is-small">
+                <i class="fas fa-plus" />
+              </span>
             </button>
           </div>
         </div>
-        <div class="row" v-if="collaboratorLoading">
-          <div class="col-2 p-5" v-for="i in 6" :key="i">
+
+        <div class="columns" v-if="collaboratorLoading">
+          <div class="column is-2 p-5" v-for="i in 6" :key="i">
             <div class="is-center">
               <SkeletonLoader width="150px" height="150px" radius="50%" />
             </div>
           </div>
         </div>
-        <div class="row" v-if="!collaboratorLoading && !collaborators.length">
-          <div class="col-12">
-            <div class="text-center">
+        <div class="columns" v-if="!collaboratorLoading && !collaborators.length">
+          <div class="column">
+            <div class="has-text-centered">
               <p>No Collaborators</p>
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="columns is-multiline">
           <div
-            class="col-2 p-5 pb-30"
+            class="column is-2 p-5 pb-30"
             v-for="collaborator in collaborators"
             :key="collaborator.login"
           >
-            <div class="collaborator-avatar-container">
+            <div class="collaborator-avatar-container has-text-centered">
               <router-link :to="`/collaborators/${collaborator.login}`">
-                <div class="is-center">
+                <div class="columns is-centered is-mobile">
                   <div class="collaborator-avatar position-relative is-center">
                     <div
                       class="bg-card rounded-circle bg-cover"
@@ -50,8 +52,8 @@
                     <div class="overlay rounded-circle" />
                   </div>
                 </div>
-                <p class="text-center mt-10 text-high-contrast">{{collaborator.name}}</p>
-                <small class="text-center text-dark is-center">{{collaborator.login}}</small>
+                <p class="mt-10 text-high-contrast">{{collaborator.name}}</p>
+                <small class="has-text-dark is-center">{{collaborator.login}}</small>
               </router-link>
             </div>
           </div>

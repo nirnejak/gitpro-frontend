@@ -1,14 +1,14 @@
 <template>
-  <div class="col-3 bg-card h-100vh mb-0" v-if="show">
-    <div class="pr-50 pl-50 pt-50 pb-10 is-horizontal-align">
+  <div class="sidebar column is-3 box h-100vh border-radius-0" v-if="show">
+    <div class="columns is-centered is-mobile px-30 pt-50">
       <div
-        class="bg-card rounded-circle bg-cover w-70"
-        :style="`background-image: url(${user.avatar_url}); padding-top: 70%;`"
+        class="bg-card rounded-circle bg-cover w-60"
+        :style="`background-image: url(${user.avatar_url}); padding-top: 60%;`"
       />
     </div>
-    <div>
-      <h4 class="is-center mb-0">{{user.name}}</h4>
-      <p class="text-dark is-center">{{user.login}}</p>
+    <div class="has-text-centered">
+      <h4 class="is-size-5 has-text-weight-semibold">{{user.name}}</h4>
+      <p class="has-text-dark">{{user.login}}</p>
     </div>
     <div class="sidebar-links p-50" style="padding-top: 30px !important;">
       <router-link to="/dashboard" class="sidebar-link" active-class="active">
@@ -44,8 +44,8 @@
         Logout
       </router-link>
     </div>
-    <div class="sidebar-footer text-center pt-100">
-      <small class="text-dark">
+    <div class="sidebar-footer has-text-centered pt-100">
+      <small class="has-text-dark">
         Developed by
         <a href="https://inkoop.io" target="_blank">Inkoop.io</a>
       </small>
@@ -86,6 +86,10 @@ export default {
 </script>
 
 <style lang="scss">
+.sidebar.box:not(:last-child) {
+  margin-bottom: 0rem;
+}
+
 .sidebar-links {
   .sidebar-link {
     display: block;

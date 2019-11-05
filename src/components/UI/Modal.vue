@@ -2,12 +2,15 @@
   <div class="modal-container" v-if="showModal">
     <div class="modal-bg" @click="hideModal" />
     <div class="modal-content">
-      <div class="modal-header pb-50">
-        <div class="close-btn pull-right w-5 text-right pr-5">
-          <i class="fas fa-times cursor-pointer" @click="hideModal" />
+      <div class="level">
+        <div class="level-left">
+          <h4 class="level-item is-size-6 title">{{modalTitle}}</h4>
         </div>
-        <h4 class="modal-title pull-right w-95">{{modalTitle}}</h4>
-        <br />
+        <div class="level-right">
+          <p class="level-item">
+            <i class="fas fa-times cursor-pointer" @click="hideModal" />
+          </p>
+        </div>
       </div>
       <div class="modal-body">
         <slot />

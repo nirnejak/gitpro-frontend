@@ -1,5 +1,5 @@
 <template>
-  <div class="loader" :style="{width, height, 'border-radius': radius}">
+  <div class="skeleton-loader" :style="{width, height, 'border-radius': radius}">
     <div class="gradient" />
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
   }
 }
 
-.loader {
+.skeleton-loader {
   overflow: hidden;
   background: var(--color-loader-bg);
   & > .gradient {

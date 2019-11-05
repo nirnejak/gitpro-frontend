@@ -1,3 +1,38 @@
-div[class^="col-"] {
-  margin-bottom: 0px !important;
+h1.is-primary {
+  color: var(--color-primary) !important;
+}
+h2.is-primary {
+  color: var(--color-primary) !important;
+}
+h3.is-primary {
+  color: var(--color-primary) !important;
+}
+h4.is-primary {
+  color: var(--color-primary) !important;
+}
+h5.is-primary {
+  color: var(--color-primary) !important;
+}
+h6.is-primary {
+  color: var(--color-primary) !important;
+}
+
+.button.is-primary {
+  background: var(--color-primary) !important;
+}
+
+.subtitle.is-primary,
+.title.is-primary {
+  color: var(--color-primary) !important;
+}
+
+$tags: ("h1", "h2", "h3", "h4", "h5", "h6", "span", ".title", ".subtitle");
+
+@each $tag in $tags {
+  #{$tag}.is-primary {
+    color: var(--color-primary) !important;
+  }
+  #{$tag}.has-text-primary {
+    color: var(--color-primary) !important;
+  }
 }
