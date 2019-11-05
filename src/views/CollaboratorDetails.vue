@@ -20,7 +20,7 @@
               v-if="collaboratorDetailsLoading"
             />
             <div
-              class="bg-card border-radius-10 bg-cover w-100"
+              class="box border-radius-10 bg-cover w-100"
               :style="`background-image: url(${collaborator.avatar_url}); padding-top: 100%;`"
               v-else
             />
@@ -100,7 +100,7 @@
               @change="addRemoveRepo(repository.name)"
             />
             <label :for="repository.name" class="repo-checkbox">
-              <div class="bg-card border-radius-5 p-20">
+              <div class="box border-radius-5 p-20">
                 <div class="columns">
                   <div class="column is-6 text-overflow-ellipsis">
                     <i class="fas fa-check-circle text-light mt-5 mr-10" />
@@ -117,13 +117,13 @@
               </div>
             </label>
           </div>
-          <div class="column" v-if="myRepositories.length === 0">
+          <div class="column" v-if="myRepositories.length === 0 && !collaboratorDetailsLoading">
             <p class="has-text-centered">
               You haven't added {{collaborator.name || collaborator.login}} to any of your repositories
               <br />
               <button
                 type="submit"
-                class="button is-outlined px-10"
+                class="button is-primary is-light my-10"
                 @click="showModal = true"
               >Add to Repos</button>
             </p>
@@ -156,7 +156,7 @@
           >
             <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
             <label :for="repository.name" class="repo-checkbox"></label>
-            <div class="bg-card border-radius-5 p-20">
+            <div class="box border-radius-5 p-20">
               <div class="columns">
                 <div class="column is-10 text-overflow-ellipsis">
                   <i class="fas fa-code-branch" />
@@ -175,13 +175,13 @@
           </div>
         </div>
 
-        <div class="column" v-if="commonRepositories.length === 0">
+        <div class="column" v-if="commonRepositories.length === 0 && !collaboratorDetailsLoading">
           <p class="has-text-centered">
             There are no common repositories between you and {{collaborator.name || collaborator.login}}.
             <br />
             <button
               type="submit"
-              class="button is-outlined px-10"
+              class="button is-primary is-light my-10"
               @click="showModal = true"
             >Add to Repos</button>
           </p>
@@ -223,7 +223,7 @@
         <div class="columns">
           <div class="column">
             <div
-              class="bg-card border-radius-5 p-20 my-20"
+              class="box border-radius-5 p-20 my-20"
               v-for="activityStat in activityStats"
               :key="activityStat.repository"
             >

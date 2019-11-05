@@ -6,7 +6,7 @@
         <h1 class="title is-size-3">Settings</h1>
         <div class="columns">
           <div class="column">
-            <div class="bg-card border-radius-10 p-20">
+            <div class="box border-radius-10 p-20">
               <!-- <div class="columns">
                 <div class="column is-10">Include Public Repositories</div>
                 <div class="column is-2 has-text-centered">

@@ -28,7 +28,7 @@
             v-for="repository in starredRepositories"
             :key="`${repository.owner}/${repository.name}`"
           >
-            <div class="bg-card border-radius-5 p-20">
+            <div class="box border-radius-5 p-20">
               <div class="columns">
                 <div class="column is-10 text-overflow-ellipsis">
                   <router-link
@@ -59,7 +59,7 @@
             v-for="repository in repositories"
             :key="`${repository.owner}/${repository.name}`"
           >
-            <div class="bg-card border-radius-5 p-20">
+            <div class="box border-radius-5 p-20">
               <div class="columns">
                 <div class="column is-10 text-overflow-ellipsis">
                   <router-link

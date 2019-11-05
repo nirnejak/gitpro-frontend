@@ -1,5 +1,5 @@
 <template>
-  <div class="column is-3 bg-card h-100vh mb-0" v-if="show">
+  <div class="column is-3 box h-100vh mb-0" v-if="show">
     <div class="columns is-centered px-30 pt-50">
       <div
         class="bg-card rounded-circle bg-cover w-60"

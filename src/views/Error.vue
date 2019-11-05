@@ -1,6 +1,6 @@
 <template>
   <div class="centered-container">
-    <div class="card bg-card has-text-centered p-0 py-100">
+    <div class="card box has-text-centered p-0 py-100">
       <div v-if="$route.params.code === '404'">
         <img src="@/assets/404.svg" alt width="50%" />
         <h1 class="is-size-3 has-text-dark mt-40 mb-0">Page not found</h1>

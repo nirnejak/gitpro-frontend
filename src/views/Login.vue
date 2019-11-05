@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="column is-5 bg-card">
+    <div class="column is-5 box">
       <div class="hero is-fullheight">
         <div class="hero-body">
           <div class="columns is-centered is-vcentered w-100">

@@ -20,7 +20,7 @@
         </div>
         <div class="columns" v-if="!formDataLoading">
           <div class="column">
-            <div class="bg-card border-radius-5 p-20 my-10">
+            <div class="box border-radius-5 p-20 my-10">
               <div class="columns">
                 <div class="column is-6 repositories pr-10">
                   <p class="pb-5">Repository</p>
@@ -101,7 +101,7 @@
             <h3 class="is-size-5 title mt-20" v-if="Object.keys(activity).length !== 0">Commits</h3>
             <div v-if="Object.keys(activity).length !== 0">
               <div
-                class="bg-card border-radius-5 p-20 my-20"
+                class="box border-radius-5 p-20 my-20"
                 v-if="!activityLoading && activity.contributions.length === 0"
               >
                 <div class="my-20">
@@ -130,7 +130,7 @@
             </div>
 
             <div
-              class="bg-card border-radius-5 p-20 my-20"
+              class="box border-radius-5 p-20 my-20"
               v-for="(commit, index) in activity.contributions"
               :key="index"
             >
@@ -166,7 +166,7 @@
                 <div v-if="!commit.isHidden" class="pt-20 has-text-centered">
                   <div
                     class="activity-container"
-                    style="width: 1000px;"
+                    style="width: 100%;"
                     v-html="prettyHtml(commit.diff)"
                     v-if="commit.diff !== 'Error:Diff is too large'"
                   />

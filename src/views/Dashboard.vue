@@ -25,21 +25,21 @@
         </div>
         <div class="columns">
           <div class="column is-4" v-if="!userLoading">
-            <router-link to="/repositories" class="bg-card border-radius-10 p-20 my-10">
+            <router-link to="/repositories" class="box border-radius-10 p-20 my-10">
               <i class="fas fa-code-branch mr-5" />
               {{user.total_repositories}}
               Total Repositories
             </router-link>
           </div>
           <div class="column is-4" v-if="!userLoading">
-            <router-link to="/collaborators" class="bg-card border-radius-10 p-20 my-10">
+            <router-link to="/collaborators" class="box border-radius-10 p-20 my-10">
               <i class="fas fa-user mr-5" />
               {{user.total_collaborators}}
               Total Collaborators
             </router-link>
           </div>
           <div class="column is-4" v-if="!userLoading">
-            <router-link to="/activities" class="bg-card border-radius-10 p-20 my-10">
+            <router-link to="/activities" class="box border-radius-10 p-20 my-10">
               <i class="fas fa-code mr-5" />
               {{activities.length}}
               Repositories with Activity
@@ -140,7 +140,7 @@
           </div>
 
           <div class="column is-4" v-for="(activity, index) in activities" :key="index">
-            <div class="bg-card border-radius-10 p-20">
+            <div class="box border-radius-10 p-20">
               <div class="columns">
                 <div class="column is-6">
                   <i class="fas fa-code-branch mr-5" />
