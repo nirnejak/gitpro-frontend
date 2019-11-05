@@ -3,11 +3,11 @@
     <Sidebar :show="true" />
     <div class="column is-9 pt-70">
       <div class="px-20">
-        <div class="columns">
+        <div class="columns is-mobile">
           <div class="column is-6">
             <h1 class="title is-size-3">Dashboard</h1>
           </div>
-          <div class="column is-6 has-text-right-tablet">
+          <div class="column is-6 has-text-right">
             <button class="button is-outline is-light has-text-dark" @click="refreshData">
               <span class="icon is-small">
                 <i class="fas fa-sync-alt" />
@@ -139,15 +139,15 @@
 
           <div class="column is-4" v-for="(activity, index) in activities" :key="index">
             <div class="box border-radius-10 p-20">
-              <div class="columns">
-                <div class="column is-6">
+              <div>
+                <p class="title is-size-6 mb-10">
                   <i class="fas fa-code-branch mr-5" />
                   {{activity.repository}}
-                </div>
-                <div class="column is-6 has-text-right-tablet">
+                </p>
+                <p class="title is-size-6">
                   <i class="far fa-user mr-5" />
                   {{activity.author}}
-                </div>
+                </p>
               </div>
               <div v-for="commit in activity.contributions" :key="commit.hash">
                 <div class="columns mb-0 mt-5">
@@ -162,7 +162,7 @@
                 <div class="column has-text-centered">
                   <router-link
                     :to="`/activities/?collaborator=${activity.author}&repository=${activity.repository}&owner=${activity.owner}`"
-                    class="has-text-dark"
+                    class="title is-size-6 has-text-dark"
                   >View Full Activity</router-link>
                 </div>
               </div>
