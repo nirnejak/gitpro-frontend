@@ -44,15 +44,18 @@
       </div>
     </div>
 
-    <div class="columns">
-      <div class="column mb-10">
-        <input type="text" placeholder="Search Repository" v-model="search" />
+    <div class="field">
+      <div class="control has-icons-right mb-10">
+        <input class="input" type="text" placeholder="Search Repository" v-model="search" />
+        <span class="icon is-small is-right">
+          <i class="fas fa-search" />
+        </span>
       </div>
     </div>
 
-    <div class="repo-list-container mb-15">
+    <div class="list is-hoverable repo-list-container mb-15">
       <div
-        class="cursor-pointer bd-light border-radius-5 p-10 my-5"
+        class="list-item cursor-pointer py-10"
         v-for="repository in repositories"
         :key="repository.name"
         @click="selectRepo(repository.name)"

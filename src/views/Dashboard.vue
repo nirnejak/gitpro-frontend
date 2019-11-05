@@ -18,9 +18,7 @@
         </div>
         <div class="columns" v-if="userLoading">
           <div class="column is-4" v-for="i in 3" :key="i">
-            <div class="m-10">
-              <SkeletonLoader width="100%" height="70px" radius="10px" />
-            </div>
+            <SkeletonLoader width="100%" height="70px" radius="10px" />
           </div>
         </div>
         <div class="columns">
