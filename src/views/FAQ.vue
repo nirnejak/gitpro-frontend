@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="container pt-100">
+    <Navbar />
+    <div class="container pt-100 px-30">
       <div class="columns">
         <div class="column">
           <h1 class="title">Frequently Asked Questions</h1>
@@ -97,10 +98,12 @@
 </template>
 
 <script>
-import Footer from "@/components/UI/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 export default {
   name: "FAQ",
-  components: { Footer },
+  components: { Footer, Navbar },
   created() {
     window.scrollTo(0,0)
   }

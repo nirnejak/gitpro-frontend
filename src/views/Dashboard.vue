@@ -66,9 +66,9 @@
                 v-for="collaborator in collaborators"
                 :key="collaborator.login"
               >
-                <div class="collaborator-avatar-container has-text-centered">
+                <div class="collaborator-avatar-container has-text-centered my-10">
                   <router-link :to="`/collaborators/${collaborator.login}`">
-                    <div class="columns is-centered">
+                    <div class="columns is-centered is-mobile">
                       <div class="collaborator-avatar position-relative">
                         <div
                           class="bg-card rounded-circle bg-cover"
@@ -85,7 +85,7 @@
               <div class="column is-2 p-5">
                 <div class="collaborator-avatar-container has-text-centered">
                   <router-link to="/collaborators/">
-                    <div class="columns is-centered">
+                    <div class="columns is-centered is-mobile">
                       <div
                         class="bg-card rounded-circle bg-cover"
                         style="width: var(--avatar-dimension); height: var(--avatar-dimension);"
@@ -150,7 +150,7 @@
                 </p>
               </div>
               <div v-for="commit in activity.contributions" :key="commit.hash">
-                <div class="columns mb-0 mt-5">
+                <div class="columns is-mobile mb-0 mt-5">
                   <div class="column is-9 text-primary">{{commit.commitMessage}}</div>
                   <div
                     class="column is-3 has-text-right-tablet has-text-dark"

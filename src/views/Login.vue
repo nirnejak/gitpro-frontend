@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-    <div class="column is-7 bg-gradienta">
+    <div class="column is-7 bg-gradient is-multiline">
       <div class="hero is-fullheight">
         <div class="hero-body">
           <div class="columns is-centered is-vcentered">
@@ -37,7 +37,7 @@
                   Register with GitHub
                 </a>
 
-                <div class="columns my-10">
+                <div class="columns is-mobile my-10">
                   <div class="column is-5">
                     <hr />
                   </div>
@@ -53,7 +53,7 @@
                 </a>
               </div>
 
-              <div class="columns is-centered">
+              <div class="columns is-centered is-mobile">
                 <div class="mt-70 has-text-dark has-text-left">
                   <p class="text-left">
                     <i class="fas fa-user-lock mr-5" />

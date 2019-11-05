@@ -1,13 +1,16 @@
 <template>
   <div>
     <section class="hero is-fullheight bg-gradient">
+      <div class="hero-head">
+        <Navbar />
+      </div>
       <div class="hero-body">
         <div class="container">
           <div class="columns is-vcentered">
             <div class="column is-6-md">
               <h2 class="subtitle">GitPro</h2>
               <h1 class="title is-size-1 mt-20">
-                <span></span>
+                <span id="heroTitle"></span>
                 <br />simplified
               </h1>
               <p
@@ -105,12 +108,15 @@
 
 <script>
 import Typed from "typed.js";
+
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 import HeroImage from "@/assets/version_control.svg";
-import Footer from "@/components/UI/Footer";
 
 export default {
   name: "home",
-  components: { Footer },
+  components: { Footer, Navbar },
   data() {
     return {
       options: {
@@ -124,7 +130,7 @@ export default {
     window.scrollTo(0, 0);
   },
   mounted() {
-    const typed = new Typed("span", this.options);
+    const typed = new Typed("span#heroTitle", this.options);
   }
 };
 </script>

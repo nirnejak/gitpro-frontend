@@ -10,7 +10,7 @@
             </router-link>
           </div>
         </div>
-        <div class="column is-3 is-vertical-align">
+        <div class="column is-3">
           <div>
             <div>
               <strong>Quick Links</strong>

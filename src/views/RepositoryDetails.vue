@@ -32,8 +32,7 @@
               />
             </div>
           </div>
-          <div class="column is-4 has-text-right-tablet" v-if="repository">
-            <!-- TODO: Add Optional Link for GitHub/Bitbucket/Gitlab -->
+          <div class="column is-4 has-text-right-tablet has-text-centered" v-if="repository">
             <a
               :href="`http://github.com/${$route.params.owner}/${$route.params.name}`"
               class="sidebar-link pr-20"
@@ -49,9 +48,9 @@
           <div class="column is-4">
             <h2 class="title is-size-4">Collaborators</h2>
           </div>
-          <div class="column is-8 has-text-right-tablet">
+          <div class="column is-8 has-text-right-tablet has-text-centered">
             <button
-              class="button is-danger is-light mx-10"
+              class="button is-danger is-light m-5"
               v-if="selectedCollaborators.length > 0"
               @click="revokeAccess()"
             >
@@ -60,7 +59,7 @@
               </span>
               <span>Revoke Access</span>
             </button>
-            <button class="button is-success is-light mx-10" @click="refreshData">
+            <button class="button is-success is-light m-5" @click="refreshData">
               <span class="icon is-small">
                 <i class="fas fa-sync-alt" />
               </span>
@@ -68,7 +67,7 @@
             </button>
             <button
               type="submit"
-              class="button is-link is-light mx-10"
+              class="button is-link is-light m-5"
               @click="showModal = true"
               v-if="user.login === repository.owner"
             >
@@ -82,7 +81,7 @@
         <div class="columns">
           <div class="column is-2 p-5 pb-30">
             <div class="collaborator-avatar-container has-text-centered">
-              <div class="columns is-centered">
+              <div class="columns is-centered is-mobile">
                 <router-link to="/dashboard">
                   <div class="collaborator-avatar position-relative">
                     <div
@@ -110,7 +109,7 @@
             :key="collaborator.login"
           >
             <div class="collaborator-avatar-container has-text-centered">
-              <div class="columns is-centered">
+              <div class="columns is-centered is-mobile">
                 <input
                   type="checkbox"
                   :name="collaborator.login"

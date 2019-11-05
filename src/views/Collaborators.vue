@@ -11,7 +11,7 @@
           <div class="column is-8">
             <h1 class="title is-size-3">Collaborators({{collaborators.length}})</h1>
           </div>
-          <div class="column is-4 pt-10 has-text-right-tablet">
+          <div class="column is-4 pt-10 has-text-right-tablet has-text-centered">
             <button class="button is-primary" @click="showModal = true" v-if="!showModal">
               <span>Add Collaborator</span>
               <span class="icon is-small">
@@ -43,7 +43,7 @@
           >
             <div class="collaborator-avatar-container has-text-centered">
               <router-link :to="`/collaborators/${collaborator.login}`">
-                <div class="columns is-centered">
+                <div class="columns is-centered is-mobile">
                   <div class="collaborator-avatar position-relative is-center">
                     <div
                       class="bg-card rounded-circle bg-cover"

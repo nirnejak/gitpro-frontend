@@ -35,7 +35,7 @@
             />
             <h3 class="is-size-4 title m-0 text-dark">{{$route.params.login}}</h3>
           </div>
-          <div class="column is-4 has-text-right">
+          <div class="column is-4 has-text-right-tablet has-text-centered">
             <p href="#" class="text-error cursor-pointer pr-20" @click="removeCollaborator">
               <i class="fas fa-user-times" />&nbsp;
               Remove Collaborator
@@ -51,10 +51,10 @@
           <div class="column is-4">
             <h2 class="title is-size-3">Repositories</h2>
           </div>
-          <div class="column is-8 has-text-right">
+          <div class="column is-8 has-text-right-tablet has-text-centered">
             <button
               type="submit"
-              class="button is-light is-danger mx-10"
+              class="button is-light is-danger m-5"
               v-if="selectedRepositories.length > 0"
               @click="revokeAccess()"
             >
@@ -63,13 +63,13 @@
               </span>
               <span>Revoke Access</span>
             </button>
-            <button class="button is-success is-light mx-10" @click="refreshData">
+            <button class="button is-success is-light m-5" @click="refreshData">
               <span class="icon is-small">
                 <i class="fas fa-sync-alt" />
               </span>
               <span>Refresh Data</span>
             </button>
-            <button type="submit" class="button is-link is-light mx-10" @click="showModal = true">
+            <button type="submit" class="button is-link is-light m-5" @click="showModal = true">
               <span class="icon is-small">
                 <i class="fas fa-plus" />
               </span>
@@ -99,12 +99,12 @@
             />
             <label :for="repository.name" class="repo-checkbox">
               <div class="box border-radius-5">
-                <div class="columns">
+                <div class="columns is-mobile">
                   <div class="column is-7 text-overflow-ellipsis">
                     <i class="fas fa-check-circle text-light mr-5" />
                     {{repository.name}}
                   </div>
-                  <div class="column is-5 has-text-right-tablet">
+                  <div class="column is-5 has-text-right">
                     <router-link
                       :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}&owner=${repository.owner}`"
                       class="text-primary"
@@ -131,7 +131,7 @@
           <div class="column is-6">
             <h2 class="title is-size-3">Common Repositories</h2>
           </div>
-          <div class="column is-6 has-text-right">
+          <div class="column is-6 has-text-right-tablet has-text-centered">
             <p class="text-dark">
               Repositories shared with you and
               <strong>{{$route.params.login}}</strong>
@@ -154,12 +154,12 @@
             <input type="checkbox" :name="repository.name" :id="repository.name" class="d-none" />
             <label :for="repository.name" class="repo-checkbox"></label>
             <div class="box border-radius-5">
-              <div class="columns">
+              <div class="columns is-mobile">
                 <div class="column is-10 text-overflow-ellipsis">
                   <i class="fas fa-code-branch mr-5" />
                   {{repository.owner}}/{{repository.name}}
                 </div>
-                <div class="column is-2">
+                <div class="column is-2 has-text-right">
                   <router-link
                     :to="`/activities/?collaborator=${collaborator.login}&repository=${repository.name}&owner=${repository.owner}`"
                     title="View Activity"
@@ -188,7 +188,7 @@
           <div class="column is-4">
             <h2 class="title is-size-3">Today's Activity</h2>
           </div>
-          <div class="column is-8 has-text-right">
+          <div class="column is-8 has-text-right-tablet has-text-centered">
             <p class="text-dark">
               <i class="fas fa-sm fa-star" />
               Showing for Favourite Repositories only
@@ -226,7 +226,7 @@
             >
               <div class="columns">
                 <div class="column is-8">
-                  <h4 class="is-size-5">{{activityStat.repository}}</h4>
+                  <h4 class="title is-size-5">{{activityStat.repository}}</h4>
                 </div>
                 <div class="column is-4 has-text-right-tablet pt-10">
                   <router-link

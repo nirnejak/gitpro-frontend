@@ -29,7 +29,7 @@
             :key="`${repository.owner}/${repository.name}`"
           >
             <div class="box border-radius-5 p-20">
-              <div class="columns">
+              <div class="columns is-mobile">
                 <div class="column is-10 text-overflow-ellipsis">
                   <router-link
                     :to="`/repositories/${repository.owner}/${repository.name}`"
@@ -39,7 +39,7 @@
                     {{repository.owner}}/{{repository.name}}
                   </router-link>
                 </div>
-                <div class="column is-2 has-text-right-tablet">
+                <div class="column is-2 has-text-right">
                   <i
                     class="fa-star mt-5 cursor-pointer text-high-contrast"
                     :class="{'fas': repository.isFavourite, 'far': !repository.isFavourite}"
@@ -60,7 +60,7 @@
             :key="`${repository.owner}/${repository.name}`"
           >
             <div class="box border-radius-5 p-20">
-              <div class="columns">
+              <div class="columns is-mobile">
                 <div class="column is-10 text-overflow-ellipsis">
                   <router-link
                     :to="`/repositories/${repository.owner}/${repository.name}`"
@@ -70,7 +70,7 @@
                     {{repository.owner}}/{{repository.name}}
                   </router-link>
                 </div>
-                <div class="column is-2 has-text-right-tablet">
+                <div class="column is-2 has-text-right">
                   <i
                     class="fa-star mt-5 cursor-pointer text-high-contrast"
                     :class="{'fas': repository.isFavourite, 'far': !repository.isFavourite}"

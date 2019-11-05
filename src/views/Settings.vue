@@ -7,16 +7,16 @@
         <div class="columns">
           <div class="column">
             <div class="box border-radius-10 p-20">
-              <!-- <div class="columns">
-                <div class="column is-10">Include Public Repositories</div>
-                <div class="column is-2 has-text-centered">
+              <!-- <div class="columns is-mobile">
+                <div class="column is-7">Include Public Repositories</div>
+                <div class="column is-5 has-text-centered">
                   <ToggleButton @change="includePublicToggle" id="includePublicToggle" />
                 </div>
               </div>
               <br />-->
-              <!-- <div class="columns">
-                <div class="column is-10">Dark Mode</div>
-                <div class="column is-2 has-text-centered">
+              <!-- <div class="columns is-mobile">
+                <div class="column is-7">Dark Mode</div>
+                <div class="column is-5 has-text-centered">
                   <ToggleButton
                     id="darkModeToggle"
                     :value="theme === 'dark'"
@@ -24,13 +24,11 @@
                   />
                 </div>
               </div>
-              <br /> -->
-              <div class="columns">
-                <div class="column is-10">Deactivate Account?</div>
-                <div class="column is-2 has-text-centered">
-                  <button class="button is-danger is-outlined" @click="deactivateAccount">
-                    Deactivate
-                  </button>
+              <br />-->
+              <div class="columns is-mobile">
+                <div class="column is-7">Deactivate Account?</div>
+                <div class="column is-5 has-text-right">
+                  <button class="button is-danger is-outlined" @click="deactivateAccount">Deactivate</button>
                 </div>
               </div>
             </div>

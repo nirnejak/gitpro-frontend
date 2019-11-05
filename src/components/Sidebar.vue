@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar column is-3 box h-100vh border-radius-0" v-if="show">
-    <div class="columns is-centered px-30 pt-50">
+    <div class="columns is-centered is-mobile px-30 pt-50">
       <div
         class="bg-card rounded-circle bg-cover w-60"
         :style="`background-image: url(${user.avatar_url}); padding-top: 60%;`"
