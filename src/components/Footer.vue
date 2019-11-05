@@ -1,8 +1,8 @@
 <template>
   <footer>
     <div class="container">
-      <div class="columns py-70 mt-30">
-        <div class="column is-6">
+      <div class="columns is-centered py-70 mt-30">
+        <div class="column is-5">
           <div class="has-text-centered">
             <router-link to="/" class="text-high-contrast">
               <img src="@/assets/logo.svg" alt="GitPro Logo" width="30%" />
