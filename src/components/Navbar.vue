@@ -1,7 +1,7 @@
 <template>
   <nav
     class="navbar"
-    :class="{'is-fixed-top': ['faq'].includes($route.name)}"
+    :class="{'is-fixed-top': ['faq'].includes(currentRouteName)}"
     role="navigation"
     aria-label="main navigation"
   >
@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <div class="navbar-end">
+      <div class="navbar-end" v-if="currentRouteName !== 'login'">
         <div class="navbar-item">
           <div class="buttons">
             <router-link to="/login" class="button is-primary">
@@ -74,8 +74,12 @@ export default {
   name: "Navbar",
   data() {
     return {
-      isActive: false
+      isActive: false,
+      currentRouteName: this.$route.name
     };
+  },
+  updated() {
+    this.currentRouteName = this.$route.name;
   }
 };
 </script>
