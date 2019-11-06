@@ -11,7 +11,7 @@
 
     <div class="column is-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
-        <div class="columns">
+        <div class="columns is-vcentered">
           <div class="column is-1 is-vertical-align">
             <i class="fas fa-4x fa-code-branch mr-5" />
           </div>
@@ -35,7 +35,7 @@
           <div class="column is-4 has-text-right-tablet has-text-centered" v-if="repository">
             <a
               :href="`http://github.com/${$route.params.owner}/${$route.params.name}`"
-              class="pr-20"
+              class="button is-info is-light pr-20"
               target="_blank"
             >
               <i class="fas fa-external-link-alt" />&nbsp;
