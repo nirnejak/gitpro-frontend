@@ -119,7 +119,7 @@
                   </p>
                   <div class="has-text-centered">
                     <button
-                      class="button is-primary outline bd-primary"
+                      class="button is-info is-outlined bd-primary mx-10"
                       v-for="(contributor, index) in activity.contributors"
                       :key="index"
                       @click="selectedCollaborator = { login: contributor, nameAndOrLogin: contributor }"
@@ -220,6 +220,7 @@ export default {
       search: "",
       repositories: [],
       selectedRepo: null,
+      collaboratorsOriginal: [],
       collaborators: [],
       selectedCollaborator: null,
       formDataLoading: true,
@@ -245,12 +246,13 @@ export default {
       ...repo,
       ownerAndRepo: `${repo.owner}/${repo.name}`
     }));
-    this.collaborators = collaborators_res.data.map(collaborator => ({
+    this.collaboratorsOriginal = collaborators_res.data.map(collaborator => ({
       ...collaborator,
       nameAndOrLogin: collaborator.name
         ? `${collaborator.name}(${collaborator.login})`
         : collaborator.login
     }));
+    this.collaborators = this.collaboratorsOriginal;
     this.collaborators.push(this.user);
     this.formDataLoading = false;
 
@@ -275,7 +277,18 @@ export default {
   watch: {
     selectedRepo() {
       if (this.selectedRepo) {
+        this.collaborators = this.collaboratorsOriginal.filter(collab => {
+          if (collab.repositories) {
+            return collab.repositories.includes(this.selectedRepo._id);
+          } else {
+            return false;
+          }
+        });
+        this.collaborators.push(this.user);
         this.fetchActivity();
+      } else {
+        this.collaborators = this.collaboratorsOriginal;
+        this.collaborators.push(this.user);
       }
     },
     selectedCollaborator() {
