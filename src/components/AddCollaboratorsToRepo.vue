@@ -84,10 +84,10 @@ export default {
   },
   created() {
     axios.get("/collaborators").then(res => {
-      // Filter out the Repos user already has access to
-      this.collaboratorsOriginal = res.data.filter(repo => {
+      // Filter out the Collaborators who already has access to the Repo
+      this.collaboratorsOriginal = res.data.filter(collaborator => {
         for (let i = 0; i < this.$props.alreadyCollaborators.length; i++) {
-          if (this.$props.alreadyCollaborators[i].name === repo.name)
+          if (this.$props.alreadyCollaborators[i].login === collaborator.login)
             return false;
         }
         return true;
