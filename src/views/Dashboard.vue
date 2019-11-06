@@ -25,22 +25,19 @@
           <div class="column is-4" v-if="!userLoading">
             <router-link to="/repositories" class="box border-radius-10 p-20 my-10">
               <i class="fas fa-code-branch mr-5" />
-              {{user.total_repositories}}
-              Total Repositories
+              {{user.total_repositories === 0 ? 'Fetching Repositories' : `${user.total_repositories} Total Repositories`}}
             </router-link>
           </div>
           <div class="column is-4" v-if="!userLoading">
             <router-link to="/collaborators" class="box border-radius-10 p-20 my-10">
               <i class="fas fa-user mr-5" />
-              {{user.total_collaborators}}
-              Total Collaborators
+              {{user.total_collaborators === 0 ? 'Fetching Collaborators' : `${user.total_collaborators} Total Collaborators`}}
             </router-link>
           </div>
           <div class="column is-4" v-if="!userLoading">
             <router-link to="/activities" class="box border-radius-10 p-20 my-10">
               <i class="fas fa-code mr-5" />
-              {{activities.length}}
-              Repositories with Activity
+              See Activity
             </router-link>
           </div>
         </div>
@@ -206,55 +203,7 @@ export default {
     };
   },
   async created() {
-    axios.get(`/users/${localStorage.login}?stats=true`).then(res => {
-      this.userLoading = false;
-      this.favourite_repositories = res.data.favourite_repositories;
-      this.user.total_repositories = res.data.total_repositories;
-      this.user.total_collaborators = res.data.total_collaborators;
-
-      if (this.favourite_repositories.length === 0) {
-        this.activitiesLoading = false;
-      } else {
-        let before = new Date();
-        let after = new Date();
-        after.setDate(after.getDate() - 1);
-
-        let activityFetchPromises = [];
-        this.favourite_repositories.forEach(repository => {
-          let params = {
-            repository: repository.name,
-            after: moment(after).format("YYYY-MM-DD"),
-            before: moment(before).format("YYYY-MM-DD")
-          };
-          activityFetchPromises.push(axios.get("/activities", { params }));
-        });
-
-        Promise.all(activityFetchPromises).then(responses => {
-          this.activitiesLoading = false;
-          responses = responses.map(res => res.data).filter(res => res.length);
-          let activities = [];
-          responses.forEach(res => {
-            activities = [...activities, ...res];
-          });
-
-          activities = activities.map(activity => {
-            activity.contributions = activity.contributions.map(commit => {
-              commit["files"] = parse(commit.diff);
-              return commit;
-            });
-            return activity;
-          });
-
-          this.activities = activities;
-        });
-      }
-    });
-    axios.get("/collaborators").then(res => {
-      this.collaboratorLoading = false;
-      this.collaborators = res.data.filter((collaborator, index) => index < 5);
-    });
-
-    setTimeout(() => (this.showSnakeBar = true), 2000);
+    this.fetchData();
   },
   methods: {
     refreshData() {
@@ -274,6 +223,62 @@ export default {
         setTimeout(() => {
           this.$router.go();
         }, 5000);
+      });
+    },
+    fetchData() {
+      axios.get(`/users/${localStorage.login}?stats=true`).then(res => {
+        this.userLoading = false;
+        this.favourite_repositories = res.data.favourite_repositories;
+        this.user.total_repositories = res.data.total_repositories;
+        this.user.total_collaborators = res.data.total_collaborators;
+
+        if (this.favourite_repositories.length === 0) {
+          this.activitiesLoading = false;
+          setTimeout(() => {
+            this.$router.go();
+          }, 2000);
+        } else {
+          let before = new Date();
+          let after = new Date();
+          after.setDate(after.getDate() - 1);
+
+          let activityFetchPromises = [];
+          this.favourite_repositories.forEach(repository => {
+            let params = {
+              repository: repository.name,
+              after: moment(after).format("YYYY-MM-DD"),
+              before: moment(before).format("YYYY-MM-DD")
+            };
+            activityFetchPromises.push(axios.get("/activities", { params }));
+          });
+
+          Promise.all(activityFetchPromises).then(responses => {
+            this.activitiesLoading = false;
+            responses = responses
+              .map(res => res.data)
+              .filter(res => res.length);
+            let activities = [];
+            responses.forEach(res => {
+              activities = [...activities, ...res];
+            });
+
+            activities = activities.map(activity => {
+              activity.contributions = activity.contributions.map(commit => {
+                commit["files"] = parse(commit.diff);
+                return commit;
+              });
+              return activity;
+            });
+
+            this.activities = activities;
+          });
+        }
+      });
+      axios.get("/collaborators").then(res => {
+        this.collaboratorLoading = false;
+        this.collaborators = res.data.filter(
+          (collaborator, index) => index < 5
+        );
       });
     }
   }
