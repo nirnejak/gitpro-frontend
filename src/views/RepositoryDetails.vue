@@ -196,7 +196,7 @@ export default {
         this.selectedCollaborators.forEach((collaborator, index) => {
           axios
             .put(
-              `/repositories/${this.repository.name}?collaborator=${collaborator}`
+              `/repositories/${this.repository.name}?collaborator=${collaborator}&owner=${this.repository.owner}`
             )
             .then(res => {
               if (index === this.selectedCollaborators.length - 1) {
