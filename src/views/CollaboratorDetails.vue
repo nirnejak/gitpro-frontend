@@ -95,7 +95,7 @@
               :name="repository.name"
               :id="repository.name"
               class="d-none"
-              @change="addRemoveRepo(repository.name)"
+              @change="addRemoveRepo(repository.name, repository.owner)"
             />
             <label :for="repository.name" class="repo-checkbox">
               <div class="box border-radius-5">
@@ -396,11 +396,23 @@ export default {
       if (confirm) {
         this.selectedRepositories.forEach((repo, index) => {
           axios
-            .put(`/collaborators/${this.collaborator.login}?repo=${repo}`)
+            .put(
+              `/collaborators/${this.collaborator.login}?repo=${repo.name}&owner=${repo.owner}`
+            )
             .then(res => {
               if (index === this.selectedRepositories.length - 1) {
                 this.collaborator.repositories = this.collaborator.repositories.filter(
-                  repo => !this.selectedRepositories.includes(repo.name)
+                  repository =>
+                    !(
+                      repository.name === repo.name &&
+                      repository.owner === repo.owner
+                    )
+                );
+                this.myRepositories = this.collaborator.repositories.filter(
+                  repo => repo.owner === this.user.login
+                );
+                this.commonRepositories = this.collaborator.repositories.filter(
+                  repo => repo.owner !== this.user.login
                 );
                 this.selectedRepositories = [];
                 this.$message.success({
@@ -414,13 +426,17 @@ export default {
         });
       }
     },
-    addRemoveRepo(repoName) {
-      if (this.selectedRepositories.includes(repoName)) {
+    addRemoveRepo(repoName, owner) {
+      if (
+        this.selectedRepositories.filter(
+          repo => repo.name === repoName && repo.owner === owner
+        ).length > 0
+      ) {
         this.selectedRepositories = this.selectedRepositories.filter(
-          repo => repo !== repoName
+          repo => !(repo.name === repoName && repo.owner === owner)
         );
       } else {
-        this.selectedRepositories.push(repoName);
+        this.selectedRepositories.push({ name: repoName, owner });
       }
     },
     hideModal() {
