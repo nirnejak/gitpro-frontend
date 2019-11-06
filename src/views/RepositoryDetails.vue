@@ -35,7 +35,7 @@
           <div class="column is-4 has-text-right-tablet has-text-centered" v-if="repository">
             <a
               :href="`http://github.com/${$route.params.owner}/${$route.params.name}`"
-              class="sidebar-link pr-20"
+              class="pr-20"
               target="_blank"
             >
               <i class="fas fa-external-link-alt" />&nbsp;

@@ -11,7 +11,7 @@
 
     <div class="column is-9 pt-70 h-100vh mb-0" style="overflow-y: auto;">
       <div class="px-20">
-        <div class="columns">
+        <div class="columns is-vcentered">
           <div class="column is-2">
             <SkeletonLoader
               width="100%"
@@ -25,8 +25,8 @@
               v-else
             />
           </div>
-          <div class="column is-6 pt-30">
-            <h1 class="title is-size-3 mb-10">{{collaborator.name}}</h1>
+          <div class="column is-6">
+            <h1 class="title is-size-3 mt-30 mb-10" v-if="collaborator.name">{{collaborator.name}}</h1>
             <SkeletonLoader
               width="100%"
               height="30px"
@@ -36,12 +36,17 @@
             <h3 class="is-size-4 title m-0 text-dark">{{$route.params.login}}</h3>
           </div>
           <div class="column is-4 has-text-right-tablet has-text-centered">
-            <p href="#" class="text-error cursor-pointer pr-20" @click="removeCollaborator">
+            <p href="#" class="button is-danger is-light pr-20" @click="removeCollaborator">
               <i class="fas fa-user-times" />&nbsp;
               Remove Collaborator
             </p>
             <br />
-            <a :href="`http://github.com/${$route.params.login}`" class="pr-20" target="_blank">
+            <br />
+            <a
+              :href="`http://github.com/${$route.params.login}`"
+              class="button is-info is-light pr-20"
+              target="_blank"
+            >
               <i class="fas fa-external-link-alt" />&nbsp;
               View on GitHub
             </a>
@@ -84,7 +89,7 @@
           </div>
         </div>
 
-        <div class="columns" v-if="collaborator">
+        <div class="columns is-multiline" v-if="collaborator">
           <div
             class="column is-4"
             v-for="repository in myRepositories"
@@ -146,7 +151,7 @@
           </div>
         </div>
 
-        <div class="columns" v-if="collaborator">
+        <div class="columns is-multiline" v-if="collaborator">
           <div
             class="column is-4"
             v-for="repository in commonRepositories"
