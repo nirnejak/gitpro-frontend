@@ -54,7 +54,7 @@
         </div>
         <div class="columns mt-30">
           <div class="column is-4">
-            <h2 class="title is-size-3">Repositories</h2>
+            <h2 class="title is-size-3 has-text-black">Repositories</h2>
           </div>
           <div class="column is-8 has-text-right-tablet has-text-centered">
             <button
@@ -135,7 +135,7 @@
 
         <div class="columns mt-30">
           <div class="column is-6">
-            <h2 class="title is-size-3">Common Repositories</h2>
+            <h2 class="title is-size-3 has-text-black">Common Repositories</h2>
           </div>
           <div class="column is-6 has-text-right-tablet has-text-centered">
             <p class="text-dark">

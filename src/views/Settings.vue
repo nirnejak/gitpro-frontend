@@ -3,7 +3,7 @@
     <Sidebar :show="true" />
     <div class="column is-9 pt-70">
       <div class="px-20">
-        <h1 class="title is-size-3">Settings</h1>
+        <h1 class="title is-size-3 has-text-black">Settings</h1>
         <div class="columns">
           <div class="column">
             <div class="box border-radius-10 p-20">

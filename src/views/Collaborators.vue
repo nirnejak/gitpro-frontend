@@ -9,7 +9,7 @@
       <div class="px-20">
         <div class="columns mb-30">
           <div class="column is-8">
-            <h1 class="title is-size-3">Collaborators({{collaborators.length}})</h1>
+            <h1 class="title is-size-3 has-text-black">Collaborators({{collaborators.length}})</h1>
           </div>
           <div class="column is-4 pt-10 has-text-right-tablet has-text-centered">
             <button class="button is-primary" @click="showModal = true" v-if="!showModal">

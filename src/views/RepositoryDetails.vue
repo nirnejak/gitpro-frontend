@@ -13,11 +13,11 @@
       <div class="px-20">
         <div class="columns is-vcentered">
           <div class="column is-1 is-vertical-align">
-            <i class="fas fa-4x fa-code-branch mr-5" />
+            <i class="fas fa-4x fa-code-branch has-text-black mr-5" />
           </div>
           <div class="column is-7 is-vertical-align">
             <div>
-              <h1 class="title is-size-3 m-0">{{$route.params.name}}</h1>
+              <h1 class="title is-size-3 has-text-black m-0">{{$route.params.name}}</h1>
               <p class="has-text-dark">
                 by
                 <span class="text-high-contrast">{{repository.owner}}</span>
@@ -46,7 +46,7 @@
 
         <div class="columns mt-40">
           <div class="column is-4">
-            <h2 class="title is-size-4">Collaborators</h2>
+            <h2 class="title is-size-4 has-text-black">Collaborators</h2>
           </div>
           <div class="column is-8 has-text-right-tablet has-text-centered">
             <button

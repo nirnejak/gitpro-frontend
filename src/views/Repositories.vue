@@ -5,7 +5,7 @@
       <div class="px-30">
         <div class="columns mb-30">
           <div class="column is-8">
-            <h1 class="title is-size-3">Repositories({{repositoriesOriginal.length}})</h1>
+            <h1 class="title is-size-3 has-text-black">Repositories({{repositoriesOriginal.length}})</h1>
           </div>
           <div class="column is-4 pt-10">
             <p class="control has-icons-right">

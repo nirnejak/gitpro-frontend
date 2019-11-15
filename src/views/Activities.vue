@@ -10,7 +10,7 @@
         />
         <div class="columns">
           <div class="column">
-            <h1 class="title is-size-3">Activities</h1>
+            <h1 class="title is-size-3 has-text-black">Activities</h1>
           </div>
         </div>
         <div class="columns" v-if="formDataLoading">

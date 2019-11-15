@@ -5,7 +5,7 @@
       <div class="px-20">
         <div class="columns is-mobile">
           <div class="column is-6">
-            <h1 class="title is-size-3">Dashboard</h1>
+            <h1 class="title is-size-3 has-text-black">Dashboard</h1>
           </div>
           <div class="column is-6 has-text-right">
             <button class="button is-outline is-light has-text-dark" @click="refreshData">
@@ -43,7 +43,7 @@
         </div>
         <div class="columns mt-30">
           <div class="column">
-            <h2 class="title is-size-4">Collaborators</h2>
+            <h2 class="title is-size-4 has-text-black">Collaborators</h2>
           </div>
         </div>
         <div class="columns">
@@ -107,7 +107,7 @@
 
         <div class="columns mt-30">
           <div class="column is-6">
-            <h2 class="is-size-4 title mb-0">Today's Activities</h2>
+            <h2 class="is-size-4 title has-text-black mb-0">Today's Activities</h2>
             <div class="has-text-dark">
               <small>(in Favourite Repositories)</small>
             </div>

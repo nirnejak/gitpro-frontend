@@ -3,7 +3,7 @@
     <Sidebar :show="true" />
     <div class="column is-9 pt-70">
       <div class="px-20">
-        <h1 class="title is-size-3">Insights</h1>
+        <h1 class="title is-size-3 has-text-black">Insights</h1>
 
         <div class="columns is-vcentered is-centered h-70vh">
           <div class="has-text-centered has-text-dark">

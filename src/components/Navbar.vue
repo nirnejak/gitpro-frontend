@@ -8,7 +8,7 @@
     <div class="navbar-brand">
       <router-link class="navbar-item" to="/">
         <img src="@/assets/logo_no_border.png" height="50" />
-        <strong class="ml-10">GitPro</strong>
+        <strong class="ml-10 has-text-black">GitPro</strong>
       </router-link>
 
       <a

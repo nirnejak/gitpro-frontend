@@ -4,15 +4,15 @@
     <div class="container pt-100 px-30">
       <div class="columns">
         <div class="column">
-          <h1 class="title">Frequently Asked Questions</h1>
-          <hr />
+          <h1 class="is-1 has-text-black title">Frequently Asked Questions</h1>
+          <hr class="has-background-black"/>
         </div>
       </div>
 
       <div class="columns">
         <div class="column">
           <p>
-            <strong>
+            <strong class="has-text-black">
               <i class="fas fa-question-circle fa-sm mr-5"/>What is GitPro?
             </strong>
           </p>
@@ -23,7 +23,7 @@
       <div class="columns">
         <div class="column">
           <p>
-            <strong>
+            <strong class="has-text-black">
               <i class="fas fa-question-circle fa-sm mr-5"/>How does it make repository management easy?
             </strong>
           </p>
@@ -34,7 +34,7 @@
       <div class="columns">
         <div class="column">
           <p>
-            <strong>
+            <strong class="has-text-black">
               <i class="fas fa-question-circle fa-sm mr-5"/>How does your platform track developer activity?
             </strong>
           </p>
@@ -45,7 +45,7 @@
       <div class="columns">
         <div class="column">
           <p>
-            <strong>
+            <strong class="has-text-black">
               <i class="fas fa-question-circle fa-sm mr-5"/>What type of activities I can see?
             </strong>
           </p>
@@ -62,7 +62,7 @@
       <div class="columns">
         <div class="column">
           <p>
-            <strong>
+            <strong class="has-text-black">
               <i class="fas fa-question-circle fa-sm mr-5"/>How much do I have to Pay?
             </strong>
           </p>
@@ -73,7 +73,7 @@
       <div class="columns">
         <div class="column">
           <p>
-            <strong>
+            <strong class="has-text-black">
               <i class="fas fa-question-circle fa-sm mr-5"/>What about my data?
             </strong>
           </p>
@@ -84,7 +84,7 @@
       <div class="columns">
         <div class="column">
           <p>
-            <strong>
+            <strong class="has-text-black">
               <i class="fas fa-question-circle fa-sm mr-5"/>If you’re fetching data from GitHub then how are you making sure it’s updated?
             </strong>
           </p>
