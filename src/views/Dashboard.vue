@@ -232,7 +232,7 @@ export default {
         this.user.total_repositories = res.data.total_repositories;
         this.user.total_collaborators = res.data.total_collaborators;
 
-        if (this.favourite_repositories.length === 0) {
+        if (this.user.total_repositories.length === 0) {
           this.activitiesLoading = false;
           setTimeout(() => {
             this.$router.go();
