@@ -193,8 +193,12 @@ export default {
       },
       collaborators: [],
       collaboratorLoading: true,
+
       userLoading: true,
+
+      repositories: [],
       favourite_repositories: [],
+      repositoriesLoading: true,
 
       activities: [],
       activitiesLoading: true,
@@ -271,6 +275,15 @@ export default {
             });
 
             this.activities = activities;
+
+            if (activities.length === 0) {
+              axios.get("/repositories").then(res => {
+                this.repositoriesLoading = false;
+                this.repositories = res.data
+                  .filter(repo => repo.isFavourite)
+                  .filter((repo, index) => index < 5);
+              });
+            }
           });
         }
       });
