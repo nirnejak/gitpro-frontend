@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 
-import { lightTheme } from './config'
-
 Vue.use(Router)
 
 const isAuthenticated = (to, from, next) => {
@@ -115,10 +113,6 @@ export default new Router({
         localStorage.removeItem('login')
         localStorage.removeItem('jwtToken')
         localStorage.removeItem('avatar_url')
-        const rootElement = document.querySelector(':root')
-        Object.keys(lightTheme).forEach(key => {
-          rootElement.style.setProperty(key, lightTheme[key])
-        })
         next({ path: '/login' })
       }
     },

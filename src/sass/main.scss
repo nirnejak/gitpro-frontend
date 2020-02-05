@@ -5,26 +5,18 @@
 }
 
 :root {
-  --grid-gutter: 0rem;
   --color-primary: #0e57ff;
-  --color-success: #14854f;
   --avatar-dimension: 150px;
-  // --grid-gutter: 0rem;
-  --body-background: #f4f4f4;
-  --body-color: #000000;
   --body-high-contrast: #000000;
   --card-background: white;
-  --sidebar-hover: #d5e1ff;
-  --color-loader-bg: rgba(0, 0, 0, 0.04);
-  --font-family: "CircularStd", -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next", "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-body {
-  background: var(--body-background);
-  color: var(--body-color);
-  font-family: "CircularStd" !important;
-}
+$primary: #0e57ff;
+$body-background-color: #f4f4f4;
+$body-family: "CircularStd";
+$body-color: #000000;
+
+@import "../../node_modules/bulma/bulma.sass";
 
 @import "components/collaborator-avatar";
 @import "components/card";
@@ -32,7 +24,7 @@ body {
 @import "utils/main";
 
 .top-collar {
-  background: var(--color-primary);
+  background: $primary;
   color: white;
 
   position: fixed;
@@ -45,19 +37,6 @@ body {
   border-bottom: 2px white dotted;
 
   transform: rotate(45deg);
-}
-
-.bg-gradient {
-  background-image: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgba(239, 246, 249, 1) 0%,
-    rgba(206, 239, 253, 1) 90%
-  );
-  // background-image: radial-gradient(
-  //   circle farthest-corner at 18.7% 37.8%,
-  //   rgba(250, 250, 250, 1) 0%,
-  //   rgba(225, 234, 238, 1) 90%
-  // );
 }
 
 // background-image: linear-gradient( 319.6deg,  rgba(243,0,79,1) 20.5%, rgba(255,236,68,1) 110.9% );

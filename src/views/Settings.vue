@@ -7,24 +7,6 @@
         <div class="columns">
           <div class="column">
             <div class="box border-radius-10 p-20">
-              <!-- <div class="columns is-mobile">
-                <div class="column is-7">Include Public Repositories</div>
-                <div class="column is-5 has-text-centered">
-                  <ToggleButton @change="includePublicToggle" id="includePublicToggle" />
-                </div>
-              </div>
-              <br />-->
-              <!-- <div class="columns is-mobile">
-                <div class="column is-7">Dark Mode</div>
-                <div class="column is-5 has-text-centered">
-                  <ToggleButton
-                    id="darkModeToggle"
-                    :value="theme === 'dark'"
-                    @change="darkModeToggle"
-                  />
-                </div>
-              </div>
-              <br />-->
               <div class="columns is-mobile">
                 <div class="column is-7">Deactivate Account?</div>
                 <div class="column is-5 has-text-right">
@@ -45,16 +27,9 @@ import axios from "@/configAxios";
 import Sidebar from "@/components/Sidebar";
 import ToggleButton from "@/components/UI/ToggleButton";
 
-import { darkTheme, lightTheme } from "@/config";
-
 export default {
   name: "Settings",
   components: { Sidebar, ToggleButton },
-  data() {
-    return {
-      theme: localStorage.theme || "light"
-    };
-  },
   methods: {
     includePublicToggle() {
       console.log("Include Public Toggle");
@@ -73,21 +48,6 @@ export default {
     includePublicToggle(e) {
       // TODO: Implement includePublicToggle
     },
-    darkModeToggle(e) {
-      const rootElement = document.querySelector(":root");
-
-      if (e) {
-        Object.keys(darkTheme).forEach(key => {
-          rootElement.style.setProperty(key, darkTheme[key]);
-        });
-        localStorage.theme = "dark";
-      } else {
-        Object.keys(lightTheme).forEach(key => {
-          rootElement.style.setProperty(key, lightTheme[key]);
-        });
-        localStorage.theme = "light";
-      }
-    }
   }
 };
 </script>

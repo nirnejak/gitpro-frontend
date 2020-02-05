@@ -23,14 +23,14 @@ export default {
 
 .skeleton-loader {
   overflow: hidden;
-  background: var(--color-loader-bg);
+  background: rgba(0, 0, 0, 0.04);
   & > .gradient {
     width: 10%;
     height: 100%;
     background-image: linear-gradient(
       to right,
       transparent,
-      var(--body-background),
+      #f4f4f4,
       transparent
     );
     animation-name: moveGradient;

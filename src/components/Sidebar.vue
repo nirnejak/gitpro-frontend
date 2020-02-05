@@ -103,7 +103,7 @@ export default {
     color: var(--color-primary);
     &:hover {
       transition: 0.3s ease;
-      background: var(--sidebar-hover);
+      background: #d5e1ff;
     }
     i {
       margin-right: 5px;
