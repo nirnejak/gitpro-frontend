@@ -104,7 +104,7 @@ export default {
   created() {
     window.scrollTo(0, 0);
     if (process.env.NODE_ENV === "production") {
-      this.loginUrl = "https://aws.gitpro.app/auth/github";
+      this.loginUrl = "https://awsapi.gitpro.app/auth/github";
     } else {
       this.loginUrl = "http://localhost:5000/auth/github";
     }
