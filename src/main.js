@@ -5,7 +5,6 @@ import VCalendar from 'v-calendar'
 import VueScrollTo from 'vue-scrollto'
 import App from './App.vue'
 import router from './router'
-import store from './store'
 import './registerServiceWorker'
 
 import * as Sentry from '@sentry/browser'
@@ -40,7 +39,6 @@ if (process.env.NODE_ENV === 'production' && !window.location.href.includes('das
 
 new Vue({
   router,
-  store,
   render: h => h(App),
   mounted: () => document.dispatchEvent(new Event('x-app-rendered'))
 }).$mount('#app')
